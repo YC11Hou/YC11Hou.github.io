@@ -23,12 +23,12 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/projects/";
           },
-        },{id: "nav-cv",
-          title: "CV",
+        },{id: "nav-experience",
+          title: "experience",
           description: "",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/cv/";
+            window.location.href = "/experience/";
           },
         },{id: "news-started-my-master-s-program-in-electrical-engineering-at-the-national-university-of-singapore-nus",
           title: 'Started my Master’s program in Electrical Engineering at the National University of Singapore...',
