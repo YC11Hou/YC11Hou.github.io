@@ -17,6 +17,7 @@ cv:
       - institution: National University of Singapore
         location: Singapore
         url: https://www.nus.edu.sg/
+        logo: logo_nus.png
         area: Electrical Engineering
         studyType: Master of Science
         start_date: 2025-08
@@ -28,6 +29,7 @@ cv:
       - institution: Nanjing University of Aeronautics and Astronautics
         location: Nanjing, China
         url: https://www.nuaa.edu.cn/
+        logo: logo_nuaa.png
         area: Electronic and Communication Engineering
         studyType: Bachelor of Engineering
         start_date: 2021-09
@@ -40,6 +42,7 @@ cv:
       - company: Movel.AI
         position: Robotics Software Intern
         location: Singapore
+        logo: logo_movelai.png
         start_date: 2025-12
         end_date: 2026-01
         highlights:
