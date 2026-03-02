@@ -40,6 +40,22 @@ body.sticky-bottom-footer {
   }
 }
 
+// Page header: reduce title size and spacing
+.post-header {
+  margin-bottom: 0.8rem;
+
+  .post-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  .post-description {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+}
+
 // Content layout uses Bootstrap's grid system with responsive columns
 // Main content flows naturally through container-mt-5 and Bootstrap grid classes
 // See _layouts/default.liquid and _includes/projects.liquid for examples
