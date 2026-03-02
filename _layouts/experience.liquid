@@ -10,19 +10,104 @@ layout: default
       {% comment %} Education Section {% endcomment %}
       {% if cv.sections.Education.size > 0 %}
         <h2 class="category">Education</h2>
-        {% assign entries = cv.sections.Education %}
-        {% include cv/education.liquid %}
+        {% for entry in cv.sections.Education %}
+          <div class="entry">
+            {% if entry.logo %}
+              <div class="entry-logo">
+                {% assign logo_path = entry.logo | prepend: 'assets/img/' %}
+                {%
+                  include figure.liquid
+                  loading="eager"
+                  path=logo_path
+                  sizes="48px"
+                  alt=entry.institution
+                  class="logo-img"
+                %}
+              </div>
+            {% endif %}
+            <div class="entry-content">
+              <div class="entry-header">
+                <h3 class="entry-title">
+                  {%- if entry.url -%}
+                    <a href="{{ entry.url }}">{{ entry.studyType | default: entry.degree }}</a>
+                  {%- else -%}
+                    {{ entry.studyType | default: entry.degree }}
+                  {%- endif -%}
+                </h3>
+                {% capture start_year %}{{ entry.start_date | split: '-' | first }}{% endcapture %}
+                {% capture end_year %}{{ entry.end_date | split: '-' | first | default: 'Present' }}{% endcapture %}
+                <span class="entry-date">{{ start_year }} – {{ end_year }}</span>
+              </div>
+              {% if entry.institution %}
+                <div class="entry-subtitle">{{ entry.institution }}</div>
+              {% endif %}
+              {% if entry.area %}
+                <div class="entry-area">{{ entry.area }}</div>
+              {% endif %}
+              {% if entry.location %}
+                <div class="entry-location"><i class="fa-solid fa-location-dot"></i> {{ entry.location }}</div>
+              {% endif %}
+              {% if entry.highlights %}
+                <ul class="entry-highlights">
+                  {% for item in entry.highlights %}
+                    <li>{{ item | markdownify | remove: '<p>' | remove: '</p>' }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
       {% endif %}
 
       {% comment %} Work Experience Section {% endcomment %}
       {% assign empty_array = '' | split: ',' %}
       {% assign exp = cv.sections.Experience | default: empty_array %}
       {% assign vol = cv.sections.Volunteer | default: empty_array %}
-      {% assign combined_experience = exp | concat: vol %}
-      {% if combined_experience.size > 0 %}
+      {% assign combined = exp | concat: vol %}
+      {% if combined.size > 0 %}
         <h2 class="category">Work Experience</h2>
-        {% assign entries = combined_experience %}
-        {% include cv/experience.liquid %}
+        {% for entry in combined %}
+          <div class="entry">
+            {% if entry.logo %}
+              <div class="entry-logo">
+                {% assign logo_path = entry.logo | prepend: 'assets/img/' %}
+                {%
+                  include figure.liquid
+                  loading="eager"
+                  path=logo_path
+                  sizes="48px"
+                  alt=entry.company
+                  class="logo-img"
+                %}
+              </div>
+            {% endif %}
+            <div class="entry-content">
+              <div class="entry-header">
+                <h3 class="entry-title">{{ entry.position }}</h3>
+                {% capture start_year %}{{ entry.start_date | split: '-' | first }}{% endcapture %}
+                {% capture end_year %}{{ entry.end_date | split: '-' | first | default: 'Present' }}{% endcapture %}
+                <span class="entry-date">{{ start_year }} – {{ end_year }}</span>
+              </div>
+              <div class="entry-subtitle">
+                {%- if entry.url -%}
+                  <a href="{{ entry.url }}">{{ entry.company | default: entry.name }}</a>
+                {%- else -%}
+                  {{ entry.company | default: entry.name }}
+                {%- endif -%}
+              </div>
+              {% if entry.location %}
+                <div class="entry-location"><i class="fa-solid fa-location-dot"></i> {{ entry.location }}</div>
+              {% endif %}
+              {% if entry.highlights %}
+                <ul class="entry-highlights">
+                  {% for item in entry.highlights %}
+                    <li>{{ item | markdownify | remove: '<p>' | remove: '</p>' }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
       {% endif %}
     </div>
   </article>
