@@ -60,27 +60,29 @@ ul.task-list input[type="checkbox"] {
 
   .more-info {
     margin-bottom: 5px;
-    margin-top: 5px;
-    font-family: monospace;
+    margin-top: 8px;
+    font-size: 0.85rem;
+    text-align: center;
+    color: var(--global-theme-color);
 
     p {
-      display: inline-block;
+      display: block;
       margin: 0;
     }
   }
 }
 
 .profile.float-right {
-  margin-left: 1rem;
+  margin-left: 1.5rem;
 }
 
 .profile.float-left {
-  margin-right: 1rem;
+  margin-right: 1.5rem;
 }
 
 @media (min-width: 576px) {
   .profile {
-    width: 30%;
+    width: 22%;
 
     .address {
       p {
