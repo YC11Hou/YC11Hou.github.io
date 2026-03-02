@@ -177,6 +177,7 @@ ul.task-list input[type="checkbox"] {
 
     .row.no-gutters {
       align-items: center;
+      gap: 0 1.25rem;
     }
 
     img {
@@ -186,8 +187,8 @@ ul.task-list input[type="checkbox"] {
   }
 
   .project-media {
-    flex: 0 0 20%;
-    max-width: 20%;
+    flex: 0 0 8%;
+    max-width: 8%;
     padding: 0.75rem 0;
 
     .video-container {
