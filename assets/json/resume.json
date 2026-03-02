@@ -107,6 +107,18 @@
         "Lidar/RGB-D Integration",
         "SLAM (Cartographer)"
       ]
+    },
+    {
+      "name": "Research Capabilities",
+      "level": "Advanced",
+      "icon": "fa-solid fa-flask",
+      "keywords": [
+        "Sim-to-Real Transfer",
+        "Embodied AI Architectures",
+        "RL Algorithms",
+        "Academic Paper Writing",
+        "Tracking CVPR/IROS/ICRA"
+      ]
     }
   ],
   "languages": [

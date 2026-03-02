@@ -73,6 +73,11 @@ cv:
         icon: fa-solid fa-gears
         keywords: "ROS2 (rclpy, Nav2), Sensor Fusion, Lidar/RGB-D Integration, SLAM (Cartographer)"
 
+      - name: Research Capabilities
+        level: Advanced
+        icon: fa-solid fa-flask
+        keywords: "Sim-to-Real Transfer, Embodied AI Architectures, RL Algorithms, Academic Paper Writing, Tracking CVPR/IROS/ICRA"
+
     Languages:
       - name: English
         summary: "Proficient — IELTS 7.0 (R 8.5, W 7.5, L 6.5, S 6.0)"
