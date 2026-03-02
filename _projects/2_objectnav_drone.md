@@ -3,6 +3,7 @@ layout: page
 title: "AION: Aerial Indoor Object-Goal Navigation"
 description: End-to-end dual-policy RL framework for vision-based aerial ObjectNav without external localization or global maps. Evaluated on AI2-THOR and IsaacSim.
 img: assets/img/aion_thumbnail.jpg
+video: https://www.youtube.com/embed/TgsUm6bb7zg
 importance: 2
 category: master
 ---
