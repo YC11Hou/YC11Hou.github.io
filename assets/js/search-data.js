@@ -41,9 +41,9 @@ ninja.data = [{
           description: "Designed a systematic semantic perturbation evaluation framework revealing that state-of-the-art VLA models ignore language instructions despite high benchmark scores. Proposed multi-task same-scene training approach and constructed augmented dataset for fine-tuning.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_vla_benchmark/";
-            },},{id: "projects-zero-shot-indoor-object-navigation-for-drones",
-          title: 'Zero-Shot Indoor Object Navigation for Drones',
-          description: "Developed a dual-mode visual navigation system based on end-to-end Reinforcement Learning with RGB-D sensors. The policy autonomously switches between exploration and target-driven navigation modes. Deployed on autonomous drones using ROS 2 for real-time control with real-world testing.",
+            },},{id: "projects-aion-aerial-indoor-object-goal-navigation",
+          title: 'AION: Aerial Indoor Object-Goal Navigation',
+          description: "End-to-end dual-policy RL framework for vision-based aerial ObjectNav without external localization or global maps. Evaluated on AI2-THOR and IsaacSim.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/2_objectnav_drone/";
             },},{id: "projects-vision-language-navigation-on-autonomous-drone",
