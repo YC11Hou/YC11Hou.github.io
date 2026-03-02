@@ -3,8 +3,7 @@ layout: page
 permalink: /repositories/
 title: repositories
 description: My GitHub profile and repositories.
-nav: true
-nav_order: 4
+nav: false
 ---
 
 <div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">

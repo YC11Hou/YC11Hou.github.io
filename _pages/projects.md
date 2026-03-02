@@ -2,7 +2,7 @@
 layout: page
 title: projects
 permalink: /projects/
-description: Research projects and robotics work.
+description:
 nav: true
 nav_order: 2
 display_categories: [research, robotics]

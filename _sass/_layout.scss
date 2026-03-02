@@ -40,7 +40,7 @@ body.sticky-bottom-footer {
   }
 }
 
-// Page header: reduce title size and spacing
+// Page header (used by about layout)
 .post-header {
   margin-bottom: 0.8rem;
 
@@ -49,10 +49,14 @@ body.sticky-bottom-footer {
     font-weight: 600;
     margin-bottom: 0.2rem;
   }
+}
 
-  .post-description {
-    font-size: 0.95rem;
-    margin-bottom: 0;
+// Tighten top spacing on content pages (publications, projects, cv)
+.post > article {
+  .projects,
+  .publications,
+  .cv {
+    margin-top: 0;
   }
 }
 
