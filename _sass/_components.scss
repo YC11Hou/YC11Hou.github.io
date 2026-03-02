@@ -197,7 +197,15 @@ ul.task-list input[type="checkbox"] {
       margin-bottom: 0;
     }
 
+    video {
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      width: 100%;
+    }
+
     img {
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
       border-radius: 0.25rem;
     }
   }
@@ -255,6 +263,7 @@ ul.task-list input[type="checkbox"] {
     .project-media {
       flex: 0 0 100%;
       max-width: 100%;
+      margin-right: 0;
       margin-bottom: 0.5rem;
     }
   }
