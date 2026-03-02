@@ -97,6 +97,11 @@ ul.task-list input[type="checkbox"] {
 .cv {
   margin-bottom: 40px;
 
+  > .card:first-child,
+  > a.anchor:first-child + .card {
+    margin-top: 0;
+  }
+
   .card {
     background-color: var(--global-card-bg-color);
     border: 1px solid var(--global-divider-color);
@@ -138,19 +143,45 @@ ul.task-list input[type="checkbox"] {
   }
 
   .card {
+    .card-body {
+      padding: 0.75rem 1rem;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-text {
+      font-size: 0.85rem;
+      line-height: 1.45;
+      color: var(--global-text-color-light);
+      margin-bottom: 0.3rem;
+    }
+
+    .row.no-gutters {
+      align-items: center;
+    }
+
     img {
       width: 100%;
+      border-radius: 0 0.25rem 0.25rem 0;
     }
   }
 
   .col {
-    padding-bottom: 1rem;
+    padding-bottom: 0;
   }
 
   .grid-sizer,
   .grid-item {
     width: 250px;
     margin-bottom: 10px;
+  }
+
+  > a:first-child h2.category {
+    margin-top: 0;
   }
 
   h2.category {

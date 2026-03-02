@@ -5,7 +5,7 @@ permalink: /projects/
 description:
 nav: true
 nav_order: 2
-display_categories: [research, robotics]
+display_categories: [master, bachelor]
 horizontal: true
 ---
 
@@ -20,12 +20,10 @@ horizontal: true
   {% assign categorized_projects = site.projects | where: "category", category %}
   {% assign sorted_projects = categorized_projects | sort: "importance" %}
   <!-- Generate cards for each project -->
-  <div class="container">
-    <div class="row row-cols-1">
+  <div class="row row-cols-1">
     {% for project in sorted_projects %}
       {% include projects_horizontal.liquid %}
     {% endfor %}
-    </div>
   </div>
   {% endfor %}
 
@@ -35,12 +33,10 @@ horizontal: true
 
 {% assign sorted_projects = site.projects | sort: "importance" %}
 
-  <div class="container">
-    <div class="row row-cols-1">
+  <div class="row row-cols-1">
     {% for project in sorted_projects %}
       {% include projects_horizontal.liquid %}
     {% endfor %}
-    </div>
   </div>
 {% endif %}
 </div>
