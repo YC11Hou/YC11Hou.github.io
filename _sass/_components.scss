@@ -186,6 +186,10 @@ ul.task-list input[type="checkbox"] {
   }
 
   .project-media {
+    flex: 0 0 20%;
+    max-width: 20%;
+    padding: 0.75rem 0;
+
     .video-container {
       margin-bottom: 0;
     }
@@ -193,6 +197,16 @@ ul.task-list input[type="checkbox"] {
     img {
       border-radius: 0.25rem;
     }
+  }
+
+  .project-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .project-text-full {
+    flex: 0 0 100%;
+    max-width: 100%;
   }
 
   .col {
@@ -229,8 +243,16 @@ ul.task-list input[type="checkbox"] {
 
 // Projects mobile: stack media above text
 @media (max-width: 767.98px) {
-  .projects .project-media {
-    margin-bottom: 0.5rem;
+  .projects {
+    .card .row.no-gutters {
+      flex-direction: column;
+    }
+
+    .project-media {
+      flex: 0 0 100%;
+      max-width: 100%;
+      margin-bottom: 0.5rem;
+    }
   }
 }
 

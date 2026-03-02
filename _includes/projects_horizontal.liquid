@@ -2,19 +2,19 @@
   <div class="card h-100">
     <div class="row no-gutters">
       {% if project.video or project.img %}
-        <div class="col-md-5 project-media">
+        <div class="project-media">
           {% if project.video %}
             <div class="video-container">
               <iframe src="{{ project.video }}" allowfullscreen></iframe>
             </div>
           {% elsif project.img %}
             <a href="{% if project.redirect %}{{ project.redirect }}{% else %}{{ project.url | relative_url }}{% endif %}">
-              {% include figure.liquid loading="eager" path=project.img sizes="(min-width: 768px) 300px, 100vw" alt="project thumbnail" class="card-img" %}
+              {% include figure.liquid loading="eager" path=project.img sizes="(min-width: 768px) 156px, 100vw" alt="project thumbnail" class="card-img" %}
             </a>
           {% endif %}
         </div>
       {% endif %}
-      <div class="{% if project.video or project.img %}col-md-7{% else %}col-md-12{% endif %}">
+      <div class="project-text {% unless project.video or project.img %}project-text-full{% endunless %}">
         <div class="card-body">
           <a href="{% if project.redirect %}{{ project.redirect }}{% else %}{{ project.url | relative_url }}{% endif %}">
             <h3 class="card-title">{{ project.title }}</h3>
