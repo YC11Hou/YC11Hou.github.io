@@ -260,6 +260,147 @@ ul.task-list input[type="checkbox"] {
   }
 }
 
+// About Banner
+
+.about-banner {
+  display: flex;
+  align-items: stretch;
+  gap: 2rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--global-divider-color);
+}
+
+.about-banner-left {
+  flex: 0 0 40%;
+  max-width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  img {
+    max-width: 150px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .banner-name {
+    font-size: 1.6rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .banner-subtitle {
+    font-size: 0.85rem;
+    color: var(--global-text-color-light);
+    margin-bottom: 0.75rem;
+
+    a {
+      color: var(--global-theme-color);
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .banner-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  .banner-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 1rem;
+    background-color: var(--global-theme-color);
+    color: #fff;
+    font-weight: 500;
+  }
+}
+
+.about-banner-right {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+}
+
+.quote-card {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460, #e94560);
+  border-radius: 12px;
+  padding: 2rem;
+  min-height: 200px;
+
+  .quote-text {
+    color: #fff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    text-align: center;
+    margin: 0;
+  }
+}
+
+// About Contact
+
+.about-contact {
+  margin-bottom: 1.5rem;
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+
+    i {
+      width: 1.25rem;
+      text-align: center;
+      color: var(--global-theme-color);
+      font-size: 1.1rem;
+    }
+
+    a {
+      color: var(--global-text-color);
+      text-decoration: none;
+
+      &:hover {
+        color: var(--global-theme-color);
+      }
+    }
+  }
+}
+
+// About Banner mobile: stack vertically
+@media (max-width: 767.98px) {
+  .about-banner {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-banner-left {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .about-banner-right {
+    width: 100%;
+  }
+
+  .quote-card {
+    min-height: 120px;
+  }
+}
+
 // Experience
 
 .experience {

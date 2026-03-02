@@ -4,17 +4,7 @@ title: about
 permalink: /
 subtitle: Master Student, <a href='https://cde.nus.edu.sg/ece/'>Department of Electrical and Computer Engineering</a>, National University of Singapore
 
-profile:
-  align: right
-  image: prof_pic_web.jpg
-  image_circular: true
-  more_info: >
-    <p style="font-size: 1.1rem; font-weight: 600; margin-bottom: 2px;">Yuchen Hou</p>
-    <p>NUS Advanced Control Lab</p>
-    <p>Embodied AI & Robotics</p>
-
 selected_papers: false
-social: true # includes social icons at the bottom of the page
 
 announcements:
   enabled: true # includes a list of news items
