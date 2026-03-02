@@ -9,7 +9,7 @@ category: master
 
 ## 3D Trajectory Generation
 
-{% include figure.liquid loading="lazy" path="assets/img/p3_3stage_traj.jpg" class="img-fluid rounded z-depth-1" alt="3-stage trajectory generation pipeline" %}
+<img src="/assets/img/p3_3stage_traj.jpg" alt="3-stage trajectory generation pipeline" style="width: 70%; border-radius: 0.25rem;">
 
 ## Overview
 
