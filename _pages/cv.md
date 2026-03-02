@@ -1,12 +1,8 @@
 ---
-layout: cv
-permalink: /cv/
-title: CV
+layout: experience
+permalink: /experience/
+title: experience
 nav: true
 nav_order: 3
-cv_pdf: /assets/pdf/CV_Yuchen_Hou.pdf
-cv_format: rendercv # options: rendercv, jsonresume
 description:
-toc:
-  sidebar: left
 ---

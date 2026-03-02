@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+<div class="post">
+  <article>
+    <div class="experience">
+      {% assign cv = site.data.cv.cv %}
+
+      {% comment %} Education Section {% endcomment %}
+      {% if cv.sections.Education.size > 0 %}
+        <h2 class="category">Education</h2>
+        {% assign entries = cv.sections.Education %}
+        {% include cv/education.liquid %}
+      {% endif %}
+
+      {% comment %} Work Experience Section {% endcomment %}
+      {% assign empty_array = '' | split: ',' %}
+      {% assign exp = cv.sections.Experience | default: empty_array %}
+      {% assign vol = cv.sections.Volunteer | default: empty_array %}
+      {% assign combined_experience = exp | concat: vol %}
+      {% if combined_experience.size > 0 %}
+        <h2 class="category">Work Experience</h2>
+        {% assign entries = combined_experience %}
+        {% include cv/experience.liquid %}
+      {% endif %}
+    </div>
+  </article>
+</div>
