@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Master Student, <a href='https://www.comp.nus.edu.sg/'>School of Computing</a>, National University of Singapore
+subtitle: Master Student, <a href='https://cde.nus.edu.sg/ece/'>Department of Electrical and Computer Engineering</a>, National University of Singapore
 
 profile:
   align: right

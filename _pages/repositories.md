@@ -7,6 +7,8 @@ nav: true
 nav_order: 4
 ---
 
+More repositories coming soon — stay tuned for open-source code from my research projects.
+
 {% if site.data.repositories.github_users %}
 
 ## GitHub users
