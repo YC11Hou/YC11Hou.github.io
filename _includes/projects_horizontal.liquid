@@ -5,7 +5,7 @@
         <div class="project-media">
           {% if project.video %}
             <div class="video-container">
-              <iframe src="{{ project.video }}" allowfullscreen></iframe>
+              <iframe src="{{ project.video }}?autoplay=1&mute=1&loop=1&playlist={{ project.video | split: '/' | last }}" allow="autoplay" allowfullscreen></iframe>
             </div>
           {% elsif project.img %}
             <a href="{% if project.redirect %}{{ project.redirect }}{% else %}{{ project.url | relative_url }}{% endif %}">
