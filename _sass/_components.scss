@@ -265,6 +265,32 @@ ul.task-list input[type="checkbox"] {
       max-width: 100%;
       margin-right: 0;
       margin-bottom: 0.5rem;
+      padding: 0.5rem 0 0;
+
+      .video-container {
+        width: 100%;
+        padding-bottom: 56.25%;
+      }
+
+      video,
+      img {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+      }
+    }
+
+    .project-text {
+      padding-left: 0;
+      padding: 0.5rem 0;
+    }
+
+    .card .card-body {
+      padding: 0.5rem 0;
+    }
+
+    .col {
+      margin-bottom: 0.5rem;
     }
   }
 }
