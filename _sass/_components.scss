@@ -340,6 +340,35 @@ ul.task-list input[type="checkbox"] {
   }
 }
 
+// Experience mobile: smaller logos, stacked header
+@media (max-width: 575.98px) {
+  .experience {
+    .entry-logo {
+      width: 44px;
+      height: 44px;
+      margin-right: 0.75rem;
+
+      img {
+        width: 44px;
+        height: 44px;
+      }
+    }
+
+    .entry-header {
+      flex-wrap: wrap;
+    }
+
+    .entry-date {
+      margin-left: 0;
+      width: 100%;
+    }
+
+    .entry-highlights {
+      font-size: 0.8rem;
+    }
+  }
+}
+
 // Repositories
 
 @media (min-width: 768px) {

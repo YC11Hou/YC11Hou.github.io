@@ -9,6 +9,8 @@
   border-bottom: 1px solid var(--global-divider-color);
   background-color: var(--global-bg-color);
   opacity: 0.95;
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
 }
 
 .navbar .dropdown-menu,
@@ -112,6 +114,21 @@
         }
       }
     }
+  }
+}
+
+// Mobile: left-align nav items when collapsed
+@media (max-width: 575.98px) {
+  .navbar-collapse {
+    text-align: left;
+  }
+
+  .navbar-nav {
+    margin-left: 0 !important;
+  }
+
+  .navbar-nav .nav-link {
+    padding-left: 0;
   }
 }
 
