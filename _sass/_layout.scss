@@ -51,15 +51,6 @@ body.sticky-bottom-footer {
   }
 }
 
-// Tighten top spacing on content pages (publications, projects, cv)
-.post > article {
-  .projects,
-  .publications,
-  .cv {
-    margin-top: 0;
-  }
-}
-
 // Content layout uses Bootstrap's grid system with responsive columns
 // Main content flows naturally through container-mt-5 and Bootstrap grid classes
 // See _layouts/default.liquid and _includes/projects.liquid for examples
