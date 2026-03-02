@@ -6,7 +6,7 @@ subtitle: Master Student, <a href='https://www.comp.nus.edu.sg/'>School of Compu
 
 profile:
   align: right
-  image: prof_pic.jpg
+  image: prof_pic_web.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
     <p>National University of Singapore</p>
