@@ -9,6 +9,7 @@ profile:
   image: prof_pic_web.jpg
   image_circular: true
   more_info: >
+    <p style="font-size: 1.1rem; font-weight: 600; margin-bottom: 2px;">Yuchen Hou</p>
     <p>NUS Advanced Control Lab</p>
     <p>Embodied AI & Robotics</p>
 
