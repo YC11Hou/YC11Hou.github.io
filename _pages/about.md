@@ -7,7 +7,7 @@ subtitle: Master Student, <a href='https://cde.nus.edu.sg/ece/'>Department of El
 profile:
   align: right
   image: prof_pic_web.jpg
-  image_circular: true
+  image_circular: false
   more_info: >
     <p>NUS Advanced Control Lab</p>
     <p>Embodied AI & Robotics</p>
