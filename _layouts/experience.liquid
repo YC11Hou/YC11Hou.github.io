@@ -14,15 +14,7 @@ layout: default
           <div class="entry">
             {% if entry.logo %}
               <div class="entry-logo">
-                {% assign logo_path = entry.logo | prepend: 'assets/img/' %}
-                {%
-                  include figure.liquid
-                  loading="eager"
-                  path=logo_path
-                  sizes="48px"
-                  alt=entry.institution
-                  class="logo-img"
-                %}
+                <img src="{{ entry.logo | prepend: '/assets/img/' | relative_url }}" alt="{{ entry.institution }}">
               </div>
             {% endif %}
             <div class="entry-content">
@@ -70,15 +62,7 @@ layout: default
           <div class="entry">
             {% if entry.logo %}
               <div class="entry-logo">
-                {% assign logo_path = entry.logo | prepend: 'assets/img/' %}
-                {%
-                  include figure.liquid
-                  loading="eager"
-                  path=logo_path
-                  sizes="48px"
-                  alt=entry.company
-                  class="logo-img"
-                %}
+                <img src="{{ entry.logo | prepend: '/assets/img/' | relative_url }}" alt="{{ entry.company | default: entry.name }}">
               </div>
             {% endif %}
             <div class="entry-content">
