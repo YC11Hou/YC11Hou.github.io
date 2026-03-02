@@ -30,11 +30,8 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/experience/";
           },
-        },{id: "news-started-my-master-s-program-in-electrical-engineering-at-the-national-university-of-singapore-nus",
-          title: 'Started my Master’s program in Electrical Engineering at the National University of Singapore...',
-          description: "",
-          section: "News",},{id: "news-joined-the-nus-advanced-control-lab-working-on-embodied-ai-research",
-          title: 'Joined the NUS Advanced Control Lab, working on Embodied AI research.',
+        },{id: "news-joined-nus-advanced-control-lab-started-master-s-program-at-nus",
+          title: 'Joined NUS Advanced Control Lab, started Master’s program at NUS.',
           description: "",
           section: "News",},{id: "news-completed-robotics-software-internship-at-movel-ai-dec-2025-jan-2026-working-on-autonomous-forklift-navigation",
           title: 'Completed robotics software internship at Movel.AI (Dec 2025 – Jan 2026), working on...',
