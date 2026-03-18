@@ -42,7 +42,7 @@ cv:
       - company: Huawei Norbert Wiener Research Center
         position: Research Intern
         location: Singapore
-        logo:
+        logo: logo_huawei.png
         start_date: 2026-03
         end_date: 2026-05
         highlights:
