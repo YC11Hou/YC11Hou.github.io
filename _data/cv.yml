@@ -39,6 +39,16 @@ cv:
           - "Key Courses: Advanced Mathematics (96), Probability Theory (97), Random Signal Analysis (97), Microwave Technology and Antenna (97), Fundamentals of Communication (95), Complex Function (99)."
 
     Experience:
+      - company: Huawei Norbert Wiener Research Center
+        position: Research Intern
+        location: Singapore
+        logo:
+        start_date: 2026-03
+        end_date: 2026-05
+        highlights:
+          - "Developed backend deep learning models for short-range radar signal processing."
+          - "Conducted research on downstream tasks including human pose estimation and indoor mapping/SLAM from radar data."
+
       - company: Movel.AI
         position: Robotics Software Intern
         location: Singapore
