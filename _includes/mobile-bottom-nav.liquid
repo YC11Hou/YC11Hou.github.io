@@ -58,19 +58,23 @@
         </a>
       {% endif %}
     {% endfor %}
-  </nav>
 
-  {% if site.enable_darkmode %}
-    <!-- Standalone theme toggle pill -->
-    <button
-      class="mobile-bottom-nav-theme"
-      id="mobile-theme-toggle"
-      title="Change theme"
-      onclick="document.getElementById('light-toggle').click()"
-    >
-      <i class="fa-solid fa-circle-half-stroke"></i>
-    </button>
-  {% endif %}
+    {% if site.enable_darkmode %}
+      <!-- Divider between nav items and theme toggle -->
+      <div class="mobile-bottom-nav-divider"></div>
+
+      <!-- Theme toggle (same size as nav items, inside the bar) -->
+      <button
+        class="mobile-bottom-nav-item mobile-bottom-nav-theme-btn"
+        id="mobile-theme-toggle"
+        title="Change theme"
+        onclick="document.getElementById('light-toggle').click()"
+      >
+        <i class="fa-solid fa-circle-half-stroke"></i>
+        <span>Theme</span>
+      </button>
+    {% endif %}
+  </nav>
 </div>
 
 <script>
