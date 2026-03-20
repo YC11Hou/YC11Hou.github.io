@@ -234,9 +234,6 @@
   left: 0;
   right: 0;
   z-index: 1040;
-  display: flex;
-  align-items: center;
-  gap: 8px;
   padding: 0 12px 10px;
   padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
 }
@@ -317,29 +314,18 @@
   }
 }
 
-// Standalone theme toggle pill
-.mobile-bottom-nav-theme {
-  @extend %frosted-glass;
+// Vertical divider between nav items and theme toggle
+.mobile-bottom-nav-divider {
+  width: 1px;
+  height: 28px;
+  background: var(--global-divider-color);
+  opacity: 0.4;
   flex: 0 0 auto;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--global-text-color);
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  transition: all 0.25s ease;
+}
 
-  i {
-    font-size: 1.15rem;
-  }
-
-  &:hover,
-  &:focus {
-    color: var(--global-theme-color);
-  }
+// Theme toggle button (inside the bar, same style as nav items)
+.mobile-bottom-nav-theme-btn {
+  // Glass indicator should not cover this
 }
 
 // Add bottom padding to body on mobile so content is not hidden behind the bar
@@ -374,11 +360,7 @@ html[data-theme="dark"] {
       inset 0 0.5px 0 rgba(255, 255, 255, 0.1);
   }
 
-  .mobile-bottom-nav-theme {
-    background: rgba(50, 50, 50, 0.5);
-    border-color: rgba(255, 255, 255, 0.12);
-    box-shadow:
-      0 2px 16px rgba(0, 0, 0, 0.2),
-      inset 0 0.5px 0 rgba(255, 255, 255, 0.1);
+  .mobile-bottom-nav-divider {
+    background: rgba(255, 255, 255, 0.15);
   }
 }
