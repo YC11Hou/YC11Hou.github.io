@@ -1,0 +1,66 @@
+<!-- Mobile Bottom Navigation Bar (frosted glass) -->
+<nav id="mobile-bottom-nav" class="mobile-bottom-nav d-sm-none" role="navigation" aria-label="Mobile navigation">
+  <div class="mobile-bottom-nav-inner">
+    {% for page_item in site.pages %}
+      {% if page_item.permalink == '/' %}
+        {% assign about_title = page_item.title %}
+      {% endif %}
+    {% endfor %}
+
+    <!-- About / Home -->
+    <a
+      href="{{ '/' | relative_url }}"
+      class="mobile-bottom-nav-item {% if page.permalink == '/' %}active{% endif %}"
+    >
+      <i class="fa-solid fa-house"></i>
+      <span>{{ about_title }}</span>
+    </a>
+
+    <!-- Other nav pages -->
+    {% assign sorted_pages = site.pages | sort: 'nav_order' %}
+    {% for p in sorted_pages %}
+      {% if p.nav and p.autogen == null and p.dropdown == null %}
+        {% assign parent_link = p.permalink | remove: 'index.html' %}
+        {% if p.permalink contains '://' %}
+          {% assign nav_url = p.permalink %}
+        {% elsif p.permalink contains '/blog/' %}
+          {% assign nav_url = '/blog/' | relative_url %}
+        {% else %}
+          {% assign nav_url = p.url | relative_url %}
+        {% endif %}
+
+        {% assign icon_class = "fa-solid fa-link" %}
+        {% assign title_lower = p.title | downcase %}
+        {% if title_lower contains "publication" %}
+          {% assign icon_class = "fa-solid fa-book" %}
+        {% elsif title_lower contains "project" %}
+          {% assign icon_class = "fa-solid fa-diagram-project" %}
+        {% elsif title_lower contains "cv" or title_lower contains "resume" %}
+          {% assign icon_class = "fa-solid fa-file-lines" %}
+        {% elsif title_lower contains "blog" %}
+          {% assign icon_class = "fa-solid fa-pen-nib" %}
+        {% elsif title_lower contains "teach" %}
+          {% assign icon_class = "fa-solid fa-chalkboard-user" %}
+        {% elsif title_lower contains "people" or title_lower contains "team" or title_lower contains "profile" %}
+          {% assign icon_class = "fa-solid fa-users" %}
+        {% endif %}
+
+        <a
+          href="{{ nav_url }}"
+          class="mobile-bottom-nav-item {% if page.url contains parent_link %}active{% endif %}"
+        >
+          <i class="{{ icon_class }}"></i>
+          <span>{{ p.title }}</span>
+        </a>
+      {% endif %}
+    {% endfor %}
+
+    {% if site.enable_darkmode %}
+      <!-- Theme toggle -->
+      <button class="mobile-bottom-nav-item" id="mobile-theme-toggle" title="Change theme" onclick="document.getElementById('light-toggle').click()">
+        <i class="fa-solid fa-circle-half-stroke"></i>
+        <span>Theme</span>
+      </button>
+    {% endif %}
+  </div>
+</nav>
