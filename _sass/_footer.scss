@@ -36,9 +36,9 @@ footer.sticky-bottom {
 }
 
 // On mobile, hide footer to make room for the frosted glass bottom nav
-@media (max-width: 575.98px) {
+@media (max-width: 767.98px) {
   footer.sticky-bottom,
   footer.fixed-bottom {
-    display: none;
+    display: none !important;
   }
 }
