@@ -124,7 +124,7 @@
 }
 
 // Mobile: left-align nav items when collapsed
-@media (max-width: 575.98px) {
+@media (max-width: 767.98px) {
   .navbar-collapse {
     text-align: left;
   }
@@ -286,14 +286,14 @@
 }
 
 // Add bottom padding to body on mobile so content is not hidden behind the bar
-@media (max-width: 575.98px) {
+@media (max-width: 767.98px) {
   body {
     padding-bottom: 80px;
   }
 }
 
 // Hide the hamburger toggler and collapse menu on mobile (replaced by bottom nav)
-@media (max-width: 575.98px) {
+@media (max-width: 767.98px) {
   .navbar-toggler {
     display: none !important;
   }
