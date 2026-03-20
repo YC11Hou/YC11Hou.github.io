@@ -1,6 +1,7 @@
 <!-- Mobile Bottom Navigation Bar (frosted glass) -->
-<nav id="mobile-bottom-nav" class="mobile-bottom-nav d-md-none" role="navigation" aria-label="Mobile navigation">
-  <div class="mobile-bottom-nav-inner">
+<div id="mobile-bottom-nav" class="mobile-bottom-nav d-md-none">
+  <!-- Scrollable nav links -->
+  <nav class="mobile-bottom-nav-scroll" role="navigation" aria-label="Mobile navigation">
     {% for page_item in site.pages %}
       {% if page_item.permalink == '/' %}
         {% assign about_title = page_item.title %}
@@ -35,7 +36,7 @@
           {% assign icon_class = 'fa-solid fa-book' %}
         {% elsif title_lower contains 'project' %}
           {% assign icon_class = 'fa-solid fa-diagram-project' %}
-        {% elsif title_lower contains 'cv' or title_lower contains 'resume' %}
+        {% elsif title_lower contains 'cv' or title_lower contains 'resume' or title_lower contains 'experience' %}
           {% assign icon_class = 'fa-solid fa-file-lines' %}
         {% elsif title_lower contains 'blog' %}
           {% assign icon_class = 'fa-solid fa-pen-nib' %}
@@ -54,13 +55,17 @@
         </a>
       {% endif %}
     {% endfor %}
+  </nav>
 
-    {% if site.enable_darkmode %}
-      <!-- Theme toggle -->
-      <button class="mobile-bottom-nav-item" id="mobile-theme-toggle" title="Change theme" onclick="document.getElementById('light-toggle').click()">
-        <i class="fa-solid fa-circle-half-stroke"></i>
-        <span>Theme</span>
-      </button>
-    {% endif %}
-  </div>
-</nav>
+  {% if site.enable_darkmode %}
+    <!-- Standalone theme toggle pill -->
+    <button
+      class="mobile-bottom-nav-theme"
+      id="mobile-theme-toggle"
+      title="Change theme"
+      onclick="document.getElementById('light-toggle').click()"
+    >
+      <i class="fa-solid fa-circle-half-stroke"></i>
+    </button>
+  {% endif %}
+</div>
