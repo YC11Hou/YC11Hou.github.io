@@ -178,6 +178,11 @@ ul.task-list input[type="checkbox"] {
 
     .row.no-gutters {
       align-items: center;
+
+      @media (max-width: 767.98px) {
+        flex-direction: column !important;
+        align-items: stretch;
+      }
     }
 
     img {
@@ -209,12 +214,39 @@ ul.task-list input[type="checkbox"] {
       object-fit: cover;
       border-radius: 0.25rem;
     }
+
+    @media (max-width: 767.98px) {
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+      margin-right: 0;
+      margin-bottom: 0.5rem;
+      padding: 0.5rem 0 0;
+
+      .video-container {
+        width: 100%;
+        padding-bottom: 56.25%;
+      }
+
+      video,
+      img {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+      }
+    }
   }
 
   .project-text {
     flex: 1;
     min-width: 0;
     padding-left: 0.25rem;
+
+    @media (max-width: 767.98px) {
+      flex: 0 0 100% !important;
+      max-width: 100%;
+      padding-left: 0;
+      padding: 0.5rem 0;
+    }
   }
 
   .project-text-full {
@@ -254,39 +286,9 @@ ul.task-list input[type="checkbox"] {
   }
 }
 
-/// Projects mobile: stack media above text
-/* purgecss start ignore */
+// Projects mobile: card body and col spacing
 @media (max-width: 767.98px) {
   .projects {
-    .card .row.no-gutters {
-      flex-direction: column;
-    }
-
-    .project-media {
-      flex: 0 0 100%;
-      max-width: 100%;
-      margin-right: 0;
-      margin-bottom: 0.5rem;
-      padding: 0.5rem 0 0;
-
-      .video-container {
-        width: 100%;
-        padding-bottom: 56.25%;
-      }
-
-      video,
-      img {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        object-fit: cover;
-      }
-    }
-
-    .project-text {
-      padding-left: 0;
-      padding: 0.5rem 0;
-    }
-
     .card .card-body {
       padding: 0.5rem 0;
     }
@@ -296,7 +298,6 @@ ul.task-list input[type="checkbox"] {
     }
   }
 }
-/* purgecss end ignore */
 
 // About Banner
 

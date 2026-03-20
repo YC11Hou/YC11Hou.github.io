@@ -38,13 +38,17 @@ layout: default
       {% if site.data.socials.github_username %}
         <div class="contact-item">
           <i class="fa-brands fa-github"></i>
-          <a href="https://github.com/{{ site.data.socials.github_username }}" target="_blank" rel="noopener noreferrer">github.com/{{ site.data.socials.github_username }}</a>
+          <a href="https://github.com/{{ site.data.socials.github_username }}" target="_blank" rel="noopener noreferrer"
+            >github.com/{{ site.data.socials.github_username -}}
+          </a>
         </div>
       {% endif %}
       {% if site.data.socials.linkedin_username %}
         <div class="contact-item">
           <i class="fa-brands fa-linkedin"></i>
-          <a href="https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}" target="_blank" rel="noopener noreferrer">linkedin.com/in/{{ site.data.socials.linkedin_username }}</a>
+          <a href="https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}" target="_blank" rel="noopener noreferrer"
+            >linkedin.com/in/{{ site.data.socials.linkedin_username -}}
+          </a>
         </div>
       {% endif %}
     </div>
