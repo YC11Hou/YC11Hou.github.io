@@ -212,3 +212,104 @@
     color: var(--global-hover-color);
   }
 }
+
+/*******************************************************************************
+ * Mobile bottom navigation bar — frosted glass style
+ ******************************************************************************/
+
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.mobile-bottom-nav-inner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+  margin: 0 10px 10px;
+  border-radius: 20px;
+  // Frosted glass effect
+  background: rgba(var(--global-bg-color-rgb, 255, 255, 255), 0.55);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(var(--global-text-color-rgb, 0, 0, 0), 0.08);
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.08),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.4);
+}
+
+.mobile-bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 6px 0;
+  color: var(--global-text-color);
+  opacity: 0.55;
+  text-decoration: none;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: all 0.25s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  i {
+    font-size: 1.15rem;
+    margin-bottom: 2px;
+    transition: transform 0.25s ease;
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: var(--global-theme-color);
+    opacity: 1;
+  }
+
+  &.active {
+    color: var(--global-theme-color);
+    opacity: 1;
+
+    i {
+      transform: scale(1.12);
+    }
+  }
+}
+
+// Add bottom padding to body on mobile so content is not hidden behind the bar
+@media (max-width: 575.98px) {
+  body {
+    padding-bottom: 80px;
+  }
+}
+
+// Hide the hamburger toggler and collapse menu on mobile (replaced by bottom nav)
+@media (max-width: 575.98px) {
+  .navbar-toggler {
+    display: none !important;
+  }
+
+  .navbar-collapse {
+    display: none !important;
+  }
+}
+
+// Dark mode frosted glass adjustments
+html[data-theme="dark"] {
+  .mobile-bottom-nav-inner {
+    background: rgba(30, 30, 30, 0.6);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 4px 30px rgba(0, 0, 0, 0.25),
+      inset 0 0.5px 0 rgba(255, 255, 255, 0.08);
+  }
+}
