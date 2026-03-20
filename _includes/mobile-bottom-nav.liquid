@@ -29,20 +29,20 @@
           {% assign nav_url = p.url | relative_url %}
         {% endif %}
 
-        {% assign icon_class = "fa-solid fa-link" %}
+        {% assign icon_class = 'fa-solid fa-link' %}
         {% assign title_lower = p.title | downcase %}
-        {% if title_lower contains "publication" %}
-          {% assign icon_class = "fa-solid fa-book" %}
-        {% elsif title_lower contains "project" %}
-          {% assign icon_class = "fa-solid fa-diagram-project" %}
-        {% elsif title_lower contains "cv" or title_lower contains "resume" %}
-          {% assign icon_class = "fa-solid fa-file-lines" %}
-        {% elsif title_lower contains "blog" %}
-          {% assign icon_class = "fa-solid fa-pen-nib" %}
-        {% elsif title_lower contains "teach" %}
-          {% assign icon_class = "fa-solid fa-chalkboard-user" %}
-        {% elsif title_lower contains "people" or title_lower contains "team" or title_lower contains "profile" %}
-          {% assign icon_class = "fa-solid fa-users" %}
+        {% if title_lower contains 'publication' %}
+          {% assign icon_class = 'fa-solid fa-book' %}
+        {% elsif title_lower contains 'project' %}
+          {% assign icon_class = 'fa-solid fa-diagram-project' %}
+        {% elsif title_lower contains 'cv' or title_lower contains 'resume' %}
+          {% assign icon_class = 'fa-solid fa-file-lines' %}
+        {% elsif title_lower contains 'blog' %}
+          {% assign icon_class = 'fa-solid fa-pen-nib' %}
+        {% elsif title_lower contains 'teach' %}
+          {% assign icon_class = 'fa-solid fa-chalkboard-user' %}
+        {% elsif title_lower contains 'people' or title_lower contains 'team' or title_lower contains 'profile' %}
+          {% assign icon_class = 'fa-solid fa-users' %}
         {% endif %}
 
         <a
