@@ -247,11 +247,13 @@
   @extend %frosted-glass;
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
   height: 56px;
   flex: 1;
   min-width: 0;
   overflow-x: auto;
   overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
   border-radius: 18px;
   // Hide scrollbar but keep scrollable
   scrollbar-width: none;
@@ -268,9 +270,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex: 0 0 auto;
-  min-width: 64px;
-  padding: 6px 12px;
+  flex: 1 0 0;
+  min-width: 56px;
+  padding: 6px 4px;
   color: var(--global-text-color);
   opacity: 0.5;
   text-decoration: none;
