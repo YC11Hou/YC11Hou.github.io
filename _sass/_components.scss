@@ -254,7 +254,7 @@ ul.task-list input[type="checkbox"] {
 }
 
 // Projects mobile: stack media above text
-/* purgecss start ignore */
+/*! purgecss start ignore */
 @media (max-width: 767.98px) {
   .projects {
     .card .row.no-gutters {
@@ -295,7 +295,7 @@ ul.task-list input[type="checkbox"] {
     }
   }
 }
-/* purgecss end ignore */
+/*! purgecss end ignore */
 
 // About Banner
 
@@ -391,7 +391,7 @@ ul.task-list input[type="checkbox"] {
 }
 
 // About Banner mobile: stack vertically
-/* purgecss start ignore */
+/*! purgecss start ignore */
 @media (max-width: 767.98px) {
   .about-banner {
     flex-direction: column;
@@ -411,7 +411,7 @@ ul.task-list input[type="checkbox"] {
     min-height: 120px;
   }
 }
-/* purgecss end ignore */
+/*! purgecss end ignore */
 
 // Experience
 
@@ -586,14 +586,14 @@ ul.task-list input[type="checkbox"] {
   }
 }
 
-/* purgecss start ignore */
+/*! purgecss start ignore */
 @media (max-width: 767.98px) {
   .video-container {
     width: 100%;
     padding-bottom: 56.25%;
   }
 }
-/* purgecss end ignore */
+/*! purgecss end ignore */
 
 // Repositories
 
