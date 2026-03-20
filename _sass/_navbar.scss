@@ -217,11 +217,11 @@
  * Mobile bottom navigation bar — frosted glass style
  ******************************************************************************/
 
-// Shared frosted glass mixin
+// Frosted glass style
 %frosted-glass {
-  background: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(24px) saturate(200%) brightness(1.1);
-  -webkit-backdrop-filter: blur(24px) saturate(200%) brightness(1.1);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(24px) saturate(200%) brightness(1.15);
+  -webkit-backdrop-filter: blur(24px) saturate(200%) brightness(1.15);
   border: 0.5px solid rgba(255, 255, 255, 0.5);
   box-shadow:
     0 4px 24px rgba(0, 0, 0, 0.06),
@@ -234,7 +234,6 @@
   left: 0;
   right: 0;
   z-index: 1040;
-  padding-bottom: env(safe-area-inset-bottom, 0px);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -242,30 +241,37 @@
   padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
 }
 
-// Scrollable nav links container
-.mobile-bottom-nav-scroll {
-  @extend %frosted-glass;
+// Nav bar — flat container, glass effect is on the sliding indicator
+.mobile-bottom-nav-bar {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
   height: 56px;
   flex: 1;
   min-width: 0;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
   border-radius: 18px;
-  // Hide scrollbar but keep scrollable
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  background: rgba(120, 120, 120, 0.15);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
+// Sliding glass indicator — this is the "liquid glass" that moves
+.mobile-nav-glass-indicator {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  height: calc(100% - 8px);
+  border-radius: 14px;
+  opacity: 0;
+  pointer-events: none;
+  // The glass effect lives here
+  @extend %frosted-glass;
 }
 
 // Individual nav item
 .mobile-bottom-nav-item {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -274,12 +280,14 @@
   min-width: 56px;
   padding: 6px 4px;
   color: var(--global-text-color);
-  opacity: 0.5;
+  opacity: 0.45;
   text-decoration: none;
   font-size: 0.58rem;
   font-weight: 500;
   letter-spacing: 0.02em;
-  transition: all 0.25s ease;
+  transition:
+    color 0.3s ease,
+    opacity 0.3s ease;
   background: none;
   border: none;
   cursor: pointer;
@@ -289,14 +297,14 @@
   i {
     font-size: 1.1rem;
     margin-bottom: 2px;
-    transition: transform 0.25s ease;
+    transition: transform 0.3s ease;
   }
 
   &:hover,
   &:focus {
     text-decoration: none;
     color: var(--global-theme-color);
-    opacity: 1;
+    opacity: 0.8;
   }
 
   &.active {
@@ -304,7 +312,7 @@
     opacity: 1;
 
     i {
-      transform: scale(1.12);
+      transform: scale(1.1);
     }
   }
 }
@@ -352,14 +360,25 @@
   }
 }
 
-// Dark mode frosted glass adjustments
+// Dark mode adjustments
 html[data-theme="dark"] {
-  .mobile-bottom-nav-scroll,
-  .mobile-bottom-nav-theme {
-    background: rgba(40, 40, 40, 0.45);
+  .mobile-bottom-nav-bar {
+    background: rgba(60, 60, 60, 0.25);
+  }
+
+  .mobile-nav-glass-indicator {
+    background: rgba(50, 50, 50, 0.5);
     border-color: rgba(255, 255, 255, 0.12);
     box-shadow:
-      0 4px 24px rgba(0, 0, 0, 0.2),
+      0 2px 16px rgba(0, 0, 0, 0.2),
+      inset 0 0.5px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .mobile-bottom-nav-theme {
+    background: rgba(50, 50, 50, 0.5);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow:
+      0 2px 16px rgba(0, 0, 0, 0.2),
       inset 0 0.5px 0 rgba(255, 255, 255, 0.1);
   }
 }
