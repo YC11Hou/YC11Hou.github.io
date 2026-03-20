@@ -74,38 +74,63 @@
 </div>
 
 <script>
-  // Position the glass indicator on the active nav item
+  // Liquid glass sliding indicator
   document.addEventListener('DOMContentLoaded', function () {
     var bar = document.querySelector('.mobile-bottom-nav-bar');
     if (!bar) return;
     var indicator = bar.querySelector('.mobile-nav-glass-indicator');
+    var items = bar.querySelectorAll('.mobile-bottom-nav-item');
     var active = bar.querySelector('.mobile-bottom-nav-item.active');
-    if (!indicator || !active) return;
+    if (!indicator || !active || !items.length) return;
 
-    function positionIndicator(target, animate) {
+    // Find the index of a nav item
+    function indexOfItem(el) {
+      for (var i = 0; i < items.length; i++) {
+        if (items[i] === el) return i;
+      }
+      return -1;
+    }
+
+    // Position the indicator on a given item
+    function positionAt(target, animate) {
       var barRect = bar.getBoundingClientRect();
       var itemRect = target.getBoundingClientRect();
       var left = itemRect.left - barRect.left;
-      indicator.style.transition = animate ? 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)' : 'none';
+      indicator.style.transition = animate
+        ? 'transform 0.45s cubic-bezier(0.4, 0, 0.1, 1), width 0.45s cubic-bezier(0.4, 0, 0.1, 1), opacity 0.2s ease'
+        : 'none';
       indicator.style.width = itemRect.width + 'px';
       indicator.style.transform = 'translateX(' + left + 'px)';
       indicator.style.opacity = '1';
     }
 
-    // Set initial position without animation
-    positionIndicator(active, false);
+    var activeIndex = indexOfItem(active);
 
-    // On click, slide indicator to clicked item before navigating
-    var items = bar.querySelectorAll('.mobile-bottom-nav-item');
+    // On page load: slide from previous position to current
+    var prevIndex = sessionStorage.getItem('nav-glass-from');
+    if (prevIndex !== null && parseInt(prevIndex) !== activeIndex && items[parseInt(prevIndex)]) {
+      // Start at previous position (no animation)
+      positionAt(items[parseInt(prevIndex)], false);
+      // Force reflow then animate to current
+      indicator.offsetHeight;
+      positionAt(active, true);
+    } else {
+      positionAt(active, false);
+    }
+
+    // On click: store current index, animate, then navigate
     items.forEach(function (item) {
       item.addEventListener('click', function (e) {
         if (item.classList.contains('active')) return;
         e.preventDefault();
         var href = item.getAttribute('href');
-        positionIndicator(item, true);
+        // Remember where we're sliding FROM
+        sessionStorage.setItem('nav-glass-from', String(activeIndex));
+        // Slide to the tapped item
+        positionAt(item, true);
         setTimeout(function () {
           window.location.href = href;
-        }, 300);
+        }, 350);
       });
     });
   });
