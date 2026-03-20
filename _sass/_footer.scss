@@ -35,13 +35,10 @@ footer.sticky-bottom {
   }
 }
 
-// On mobile, add extra bottom padding so footer content clears the fixed bottom nav
+// On mobile, hide footer to make room for the frosted glass bottom nav
 @media (max-width: 575.98px) {
-  footer.sticky-bottom {
-    padding-bottom: 90px;
-  }
-
+  footer.sticky-bottom,
   footer.fixed-bottom {
-    bottom: 80px;
+    display: none;
   }
 }
