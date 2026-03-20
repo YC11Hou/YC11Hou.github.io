@@ -564,6 +564,7 @@ ul.task-list input[type="checkbox"] {
 // Video embed
 .video-container {
   position: relative;
+  max-width: 100%;
   width: 70%;
   padding-bottom: 39.375%; // 70% * 56.25%
   height: 0;

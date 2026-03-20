@@ -9,7 +9,7 @@ category: master
 
 ## Demo
 
-<video controls style="width: 70%;">
+<video controls style="max-width: 70%; width: 100%;">
   <source src="/assets/video/iros_final.mp4" type="video/mp4">
 </video>
 
