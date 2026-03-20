@@ -2,7 +2,7 @@
   <div class="card h-100">
     <div class="row no-gutters">
       {% if project.preview_video or project.video or project.img %}
-        <div class="project-media">
+        <div class="col-12 col-md-4 project-media">
           {% if project.preview_video %}
             <video autoplay loop muted playsinline style="width: 100%; border-radius: 0.25rem;">
               <source src="{{ project.preview_video }}" type="video/mp4">
@@ -22,7 +22,7 @@
           {% endif %}
         </div>
       {% endif %}
-      <div class="project-text {% unless project.preview_video or project.video or project.img %}project-text-full{% endunless %}">
+      <div class="col-12 col-md project-text {% unless project.preview_video or project.video or project.img %}project-text-full{% endunless %}">
         <div class="card-body">
           <a href="{% if project.redirect %}{{ project.redirect }}{% else %}{{ project.url | relative_url }}{% endif %}">
             <h3 class="card-title">{{ project.title }}</h3>
