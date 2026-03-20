@@ -34,3 +34,14 @@ footer.sticky-bottom {
     text-align: center;
   }
 }
+
+// On mobile, add extra bottom padding so footer content clears the fixed bottom nav
+@media (max-width: 575.98px) {
+  footer.sticky-bottom {
+    padding-bottom: 90px;
+  }
+
+  footer.fixed-bottom {
+    bottom: 80px;
+  }
+}
