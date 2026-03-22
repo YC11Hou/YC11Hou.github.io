@@ -53,7 +53,7 @@ We design a four-dimensional semantic perturbation diagnostic — Change Object,
 </div>
 
 <div style="margin: 1.5em 0;">
-  <img src="/assets/img/libero_suites_combined.png" alt="LIBERO evaluation suites with perturbation annotations" style="max-width: 70%; border-radius: 0.25rem;">
+  <img src="/assets/img/libero_suites_strip.png" alt="LIBERO evaluation suites with perturbation annotations" style="max-width: 100%; border-radius: 0.25rem;">
 </div>
 
 **3. Design Principles**
