@@ -16,9 +16,7 @@ category: master
 
 ## Overview
 
-Object-Goal Navigation (ObjectNav) requires an agent to autonomously explore unknown environments and navigate toward target objects specified by semantic labels. While prior work has primarily studied zero-shot ObjectNav under 2D locomotion, extending it to aerial platforms with 3D locomotion remains underexplored.
-
-**AION** is an end-to-end dual-policy reinforcement learning framework that decouples exploration and goal-reaching behaviors into two specialized policies. It enables vision-based aerial ObjectNav without relying on external localization or global maps.
+Object-Goal Navigation (ObjectNav) requires an agent to autonomously explore an unknown environment and navigate toward target objects specified by a semantic label. While prior work has primarily studied zero-shot ObjectNav under 2D locomotion, extending it to aerial platforms with 3D locomotion capability remains underexplored. Aerial robots offer superior maneuverability and search efficiency, but they also introduce new challenges in spatial perception, dynamic control, and safety assurance. In this paper, we propose AION for vision-based aerial ObjectNav without relying on external localization or global maps. AION is an end-to-end dual-policy reinforcement learning (RL) framework that decouples exploration and goal-reaching behaviors into two specialized policies. We evaluate AION on the AI2-THOR benchmark and further assess its real-time performance in IsaacSim using high-fidelity drone models. Experimental results show that AION achieves superior performance across comprehensive evaluation metrics in exploration, navigation efficiency, and safety.
 
 ## Details
 

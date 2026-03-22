@@ -24,7 +24,7 @@ category: master
 
 ## Overview
 
-Vision-Language-Action (VLA) models achieve over 95% success on standard benchmarks. However, through systematic experiments, we find that current state-of-the-art VLA models largely ignore language instructions. We construct the LangGap benchmark, based on a four-dimensional semantic perturbation method — varying instruction semantics while keeping the tabletop layout fixed — revealing language understanding deficits. Experiments show that targeted data augmentation can partially close the language gap, but as semantic diversity increases, model learning capacity proves severely insufficient, revealing a fundamental challenge for VLA models in understanding diverse language instructions.
+Vision-Language-Action (VLA) models achieve over 95% success on standard benchmarks. However, through systematic experiments, we find that current state-of-the-art VLA models largely ignore language instructions. Prior work lacks: (1) systematic semantic perturbation diagnostics, (2) a benchmark that forces language understanding by design, and (3) linguistically diverse training data. This paper constructs the LangGap benchmark, based on a four-dimensional semantic perturbation method -- varying instruction semantics while keeping the tabletop layout fixed -- revealing language understanding deficits in π0.5. Existing benchmarks like LIBERO assign only one task per layout, underutilizing available objects and target locations; LangGap fully diversifies pick-and-place tasks under identical layouts, forcing models to truly understand language. Experiments show that targeted data augmentation can partially close the language gap -- success rate improves from 0% to 90% with single-task training, and 0% to 28% with multi-task training. However, as semantic diversity of extended tasks increases, model learning capacity proves severely insufficient; even trained tasks perform poorly. This reveals a fundamental challenge for VLA models in understanding diverse language instructions -- precisely the long-term value of LangGap.
 
 ## Details
 
@@ -50,6 +50,10 @@ We design a four-dimensional semantic perturbation diagnostic — Change Object,
     <tr><td>&emsp;Drawer Action</td><td>3</td><td>60</td><td>31.7%</td></tr>
   </tbody>
 </table>
+</div>
+
+<div style="margin: 1.5em 0;">
+  <img src="/assets/img/perturbation_types_4x1.png" alt="Four-dimensional semantic perturbation taxonomy" style="max-width: 100%; border-radius: 0.25rem;">
 </div>
 
 **3. Design Principles**
