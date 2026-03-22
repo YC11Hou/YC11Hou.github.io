@@ -24,3 +24,7 @@ We designed a **semantic perturbation evaluation framework** that tests whether 
 - **Semantic Perturbation Framework**: Systematic evaluation methodology for VLA language understanding
 - **Multi-Task Same-Scene Training**: Proposed approach to improve language grounding
 - **Augmented Dataset**: Constructed fine-tuning dataset for better instruction following
+
+## Resources
+
+- [arXiv Paper](https://arxiv.org/abs/2603.00592)
