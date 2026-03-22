@@ -13,13 +13,36 @@ category: bachelor
   <iframe src="https://drive.google.com/file/d/1haxn_iNXpebKC7ZddG_swejB8xaGpgRc/preview" allow="autoplay" allowfullscreen></iframe>
 </div>
 
+<div class="video-container">
+  <iframe src="https://drive.google.com/file/d/11dCs_qUwQSNqTOiaHjU_bLXyb7nuTHjx/preview" allow="autoplay" allowfullscreen></iframe>
+</div>
+
 ## Overview
 
-Developed an autonomous ground exploration robot for unknown indoor environments as a senior capstone project. The system uses frontier-based exploration to autonomously map spaces while detecting objects of interest.
+An autonomous rescue robot designed to explore unknown indoor environments and mark the locations of injured persons. The robot autonomously navigates, builds a map in real time, and detects casualties along the way.
 
-## Key Features
+<div style="text-align: center; margin: 1.5em 0;">
+  <img src="/assets/img/p1_robot_real.jpg" alt="Hardware overview" style="max-width: 70%; width: 100%;">
+</div>
 
-- **ROS2 + LiDAR SLAM**: Real-time mapping with Cartographer and Navigation2
-- **Frontier-Based Exploration**: Autonomous navigation toward unexplored boundaries
-- **YOLOv11 Detection**: Real-time object recognition integrated into the exploration pipeline
-- **Embedded Deployment**: Full system deployed on embedded hardware for real-world operation
+## Hardware
+
+- **Jetson Orin NX 16GB** — onboard compute (Ubuntu 22.04, ROS2 Humble)
+- **RPLIDAR C1** — 2D LiDAR for SLAM and mapping
+- **Orbbec Astra Pro Plus** — 3D depth camera for YOLO-based casualty detection
+- **STM32F407VET6 / MPU6050** — motor control and IMU
+- **MG513 DC Motors** — differential drive
+
+## Software Stack
+
+- **Cartographer** — real-time SLAM (mapping and localization)
+- **Navigation2** — point-to-point autonomous navigation
+- **YOLOv11** — casualty detection via depth camera
+
+## Key Contribution: Information-Gain Frontier Exploration
+
+Standard frontier exploration creates redundant paths. We formulate an optimized frontier selection that balances new information against travel cost:
+
+$$f^* = \arg\max_{f \in F} \left( w_1 \cdot I_f - w_2 \cdot D_f \right)$$
+
+where $$I_f$$ is the information gain of frontier $$f$$ and $$D_f$$ is the navigation cost. The robot selects the frontier that maximizes expected coverage while minimizing unnecessary travel.
