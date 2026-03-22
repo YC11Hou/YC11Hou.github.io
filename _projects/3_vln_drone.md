@@ -7,17 +7,31 @@ importance: 3
 category: master
 ---
 
-## 3D Trajectory Generation
-
-<img src="/assets/img/p3_3stage_traj.jpg" alt="3-stage trajectory generation pipeline" style="width: 70%; border-radius: 0.25rem;">
+<div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+  <div style="flex: 1;">
+    <img src="/assets/img/p3_3dvln.jpg" alt="Ego-centric view during trajectory generation" style="width: 100%; border-radius: 0.25rem;">
+  </div>
+  <div style="flex: 1;">
+    <img src="/assets/img/p3_3stage_traj.jpg" alt="3-stage trajectory: Takeoff, Cruise, Landing" style="width: 100%; border-radius: 0.25rem;">
+  </div>
+</div>
 
 ## Overview
 
-Built a robust pipeline to generate diverse 3D navigation paths in the Habitat simulator for training vision-language navigation policies on aerial robots.
+Built a robust pipeline to generate diverse 3D navigation trajectories in the Habitat simulator for training vision-language navigation (VLN) policies on aerial robots.
 
-## Key Features
+**Simulator:** Habitat with 90 indoor scenes.
 
-- **3D Path Generation**: Robust pipeline for generating various 3D trajectories in Habitat
-- **Aerial Navigation**: Overcame simulator limitations originally designed for ground robots
-- **Obstacle Detection**: Designed robust 3D obstacle detection for drone navigation
-- **General Policy**: Trained a strong and generalizable navigation policy for drones
+## Pipeline
+
+1. **Start-Goal Pair Generation** — For each of the 90 scenes, generate 200–300 random 2D start-goal pairs as navigation endpoints.
+
+2. **2D Cruise Path Planning** — Determine a suitable constant cruising altitude for each scene, then plan a natural 2D path at that altitude using **Lattice A\***. Unlike standard Grid A\* which produces rigid right-angle turns, Lattice A\* plans over motion primitives in continuous state space $$(x, y, \theta)$$, producing smooth paths where the agent turns while moving forward. Heuristic:
+
+   $$H(s) = \frac{\|p - p_{goal}\|}{L} + \lambda \cdot |\Delta\theta|$$
+
+   This penalizes sharp turns to ensure smooth, realistic flight trajectories.
+
+3. **3D Trajectory Assembly** — Prepend a **takeoff** segment and append a **landing** segment to each cruise path, forming a complete 3D trajectory. Collect RGB-D observations along the full path as video.
+
+4. **Instruction Generation** — Use a video-to-text model to generate natural language navigation instructions from the collected observation videos, producing a complete VLN dataset.
