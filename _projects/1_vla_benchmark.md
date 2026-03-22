@@ -44,10 +44,10 @@ We design a four-dimensional semantic perturbation diagnostic — Change Object,
   <tbody>
     <tr><td>Original (LIBERO)</td><td>40</td><td>800</td><td>93.8%</td></tr>
     <tr><td>Extended (Ours)</td><td>59</td><td>1,180</td><td>21.4%</td></tr>
-    <tr><td>&emsp;Change Object</td><td>38</td><td>760</td><td>29.3%</td></tr>
-    <tr><td>&emsp;Change Target</td><td>13</td><td>260</td><td><strong>0.0%</strong></td></tr>
-    <tr><td>&emsp;Spatial Description</td><td>5</td><td>100</td><td>11.0%</td></tr>
-    <tr><td>&emsp;Drawer Action</td><td>3</td><td>60</td><td>31.7%</td></tr>
+    <tr><td>Change Object</td><td>38</td><td>760</td><td>29.3%</td></tr>
+    <tr><td>Change Target</td><td>13</td><td>260</td><td><strong>0.0%</strong></td></tr>
+    <tr><td>Spatial Description</td><td>5</td><td>100</td><td>11.0%</td></tr>
+    <tr><td>Drawer Action</td><td>3</td><td>60</td><td>31.7%</td></tr>
   </tbody>
 </table>
 </div>
