@@ -22,9 +22,13 @@ Object-Goal Navigation (ObjectNav) requires an agent to autonomously explore unk
 
 ## Details
 
-**Task.** Indoor object-goal navigation for UAVs with **3D locomotion**: the drone must autonomously explore an unknown environment and navigate toward a target object specified by a semantic label (e.g., "laptop", "microwave"), without any prior map or external localization.
+### 1. Task
 
-**Framework.** A dual-policy RL framework that switches between two modes based on target visibility:
+Indoor object-goal navigation for UAVs with **3D locomotion**: the drone must autonomously explore an unknown environment and navigate toward a target object specified by a semantic label (e.g., "laptop", "microwave"), without any prior map or external localization.
+
+### 2. Framework
+
+A dual-policy RL framework that switches between two modes based on target visibility:
 - **Exploration Mode** — maximize spatial coverage in unknown space
 - **Goal-Reaching Mode** — visual servoing toward the detected target object
 
@@ -37,17 +41,27 @@ Object-Goal Navigation (ObjectNav) requires an agent to autonomously explore unk
   </div>
 </div>
 
-**Exploration Mode.** Input: depth map + ROI (Region of Interest). The ROI identifies open, navigable areas in the depth image — simulating how humans instinctively look toward open spaces when navigating. The ROI is extracted using OpenCV-based methods and provides a directional cue (centroid position $$(d_x, d_y)$$ and mean depth $$\bar{z}$$), rather than absolute unknown-space information.
+### 3. Exploration Mode
 
-Rewards: $$r_t^E = R_{forward} + R_{center} + R_{safe}$$
+**Input:**
+Depth map + ROI (Region of Interest). The ROI identifies open, navigable areas in the depth image — simulating how humans instinctively look toward open spaces when navigating. The ROI is extracted using OpenCV-based methods and provides a directional cue (centroid position $$(d_x, d_y)$$ and mean depth $$\bar{z}$$), rather than absolute unknown-space information.
+
+**Rewards:**
+
+$$r_t^E = R_{forward} + R_{center} + R_{safe}$$
 
 - $$R_{forward}$$: reward for moving toward open space
 - $$R_{center}$$: penalty for yaw deviation from ROI centroid
 - $$R_{safe}$$: collision / obstacle proximity penalty
 
-**Goal-Reaching Mode.** Input: RGB image + frozen CLIP text embedding (aligns text and visual features for zero-shot object recognition) + object/class bounding box.
+### 4. Goal-Reaching Mode
 
-Rewards: $$r_t^G = R_{dist} + R_{bbox} + R_{parent} + R_{suc} - R_{collision}$$
+**Input:**
+RGB image + frozen CLIP text embedding (aligns text and visual features for zero-shot object recognition) + object/class bounding box.
+
+**Rewards:**
+
+$$r_t^G = R_{dist} + R_{bbox} + R_{parent} + R_{suc} - R_{collision}$$
 
 - $$R_{dist}$$: reward for reducing Euclidean distance to target
 - $$R_{bbox}$$: reward for centering and enlarging the target bounding box in the field of view (indicates approaching the object)
@@ -55,9 +69,13 @@ Rewards: $$r_t^G = R_{dist} + R_{bbox} + R_{parent} + R_{suc} - R_{collision}$$
 - $$R_{suc}$$: task success reward
 - $$R_{collision}$$: collision penalty
 
-**Action Space.** Discrete **3D** actions — forward, turn left/right, ascend, descend, etc.
+### 5. Action Space
 
-**Evaluation.** Evaluated on two simulators: AI2-THOR (standard benchmark with seen/unseen object splits) and IsaacSim (larger multi-room environments where the target may be in a different room).
+Discrete **3D** actions — forward, turn left/right, ascend, descend, etc.
+
+### 6. Evaluation
+
+Evaluated on two simulators: AI2-THOR (standard benchmark with seen/unseen object splits) and IsaacSim (larger multi-room environments where the target may be in a different room).
 
 <div style="display: flex; gap: 1rem; margin: 1.5em 0;">
   <div style="flex: 1; overflow-x: auto; font-size: 0.85em;">
