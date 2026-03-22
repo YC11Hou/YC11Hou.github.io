@@ -22,11 +22,11 @@ Object-Goal Navigation (ObjectNav) requires an agent to autonomously explore unk
 
 ## Details
 
-### 1. Task
+**1. Task**
 
 Indoor object-goal navigation for UAVs with **3D locomotion**: the drone must autonomously explore an unknown environment and navigate toward a target object specified by a semantic label (e.g., "laptop", "microwave"), without any prior map or external localization.
 
-### 2. Framework
+**2. Framework**
 
 A dual-policy RL framework that switches between two modes based on target visibility:
 - **Exploration Mode** — maximize spatial coverage in unknown space
@@ -41,7 +41,7 @@ A dual-policy RL framework that switches between two modes based on target visib
   </div>
 </div>
 
-### 3. Exploration Mode
+**3. Exploration Mode**
 
 **Input:**
 Depth map + ROI (Region of Interest). The ROI identifies open, navigable areas in the depth image — simulating how humans instinctively look toward open spaces when navigating. The ROI is extracted using OpenCV-based methods and provides a directional cue (centroid position $$(d_x, d_y)$$ and mean depth $$\bar{z}$$), rather than absolute unknown-space information.
@@ -54,7 +54,7 @@ $$r_t^E = R_{forward} + R_{center} + R_{safe}$$
 - $$R_{center}$$: penalty for yaw deviation from ROI centroid
 - $$R_{safe}$$: collision / obstacle proximity penalty
 
-### 4. Goal-Reaching Mode
+**4. Goal-Reaching Mode**
 
 **Input:**
 RGB image + frozen CLIP text embedding (aligns text and visual features for zero-shot object recognition) + object/class bounding box.
@@ -69,11 +69,11 @@ $$r_t^G = R_{dist} + R_{bbox} + R_{parent} + R_{suc} - R_{collision}$$
 - $$R_{suc}$$: task success reward
 - $$R_{collision}$$: collision penalty
 
-### 5. Action Space
+**5. Action Space**
 
 Discrete **3D** actions — forward, turn left/right, ascend, descend, etc.
 
-### 6. Evaluation
+**6. Evaluation**
 
 Evaluated on two simulators: AI2-THOR (standard benchmark with seen/unseen object splits) and IsaacSim (larger multi-room environments where the target may be in a different room).
 
