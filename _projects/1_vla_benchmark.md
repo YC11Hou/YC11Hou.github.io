@@ -53,7 +53,7 @@ We design a four-dimensional semantic perturbation diagnostic — Change Object,
 </div>
 
 <div style="margin: 1.5em 0;">
-  <img src="/assets/img/perturbation_types_4x1.png" alt="Four-dimensional semantic perturbation taxonomy" style="max-width: 100%; border-radius: 0.25rem;">
+  <img src="/assets/img/libero_suites_combined.png" alt="LIBERO evaluation suites with perturbation annotations" style="max-width: 70%; border-radius: 0.25rem;">
 </div>
 
 **3. Design Principles**
@@ -62,7 +62,12 @@ We design a four-dimensional semantic perturbation diagnostic — Change Object,
 2. **Instruction-Level Train/Eval Split** — Training tasks do not include all test tasks; held-out evaluation contains unseen language instructions to test compositional generalization.
 3. **Physical Feasibility Validation** — All extended tasks verified in the LIBERO simulator to ensure graspability, reachability, and detectability.
 
-**4. Results**
+**4. Data Collection Pipeline**
+
+- **Scalable & Diverse Generation:** We employ a scripted, waypoint-based collection pipeline to efficiently and stably gather 150 successful episodes per task. While the waypoints are hard-coded for each specific task, the simulator introduces slight natural variations in the initial tabletop layouts. This ensures the collected trajectories are visually and dynamically diverse, preventing models from merely memorizing rigid, identical paths.
+- **Hierarchical Control Architecture:** Each task utilizes a custom script that decomposes the pick-and-place process into multiple sequential waypoints. At the high level, we apply pure Proportional (P) control to calculate positional errors and output continuous action commands. These commands are then executed by the simulator's low-level OSC (Operational Space Control) PD controller, achieving seamless, highly precise continuous control.
+
+**5. Results**
 
 <div style="display: flex; gap: 1rem; margin: 1em 0;">
   <div style="flex: 1; overflow-x: auto; font-size: 0.8em;">
@@ -95,7 +100,7 @@ We design a four-dimensional semantic perturbation diagnostic — Change Object,
   </div>
 </div>
 
-**5. Long-Term Value**
+**6. Long-Term Value**
 
 As semantic diversity of tasks increases, model learning capacity proves severely insufficient — even trained tasks perform poorly. This reveals a fundamental challenge that is architecture-agnostic: all tested models (π0.5, π0, π0-FAST, SmolVLA) exhibit the same language gap. LangGap provides a systematic diagnostic tool that remains valuable as new VLA architectures emerge, precisely because the language gap is a persistent problem that current training paradigms have yet to solve.
 
