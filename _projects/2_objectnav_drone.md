@@ -20,43 +20,34 @@ Object-Goal Navigation (ObjectNav) requires an agent to autonomously explore unk
 
 **AION** is an end-to-end dual-policy reinforcement learning framework that decouples exploration and goal-reaching behaviors into two specialized policies. It enables vision-based aerial ObjectNav without relying on external localization or global maps.
 
-## Task
+## Details
 
-Indoor object-goal navigation for UAVs with **3D locomotion**: the drone must autonomously explore an unknown environment and navigate toward a target object specified by a semantic label (e.g., "laptop", "microwave"), without any prior map or external localization.
+**Task.** Indoor object-goal navigation for UAVs with **3D locomotion**: the drone must autonomously explore an unknown environment and navigate toward a target object specified by a semantic label (e.g., "laptop", "microwave"), without any prior map or external localization.
 
-## Framework
-
-A dual-policy RL framework that switches between two modes based on target visibility:
+**Framework.** A dual-policy RL framework that switches between two modes based on target visibility:
 - **Exploration Mode** — maximize spatial coverage in unknown space
 - **Goal-Reaching Mode** — visual servoing toward the detected target object
 
-<div style="margin: 1.5em 0;">
-  <img src="/assets/img/p2_intro.jpeg" alt="AION dual-policy framework" style="max-width: 70%; border-radius: 0.25rem;">
+<div style="display: flex; gap: 1rem; margin: 1.5em 0;">
+  <div style="flex: 1;">
+    <img src="/assets/img/p2_model_arch.jpg" alt="AION dual-policy architecture" style="width: 100%; border-radius: 0.25rem;">
+  </div>
+  <div style="flex: 1;">
+    <img src="/assets/img/p2_visual_input.jpg" alt="Depth-based ROI extraction" style="width: 100%; border-radius: 0.25rem;">
+  </div>
 </div>
 
-## Exploration Mode
+**Exploration Mode.** Input: depth map + ROI (Region of Interest). The ROI identifies open, navigable areas in the depth image — simulating how humans instinctively look toward open spaces when navigating. The ROI is extracted using OpenCV-based methods and provides a directional cue (centroid position $$(d_x, d_y)$$ and mean depth $$\bar{z}$$), rather than absolute unknown-space information.
 
-<div style="margin: 1.5em 0;">
-  <img src="/assets/img/p2_visual_input.jpg" alt="Depth-based ROI extraction" style="max-width: 70%; border-radius: 0.25rem;">
-</div>
-
-**Input:** Depth map + ROI (Region of Interest). The ROI identifies open, navigable areas in the depth image — simulating how humans instinctively look toward open spaces when navigating. The ROI is extracted using OpenCV-based methods and provides a directional cue (centroid position $$(d_x, d_y)$$ and mean depth $$\bar{z}$$), rather than absolute unknown-space information.
-
-**Rewards:**
-
-$$r_t^E = R_{forward} + R_{center} + R_{safe}$$
+Rewards: $$r_t^E = R_{forward} + R_{center} + R_{safe}$$
 
 - $$R_{forward}$$: reward for moving toward open space
 - $$R_{center}$$: penalty for yaw deviation from ROI centroid
 - $$R_{safe}$$: collision / obstacle proximity penalty
 
-## Goal-Reaching Mode
+**Goal-Reaching Mode.** Input: RGB image + frozen CLIP text embedding (aligns text and visual features for zero-shot object recognition) + object/class bounding box.
 
-**Input:** RGB image + frozen CLIP text embedding (aligns text and visual features for zero-shot object recognition) + object/class bounding box.
-
-**Rewards:**
-
-$$r_t^G = R_{dist} + R_{bbox} + R_{parent} + R_{suc} - R_{collision}$$
+Rewards: $$r_t^G = R_{dist} + R_{bbox} + R_{parent} + R_{suc} - R_{collision}$$
 
 - $$R_{dist}$$: reward for reducing Euclidean distance to target
 - $$R_{bbox}$$: reward for centering and enlarging the target bounding box in the field of view (indicates approaching the object)
@@ -64,49 +55,61 @@ $$r_t^G = R_{dist} + R_{bbox} + R_{parent} + R_{suc} - R_{collision}$$
 - $$R_{suc}$$: task success reward
 - $$R_{collision}$$: collision penalty
 
-## Action Space
+**Action Space.** Discrete **3D** actions — forward, turn left/right, ascend, descend, etc.
 
-Discrete **3D** actions — forward, turn left/right, ascend, descend, etc.
+**Evaluation.** Evaluated on two simulators: AI2-THOR (standard benchmark with seen/unseen object splits) and IsaacSim (larger multi-room environments where the target may be in a different room).
 
-## Evaluation
+<div style="display: flex; gap: 1rem; margin: 1.5em 0;">
+  <div style="flex: 1; overflow-x: auto; font-size: 0.85em;">
+    <strong>AI2-THOR Benchmark</strong>
+    <table>
+      <thead><tr><th>Model</th><th>Split</th><th>Seen SR</th><th>SPL</th><th>Unseen SR</th><th>SPL</th></tr></thead>
+      <tbody>
+        <tr><td>BaseModel</td><td>18/4</td><td>76.7</td><td>39.9</td><td>81.5</td><td>36.4</td></tr>
+        <tr><td>Scene Prior</td><td>18/4</td><td>74.3</td><td>42.1</td><td>83.7</td><td>41.9</td></tr>
+        <tr><td>MJO</td><td>18/4</td><td>81.2</td><td>52.0</td><td>90.7</td><td>51.7</td></tr>
+        <tr><td>SSNet</td><td>18/4</td><td>72.3</td><td>50.4</td><td>77.8</td><td>50.0</td></tr>
+        <tr><td><strong>Ours</strong></td><td><strong>18/4</strong></td><td><strong>88.7</strong></td><td><strong>57.9</strong></td><td><strong>95.0</strong></td><td><strong>55.2</strong></td></tr>
+        <tr><td>BaseModel</td><td>14/8</td><td>73.3</td><td>47.3</td><td>70.8</td><td>46.6</td></tr>
+        <tr><td>Scene Prior</td><td>14/8</td><td>79.3</td><td>52.7</td><td>71.0</td><td>44.8</td></tr>
+        <tr><td>MJO</td><td>14/8</td><td>78.8</td><td>43.6</td><td>83.0</td><td>45.6</td></tr>
+        <tr><td>SSNet</td><td>14/8</td><td>79.2</td><td>44.3</td><td>81.8</td><td>46.4</td></tr>
+        <tr><td><strong>Ours</strong></td><td><strong>14/8</strong></td><td><strong>84.7</strong></td><td><strong>61.2</strong></td><td><strong>87.0</strong></td><td><strong>60.5</strong></td></tr>
+      </tbody>
+    </table>
+    <small>SR = Success Rate (%), SPL = Success weighted by Path Length (%)</small>
+  </div>
+  <div style="flex: 1; overflow-x: auto; font-size: 0.85em;">
+    <strong>IsaacSim Cross-Scene</strong>
+    <table>
+      <thead><tr><th>Algorithm</th><th>Object</th><th>Chem.</th><th>Beech.</th><th>Ihlen</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="4">Exp+MJO</td><td>Sofa</td><td>3/5</td><td>4/5</td><td>4/5</td></tr>
+        <tr><td>Plant</td><td>2/5</td><td><strong>5/5</strong></td><td><strong>5/5</strong></td></tr>
+        <tr><td>Laptop</td><td>0/5</td><td>3/5</td><td><strong>5/5</strong></td></tr>
+        <tr><td>Microwave</td><td>2/5</td><td>5/5</td><td>2/5</td></tr>
+        <tr><td rowspan="4">Exp+SSNet</td><td>Sofa</td><td>3/5</td><td>4/5</td><td>3/5</td></tr>
+        <tr><td>Plant</td><td>3/5</td><td>2/5</td><td>3/5</td></tr>
+        <tr><td>Laptop</td><td>0/5</td><td>3/5</td><td><strong>5/5</strong></td></tr>
+        <tr><td>Microwave</td><td>1/5</td><td><strong>5/5</strong></td><td>3/5</td></tr>
+        <tr><td rowspan="4"><strong>AION</strong></td><td>Sofa</td><td><strong>4/5</strong></td><td>4/5</td><td><strong>5/5</strong></td></tr>
+        <tr><td>Plant</td><td><strong>5/5</strong></td><td><strong>5/5</strong></td><td>4/5</td></tr>
+        <tr><td>Laptop</td><td><strong>2/5</strong></td><td><strong>5/5</strong></td><td><strong>5/5</strong></td></tr>
+        <tr><td>Microwave</td><td><strong>3/5</strong></td><td><strong>5/5</strong></td><td><strong>5/5</strong></td></tr>
+      </tbody>
+    </table>
+    <small>SR = Success Rate (successes / 5 trials)</small>
+  </div>
+</div>
 
-### AI2-THOR Benchmark
-
-| Model | Split | Seen SR | Seen SPL | Unseen SR | Unseen SPL |
-|-------|-------|---------|----------|-----------|------------|
-| BaseModel | 18/4 | 76.7 | 39.9 | 81.5 | 36.4 |
-| Scene Prior | 18/4 | 74.3 | 42.1 | 83.7 | 41.9 |
-| MJO | 18/4 | 81.2 | 52.0 | 90.7 | 51.7 |
-| SSNet | 18/4 | 72.3 | 50.4 | 77.8 | 50.0 |
-| **Ours** | **18/4** | **88.7** | **57.9** | **95.0** | **55.2** |
-| BaseModel | 14/8 | 73.3 | 47.3 | 70.8 | 46.6 |
-| Scene Prior | 14/8 | 79.3 | 52.7 | 71.0 | 44.8 |
-| MJO | 14/8 | 78.8 | 43.6 | 83.0 | 45.6 |
-| SSNet | 14/8 | 79.2 | 44.3 | 81.8 | 46.4 |
-| **Ours** | **14/8** | **84.7** | **61.2** | **87.0** | **60.5** |
-
-SR = Success Rate (%), SPL = Success weighted by Path Length (%).
-
-### IsaacSim Cross-Scene
-
-Larger multi-room environments where the target object may be in a different room.
-
-| Algorithm | Object | Chemistry SR | Beechwood SR | Ihlen SR |
-|-----------|--------|-------------|-------------|---------|
-| Exp+MJO | Sofa | 3/5 | 4/5 | 4/5 |
-| | Plant | 2/5 | **5/5** | **5/5** |
-| | Laptop | 0/5 | 3/5 | **5/5** |
-| | Microwave | 2/5 | 5/5 | 2/5 |
-| Exp+SSNet | Sofa | 3/5 | 4/5 | 3/5 |
-| | Plant | 3/5 | 2/5 | 3/5 |
-| | Laptop | 0/5 | 3/5 | **5/5** |
-| | Microwave | 1/5 | **5/5** | 3/5 |
-| **AION** | Sofa | **4/5** | 4/5 | **5/5** |
-| | Plant | **5/5** | **5/5** | 4/5 |
-| | Laptop | **2/5** | **5/5** | **5/5** |
-| | Microwave | **3/5** | **5/5** | **5/5** |
-
-SR = Success Rate (successes / 5 trials).
+<div style="display: flex; gap: 1rem; margin: 1.5em 0;">
+  <div style="flex: 1;">
+    <img src="/assets/img/p2_isaac.jpg" alt="IsaacSim scenes and target objects" style="width: 100%; border-radius: 0.25rem;">
+  </div>
+  <div style="flex: 1;">
+    <img src="/assets/img/p2_exploration_beechwood.png" alt="Exploration trajectories in Beechwood" style="width: 100%; border-radius: 0.25rem;">
+  </div>
+</div>
 
 ## Resources
 
