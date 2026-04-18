@@ -5,7 +5,29 @@ description: Built a robust pipeline to generate various 3D paths in the Habitat
 img: assets/img/p3_3dvln.jpg
 importance: 3
 category: master
+github: https://github.com/YC11Hou/habitat-aerial-nav
 ---
+
+<p style="margin-bottom: 1rem;">
+  <a href="https://github.com/YC11Hou/habitat-aerial-nav" target="_blank" rel="noopener">
+    <i class="fab fa-github"></i> Code: github.com/YC11Hou/habitat-aerial-nav
+  </a>
+</p>
+
+## Demo
+
+<div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+  <div style="flex: 1; position: relative; padding-bottom: 28%; height: 0; overflow: hidden; border-radius: 0.25rem;">
+    <video controls style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+      <source src="/assets/video/vln_highlights.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div style="flex: 1; position: relative; padding-bottom: 28%; height: 0; overflow: hidden; border-radius: 0.25rem;">
+    <video autoplay loop muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+      <source src="/assets/video/vln_overview.webm" type="video/webm">
+    </video>
+  </div>
+</div>
 
 <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
   <div style="flex: 1;">
