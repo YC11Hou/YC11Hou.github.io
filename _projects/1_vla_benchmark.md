@@ -7,6 +7,12 @@ importance: 1
 category: master
 ---
 
+<p style="margin-bottom: 1rem;">
+  <a href="https://arxiv.org/abs/2603.00592" target="_blank" rel="noopener">
+    <i class="ai ai-arxiv"></i> arXiv: 2603.00592
+  </a>
+</p>
+
 ## Demo
 
 <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
@@ -103,7 +109,3 @@ We design a four-dimensional semantic perturbation diagnostic — Change Object,
 **6. Long-Term Value**
 
 As semantic diversity of tasks increases, model learning capacity proves severely insufficient — even trained tasks perform poorly. This reveals a fundamental challenge that is architecture-agnostic: all tested models (π0.5, π0, π0-FAST, SmolVLA) exhibit the same language gap. LangGap provides a systematic diagnostic tool that remains valuable as new VLA architectures emerge, precisely because the language gap is a persistent problem that current training paradigms have yet to solve.
-
-## Resources
-
-- [arXiv Paper](https://arxiv.org/abs/2603.00592)

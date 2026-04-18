@@ -8,6 +8,12 @@ importance: 2
 category: master
 ---
 
+<p style="margin-bottom: 1rem;">
+  <a href="https://arxiv.org/abs/2601.15614" target="_blank" rel="noopener">
+    <i class="ai ai-arxiv"></i> arXiv: 2601.15614
+  </a>
+</p>
+
 ## Demo
 
 <div class="video-container">
@@ -126,7 +132,3 @@ Evaluated on two simulators: AI2-THOR (standard benchmark with seen/unseen objec
     <img src="/assets/img/p2_exploration_beechwood.png" alt="Exploration trajectories in Beechwood" style="width: 100%; border-radius: 0.25rem;">
   </div>
 </div>
-
-## Resources
-
-- [arXiv Paper](https://arxiv.org/abs/2601.15614)
