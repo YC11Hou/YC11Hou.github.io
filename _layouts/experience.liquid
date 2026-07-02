@@ -15,6 +15,8 @@ layout: default
               <div class="entry-logo">
                 <img src="{{ entry.logo | prepend: '/assets/img/' | relative_url }}" alt="{{ entry.institution }}">
               </div>
+            {% else %}
+              <div class="entry-logo entry-logo-fallback"><i class="fa-solid fa-graduation-cap"></i></div>
             {% endif %}
             <div class="entry-content">
               <div class="entry-header">
@@ -25,9 +27,15 @@ layout: default
                     {{ entry.studyType | default: entry.degree }}
                   {%- endif -%}
                 </h3>
-                {% capture start_year %}{{ entry.start_date | split: '-' | first }}{% endcapture %}
-                {% capture end_year %}{{ entry.end_date | split: '-' | first | default: 'Present' }}{% endcapture %}
-                <span class="entry-date">{{ start_year }} – {{ end_year }}</span>
+                {% assign sd = entry.start_date | append: '' %}
+                {% assign ed = entry.end_date | append: '' %}
+                {% assign sd_parts = sd | split: '-' %}
+                {% if sd_parts.size == 2 %}{% assign sd = sd | append: '-01' %}{% endif %}
+                {% assign ed_parts = ed | split: '-' %}
+                {% if ed_parts.size == 2 %}{% assign ed = ed | append: '-01' %}{% endif %}
+                {% capture start_disp %}{% if sd contains '-' %}{{ sd | date: '%b %Y' }}{% else %}{{ sd }}{% endif %}{% endcapture %}
+                {% capture end_disp %}{% if ed == '' or ed == 'Present' or ed == 'present' %}Present{% elsif ed contains '-' %}{{ ed | date: '%b %Y' }}{% else %}{{ ed }}{% endif %}{% endcapture %}
+                <span class="entry-date">{{ start_disp | strip }} – {{ end_disp | strip }}</span>
               </div>
               {% if entry.institution %}
                 <div class="entry-subtitle">{{ entry.institution }}</div>
@@ -63,13 +71,21 @@ layout: default
               <div class="entry-logo">
                 <img src="{{ entry.logo | prepend: '/assets/img/' | relative_url }}" alt="{{ entry.company | default: entry.name }}">
               </div>
+            {% else %}
+              <div class="entry-logo entry-logo-fallback"><i class="fa-solid fa-building"></i></div>
             {% endif %}
             <div class="entry-content">
               <div class="entry-header">
                 <h3 class="entry-title">{{ entry.position }}</h3>
-                {% capture start_year %}{{ entry.start_date | split: '-' | first }}{% endcapture %}
-                {% capture end_year %}{{ entry.end_date | split: '-' | first | default: 'Present' }}{% endcapture %}
-                <span class="entry-date">{{ start_year }} – {{ end_year }}</span>
+                {% assign sd = entry.start_date | append: '' %}
+                {% assign ed = entry.end_date | append: '' %}
+                {% assign sd_parts = sd | split: '-' %}
+                {% if sd_parts.size == 2 %}{% assign sd = sd | append: '-01' %}{% endif %}
+                {% assign ed_parts = ed | split: '-' %}
+                {% if ed_parts.size == 2 %}{% assign ed = ed | append: '-01' %}{% endif %}
+                {% capture start_disp %}{% if sd contains '-' %}{{ sd | date: '%b %Y' }}{% else %}{{ sd }}{% endif %}{% endcapture %}
+                {% capture end_disp %}{% if ed == '' or ed == 'Present' or ed == 'present' %}Present{% elsif ed contains '-' %}{{ ed | date: '%b %Y' }}{% else %}{{ ed }}{% endif %}{% endcapture %}
+                <span class="entry-date">{{ start_disp | strip }} – {{ end_disp | strip }}</span>
               </div>
               <div class="entry-subtitle">
                 {%- if entry.url -%}

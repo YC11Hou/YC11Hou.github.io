@@ -23,11 +23,11 @@ layout: default
 
   <article>
     <!-- Section 2: About Me -->
-    <h2>About Me</h2>
+    <h2 class="section-heading">About Me</h2>
     <div class="clearfix">{{ content }}</div>
 
     <!-- Section 3: Contact -->
-    <h2>Contact</h2>
+    <h2 class="section-heading">Contact</h2>
     <div class="about-contact">
       {% if site.data.socials.email %}
         <div class="contact-item">
@@ -55,7 +55,7 @@ layout: default
 
     <!-- Section 4: News -->
     {% if page.announcements and page.announcements.enabled %}
-      <h2>
+      <h2 class="section-heading">
         <a href="{{ '/news/' | relative_url }}" style="color: inherit">News</a>
       </h2>
       {% include news.liquid limit=true %}
@@ -63,16 +63,16 @@ layout: default
 
     <!-- Latest posts -->
     {% if page.latest_posts and page.latest_posts.enabled %}
-      <h2>
-        <a href="{{ '/blog/' | relative_url }}" style="color: inherit">latest posts</a>
+      <h2 class="section-heading">
+        <a href="{{ '/blog/' | relative_url }}" style="color: inherit">Latest Posts</a>
       </h2>
       {% include latest_posts.liquid %}
     {% endif %}
 
     <!-- Selected papers -->
     {% if page.selected_papers %}
-      <h2>
-        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">selected publications</a>
+      <h2 class="section-heading">
+        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">Selected Publications</a>
       </h2>
       {% include selected_papers.liquid %}
     {% endif %}

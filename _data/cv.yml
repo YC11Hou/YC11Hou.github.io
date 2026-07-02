@@ -39,12 +39,21 @@ cv:
           - "Key Courses: Advanced Mathematics (96), Probability Theory (97), Random Signal Analysis (97), Microwave Technology and Antenna (97), Fundamentals of Communication (95), Complex Function (99)."
 
     Experience:
+      - company: Honor Device Co., Ltd.
+        position: VLA Algorithm Engineer (Intern)
+        location: Shanghai, China
+        start_date: 2026-06-01
+        end_date: Present
+        highlights:
+          - "Working on Honor's self-developed Omega humanoid robot: teleoperation data collection, replay, training, and on-robot deployment."
+          - "Conducting Vision-Language-Action (VLA) model and algorithm research on custom manipulation tasks."
+
       - company: Huawei Norbert Wiener Research Center
         position: Research Intern
         location: Singapore
         logo: logo_huawei.png
         start_date: 2026-03
-        end_date: 2026-05
+        end_date: 2026-05-25
         highlights:
           - "Developed backend deep learning models for short-range radar signal processing."
           - "Conducted research on downstream tasks including human pose estimation and indoor mapping/SLAM from radar data."

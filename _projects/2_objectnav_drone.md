@@ -1,14 +1,15 @@
 ---
 layout: page
 title: "AION: Aerial Indoor Object-Goal Navigation"
-description: End-to-end dual-policy RL framework for vision-based aerial ObjectNav without external localization or global maps. Evaluated on AI2-THOR and IsaacSim.
+description: Accepted at IROS 2026. End-to-end dual-policy RL framework for vision-based aerial ObjectNav without external localization or global maps. Evaluated on AI2-THOR and IsaacSim.
 img: assets/img/aion_thumbnail.jpg
 video: https://www.youtube.com/embed/TgsUm6bb7zg
 importance: 2
 category: master
 ---
 
-<p style="margin-bottom: 1rem;">
+<p class="project-links">
+  <span class="venue-badge">IROS 2026</span>
   <a href="https://arxiv.org/abs/2601.15614" target="_blank" rel="noopener">
     <i class="ai ai-arxiv"></i> arXiv: 2601.15614
   </a>
@@ -33,15 +34,16 @@ Indoor object-goal navigation for UAVs with **3D locomotion**: the drone must au
 **2. Framework**
 
 A dual-policy RL framework that switches between two modes based on target visibility:
+
 - **Exploration Mode** — maximize spatial coverage in unknown space
 - **Goal-Reaching Mode** — visual servoing toward the detected target object
 
-<div style="display: flex; gap: 1rem; margin: 1.5em 0;">
-  <div style="flex: 1;">
-    <img src="/assets/img/p2_model_arch.jpg" alt="AION dual-policy architecture" style="width: 100%; border-radius: 0.25rem;">
+<div class="media-row">
+  <div>
+    <img src="/assets/img/p2_model_arch.jpg" alt="AION dual-policy architecture">
   </div>
-  <div style="flex: 1;">
-    <img src="/assets/img/p2_visual_input.jpg" alt="Depth-based ROI extraction" style="width: 100%; border-radius: 0.25rem;">
+  <div>
+    <img src="/assets/img/p2_visual_input.jpg" alt="Depth-based ROI extraction">
   </div>
 </div>
 
@@ -81,8 +83,8 @@ Discrete **3D** actions — forward, turn left/right, ascend, descend, etc.
 
 Evaluated on two simulators: AI2-THOR (standard benchmark with seen/unseen object splits) and IsaacSim (larger multi-room environments where the target may be in a different room).
 
-<div style="display: flex; gap: 1rem; margin: 1.5em 0;">
-  <div style="flex: 1; overflow-x: auto; font-size: 0.85em;">
+<div class="media-row">
+  <div style="overflow-x: auto; font-size: 0.85em;">
     <strong>AI2-THOR Benchmark</strong>
     <table>
       <thead><tr><th>Model</th><th>Split</th><th>Seen SR</th><th>SPL</th><th>Unseen SR</th><th>SPL</th></tr></thead>
@@ -101,7 +103,7 @@ Evaluated on two simulators: AI2-THOR (standard benchmark with seen/unseen objec
     </table>
     <small>SR = Success Rate (%), SPL = Success weighted by Path Length (%)</small>
   </div>
-  <div style="flex: 1; overflow-x: auto; font-size: 0.85em;">
+  <div style="overflow-x: auto; font-size: 0.85em;">
     <strong>IsaacSim Cross-Scene</strong>
     <table>
       <thead><tr><th>Algorithm</th><th>Object</th><th>Chem.</th><th>Beech.</th><th>Ihlen</th></tr></thead>
@@ -124,11 +126,11 @@ Evaluated on two simulators: AI2-THOR (standard benchmark with seen/unseen objec
   </div>
 </div>
 
-<div style="display: flex; gap: 1rem; margin: 1.5em 0;">
-  <div style="flex: 1;">
-    <img src="/assets/img/p2_isaac.jpg" alt="IsaacSim scenes and target objects" style="width: 100%; border-radius: 0.25rem;">
+<div class="media-row">
+  <div>
+    <img src="/assets/img/p2_isaac.jpg" alt="IsaacSim scenes and target objects">
   </div>
-  <div style="flex: 1;">
-    <img src="/assets/img/p2_exploration_beechwood.png" alt="Exploration trajectories in Beechwood" style="width: 100%; border-radius: 0.25rem;">
+  <div>
+    <img src="/assets/img/p2_exploration_beechwood.png" alt="Exploration trajectories in Beechwood">
   </div>
 </div>

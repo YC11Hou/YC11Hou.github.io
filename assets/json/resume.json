@@ -14,11 +14,20 @@
   },
   "work": [
     {
+      "name": "Honor Device Co., Ltd.",
+      "position": "VLA Algorithm Engineer (Intern)",
+      "location": "Shanghai, China",
+      "startDate": "2026-06-01",
+      "endDate": "",
+      "summary": "Working on Honor's self-developed Omega humanoid robot: teleoperation data collection, replay, training, and on-robot deployment.",
+      "highlights": ["Conducting Vision-Language-Action (VLA) model and algorithm research on custom manipulation tasks."]
+    },
+    {
       "name": "Huawei Norbert Wiener Research Center",
       "position": "Research Intern",
       "location": "Singapore",
       "startDate": "2026-03-01",
-      "endDate": "2026-05-31",
+      "endDate": "2026-05-25",
       "summary": "Developed backend deep learning models for short-range radar signal processing.",
       "highlights": ["Conducted research on downstream tasks including human pose estimation and indoor mapping/SLAM from radar data."]
     },
@@ -129,7 +138,22 @@
   ],
   "volunteer": [],
   "certificates": [],
-  "publications": [],
+  "publications": [
+    {
+      "name": "LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action Models",
+      "publisher": "2026 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)",
+      "releaseDate": "2026-06-17",
+      "url": "https://arxiv.org/abs/2603.00592",
+      "summary": "Yuchen Hou, Lin Zhao"
+    },
+    {
+      "name": "AION: Aerial Indoor Object-Goal Navigation Using Dual-Policy Reinforcement Learning",
+      "publisher": "2026 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)",
+      "releaseDate": "2026-06-17",
+      "url": "https://arxiv.org/abs/2601.15614",
+      "summary": "Zichen Yan, Yuchen Hou, Shenao Wang, Yichao Gao, Rui Huang, Lin Zhao"
+    }
+  ],
   "references": [],
   "projects": []
 }

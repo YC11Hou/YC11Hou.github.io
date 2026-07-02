@@ -1,13 +1,14 @@
 ---
 layout: page
-title: VLA Language Understanding Benchmark
-description: Designed a systematic semantic perturbation evaluation framework revealing that state-of-the-art VLA models ignore language instructions despite high benchmark scores. Proposed multi-task same-scene training approach and constructed augmented dataset for fine-tuning.
+title: "LangGap: VLA Language Understanding Benchmark"
+description: Accepted at IROS 2026. Designed a systematic semantic perturbation evaluation framework revealing that state-of-the-art VLA models ignore language instructions despite high benchmark scores. Proposed multi-task same-scene training approach and constructed augmented dataset for fine-tuning.
 preview_video: /assets/video/grid_8x4.mp4
 importance: 1
 category: master
 ---
 
-<p style="margin-bottom: 1rem;">
+<p class="project-links">
+  <span class="venue-badge">IROS 2026</span>
   <a href="https://arxiv.org/abs/2603.00592" target="_blank" rel="noopener">
     <i class="ai ai-arxiv"></i> arXiv: 2603.00592
   </a>
@@ -15,14 +16,14 @@ category: master
 
 ## Demo
 
-<div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
-  <div style="flex: 1; position: relative; padding-bottom: 28%; height: 0; overflow: hidden; border-radius: 0.25rem;">
-    <video controls style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-      <source src="/assets/video/iros_final.mp4" type="video/mp4">
+<div class="media-row">
+  <div class="ratio-16x9">
+    <video controls preload="metadata">
+      <source src="/assets/video/langgap_video.mp4" type="video/mp4">
     </video>
   </div>
-  <div style="flex: 1; position: relative; padding-bottom: 28%; height: 0; overflow: hidden; border-radius: 0.25rem;">
-    <video autoplay loop muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+  <div class="ratio-16x9">
+    <video autoplay loop muted playsinline>
       <source src="/assets/video/grid_8x4.mp4" type="video/mp4">
     </video>
   </div>
@@ -58,8 +59,10 @@ We design a four-dimensional semantic perturbation diagnostic — Change Object,
 </table>
 </div>
 
-<div style="margin: 1.5em 0;">
-  <img src="/assets/img/libero_suites_strip.png" alt="LIBERO evaluation suites with perturbation annotations" style="max-width: 100%; border-radius: 0.25rem;">
+<div class="media-row">
+  <div>
+    <img src="/assets/img/libero_suites_strip.png" alt="LIBERO evaluation suites with perturbation annotations">
+  </div>
 </div>
 
 **3. Design Principles**
@@ -75,8 +78,8 @@ We design a four-dimensional semantic perturbation diagnostic — Change Object,
 
 **5. Results**
 
-<div style="display: flex; gap: 1rem; margin: 1em 0;">
-  <div style="flex: 1; overflow-x: auto; font-size: 0.8em;">
+<div class="media-row">
+  <div style="overflow-x: auto; font-size: 0.8em;">
     <strong>Cross-Model Benchmark</strong>
     <table>
       <thead><tr><th>Method</th><th>Orig.</th><th>Ext.</th><th>Ch.Obj</th><th>Ch.Tgt</th></tr></thead>
@@ -90,7 +93,7 @@ We design a four-dimensional semantic perturbation diagnostic — Change Object,
       </tbody>
     </table>
   </div>
-  <div style="flex: 1; overflow-x: auto; font-size: 0.8em;">
+  <div style="overflow-x: auto; font-size: 0.8em;">
     <strong>Progressive Validation</strong>
     <table>
       <thead><tr><th>Config</th><th>Eval</th><th>Baseline</th><th>Ours</th></tr></thead>

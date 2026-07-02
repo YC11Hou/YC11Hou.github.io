@@ -29,8 +29,18 @@ h6 {
   letter-spacing: -0.02em;
 }
 
+h1,
+h2 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
 p {
   line-height: 1.65;
+}
+
+::selection {
+  background: var(--global-tint-color);
 }
 
 hr {

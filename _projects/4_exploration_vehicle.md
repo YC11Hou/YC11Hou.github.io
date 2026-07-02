@@ -9,12 +9,12 @@ category: bachelor
 
 ## Demo
 
-<div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
-  <div style="flex: 1; position: relative; padding-bottom: 28%; height: 0; overflow: hidden; border-radius: 0.25rem;">
-    <iframe src="https://drive.google.com/file/d/1haxn_iNXpebKC7ZddG_swejB8xaGpgRc/preview" allow="autoplay" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"></iframe>
+<div class="media-row">
+  <div class="ratio-16x9">
+    <iframe src="https://drive.google.com/file/d/1haxn_iNXpebKC7ZddG_swejB8xaGpgRc/preview" allow="autoplay" allowfullscreen></iframe>
   </div>
-  <div style="flex: 1; position: relative; padding-bottom: 28%; height: 0; overflow: hidden; border-radius: 0.25rem;">
-    <iframe src="https://drive.google.com/file/d/11dCs_qUwQSNqTOiaHjU_bLXyb7nuTHjx/preview" allow="autoplay" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"></iframe>
+  <div class="ratio-16x9">
+    <iframe src="https://drive.google.com/file/d/11dCs_qUwQSNqTOiaHjU_bLXyb7nuTHjx/preview" allow="autoplay" allowfullscreen></iframe>
   </div>
 </div>
 
@@ -23,7 +23,7 @@ category: bachelor
 An autonomous rescue robot designed to explore unknown indoor environments and mark the locations of injured persons. The robot autonomously navigates, builds a map in real time, and detects casualties along the way.
 
 <div style="margin: 1.5em 0;">
-  <img src="/assets/img/p1_robot_real.jpg" alt="Hardware overview" style="max-width: 70%;">
+  <img src="/assets/img/p1_robot_real.jpg" alt="Hardware overview" style="max-width: 70%; border-radius: 12px;">
 </div>
 
 ## Hardware

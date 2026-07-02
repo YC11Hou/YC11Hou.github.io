@@ -8,7 +8,7 @@ category: master
 github: https://github.com/YC11Hou/habitat-aerial-nav
 ---
 
-<p style="margin-bottom: 1rem;">
+<p class="project-links">
   <a href="https://github.com/YC11Hou/habitat-aerial-nav" target="_blank" rel="noopener">
     <i class="fab fa-github"></i> Code: github.com/YC11Hou/habitat-aerial-nav
   </a>
@@ -16,25 +16,25 @@ github: https://github.com/YC11Hou/habitat-aerial-nav
 
 ## Demo
 
-<div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
-  <div style="flex: 1; position: relative; padding-bottom: 28%; height: 0; overflow: hidden; border-radius: 0.25rem;">
-    <video controls style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+<div class="media-row">
+  <div class="ratio-16x9">
+    <video controls preload="metadata">
       <source src="/assets/video/vln_highlights.mp4" type="video/mp4">
     </video>
   </div>
-  <div style="flex: 1; position: relative; padding-bottom: 28%; height: 0; overflow: hidden; border-radius: 0.25rem;">
-    <video autoplay loop muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+  <div class="ratio-16x9">
+    <video autoplay loop muted playsinline>
       <source src="/assets/video/vln_overview.webm" type="video/webm">
     </video>
   </div>
 </div>
 
-<div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
-  <div style="flex: 1;">
-    <img src="/assets/img/p3_3dvln.jpg" alt="Ego-centric view during trajectory generation" style="width: 100%; border-radius: 0.25rem;">
+<div class="media-row">
+  <div>
+    <img src="/assets/img/p3_3dvln.jpg" alt="Ego-centric view during trajectory generation">
   </div>
-  <div style="flex: 1;">
-    <img src="/assets/img/p3_3stage_traj.jpg" alt="3-stage trajectory: Takeoff, Cruise, Landing" style="width: 100%; border-radius: 0.25rem;">
+  <div>
+    <img src="/assets/img/p3_3stage_traj.jpg" alt="3-stage trajectory: Takeoff, Cruise, Landing">
   </div>
 </div>
 
