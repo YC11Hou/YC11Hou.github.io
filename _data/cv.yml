@@ -42,6 +42,7 @@ cv:
       - company: Honor Device Co., Ltd.
         position: VLA Algorithm Engineer (Intern)
         location: Shanghai, China
+        logo: logo_honor.png
         start_date: 2026-06-01
         end_date: Present
         highlights:

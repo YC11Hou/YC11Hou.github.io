@@ -47,11 +47,20 @@
 
     li {
       margin-bottom: 1rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--global-divider-color);
+      padding: 1rem 0;
+      border-radius: 16px;
+      border-bottom: none;
+      transition: background-color 0.25s ease;
 
-      &:last-child {
-        border-bottom: none;
+      // Roomy hover rows on desktop only (negative margins would overflow on mobile)
+      @media (min-width: 768px) {
+        padding: 1rem;
+        margin-left: -1rem;
+        margin-right: -1rem;
+
+        &:hover {
+          background-color: var(--global-tint-color);
+        }
       }
 
       .preview {

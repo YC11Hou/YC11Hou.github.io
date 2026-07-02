@@ -43,6 +43,10 @@ p {
   background: var(--global-tint-color);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 hr {
   border-top: 1px solid var(--global-divider-color);
 }

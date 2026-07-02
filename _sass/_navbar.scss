@@ -221,19 +221,8 @@
 }
 
 /*******************************************************************************
- * Mobile bottom navigation bar — frosted glass style
+ * Mobile bottom navigation — Apple liquid-glass dock
  ******************************************************************************/
-
-// Frosted glass style
-%frosted-glass {
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(24px) saturate(200%) brightness(1.15);
-  -webkit-backdrop-filter: blur(24px) saturate(200%) brightness(1.15);
-  border: 0.5px solid rgba(255, 255, 255, 0.5);
-  box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-}
 
 .mobile-bottom-nav {
   position: fixed;
@@ -241,35 +230,58 @@
   left: 0;
   right: 0;
   z-index: 1040;
-  padding: 0 12px 10px;
-  padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  padding: 0 14px 12px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  pointer-events: none; // dock itself catches events, not the strip
 }
 
-// Nav bar — flat container, glass effect is on the sliding indicator
+// The dock — a floating translucent capsule of liquid glass
 .mobile-bottom-nav-bar {
   position: relative;
   display: flex;
   align-items: center;
-  height: 56px;
+  height: 60px;
   flex: 1;
   min-width: 0;
-  border-radius: 18px;
-  background: rgba(120, 120, 120, 0.15);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  border-radius: 30px;
+  pointer-events: auto;
+  background: linear-gradient(rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05)), rgba(255, 255, 255, 0.52);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  backdrop-filter: blur(28px) saturate(190%);
+  border: 0.5px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    0 12px 36px rgba(0, 0, 0, 0.16),
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+
+  // Specular sweep along the top edge — the "liquid" sheen
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 12% auto;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95), transparent);
+    pointer-events: none;
+  }
 }
 
-// Sliding glass indicator — this is the "liquid glass" that moves
+// Sliding pill marking the active tab
 .mobile-nav-glass-indicator {
   position: absolute;
-  top: 4px;
+  top: 6px;
   left: 0;
-  height: calc(100% - 8px);
-  border-radius: 14px;
+  height: calc(100% - 12px);
+  border-radius: 24px;
   opacity: 0;
   pointer-events: none;
-  // The glass effect lives here
-  @extend %frosted-glass;
+  background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.55));
+  border: 0.5px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
 // Individual nav item
@@ -284,14 +296,15 @@
   min-width: 56px;
   padding: 6px 4px;
   color: var(--global-text-color);
-  opacity: 0.45;
+  opacity: 0.5;
   text-decoration: none;
   font-size: 0.58rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.02em;
   transition:
-    color 0.3s ease,
-    opacity 0.3s ease;
+    color 0.25s ease,
+    opacity 0.25s ease,
+    transform 0.15s ease;
   background: none;
   border: none;
   cursor: pointer;
@@ -299,16 +312,21 @@
   white-space: nowrap;
 
   i {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     margin-bottom: 2px;
-    transition: transform 0.3s ease;
+    transition: transform 0.25s ease;
   }
 
   &:hover,
   &:focus {
     text-decoration: none;
     color: var(--global-theme-color);
-    opacity: 0.8;
+    opacity: 0.85;
+  }
+
+  // Press feedback — subtle squish, like iOS
+  &:active {
+    transform: scale(0.92);
   }
 
   &.active {
@@ -316,7 +334,7 @@
     opacity: 1;
 
     i {
-      transform: scale(1.1);
+      transform: scale(1.08);
     }
   }
 }
@@ -356,18 +374,35 @@
 // Dark mode adjustments
 html[data-theme="dark"] {
   .mobile-bottom-nav-bar {
-    background: rgba(60, 60, 60, 0.25);
+    background: linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01)), rgba(24, 24, 26, 0.55);
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow:
+      0 12px 36px rgba(0, 0, 0, 0.55),
+      0 2px 8px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+    &::before {
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    }
   }
 
   .mobile-nav-glass-indicator {
-    background: rgba(50, 50, 50, 0.5);
-    border-color: rgba(255, 255, 255, 0.12);
+    background: linear-gradient(rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.08));
+    border-color: rgba(255, 255, 255, 0.2);
     box-shadow:
-      0 2px 16px rgba(0, 0, 0, 0.2),
-      inset 0 0.5px 0 rgba(255, 255, 255, 0.1);
+      0 3px 12px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
   }
 
   .mobile-bottom-nav-divider {
     background: rgba(255, 255, 255, 0.15);
+  }
+}
+
+// Back-to-top: lift it above the dock on mobile so it never overlaps the Theme button
+@media (max-width: 767.98px) {
+  #back-to-top {
+    bottom: calc(92px + env(safe-area-inset-bottom, 0px)) !important;
+    right: 16px !important;
   }
 }
