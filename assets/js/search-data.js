@@ -36,14 +36,23 @@ ninja.data = [{
           section: "News",},{id: "news-completed-robotics-software-internship-at-movel-ai-dec-2025-jan-2026-working-on-autonomous-forklift-navigation",
           title: 'Completed robotics software internship at Movel.AI (Dec 2025 – Jan 2026), working on...',
           description: "",
-          section: "News",},{id: "projects-vla-language-understanding-benchmark",
-          title: 'VLA Language Understanding Benchmark',
-          description: "Designed a systematic semantic perturbation evaluation framework revealing that state-of-the-art VLA models ignore language instructions despite high benchmark scores. Proposed multi-task same-scene training approach and constructed augmented dataset for fine-tuning.",
+          section: "News",},{id: "news-completed-my-research-internship-at-huawei-norbert-wiener-research-center-mar-may-2026-working-on-deep-learning-for-short-range-radar-sensing",
+          title: 'Completed my research internship at Huawei Norbert Wiener Research Center (Mar – May...',
+          description: "",
+          section: "News",},{id: "news-joined-honor-as-a-vla-algorithm-engineer-intern-working-on-the-omega-humanoid-robot-teleoperation-data-collection-training-and-deployment",
+          title: 'Joined Honor as a VLA Algorithm Engineer (Intern), working on the Omega humanoid...',
+          description: "",
+          section: "News",},{id: "news-tada-two-papers-accepted-to-iros-2026-langgap-first-author-and-aion-co-author-see-you-in-pittsburgh",
+          title: ':tada: Two papers accepted to IROS 2026: LangGap (first author) and AION (co-author)....',
+          description: "",
+          section: "News",},{id: "projects-langgap-vla-language-understanding-benchmark",
+          title: 'LangGap: VLA Language Understanding Benchmark',
+          description: "Accepted at IROS 2026. Designed a systematic semantic perturbation evaluation framework revealing that state-of-the-art VLA models ignore language instructions despite high benchmark scores. Proposed multi-task same-scene training approach and constructed augmented dataset for fine-tuning.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_vla_benchmark/";
             },},{id: "projects-aion-aerial-indoor-object-goal-navigation",
           title: 'AION: Aerial Indoor Object-Goal Navigation',
-          description: "End-to-end dual-policy RL framework for vision-based aerial ObjectNav without external localization or global maps. Evaluated on AI2-THOR and IsaacSim.",
+          description: "Accepted at IROS 2026. End-to-end dual-policy RL framework for vision-based aerial ObjectNav without external localization or global maps. Evaluated on AI2-THOR and IsaacSim.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/2_objectnav_drone/";
             },},{id: "projects-vision-language-navigation-on-autonomous-drone",
