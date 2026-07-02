@@ -80,32 +80,73 @@
 <script>
   // Liquid glass active-tab pill.
   // Runs synchronously (this script sits right after the nav markup) so the pill
-  // is already in place at first paint — the cross-document View Transition then
-  // animates it smoothly from its position on the previous page to this one.
+  // is already positioned at first paint. When arriving from a dock tap on
+  // another page, it starts at the previous tab and glides ONCE to the new one.
+  // The hand-off marker is consumed immediately, so reload/back never replays it.
   (function () {
     var bar = document.querySelector('.mobile-bottom-nav-bar');
     if (!bar) return;
     var indicator = bar.querySelector('.mobile-nav-glass-indicator');
     // Only real nav links carry the pill — the theme toggle is a momentary action
+    var items = bar.querySelectorAll('a.mobile-bottom-nav-item');
     var active = bar.querySelector('a.mobile-bottom-nav-item.active');
     if (!indicator || !active) return;
 
-    function place() {
+    var activeIndex = Array.prototype.indexOf.call(items, active);
+
+    function place(target, animate) {
       var barRect = bar.getBoundingClientRect();
-      var itemRect = active.getBoundingClientRect();
+      var itemRect = target.getBoundingClientRect();
+      indicator.style.transition = animate ? 'transform 0.38s cubic-bezier(0.32, 0.72, 0, 1), width 0.38s cubic-bezier(0.32, 0.72, 0, 1)' : 'none';
       indicator.style.width = itemRect.width + 'px';
       indicator.style.transform = 'translateX(' + (itemRect.left - barRect.left) + 'px)';
       indicator.style.opacity = '1';
     }
 
-    place();
+    // Consume the hand-off marker (if any) exactly once
+    var from = null;
+    try {
+      from = sessionStorage.getItem('dock-from');
+      sessionStorage.removeItem('dock-from');
+    } catch (e) {
+      /* private mode */
+    }
+
+    var fromIndex = from === null ? NaN : parseInt(from, 10);
+    if (!isNaN(fromIndex) && fromIndex !== activeIndex && items[fromIndex]) {
+      // Start where the user tapped from, then glide to the new active tab
+      place(items[fromIndex], false);
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          place(active, true);
+        });
+      });
+    } else {
+      place(active, false);
+    }
 
     // Keep the pill aligned across rotations / resizes / late font loads
     var resizeTimer;
     window.addEventListener('resize', function () {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(place, 100);
+      resizeTimer = setTimeout(function () {
+        place(active, false);
+      }, 100);
     });
-    window.addEventListener('load', place);
+    window.addEventListener('load', function () {
+      place(active, false);
+    });
+
+    // On tap: record where we came from, navigate immediately (no delay)
+    items.forEach(function (item, i) {
+      item.addEventListener('click', function () {
+        if (i === activeIndex) return;
+        try {
+          sessionStorage.setItem('dock-from', String(activeIndex));
+        } catch (e) {
+          /* private mode */
+        }
+      });
+    });
   })();
 </script>
