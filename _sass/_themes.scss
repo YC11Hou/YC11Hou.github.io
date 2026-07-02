@@ -10,8 +10,8 @@
   --global-code-bg-color: #{v.$code-bg-color-light};
   --global-text-color: #1d1d1f;
   --global-text-color-light: #6e6e73;
-  --global-theme-color: #0071e3;
-  --global-hover-color: #0077ed;
+  --global-theme-color: #0066cc;
+  --global-hover-color: #0055aa;
   --global-hover-text-color: #{v.$white-color};
   --global-footer-bg-color: #{v.$grey-color-dark};
   --global-footer-text-color: #{v.$grey-color-light};
@@ -19,9 +19,9 @@
   --global-distill-app-color: #{v.$grey-color};
   --global-divider-color: rgba(0, 0, 0, 0.08);
   --global-card-bg-color: #{v.$white-color};
-  --global-tint-color: rgba(0, 113, 227, 0.08);
-  --global-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
-  --global-card-shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.05), 0 16px 40px rgba(0, 0, 0, 0.12);
+  --global-tint-color: rgba(0, 102, 204, 0.07);
+  --global-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 6px 18px rgba(0, 0, 0, 0.05);
+  --global-card-shadow-hover: 0 2px 5px rgba(0, 0, 0, 0.04), 0 14px 32px rgba(0, 0, 0, 0.09);
   --global-navbar-bg: rgba(251, 251, 253, 0.72);
   --global-highlight-color: #{v.$red-color-dark};
   --global-back-to-top-bg-color: rgba(

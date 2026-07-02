@@ -8,7 +8,7 @@
   margin-top: 0;
 
   h1 {
-    color: var(--global-theme-color);
+    color: var(--global-text-color);
     font-size: 2rem;
     text-align: center;
     margin-top: 1em;
@@ -24,7 +24,7 @@
   }
 
   h2.bibliography {
-    color: var(--global-theme-color);
+    color: var(--global-text-color);
     border-bottom: 1px solid var(--global-divider-color);
     border-top: none;
     padding-top: 0.5rem;

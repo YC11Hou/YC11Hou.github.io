@@ -277,7 +277,7 @@ ul.task-list input[type="checkbox"] {
   }
 
   h2.category {
-    color: var(--global-theme-color);
+    color: var(--global-text-color);
     border-bottom: 1px solid var(--global-divider-color);
     padding-top: 0.5rem;
     padding-bottom: 0.3rem;
@@ -328,18 +328,54 @@ article > .section-heading:first-child,
   margin-top: 0;
 }
 
-// About Banner
+// About Hero — scenic backdrop, avatar, liquid-glass quote card
 
-.about-banner {
+.about-hero {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  margin: 0.25rem 0 2.5rem;
+  min-height: 330px;
+  box-shadow: var(--global-card-shadow);
   display: flex;
-  align-items: stretch;
-  gap: 2.5rem;
-  padding: 0.75rem 0 2.5rem;
-  margin-bottom: 2.25rem;
-  border-bottom: 1px solid var(--global-divider-color);
 }
 
-.about-banner-left {
+.about-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.about-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(8, 14, 28, 0.1) 0%, rgba(8, 14, 28, 0.34) 62%, rgba(8, 14, 28, 0.56) 100%),
+    linear-gradient(100deg, rgba(8, 14, 28, 0.42) 0%, rgba(8, 14, 28, 0.08) 58%);
+  pointer-events: none;
+}
+
+// In dark mode, dim the daylight scene so it sits comfortably on the page
+html[data-theme="dark"] .about-hero-scrim {
+  background:
+    linear-gradient(180deg, rgba(5, 8, 18, 0.28) 0%, rgba(5, 8, 18, 0.46) 62%, rgba(5, 8, 18, 0.64) 100%),
+    linear-gradient(100deg, rgba(5, 8, 18, 0.5) 0%, rgba(5, 8, 18, 0.16) 58%);
+}
+
+.about-hero-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  width: 100%;
+  padding: 2.5rem 2.75rem;
+}
+
+.about-hero-left {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -347,59 +383,53 @@ article > .section-heading:first-child,
   justify-content: center;
   text-align: center;
 
-  img {
-    max-width: 148px;
-    margin: 0 auto;
-    display: block;
-    box-shadow: var(--global-card-shadow);
+  .hero-avatar {
+    width: 128px;
+    height: 128px;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
   }
 
-  .banner-name {
-    font-size: clamp(1.9rem, 3.5vw, 2.3rem);
+  .hero-name {
+    font-size: clamp(1.9rem, 3.5vw, 2.35rem);
     font-weight: 700;
     letter-spacing: -0.035em;
-    margin-top: 0.9rem;
+    color: #fff;
+    margin-top: 1rem;
     margin-bottom: 0.15rem;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
   }
 
-  .banner-subtitle {
-    font-size: 0.95rem;
-    color: var(--global-text-color-light);
+  .hero-subtitle {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.88);
     letter-spacing: 0.01em;
     margin-bottom: 0;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
   }
 }
 
-.about-banner-right {
-  flex: 1;
-}
-
-.quote-card {
+// Quote card — liquid glass over the scenery
+.hero-quote-card {
   flex: 1;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #101332 0%, #16213e 45%, #0f3460 80%, #45305e 100%);
-  border-radius: 18px;
   padding: 2rem 2.25rem;
-  min-height: 200px;
-  height: 100%;
-  overflow: hidden;
-  box-shadow: var(--global-card-shadow);
-
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 88% 10%, rgba(233, 69, 96, 0.35), transparent 42%);
-    pointer-events: none;
-  }
+  min-height: 190px;
+  border-radius: 20px;
+  background: linear-gradient(rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.07));
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 0.5px solid rgba(255, 255, 255, 0.38);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
 
   .quote-text {
-    position: relative;
-    z-index: 1;
-    color: #f5f5f7;
+    color: #fff;
     font-family: Georgia, "Times New Roman", serif;
     font-style: italic;
     font-size: 1.3rem;
@@ -407,7 +437,19 @@ article > .section-heading:first-child,
     text-align: center;
     margin: 0;
     text-wrap: balance;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
   }
+}
+
+.hero-credit {
+  position: absolute;
+  right: 14px;
+  bottom: 8px;
+  z-index: 1;
+  font-size: 0.6rem;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.55);
+  pointer-events: none;
 }
 
 // About Contact — pill chips
@@ -532,25 +574,33 @@ article > .section-heading:first-child,
 }
 /* purgecss end ignore */
 
-// About Banner mobile: stack vertically
+// About Hero mobile: stack vertically
 /* purgecss start ignore */
 @media (max-width: 767.98px) {
-  .about-banner {
+  .about-hero {
+    min-height: 0;
+    border-radius: 20px;
+  }
+
+  .about-hero-inner {
     flex-direction: column;
-    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem 1.5rem 2.25rem;
   }
 
-  .about-banner-left {
-    flex: 0 0 100%;
-    max-width: 100%;
+  .about-hero-left .hero-avatar {
+    width: 108px;
+    height: 108px;
   }
 
-  .about-banner-right {
+  .hero-quote-card {
     width: 100%;
-  }
+    min-height: 0;
+    padding: 1.4rem 1.5rem;
 
-  .quote-card {
-    min-height: 120px;
+    .quote-text {
+      font-size: 1.1rem;
+    }
   }
 }
 /* purgecss end ignore */
@@ -559,7 +609,7 @@ article > .section-heading:first-child,
 
 .experience {
   h2.category {
-    color: var(--global-theme-color);
+    color: var(--global-text-color);
     border-bottom: 1px solid var(--global-divider-color);
     padding-top: 0.5rem;
     padding-bottom: 0.3rem;

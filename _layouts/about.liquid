@@ -2,23 +2,26 @@
 layout: default
 ---
 <div class="post">
-  <!-- Section 1: Banner -->
-  <div class="about-banner">
-    <div class="about-banner-left">
-      {% assign profile_image_path = 'assets/img/prof_pic_web.jpg' %}
-      {% assign profile_image_class = 'img-fluid z-depth-1 rounded-circle' %}
-      {%
-        include figure.liquid loading="eager" path=profile_image_path class=profile_image_class alt="Yuchen Hou"
-        cache_bust=true
-      %}
-      <h1 class="banner-name">Yuchen Hou</h1>
-      <p class="banner-subtitle">M.Sc. ECE, NUS</p>
-    </div>
-    <div class="about-banner-right">
-      <div class="quote-card">
+  <!-- Section 1: Hero -->
+  <div class="about-hero">
+    <img class="about-hero-bg" src="{{ '/assets/img/hero_castle.jpg' | relative_url }}" alt="" aria-hidden="true">
+    <div class="about-hero-scrim"></div>
+    <div class="about-hero-inner">
+      <div class="about-hero-left">
+        {% assign profile_image_path = 'assets/img/prof_pic_web.jpg' %}
+        {% assign profile_image_class = 'hero-avatar rounded-circle' %}
+        {%
+          include figure.liquid loading="eager" path=profile_image_path class=profile_image_class alt="Yuchen Hou"
+          cache_bust=true
+        %}
+        <h1 class="hero-name">Yuchen Hou</h1>
+        <p class="hero-subtitle">M.Sc. ECE, National University of Singapore</p>
+      </div>
+      <div class="hero-quote-card">
         <p class="quote-text">"The darkest hour is just before the dawn."</p>
       </div>
     </div>
+    <span class="hero-credit">Neuschwanstein · photo: Thomas Wolf, CC BY-SA 3.0 DE</span>
   </div>
 
   <article>

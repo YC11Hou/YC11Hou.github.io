@@ -42,8 +42,12 @@ jobs:
             echo "Missing RenderCV config file!"
             exit 1
           fi
-          rendercv render $cv_file --settings $settings
-          rm assets/rendercv/rendercv_output/*.typ
+          # cv.yml carries extra website-only fields (logo, url, studyType, ...) that
+          # RenderCV's strict schema rejects — transform it first.
+          python3 bin/rendercv_transform.py "$cv_file" _data/cv_rendercv.yaml
+          rendercv render _data/cv_rendercv.yaml --settings $settings
+          rm -f _data/cv_rendercv.yaml
+          rm -f assets/rendercv/rendercv_output/*.typ
       - name: Upload rendercv_output as an artifact
         uses: actions/upload-artifact@v4
         with:
@@ -54,5 +58,4 @@ jobs:
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
           git add -A
-          git commit -m "chore: render the latest CV"
-          git push
+          git diff --cached --quiet || (git commit -m "chore: render the latest CV" && git push)

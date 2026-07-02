@@ -78,50 +78,34 @@
 </div>
 
 <script>
-  // Liquid glass active-tab pill: positioned instantly on load, animated only on tap
-  document.addEventListener('DOMContentLoaded', function () {
+  // Liquid glass active-tab pill.
+  // Runs synchronously (this script sits right after the nav markup) so the pill
+  // is already in place at first paint — the cross-document View Transition then
+  // animates it smoothly from its position on the previous page to this one.
+  (function () {
     var bar = document.querySelector('.mobile-bottom-nav-bar');
     if (!bar) return;
     var indicator = bar.querySelector('.mobile-nav-glass-indicator');
-    // Only real nav links move the pill — the theme toggle is a momentary action
-    var items = bar.querySelectorAll('a.mobile-bottom-nav-item');
+    // Only real nav links carry the pill — the theme toggle is a momentary action
     var active = bar.querySelector('a.mobile-bottom-nav-item.active');
-    if (!indicator || !items.length) return;
+    if (!indicator || !active) return;
 
-    // Position the pill on a given item
-    function positionAt(target, animate) {
+    function place() {
       var barRect = bar.getBoundingClientRect();
-      var itemRect = target.getBoundingClientRect();
-      var left = itemRect.left - barRect.left;
-      indicator.style.transition = animate ? 'transform 0.35s cubic-bezier(0.32, 0.72, 0, 1), width 0.35s cubic-bezier(0.32, 0.72, 0, 1)' : 'none';
+      var itemRect = active.getBoundingClientRect();
       indicator.style.width = itemRect.width + 'px';
-      indicator.style.transform = 'translateX(' + left + 'px)';
+      indicator.style.transform = 'translateX(' + (itemRect.left - barRect.left) + 'px)';
       indicator.style.opacity = '1';
     }
 
-    // Instant placement on load — no bounce, no replay of previous animation
-    if (active) positionAt(active, false);
+    place();
 
-    // Keep the pill aligned across rotations / resizes
+    // Keep the pill aligned across rotations / resizes / late font loads
     var resizeTimer;
     window.addEventListener('resize', function () {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(function () {
-        if (active) positionAt(active, false);
-      }, 100);
+      resizeTimer = setTimeout(place, 100);
     });
-    window.addEventListener('load', function () {
-      if (active) positionAt(active, false);
-    });
-
-    // On tap: slide the pill toward the target, then navigate right away.
-    // Navigation is NOT delayed — the slide is decorative feedback only.
-    items.forEach(function (item) {
-      item.addEventListener('click', function () {
-        if (item.classList.contains('active')) return;
-        positionAt(item, true);
-        // let the browser navigate via the anchor's default behavior
-      });
-    });
-  });
+    window.addEventListener('load', place);
+  })();
 </script>

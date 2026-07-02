@@ -21,6 +21,11 @@ module.exports = {
       /section-heading/,
       /entry/,
       /news/,
+      /view-transition/,
+      /mobile-nav/,
+      /mobile-bottom-nav/,
+      /about-hero/,
+      /hero-credit/,
     ],
   },
 };
