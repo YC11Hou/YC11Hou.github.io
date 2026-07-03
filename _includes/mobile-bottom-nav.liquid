@@ -78,21 +78,23 @@
 </div>
 
 <script>
-  // Liquid glass active-tab pill.
-  // Runs synchronously (this script sits right after the nav markup) so the pill
-  // is already positioned at first paint. When arriving from a dock tap on
-  // another page, it starts at the previous tab and glides ONCE to the new one.
-  // The hand-off marker is consumed immediately, so reload/back never replays it.
+  // Liquid glass dock.
+  // - Placed synchronously (script sits right after the markup) so the pill is
+  //   in position at first paint. Arriving from a dock tap/drag on another page,
+  //   it glides ONCE from the previous tab (consume-once marker; back/reload
+  //   never replays).
+  // - The pill is DRAGGABLE: press and slide anywhere on the dock, the glass
+  //   follows your finger, snaps to the nearest tab on release and navigates.
   (function () {
     var bar = document.querySelector('.mobile-bottom-nav-bar');
     if (!bar) return;
     var indicator = bar.querySelector('.mobile-nav-glass-indicator');
     // Only real nav links carry the pill — the theme toggle is a momentary action
-    var items = bar.querySelectorAll('a.mobile-bottom-nav-item');
+    var links = Array.prototype.slice.call(bar.querySelectorAll('a.mobile-bottom-nav-item'));
     var active = bar.querySelector('a.mobile-bottom-nav-item.active');
-    if (!indicator || !active) return;
+    if (!indicator || !active || !links.length) return;
 
-    var activeIndex = Array.prototype.indexOf.call(items, active);
+    var activeIndex = links.indexOf(active);
 
     function place(target, animate) {
       var barRect = bar.getBoundingClientRect();
@@ -103,7 +105,15 @@
       indicator.style.opacity = '1';
     }
 
-    // Consume the hand-off marker (if any) exactly once
+    function markHandoff(index) {
+      try {
+        sessionStorage.setItem('dock-from', String(index));
+      } catch (e) {
+        /* private mode */
+      }
+    }
+
+    // ---- Arrival: consume the hand-off marker exactly once ----
     var from = null;
     try {
       from = sessionStorage.getItem('dock-from');
@@ -111,11 +121,9 @@
     } catch (e) {
       /* private mode */
     }
-
     var fromIndex = from === null ? NaN : parseInt(from, 10);
-    if (!isNaN(fromIndex) && fromIndex !== activeIndex && items[fromIndex]) {
-      // Start where the user tapped from, then glide to the new active tab
-      place(items[fromIndex], false);
+    if (!isNaN(fromIndex) && fromIndex !== activeIndex && links[fromIndex]) {
+      place(links[fromIndex], false);
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
           place(active, true);
@@ -137,16 +145,125 @@
       place(active, false);
     });
 
-    // On tap: record where we came from, navigate immediately (no delay)
-    items.forEach(function (item, i) {
-      item.addEventListener('click', function () {
-        if (i === activeIndex) return;
-        try {
-          sessionStorage.setItem('dock-from', String(activeIndex));
-        } catch (e) {
-          /* private mode */
+    // ---- Tap: record origin, navigate immediately ----
+    links.forEach(function (item, i) {
+      item.addEventListener('click', function (e) {
+        if (suppressClick) {
+          e.preventDefault();
+          e.stopPropagation();
+          return;
         }
+        if (i === activeIndex) return;
+        markHandoff(activeIndex);
       });
+    });
+
+    // ---- Drag: the glass follows your finger, snaps and navigates ----
+    var dragging = false;
+    var dragMoved = false;
+    var suppressClick = false;
+    var startX = 0;
+    var barRect = null;
+    var rects = null;
+
+    function centers() {
+      return rects.map(function (r) {
+        return r.left + r.width / 2;
+      });
+    }
+
+    function nearestIndex(cx) {
+      var cs = centers();
+      var best = 0;
+      var bd = Infinity;
+      for (var i = 0; i < cs.length; i++) {
+        var d = Math.abs(cs[i] - cx);
+        if (d < bd) {
+          bd = d;
+          best = i;
+        }
+      }
+      return best;
+    }
+
+    function followFinger(clientX) {
+      var cs = centers();
+      var cx = Math.min(Math.max(clientX, cs[0]), cs[cs.length - 1]);
+      var i = nearestIndex(cx);
+      var w = rects[i].width;
+      indicator.style.transition = 'width 0.18s ease';
+      indicator.style.width = w + 'px';
+      indicator.style.transform = 'translateX(' + (cx - barRect.left - w / 2) + 'px)';
+      links.forEach(function (el, j) {
+        el.classList.toggle('drag-hover', j === i);
+      });
+      return i;
+    }
+
+    // Links are natively draggable — that would hijack the pointer stream
+    bar.addEventListener('dragstart', function (e) {
+      e.preventDefault();
+    });
+
+    bar.addEventListener('pointerdown', function (e) {
+      if (e.target.closest('.mobile-bottom-nav-theme-btn')) return;
+      dragging = true;
+      dragMoved = false;
+      suppressClick = false;
+      startX = e.clientX;
+      barRect = bar.getBoundingClientRect();
+      rects = links.map(function (el) {
+        return el.getBoundingClientRect();
+      });
+      try {
+        bar.setPointerCapture(e.pointerId);
+      } catch (err) {
+        /* ignore */
+      }
+    });
+
+    bar.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      if (!dragMoved && Math.abs(e.clientX - startX) < 8) return;
+      if (!dragMoved) {
+        dragMoved = true;
+        indicator.classList.add('dragging');
+      }
+      followFinger(e.clientX);
+    });
+
+    function endDrag(e) {
+      if (!dragging) return;
+      dragging = false;
+      if (!dragMoved) return; // plain tap — the click handler takes it
+      suppressClick = true;
+      setTimeout(function () {
+        suppressClick = false;
+      }, 350);
+      indicator.classList.remove('dragging');
+      links.forEach(function (el) {
+        el.classList.remove('drag-hover');
+      });
+      var i = followFinger(e.clientX);
+      place(links[i], true); // snap onto the chosen tab
+      if (i !== activeIndex) {
+        markHandoff(i); // pill is already there — landing page places it instantly
+        var href = links[i].getAttribute('href');
+        setTimeout(function () {
+          window.location.href = href;
+        }, 170); // let the snap read before the page turns
+      }
+    }
+
+    bar.addEventListener('pointerup', endDrag);
+    bar.addEventListener('pointercancel', function () {
+      if (!dragging) return;
+      dragging = false;
+      indicator.classList.remove('dragging');
+      links.forEach(function (el) {
+        el.classList.remove('drag-hover');
+      });
+      place(active, true);
     });
   })();
 </script>

@@ -240,48 +240,68 @@
   position: relative;
   display: flex;
   align-items: center;
-  height: 60px;
+  height: 62px;
   flex: 1;
   min-width: 0;
-  border-radius: 30px;
+  border-radius: 31px;
   pointer-events: auto;
-  background: linear-gradient(rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05)), rgba(255, 255, 255, 0.52);
-  -webkit-backdrop-filter: blur(28px) saturate(190%);
-  backdrop-filter: blur(28px) saturate(190%);
+  touch-action: none; // the dock owns its gestures (drag-to-select)
+  background: linear-gradient(rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04)), rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(34px) saturate(200%);
+  backdrop-filter: blur(34px) saturate(200%);
   border: 0.5px solid rgba(255, 255, 255, 0.55);
   box-shadow:
-    0 12px 36px rgba(0, 0, 0, 0.16),
+    0 16px 44px rgba(0, 0, 0, 0.18),
     0 2px 8px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.75),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+    inset 0 -1px 0 rgba(0, 0, 0, 0.04);
   overflow: hidden;
 
   // Specular sweep along the top edge — the "liquid" sheen
   &::before {
     content: "";
     position: absolute;
-    inset: 0 12% auto;
+    inset: 0 10% auto;
     top: 0;
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95), transparent);
     pointer-events: none;
   }
+
+  // Soft caustic pooling along the bottom edge
+  &::after {
+    content: "";
+    position: absolute;
+    inset: auto 18% 0;
+    height: 40%;
+    background: radial-gradient(60% 130% at 50% 130%, rgba(255, 255, 255, 0.35), transparent 70%);
+    pointer-events: none;
+  }
 }
 
-// Sliding pill marking the active tab
+// Sliding pill marking the active tab — draggable liquid glass
 .mobile-nav-glass-indicator {
   position: absolute;
   top: 6px;
   left: 0;
   height: calc(100% - 12px);
-  border-radius: 24px;
+  border-radius: 25px;
   opacity: 0;
   pointer-events: none;
-  background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.55));
-  border: 0.5px solid rgba(255, 255, 255, 0.9);
+  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.55));
+  border: 0.5px solid rgba(255, 255, 255, 0.95);
   box-shadow:
-    0 3px 10px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    0 4px 12px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  transition: scale 0.2s ease;
+
+  // While the finger holds it, the glass swells slightly — like lifting a droplet
+  &.dragging {
+    scale: 1.04 1.12;
+    box-shadow:
+      0 8px 22px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 1);
+  }
 }
 
 // Individual nav item
@@ -337,6 +357,16 @@
       transform: scale(1.08);
     }
   }
+
+  // Highlighted while the glass is dragged over it
+  &.drag-hover {
+    color: var(--global-theme-color);
+    opacity: 1;
+
+    i {
+      transform: scale(1.08);
+    }
+  }
 }
 
 // Vertical divider between nav items and theme toggle
@@ -384,14 +414,24 @@ html[data-theme="dark"] {
     &::before {
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
     }
+
+    &::after {
+      background: radial-gradient(60% 130% at 50% 130%, rgba(255, 255, 255, 0.1), transparent 70%);
+    }
   }
 
   .mobile-nav-glass-indicator {
-    background: linear-gradient(rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.08));
-    border-color: rgba(255, 255, 255, 0.2);
+    background: linear-gradient(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08));
+    border-color: rgba(255, 255, 255, 0.22);
     box-shadow:
-      0 3px 12px rgba(0, 0, 0, 0.35),
-      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      0 4px 14px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+    &.dragging {
+      box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
   }
 
   .mobile-bottom-nav-divider {
