@@ -205,46 +205,59 @@
       e.preventDefault();
     });
 
-    bar.addEventListener('pointerdown', function (e) {
-      if (e.target.closest('.mobile-bottom-nav-theme-btn')) return;
+    var pointerId = null;
+    var lastX = 0;
+    var rafPending = false;
+
+    function beginDrag(clientX, id) {
       dragging = true;
       dragMoved = false;
       suppressClick = false;
-      startX = e.clientX;
+      pointerId = id;
+      startX = clientX;
+      lastX = clientX;
       barRect = bar.getBoundingClientRect();
       rects = links.map(function (el) {
         return el.getBoundingClientRect();
       });
-      try {
-        bar.setPointerCapture(e.pointerId);
-      } catch (err) {
-        /* ignore */
-      }
-    });
+    }
 
-    bar.addEventListener('pointermove', function (e) {
+    function moveDrag(clientX) {
       if (!dragging) return;
-      if (!dragMoved && Math.abs(e.clientX - startX) < 8) return;
+      lastX = clientX;
+      if (!dragMoved && Math.abs(clientX - startX) < 6) return;
       if (!dragMoved) {
         dragMoved = true;
         indicator.classList.add('dragging');
       }
-      followFinger(e.clientX);
-    });
+      // rAF-batched so the glass tracks the finger at display refresh rate
+      if (!rafPending) {
+        rafPending = true;
+        requestAnimationFrame(function () {
+          rafPending = false;
+          if (dragging) followFinger(lastX);
+        });
+      }
+    }
 
-    function endDrag(e) {
-      if (!dragging) return;
-      dragging = false;
-      if (!dragMoved) return; // plain tap — the click handler takes it
-      suppressClick = true;
-      setTimeout(function () {
-        suppressClick = false;
-      }, 350);
+    function clearDragVisuals() {
       indicator.classList.remove('dragging');
       links.forEach(function (el) {
         el.classList.remove('drag-hover');
       });
-      var i = followFinger(e.clientX);
+    }
+
+    function endDrag(clientX) {
+      if (!dragging) return;
+      dragging = false;
+      pointerId = null;
+      if (!dragMoved) return; // plain tap — the click handler takes it
+      suppressClick = true;
+      setTimeout(function () {
+        suppressClick = false;
+      }, 400);
+      clearDragVisuals();
+      var i = followFinger(clientX);
       place(links[i], true); // snap onto the chosen tab
       if (i !== activeIndex) {
         markHandoff(i); // pill is already there — landing page places it instantly
@@ -255,15 +268,67 @@
       }
     }
 
-    bar.addEventListener('pointerup', endDrag);
-    bar.addEventListener('pointercancel', function () {
+    function cancelDrag() {
       if (!dragging) return;
       dragging = false;
-      indicator.classList.remove('dragging');
-      links.forEach(function (el) {
-        el.classList.remove('drag-hover');
-      });
+      pointerId = null;
+      clearDragVisuals();
       place(active, true);
-    });
+    }
+
+    if (window.PointerEvent) {
+      bar.addEventListener('pointerdown', function (e) {
+        if (e.target.closest('.mobile-bottom-nav-theme-btn')) return;
+        if (dragging) return;
+        beginDrag(e.clientX, e.pointerId);
+      });
+      // Listen on the window: no reliance on pointer capture (flaky on iOS WebKit)
+      window.addEventListener('pointermove', function (e) {
+        if (!dragging || e.pointerId !== pointerId) return;
+        moveDrag(e.clientX);
+      });
+      window.addEventListener('pointerup', function (e) {
+        if (!dragging || e.pointerId !== pointerId) return;
+        endDrag(e.clientX);
+      });
+      window.addEventListener('pointercancel', function (e) {
+        if (!dragging || e.pointerId !== pointerId) return;
+        // iOS fires pointercancel when it steals the gesture — if the finger
+        // already travelled, honor the drag instead of dropping it
+        if (dragMoved) {
+          endDrag(lastX);
+        } else {
+          cancelDrag();
+        }
+      });
+    } else {
+      // Ancient fallback: touch events only
+      bar.addEventListener('touchstart', function (e) {
+        if (e.target.closest('.mobile-bottom-nav-theme-btn')) return;
+        beginDrag(e.touches[0].clientX, 't');
+      });
+      window.addEventListener(
+        'touchmove',
+        function (e) {
+          if (!dragging) return;
+          moveDrag(e.touches[0].clientX);
+        },
+        { passive: false }
+      );
+      window.addEventListener('touchend', function (e) {
+        if (!dragging) return;
+        endDrag(lastX);
+      });
+    }
+
+    // While a drag is active, own the touch gesture completely so iOS never
+    // turns it into a scroll, text selection, or link preview.
+    bar.addEventListener(
+      'touchmove',
+      function (e) {
+        if (dragging) e.preventDefault();
+      },
+      { passive: false }
+    );
   })();
 </script>

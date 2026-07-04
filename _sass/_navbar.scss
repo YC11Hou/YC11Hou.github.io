@@ -246,6 +246,10 @@
   border-radius: 31px;
   pointer-events: auto;
   touch-action: none; // the dock owns its gestures (drag-to-select)
+  // iOS: no text selection / long-press link preview stealing the drag
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
   background: linear-gradient(rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04)), rgba(255, 255, 255, 0.5);
   -webkit-backdrop-filter: blur(34px) saturate(200%);
   backdrop-filter: blur(34px) saturate(200%);
@@ -329,6 +333,11 @@
   border: none;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  touch-action: none;
   white-space: nowrap;
 
   i {
