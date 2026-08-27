@@ -1,0 +1,259 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Honor Omega Humanoid: Online RL for VLA | </title> <meta name="author" content="Yuchen Hou"> <meta name="description" content="VLA Algorithm Engineer Intern at Honor (Jun 2026 – present). Built a human-in-the-loop online SFT / online RL pipeline for Honor's self-developed Omega humanoid robot — smooth teleoperator takeover, an intervention-driven data pipeline, and a distributed Actor–Learner–Robot learning loop."> <meta name="keywords" content="embodied-ai, robotics, reinforcement-learning, vision-language-navigation, NUS"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <link rel="stylesheet" href="/assets/css/bootstrap.min.css?v=a4b3f509e79c54a512b890d73235ef04"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="/assets/css/academicons.min.css?v=f0b7046b84e425c55f3463ac249818f5"> <link defer rel="stylesheet" href="/assets/css/scholar-icons.css?v=62b2ac103a88034e6882a5be5f3e2772"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=1787809682"> <link rel="canonical" href="https://yc11hou.github.io/projects/0_honor_internship/"> <script src="/assets/js/theme.js?v=5fea5159b787642c1bbc1f334d60f883"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav sticky-bottom-footer"> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-md fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> </a> <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse" id="navbarNav"> <ul class="navbar-nav ml-auto flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li> <li class="nav-item active"> <a class="nav-link" href="/projects/">projects <span class="sr-only">(current)</span> </a> </li> <li class="nav-item "> <a class="nav-link" href="/experience/">experience </a> </li> <li class="nav-item"> <button id="search-toggle" title="Search" onclick="openSearchModal()"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" title="Change theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-3" role="main"> <div class="post"> <article> <p class="project-links"> <span class="venue-badge">Honor Device Co., Ltd. · Shanghai</span> <span>VLA Algorithm Engineer (Intern) · Jun 2026 – Present</span> </p> <p>Working on Honor’s self-developed <strong>Omega humanoid robot</strong>: teleoperation data collection, replay, training, and on-robot deployment, along with <strong>online RL</strong> algorithm research for <strong>Vision-Language-Action (VLA)</strong> models on custom manipulation tasks.</p> <h2 id="demos">Demos</h2> <h3 id="on-robot-inference-under-perturbations">On-robot inference under perturbations</h3> <div class="ratio-16x9" style="margin-bottom: 1rem;"> <video controls="" preload="metadata" poster="/assets/video/honor/inference_demo_poster.jpg"> <source src="/assets/video/honor/inference_demo.mp4" type="video/mp4"></source> </video> </div> <p>Autonomous pick-and-place rollouts on the real robot while the object (left) and the target basket (right) are perturbed mid-episode — the policy re-tracks and completes the task.</p> <h3 id="data-design-for-robustness">Data design for robustness</h3> <div class="ratio-16x9" style="margin-bottom: 1rem;"> <video controls="" preload="metadata" poster="/assets/video/honor/data_design_poster.jpg"> <source src="/assets/video/honor/data_design.mp4" type="video/mp4"></source> </video> </div> <p>Four categories of teleoperated demonstrations: standard demonstrations, perturbations during the pick phase, perturbations during the place phase, and recovery from failed-grasp states — designed so the policy learns to recover, not just to repeat.</p> <h3 id="online-sft-before-vs-after">Online SFT: before vs. after</h3> <div class="ratio-16x9" style="margin-bottom: 1rem;"> <video controls="" preload="metadata" poster="/assets/video/honor/online_sft_compare_poster.jpg"> <source src="/assets/video/honor/online_sft_compare.mp4" type="video/mp4"></source> </video> </div> <p>A task the offline-trained policy could not perform is learned on the robot through the online learning loop — human takeover data flows back into training, and the takeover ratio drops as new checkpoints are dispatched.</p> <h2 id="what-i-built">What I built</h2> <p><strong>Smooth human takeover.</strong> Seamless human-teleoperator intervention during autonomous rollouts, including the autonomy–teleoperation transition state machine, so a teleoperator can take over and hand back control mid-episode without disturbing the robot.</p> <p><strong>Intervention-driven data pipeline.</strong> On-robot data recording during takeovers, full local disk persistence, and automatic upload to the development server for training.</p> <p><strong>Distributed learning loop.</strong> A closed loop across three tiers: the robot’s onboard AGX/NX boards (topic publishing, command execution, data collection), an x86 host as the <strong>Actor</strong> (model inference, streaming actions to the robot), and a development server as the <strong>Learner</strong> (data aggregation, training, checkpoint dispatch) — a complete <strong>online SFT / online RL</strong> pipeline.</p> <h2 id="algorithm-research">Algorithm research</h2> <p>Researching <strong>RECAP</strong>-style (π<sub>0.6</sub>) offline RL combined with <strong>noise-space fast adaptation</strong> (DSRL-like): learning corrective noise from human-intervention data so the policy can rapidly imitate takeover behaviors before a new checkpoint finishes training — substantially raising success rates on tasks uncovered by offline training — and further adapting the algorithm to <strong>loco-manipulation</strong> tasks.</p> </article> </div> </div> <div id="mobile-bottom-nav" class="mobile-bottom-nav d-md-none"> <nav class="mobile-bottom-nav-bar" role="navigation" aria-label="Mobile navigation"> <div class="mobile-nav-glass-indicator"></div> <a href="/" class="mobile-bottom-nav-item "> <i class="fa-solid fa-house"></i> <span>about</span> </a> <a href="/publications/" class="mobile-bottom-nav-item "> <i class="fa-solid fa-book"></i> <span>publications</span> </a> <a href="/projects/" class="mobile-bottom-nav-item active"> <i class="fa-solid fa-diagram-project"></i> <span>projects</span> </a> <a href="/experience/" class="mobile-bottom-nav-item "> <i class="fa-solid fa-file-lines"></i> <span>experience</span> </a> <div class="mobile-bottom-nav-divider"></div> <button class="mobile-bottom-nav-item mobile-bottom-nav-theme-btn" id="mobile-theme-toggle" title="Change theme" onclick="document.getElementById('light-toggle').click()"> <i class="fa-solid fa-circle-half-stroke"></i> <span>Theme</span> </button> </nav> </div> <script>
+  // Liquid glass dock.
+  // - Placed synchronously (script sits right after the markup) so the pill is
+  //   in position at first paint. Arriving from a dock tap/drag on another page,
+  //   it glides ONCE from the previous tab (consume-once marker; back/reload
+  //   never replays).
+  // - The pill is DRAGGABLE: press and slide anywhere on the dock, the glass
+  //   follows your finger, snaps to the nearest tab on release and navigates.
+  (function () {
+    var bar = document.querySelector('.mobile-bottom-nav-bar');
+    if (!bar) return;
+    var indicator = bar.querySelector('.mobile-nav-glass-indicator');
+    // Only real nav links carry the pill — the theme toggle is a momentary action
+    var links = Array.prototype.slice.call(bar.querySelectorAll('a.mobile-bottom-nav-item'));
+    var active = bar.querySelector('a.mobile-bottom-nav-item.active');
+    if (!indicator || !active || !links.length) return;
+
+    var activeIndex = links.indexOf(active);
+
+    function place(target, animate) {
+      var barRect = bar.getBoundingClientRect();
+      var itemRect = target.getBoundingClientRect();
+      indicator.style.transition = animate ? 'transform 0.38s cubic-bezier(0.32, 0.72, 0, 1), width 0.38s cubic-bezier(0.32, 0.72, 0, 1)' : 'none';
+      indicator.style.width = itemRect.width + 'px';
+      indicator.style.transform = 'translateX(' + (itemRect.left - barRect.left) + 'px)';
+      indicator.style.opacity = '1';
+    }
+
+    function markHandoff(index) {
+      try {
+        sessionStorage.setItem('dock-from', String(index));
+      } catch (e) {
+        /* private mode */
+      }
+    }
+
+    // ---- Arrival: consume the hand-off marker exactly once ----
+    var from = null;
+    try {
+      from = sessionStorage.getItem('dock-from');
+      sessionStorage.removeItem('dock-from');
+    } catch (e) {
+      /* private mode */
+    }
+    var fromIndex = from === null ? NaN : parseInt(from, 10);
+    if (!isNaN(fromIndex) && fromIndex !== activeIndex && links[fromIndex]) {
+      place(links[fromIndex], false);
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          place(active, true);
+        });
+      });
+    } else {
+      place(active, false);
+    }
+
+    // Keep the pill aligned across rotations / resizes / late font loads
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        place(active, false);
+      }, 100);
+    });
+    window.addEventListener('load', function () {
+      place(active, false);
+    });
+
+    // ---- Tap: record origin, navigate immediately ----
+    links.forEach(function (item, i) {
+      item.addEventListener('click', function (e) {
+        if (suppressClick) {
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
+        if (i === activeIndex) return;
+        markHandoff(activeIndex);
+      });
+    });
+
+    // ---- Drag: the glass follows your finger, snaps and navigates ----
+    var dragging = false;
+    var dragMoved = false;
+    var suppressClick = false;
+    var startX = 0;
+    var barRect = null;
+    var rects = null;
+
+    function centers() {
+      return rects.map(function (r) {
+        return r.left + r.width / 2;
+      });
+    }
+
+    function nearestIndex(cx) {
+      var cs = centers();
+      var best = 0;
+      var bd = Infinity;
+      for (var i = 0; i < cs.length; i++) {
+        var d = Math.abs(cs[i] - cx);
+        if (d < bd) {
+          bd = d;
+          best = i;
+        }
+      }
+      return best;
+    }
+
+    function followFinger(clientX) {
+      var cs = centers();
+      var cx = Math.min(Math.max(clientX, cs[0]), cs[cs.length - 1]);
+      var i = nearestIndex(cx);
+      var w = rects[i].width;
+      indicator.style.transition = 'width 0.18s ease';
+      indicator.style.width = w + 'px';
+      indicator.style.transform = 'translateX(' + (cx - barRect.left - w / 2) + 'px)';
+      links.forEach(function (el, j) {
+        el.classList.toggle('drag-hover', j === i);
+      });
+      return i;
+    }
+
+    // Links are natively draggable — that would hijack the pointer stream
+    bar.addEventListener('dragstart', function (e) {
+      e.preventDefault();
+    });
+
+    var pointerId = null;
+    var lastX = 0;
+    var rafPending = false;
+
+    function beginDrag(clientX, id) {
+      dragging = true;
+      dragMoved = false;
+      suppressClick = false;
+      pointerId = id;
+      startX = clientX;
+      lastX = clientX;
+      barRect = bar.getBoundingClientRect();
+      rects = links.map(function (el) {
+        return el.getBoundingClientRect();
+      });
+    }
+
+    function moveDrag(clientX) {
+      if (!dragging) return;
+      lastX = clientX;
+      if (!dragMoved && Math.abs(clientX - startX) < 6) return;
+      if (!dragMoved) {
+        dragMoved = true;
+        indicator.classList.add('dragging');
+      }
+      // rAF-batched so the glass tracks the finger at display refresh rate
+      if (!rafPending) {
+        rafPending = true;
+        requestAnimationFrame(function () {
+          rafPending = false;
+          if (dragging) followFinger(lastX);
+        });
+      }
+    }
+
+    function clearDragVisuals() {
+      indicator.classList.remove('dragging');
+      links.forEach(function (el) {
+        el.classList.remove('drag-hover');
+      });
+    }
+
+    function endDrag(clientX) {
+      if (!dragging) return;
+      dragging = false;
+      pointerId = null;
+      if (!dragMoved) return; // plain tap — the click handler takes it
+      suppressClick = true;
+      setTimeout(function () {
+        suppressClick = false;
+      }, 400);
+      clearDragVisuals();
+      var i = followFinger(clientX);
+      place(links[i], true); // snap onto the chosen tab
+      if (i !== activeIndex) {
+        markHandoff(i); // pill is already there — landing page places it instantly
+        var href = links[i].getAttribute('href');
+        setTimeout(function () {
+          window.location.href = href;
+        }, 170); // let the snap read before the page turns
+      }
+    }
+
+    function cancelDrag() {
+      if (!dragging) return;
+      dragging = false;
+      pointerId = null;
+      clearDragVisuals();
+      place(active, true);
+    }
+
+    if (window.PointerEvent) {
+      bar.addEventListener('pointerdown', function (e) {
+        if (e.target.closest('.mobile-bottom-nav-theme-btn')) return;
+        if (dragging) return;
+        beginDrag(e.clientX, e.pointerId);
+      });
+      // Listen on the window: no reliance on pointer capture (flaky on iOS WebKit)
+      window.addEventListener('pointermove', function (e) {
+        if (!dragging || e.pointerId !== pointerId) return;
+        moveDrag(e.clientX);
+      });
+      window.addEventListener('pointerup', function (e) {
+        if (!dragging || e.pointerId !== pointerId) return;
+        endDrag(e.clientX);
+      });
+      window.addEventListener('pointercancel', function (e) {
+        if (!dragging || e.pointerId !== pointerId) return;
+        // iOS fires pointercancel when it steals the gesture — if the finger
+        // already travelled, honor the drag instead of dropping it
+        if (dragMoved) {
+          endDrag(lastX);
+        } else {
+          cancelDrag();
+        }
+      });
+    } else {
+      // Ancient fallback: touch events only
+      bar.addEventListener('touchstart', function (e) {
+        if (e.target.closest('.mobile-bottom-nav-theme-btn')) return;
+        beginDrag(e.touches[0].clientX, 't');
+      });
+      window.addEventListener(
+        'touchmove',
+        function (e) {
+          if (!dragging) return;
+          moveDrag(e.touches[0].clientX);
+        },
+        { passive: false }
+      );
+      window.addEventListener('touchend', function (e) {
+        if (!dragging) return;
+        endDrag(lastX);
+      });
+    }
+
+    // While a drag is active, own the touch gesture completely so iOS never
+    // turns it into a scroll, text selection, or link preview.
+    bar.addEventListener(
+      'touchmove',
+      function (e) {
+        if (dragging) e.preventDefault();
+      },
+      { passive: false }
+    );
+  })();
+</script> <footer class="sticky-bottom mt-5 d-none d-md-block" role="contentinfo"> <div class="container"> © Copyright 2026 Yuchen Hou. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. </div> </footer> <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/assets/js/bootstrap.bundle.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=a0db7e5d5c70cc3252b3138b0c91dcaf" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/js/zoom.js?v=85ddb88934d28b74e78031fd54cf8308"></script> <script src="/assets/js/no_defer.js?v=2781658a0a2b13ed609542042a859126"></script> <script defer src="/assets/js/common.js?v=c15de51d4bb57887caa2c21988d97279"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=d9f17b6adc2311cbabd747f4538bb15f"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/js/mathjax-setup.js?v=a5bb4e6a542c546dd929b24b8b236dfd"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script defer src="/assets/js/progress-bar.js?v=2f30e0e6801ea8f5036fa66e1ab0a71a" type="text/javascript"></script> <script src="/assets/js/vanilla-back-to-top.min.js?v=f40d453793ff4f64e238e420181a1d17"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/js/search/ninja-keys.min.js?v=a3446f084dcaecc5f75aa1757d087dcf"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/js/search-setup.js?v=6c304f7b1992d4b60f7a07956e52f04a"></script> <script src="/assets/js/search-data.js"></script> <script src="/assets/js/shortcut-key.js?v=ccc841c459bfc0e64c1c2b5acd10df02"></script> </body> </html>

@@ -45,7 +45,12 @@ ninja.data = [{
           section: "News",},{id: "news-tada-two-papers-accepted-to-iros-2026-langgap-first-author-and-aion-co-author-see-you-in-pittsburgh",
           title: ':tada: Two papers accepted to IROS 2026: LangGap (first author) and AION (co-author)....',
           description: "",
-          section: "News",},{id: "projects-langgap-vla-language-understanding-benchmark",
+          section: "News",},{id: "projects-honor-omega-humanoid-online-rl-for-vla",
+          title: 'Honor Omega Humanoid: Online RL for VLA',
+          description: "VLA Algorithm Engineer Intern at Honor (Jun 2026 – present). Built a human-in-the-loop online SFT / online RL pipeline for Honor&#39;s self-developed Omega humanoid robot — smooth teleoperator takeover, an intervention-driven data pipeline, and a distributed Actor–Learner–Robot learning loop.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/0_honor_internship/";
+            },},{id: "projects-langgap-vla-language-understanding-benchmark",
           title: 'LangGap: VLA Language Understanding Benchmark',
           description: "Accepted at IROS 2026. Designed a systematic semantic perturbation evaluation framework revealing that state-of-the-art VLA models ignore language instructions despite high benchmark scores. Proposed multi-task same-scene training approach and constructed augmented dataset for fine-tuning.",
           section: "Projects",handler: () => {
