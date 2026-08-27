@@ -48,6 +48,10 @@ cv:
         highlights:
           - "Working on Honor's self-developed Omega humanoid robot: teleoperation data collection, replay, training, and on-robot deployment."
           - "Conducting online RL algorithm research for Vision-Language-Action (VLA) models on custom manipulation tasks."
+          - "Implemented smooth human-teleoperator takeover during autonomous rollouts, including the autonomy-teleoperation transition state machine."
+          - "Built the intervention-driven online-learning data pipeline: on-robot data recording, full local disk persistence, and automatic upload to the development server."
+          - "Closed the loop over a distributed learning architecture: onboard AGX/NX boards (topic publishing, command execution, data collection), an x86 host as the Actor (model inference, streaming actions to the robot), and a development server as the Learner (data aggregation, training, checkpoint dispatch) - a complete online SFT / online RL pipeline."
+          - "Researching RECAP-style (pi-0.6) offline RL combined with noise-space fast adaptation (DSRL-like): learning corrective noise from human-intervention data to rapidly imitate takeover behaviors before a new checkpoint finishes training, substantially raising success rates on tasks uncovered by offline training, and further adapting the algorithm to loco-manipulation tasks."
 
       - company: Huawei Norbert Wiener Research Center
         position: Research Intern
