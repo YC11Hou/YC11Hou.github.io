@@ -6,6 +6,56 @@ layout: default
     <div class="experience">
       {% assign cv = site.data.cv.cv %}
 
+      {% comment %} Internship Experience Section {% endcomment %}
+      {% assign empty_array = '' | split: ',' %}
+      {% assign exp = cv.sections['Internship Experience'] | default: cv.sections.Experience | default: empty_array %}
+      {% assign vol = cv.sections.Volunteer | default: empty_array %}
+      {% assign combined = exp | concat: vol %}
+      {% if combined.size > 0 %}
+        <h2 class="category">Internship Experience</h2>
+        {% for entry in combined %}
+          <div class="entry">
+            {% if entry.logo %}
+              <div class="entry-logo">
+                <img src="{{ entry.logo | prepend: '/assets/img/' | relative_url }}" alt="{{ entry.company | default: entry.name }}">
+              </div>
+            {% else %}
+              <div class="entry-logo entry-logo-fallback"><i class="fa-solid fa-building"></i></div>
+            {% endif %}
+            <div class="entry-content">
+              <div class="entry-header">
+                <h3 class="entry-title">{{ entry.position }}</h3>
+                {% assign sd = entry.start_date | append: '' %}
+                {% assign ed = entry.end_date | append: '' %}
+                {% assign sd_parts = sd | split: '-' %}
+                {% if sd_parts.size == 2 %}{% assign sd = sd | append: '-01' %}{% endif %}
+                {% assign ed_parts = ed | split: '-' %}
+                {% if ed_parts.size == 2 %}{% assign ed = ed | append: '-01' %}{% endif %}
+                {% capture start_disp %}{% if sd contains '-' %}{{ sd | date: '%b %Y' }}{% else %}{{ sd }}{% endif %}{% endcapture %}
+                {% capture end_disp %}{% if ed == '' or ed == 'Present' or ed == 'present' %}Present{% elsif ed contains '-' %}{{ ed | date: '%b %Y' }}{% else %}{{ ed }}{% endif %}{% endcapture %}
+                <span class="entry-date">{{ start_disp | strip }} – {{ end_disp | strip }}</span>
+              </div>
+              <div class="entry-subtitle">
+                {%- if entry.url -%}
+                  <a href="{{ entry.url }}">{{ entry.company | default: entry.name }}</a>
+                {%- else -%}
+                  {{ entry.company | default: entry.name }}
+                {%- endif -%}
+              </div>
+              {% if entry.location %}
+                <div class="entry-location"><i class="fa-solid fa-location-dot"></i> {{ entry.location }}</div>
+              {% endif %}
+              {% if entry.highlights %}
+                <ul class="entry-highlights">
+                  {% for item in entry.highlights %}
+                    <li>{{ item | markdownify | remove: '<p>' | remove: '</p>' }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
       {% comment %} Education Section {% endcomment %}
       {% if cv.sections.Education.size > 0 %}
         <h2 class="category">Education</h2>
@@ -58,56 +108,6 @@ layout: default
         {% endfor %}
       {% endif %}
 
-      {% comment %} Work Experience Section {% endcomment %}
-      {% assign empty_array = '' | split: ',' %}
-      {% assign exp = cv.sections.Experience | default: empty_array %}
-      {% assign vol = cv.sections.Volunteer | default: empty_array %}
-      {% assign combined = exp | concat: vol %}
-      {% if combined.size > 0 %}
-        <h2 class="category">Work Experience</h2>
-        {% for entry in combined %}
-          <div class="entry">
-            {% if entry.logo %}
-              <div class="entry-logo">
-                <img src="{{ entry.logo | prepend: '/assets/img/' | relative_url }}" alt="{{ entry.company | default: entry.name }}">
-              </div>
-            {% else %}
-              <div class="entry-logo entry-logo-fallback"><i class="fa-solid fa-building"></i></div>
-            {% endif %}
-            <div class="entry-content">
-              <div class="entry-header">
-                <h3 class="entry-title">{{ entry.position }}</h3>
-                {% assign sd = entry.start_date | append: '' %}
-                {% assign ed = entry.end_date | append: '' %}
-                {% assign sd_parts = sd | split: '-' %}
-                {% if sd_parts.size == 2 %}{% assign sd = sd | append: '-01' %}{% endif %}
-                {% assign ed_parts = ed | split: '-' %}
-                {% if ed_parts.size == 2 %}{% assign ed = ed | append: '-01' %}{% endif %}
-                {% capture start_disp %}{% if sd contains '-' %}{{ sd | date: '%b %Y' }}{% else %}{{ sd }}{% endif %}{% endcapture %}
-                {% capture end_disp %}{% if ed == '' or ed == 'Present' or ed == 'present' %}Present{% elsif ed contains '-' %}{{ ed | date: '%b %Y' }}{% else %}{{ ed }}{% endif %}{% endcapture %}
-                <span class="entry-date">{{ start_disp | strip }} – {{ end_disp | strip }}</span>
-              </div>
-              <div class="entry-subtitle">
-                {%- if entry.url -%}
-                  <a href="{{ entry.url }}">{{ entry.company | default: entry.name }}</a>
-                {%- else -%}
-                  {{ entry.company | default: entry.name }}
-                {%- endif -%}
-              </div>
-              {% if entry.location %}
-                <div class="entry-location"><i class="fa-solid fa-location-dot"></i> {{ entry.location }}</div>
-              {% endif %}
-              {% if entry.highlights %}
-                <ul class="entry-highlights">
-                  {% for item in entry.highlights %}
-                    <li>{{ item | markdownify | remove: '<p>' | remove: '</p>' }}</li>
-                  {% endfor %}
-                </ul>
-              {% endif %}
-            </div>
-          </div>
-        {% endfor %}
-      {% endif %}
     </div>
   </article>
 </div>
