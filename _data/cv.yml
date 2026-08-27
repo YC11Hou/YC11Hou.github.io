@@ -13,32 +13,7 @@ cv:
       username: yuchen-hou-115025355
 
   sections:
-    Education:
-      - institution: National University of Singapore
-        location: Singapore
-        url: https://www.nus.edu.sg/
-        logo: logo_nus.png
-        area: Electrical Engineering
-        studyType: Master of Science
-        start_date: 2025-08
-        end_date: Present
-        highlights:
-          - "Core member of the NUS Advanced Control Lab, focusing on Embodied AI and autonomous robotic decision-making."
-          - "Research on perception and planning for aerial robots based on Vision-Language Navigation (VLN), and end-to-end Reinforcement Learning in complex 3D environments."
-
-      - institution: Nanjing University of Aeronautics and Astronautics
-        location: Nanjing, China
-        url: https://www.nuaa.edu.cn/
-        logo: logo_nuaa.png
-        area: Electronic and Communication Engineering
-        studyType: Bachelor of Engineering
-        start_date: 2021-09
-        end_date: 2025-07
-        highlights:
-          - "GPA: 88/100"
-          - "Key Courses: Advanced Mathematics (96), Probability Theory (97), Random Signal Analysis (97), Microwave Technology and Antenna (97), Fundamentals of Communication (95), Complex Function (99)."
-
-    Experience:
+    Internship Experience:
       - company: Honor Device Co., Ltd.
         position: VLA Algorithm Engineer (Intern)
         location: Shanghai, China
@@ -70,10 +45,32 @@ cv:
         start_date: 2025-12
         end_date: 2026-01
         highlights:
-          - "Validated autonomous navigation and control systems for forklift robots in industrial environments."
-          - "Conducted on-site factory deployment and testing in real warehouse settings."
-          - "Integrated robotics software with fleet management systems."
-          - "Tech Stack: ROS2, Navigation Stack, Sensor Integration."
+          - "On-site validation and factory deployment of autonomous navigation for forklift robots in real warehouse environments (ROS2)."
+
+    Education:
+      - institution: National University of Singapore
+        location: Singapore
+        url: https://www.nus.edu.sg/
+        logo: logo_nus.png
+        area: Electrical Engineering
+        studyType: Master of Science
+        start_date: 2025-08
+        end_date: Present
+        highlights:
+          - "Core member of the NUS Advanced Control Lab, focusing on Embodied AI and autonomous robotic decision-making."
+          - "Research on perception and planning for aerial robots based on Vision-Language Navigation (VLN), and end-to-end Reinforcement Learning in complex 3D environments."
+
+      - institution: Nanjing University of Aeronautics and Astronautics
+        location: Nanjing, China
+        url: https://www.nuaa.edu.cn/
+        logo: logo_nuaa.png
+        area: Electronic and Communication Engineering
+        studyType: Bachelor of Engineering
+        start_date: 2021-09
+        end_date: 2025-07
+        highlights:
+          - "GPA: 88/100"
+          - "Key Courses: Advanced Mathematics (96), Probability Theory (97), Random Signal Analysis (97), Microwave Technology and Antenna (97), Fundamentals of Communication (95), Complex Function (99)."
 
     Awards:
       - title: Second-class Scholarship

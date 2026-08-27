@@ -5,7 +5,7 @@ permalink: /projects/
 description:
 nav: true
 nav_order: 2
-display_categories: [master, bachelor]
+display_categories: [internship, master, bachelor]
 horizontal: true
 ---
 

@@ -35,7 +35,9 @@
       "startDate": "2026-03-01",
       "endDate": "2026-05-25",
       "summary": "Developed backend deep learning models for short-range radar signal processing.",
-      "highlights": ["Conducted research on downstream tasks including human pose estimation and indoor mapping/SLAM from radar data."]
+      "highlights": [
+        "Conducted research on downstream tasks including human pose estimation and indoor mapping/SLAM from radar data."
+      ]
     },
     {
       "name": "Movel.AI",
@@ -43,12 +45,8 @@
       "location": "Singapore",
       "startDate": "2025-12-01",
       "endDate": "2026-01-31",
-      "summary": "Validated autonomous navigation and control systems for forklift robots in industrial environments.",
-      "highlights": [
-        "Conducted on-site factory deployment and testing in real warehouse settings.",
-        "Integrated robotics software with fleet management systems.",
-        "Tech Stack: ROS2, Navigation Stack, Sensor Integration."
-      ]
+      "summary": "On-site validation and factory deployment of autonomous navigation for forklift robots in real warehouse environments (ROS2).",
+      "highlights": []
     }
   ],
   "education": [
@@ -102,25 +100,47 @@
       "name": "Programming & Systems",
       "level": "Advanced",
       "icon": "fa-solid fa-code",
-      "keywords": ["Python", "ROS 2", "PyTorch", "OpenCV", "Linux (Ubuntu)", "Shell scripting"]
+      "keywords": [
+        "Python",
+        "ROS 2",
+        "PyTorch",
+        "OpenCV",
+        "Linux (Ubuntu)",
+        "Shell scripting"
+      ]
     },
     {
       "name": "AI Frameworks & Simulation",
       "level": "Advanced",
       "icon": "fa-solid fa-robot",
-      "keywords": ["PyTorch (DRL policies)", "Habitat", "AI2-THOR"]
+      "keywords": [
+        "PyTorch (DRL policies)",
+        "Habitat",
+        "AI2-THOR"
+      ]
     },
     {
       "name": "Robotics Development",
       "level": "Advanced",
       "icon": "fa-solid fa-gears",
-      "keywords": ["ROS2 (rclpy, Nav2)", "Sensor Fusion", "Lidar/RGB-D Integration", "SLAM (Cartographer)"]
+      "keywords": [
+        "ROS2 (rclpy, Nav2)",
+        "Sensor Fusion",
+        "Lidar/RGB-D Integration",
+        "SLAM (Cartographer)"
+      ]
     },
     {
       "name": "Research Capabilities",
       "level": "Advanced",
       "icon": "fa-solid fa-flask",
-      "keywords": ["Sim-to-Real Transfer", "Embodied AI Architectures", "RL Algorithms", "Academic Paper Writing", "Tracking CVPR/IROS/ICRA"]
+      "keywords": [
+        "Sim-to-Real Transfer",
+        "Embodied AI Architectures",
+        "RL Algorithms",
+        "Academic Paper Writing",
+        "Tracking CVPR/IROS/ICRA"
+      ]
     }
   ],
   "languages": [
@@ -139,7 +159,12 @@
     {
       "name": "Embodied AI",
       "icon": "fa-solid fa-robot",
-      "keywords": ["Vision-Language Navigation", "Reinforcement Learning", "Sim-to-Real Transfer", "VLA Models"]
+      "keywords": [
+        "Vision-Language Navigation",
+        "Reinforcement Learning",
+        "Sim-to-Real Transfer",
+        "VLA Models"
+      ]
     }
   ],
   "volunteer": [],
