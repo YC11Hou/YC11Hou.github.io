@@ -17,7 +17,7 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am a Master student in Electrical Engineering at the National University of Singapore (NUS), and a core member of the **NUS Advanced Control Lab**. My research focuses on **Embodied AI** and autonomous robotic decision-making. Two of my first-/co-authored papers — **LangGap** and **AION** — are accepted at **IROS 2026**.
+I am a Master student in Electrical Engineering at the National University of Singapore (NUS), and a core member of the **NUS CORE Lab** (COntrol, Robotics & Artificial IntElligence). My research focuses on **Embodied AI** and autonomous robotic decision-making. Two of my first-/co-authored papers — **LangGap** and **AION** — are accepted at **IROS 2026**.
 
 I am currently a **VLA Algorithm Engineer (Intern)** at **Honor**, working on the self-developed **Omega humanoid robot**: teleoperation data collection, replay, training, and on-robot deployment, along with **online RL** algorithm research for VLA models on custom manipulation tasks — a full human-in-the-loop **online SFT / online RL** pipeline (smooth teleoperator takeover, intervention data pipeline, and a distributed Actor–Learner architecture across onboard AGX/NX boards, an x86 host, and a development server), plus RECAP-style offline RL with noise-space fast adaptation for tasks uncovered by offline training. My broader research covers benchmarking **Vision-Language-Action (VLA)** models for language grounding, **Vision-Language Navigation (VLN)** for aerial robots, and **end-to-end Reinforcement Learning** in complex 3D environments. I am also experienced in robotics development with **ROS2**, SLAM, and real-world deployment.
 

@@ -25,7 +25,7 @@ eyebrow: 03 — Projects
       {% endfor %}
     </div>
     <div class="proj-group">
-      <h3 class="proj-group-title mono">National University of Singapore <span class="proj-group-note">Research · NUS Advanced Control Lab</span></h3>
+      <h3 class="proj-group-title mono">National University of Singapore <span class="proj-group-note">Research · NUS CORE Lab</span></h3>
       {% assign nus_projects = site.projects | where: "org", "nus" | sort: "importance" %}
       {% for project in nus_projects %}
         {% include project_row.liquid %}

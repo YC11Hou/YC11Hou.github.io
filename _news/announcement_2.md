@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Joined NUS Advanced Control Lab, started Master's program at NUS.
+Joined the NUS CORE Lab, started Master's program at NUS.
