@@ -3,6 +3,7 @@
 //   GET  /likes?ids=a,b,c        -> { counts: {a: n, ...} }
 //   GET  /notes?id=home&limit=20 -> { notes: [{name, text, ts}, ...] }
 //   POST /like  {id, name?, email?, text?}  -> { count, liked: true }
+//   POST /unlike {id}                       -> { count, liked: false }
 //        a note (text) is accepted only with name + valid email; e-mail is
 //        stored for accountability but never returned by the API
 //
@@ -99,6 +100,23 @@ export default {
         }
       }
       return json({ count, liked: true }, req);
+    }
+
+    if (req.method === "POST" && url.pathname === "/unlike") {
+      let body;
+      try { body = await req.json(); } catch (e) { return json({ error: "bad json" }, req, 400); }
+      const id = String(body.id || "");
+      if (!ID_RE.test(id)) return json({ error: "bad id" }, req, 400);
+      const ip = req.headers.get("CF-Connecting-IP") || "0";
+      const visitor = await sha(ip + "|" + (req.headers.get("User-Agent") || ""));
+      const guard = "seen:" + id + ":" + visitor;
+      let count = parseInt((await env.LIKES.get("count:" + id)) || "0", 10);
+      if (await env.LIKES.get(guard)) {
+        count = Math.max(0, count - 1);
+        await env.LIKES.put("count:" + id, String(count));
+        await env.LIKES.delete(guard);
+      }
+      return json({ count, liked: false }, req);
     }
 
     return json({ error: "not found" }, req, 404);

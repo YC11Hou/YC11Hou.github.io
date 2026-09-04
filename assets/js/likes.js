@@ -22,6 +22,13 @@
       return false;
     }
   }
+  function forget(id) {
+    try {
+      localStorage.removeItem("liked:" + id);
+    } catch (e) {
+      /* private mode */
+    }
+  }
   function remember(id) {
     try {
       localStorage.setItem("liked:" + id, "1");
@@ -75,23 +82,34 @@
       if (!form.hidden) form.querySelector(".like-name").focus();
     });
 
+    function setUnliked() {
+      btn.classList.remove("liked");
+      btn.setAttribute("aria-pressed", "false");
+      icon.className = "fa-regular fa-heart";
+      label.setAttribute("data-i18n", "ui.like");
+      label.textContent = t("ui.like", "Like");
+    }
+
     btn.addEventListener("click", function () {
-      if (btn.classList.contains("liked")) {
-        form.hidden = !form.hidden;
-        return;
-      }
+      var wasLiked = btn.classList.contains("liked");
       btn.disabled = true;
-      fetch(API + "/like", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: id }) })
+      fetch(API + (wasLiked ? "/unlike" : "/like"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: id }),
+      })
         .then(function (r) {
           return r.json();
         })
         .then(function (j) {
           count.textContent = j.count;
-          remember(id);
-          setLiked();
-          form.hidden = false;
-          var first = form.querySelector(".like-name");
-          if (first) first.focus();
+          if (wasLiked) {
+            forget(id);
+            setUnliked();
+          } else {
+            remember(id);
+            setLiked();
+          }
         })
         .catch(function () {})
         .then(function () {
