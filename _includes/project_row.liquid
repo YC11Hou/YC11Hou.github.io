@@ -57,6 +57,9 @@
           ><i class="ai ai-arxiv"></i> <span data-i18n="ui.paper">{{ t.ui.paper }}</span> · arXiv:{{ project.arxiv -}}
         </a>
       {% endif %}
+      {% if site.likes_api != '' %}
+        <span class="likes-inline" data-like-id="proj:{{ project.i18n_key }}"></span>
+      {% endif %}
       {% if project.github %}
         <a class="proj-code" href="{{ project.github }}" target="_blank" rel="noopener"
           ><i class="fa-brands fa-github"></i> <span data-i18n="ui.code">{{ t.ui.code }}</span></a

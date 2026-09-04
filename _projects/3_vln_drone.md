@@ -7,6 +7,8 @@ importance: 3
 category: master
 org: nus
 i18n_key: vln
+start: 2025-06
+end: 2026-02
 meta: Habitat · Aerial VLN dataset pipeline
 github: https://github.com/YC11Hou/habitat-aerial-nav
 ---

@@ -563,9 +563,11 @@ html[data-theme="dark"] .home-banner img {
   }
 }
 
+// Media rows: every image/video cell is the same 16:9 box, so side-by-side
+// figures, clips and posters always line up. Table cells keep their height.
 .media-row {
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 1.25rem;
   margin: 1.5rem 0;
 
@@ -574,11 +576,25 @@ html[data-theme="dark"] .home-banner img {
     min-width: 0;
   }
 
+  > div:has(> img),
+  > div:has(> video) {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 4px;
+    background: var(--row-hover);
+  }
+
   video,
   img {
     display: block;
     width: 100%;
+    height: 100%;
+    object-fit: contain;
     border-radius: 4px;
+  }
+
+  .ratio-16x9 video {
+    object-fit: cover;
   }
 }
 
