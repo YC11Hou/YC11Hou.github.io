@@ -13,10 +13,14 @@ meta: Sep 2024 – Apr 2025 · ROS 2 · Jetson Orin NX · Team lead
 
 <div class="media-row">
   <div class="ratio-16x9">
-    <iframe src="https://drive.google.com/file/d/1haxn_iNXpebKC7ZddG_swejB8xaGpgRc/preview" allow="autoplay" allowfullscreen></iframe>
+    <video controls preload="metadata" poster="{{ '/assets/img/exploration_demo_poster.jpg' | relative_url }}">
+      <source src="{{ '/assets/video/exploration_demo.mp4' | relative_url }}" type="video/mp4">
+    </video>
   </div>
   <div class="ratio-16x9">
-    <iframe src="https://drive.google.com/file/d/11dCs_qUwQSNqTOiaHjU_bLXyb7nuTHjx/preview" allow="autoplay" allowfullscreen></iframe>
+    <video controls preload="metadata" poster="{{ '/assets/img/exploration_demo2_poster.jpg' | relative_url }}">
+      <source src="{{ '/assets/video/exploration_demo2.mp4' | relative_url }}" type="video/mp4">
+    </video>
   </div>
 </div>
 

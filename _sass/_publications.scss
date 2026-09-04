@@ -54,8 +54,8 @@
       // Bootstrap grid inside bib.liquid → two-column grid: tag | body
       .row {
         display: grid;
-        grid-template-columns: 6rem minmax(0, 1fr);
-        gap: 0 1.6rem;
+        grid-template-columns: 13.5rem minmax(0, 1fr);
+        gap: 0 1.8rem;
         margin: 0;
 
         > div {
@@ -101,10 +101,30 @@
         }
       }
 
-      .preview {
-        display: block;
-        margin-top: 0.8rem;
+      .pub-media {
+        margin-top: 0.85rem;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
         border-radius: 4px;
+        background: var(--rule);
+
+        video,
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      // Embedded demo video (opened by the "Video" link)
+      .abstract.hidden figure {
+        margin: 0.8rem 0 0;
+
+        video {
+          width: 100%;
+          border-radius: 4px;
+        }
       }
 
       .title {
