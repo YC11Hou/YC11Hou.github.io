@@ -1,8 +1,7 @@
 <footer class="site-footer" role="contentinfo">
   <span class="mono"
     >© {{ site.time | date: '%Y' }}
-    {{ site.first_name }}
-    {{ site.last_name -}}
+    <span data-i18n="ui.name">{{ site.data.i18n.en.ui.name }}</span>
   </span>
   <span class="mono" data-i18n="ui.footer">{{ site.data.i18n.en.ui.footer }}</span>
 </footer>

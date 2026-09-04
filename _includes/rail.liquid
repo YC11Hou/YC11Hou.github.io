@@ -6,9 +6,16 @@
 {% assign t = site.data.i18n.en %}
 <aside class="site-rail" aria-label="Site navigation">
   <a class="rail-identity" href="{{ '/' | relative_url }}">
-    <img class="rail-avatar" src="{{ '/assets/img/prof_pic_web.jpg' | relative_url }}" alt="Yuchen Hou" width="40" height="40">
+    <img
+      class="rail-avatar"
+      src="{{ '/assets/img/prof_pic_web.jpg' | relative_url }}"
+      alt="{{ t.ui.name }}"
+      data-i18n-attr="alt:ui.name"
+      width="40"
+      height="40"
+    >
     <span class="rail-id-text">
-      <span class="rail-name">Yuchen Hou</span>
+      <span class="rail-name" data-i18n="ui.name">{{ t.ui.name }}</span>
       <span class="rail-role" data-i18n="ui.role">{{ t.ui.role }}</span>
     </span>
   </a>
