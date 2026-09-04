@@ -35,7 +35,12 @@ body.site-body {
 }
 
 // ---------------------------------------------------------------------------
-// Identity rail
+// Sidebar rail — an app-style navigation column
+//
+// Modelled on refreshed desktop-app sidebars (VS Code, Linear, Arc): a quiet
+// elevated surface, one 1px edge, a compact identity header, grouped 34px rows
+// with a fixed 16px icon column, small-caps group labels, neutral ink-based
+// hover / selected fills, and a footer with the utility controls.
 // ---------------------------------------------------------------------------
 
 .site-rail {
@@ -44,89 +49,86 @@ body.site-body {
   left: 0;
   bottom: 0;
   width: v.$rail-width;
-  padding: 2.9rem 1.6rem 1.5rem 1.9rem;
+  padding: 18px 12px 14px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 2rem;
   border-right: 1px solid var(--rule);
-  background-color: var(--bg);
+  background-color: var(--rail-bg);
   z-index: 20;
   overflow-y: auto;
   scrollbar-width: none;
+  font-family: var(--font-body);
 
   &::-webkit-scrollbar {
     display: none;
   }
 }
 
-// --- Identity -------------------------------------------------------------
+// --- Identity header ------------------------------------------------------
 
 .rail-identity {
-  display: block;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  align-items: center;
+  gap: 11px;
+  padding: 6px 8px 6px 6px;
+  border-radius: 10px;
   text-decoration: none;
   color: inherit;
+  transition: background-color 0.16s ease;
 
   &:hover {
     text-decoration: none;
     color: inherit;
-
-    .rail-name {
-      color: var(--accent);
-    }
-
-    .rail-avatar {
-      border-color: var(--accent);
-    }
+    background-color: var(--row-hover);
   }
 }
 
 .rail-avatar {
   display: block;
-  width: 58px;
-  height: 58px;
+  width: 40px;
+  height: 40px;
   object-fit: cover;
   border-radius: 50%;
-  border: 1px solid var(--rule-strong);
-  box-shadow: 0 0 0 4px var(--bg-elev);
-  margin-bottom: 1.05rem;
-  transition: border-color 0.2s ease;
+  box-shadow: 0 0 0 1px var(--rule-strong);
+}
+
+.rail-id-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
 
 .rail-name {
-  display: block;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 1.45rem;
-  line-height: 1.15;
-  letter-spacing: -0.018em;
+  font-size: 1.02rem;
+  line-height: 1.2;
+  letter-spacing: -0.012em;
   color: var(--ink);
-  transition: color 0.2s ease;
+  white-space: nowrap;
 }
 
 .rail-role {
-  display: block;
-  margin-top: 0.6rem;
-  font-size: 0.6rem;
-  font-weight: 400;
-  line-height: 1.8;
-  letter-spacing: 0.085em;
-  text-transform: uppercase;
+  margin-top: 2px;
+  font-size: 11.5px;
+  line-height: 1.35;
+  letter-spacing: 0;
   color: var(--muted);
 }
 
-// --- Numbered section nav -------------------------------------------------
+// --- Groups (Navigate / Links) --------------------------------------------
 
-.rail-nav {
-  margin-top: 2.35rem;
+.rail-group {
+  margin-top: 18px;
 
-  ol {
+  ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.1rem;
+    gap: 1px;
   }
 
   li {
@@ -136,97 +138,26 @@ body.site-body {
   a {
     position: relative;
     display: grid;
-    grid-template-columns: 1.5rem minmax(0, 1fr);
+    grid-template-columns: 16px minmax(0, 1fr) auto;
     align-items: center;
-    gap: 0.35rem;
-    padding: 0.46rem 0.7rem;
-    margin: 0 -0.7rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
+    gap: 10px;
+    height: 34px;
+    padding: 0 10px;
+    border-radius: 7px;
+    font-size: 13.5px;
     font-weight: 500;
     letter-spacing: -0.004em;
     color: var(--ink-2);
     text-decoration: none;
     transition:
-      color 0.16s ease,
-      background-color 0.16s ease;
-
-    &:hover {
-      color: var(--ink);
-      background-color: var(--tint);
-      text-decoration: none;
-    }
-  }
-
-  .rail-idx {
-    font-size: 0.6rem;
-    font-weight: 500;
-    color: var(--muted);
-    letter-spacing: 0.06em;
-    transition: color 0.16s ease;
-  }
-
-  li.active a {
-    color: var(--ink);
-    font-weight: 600;
-    background-color: var(--tint-strong);
-
-    .rail-idx {
-      color: var(--accent);
-    }
-
-    // hairline accent marker on the leading edge of the pill
-    &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 2px;
-      height: 1.05rem;
-      border-radius: 2px;
-      background: var(--accent);
-    }
-  }
-}
-
-// --- Bottom block: contact, tools, colophon -------------------------------
-
-.rail-bottom {
-  margin-top: 2rem;
-  padding-top: 1.35rem;
-  border-top: 1px solid var(--rule);
-}
-
-.rail-contact {
-  list-style: none;
-  margin: 0 0 1.15rem;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.5rem 0.6rem;
-
-  li {
-    margin: 0;
-    min-width: 0;
-  }
-
-  a {
-    display: grid;
-    grid-template-columns: 0.95rem minmax(0, 1fr);
-    align-items: center;
-    gap: 0.45rem;
-    font-size: 0.775rem;
-    letter-spacing: -0.002em;
-    color: var(--ink-2);
-    text-decoration: none;
-    transition: color 0.16s ease;
+      background-color 0.14s ease,
+      color 0.14s ease;
 
     i {
-      font-size: 0.78rem;
+      font-size: 13px;
       text-align: center;
       color: var(--muted);
-      transition: color 0.16s ease;
+      transition: color 0.14s ease;
     }
 
     span {
@@ -235,87 +166,148 @@ body.site-body {
       white-space: nowrap;
     }
 
+    .rail-ext {
+      font-size: 9px;
+      opacity: 0;
+      transform: translateX(-2px);
+      transition:
+        opacity 0.14s ease,
+        transform 0.14s ease;
+    }
+
     &:hover {
-      color: var(--accent);
       text-decoration: none;
+      color: var(--ink);
+      background-color: var(--row-hover);
 
       i {
-        color: var(--accent);
+        color: var(--ink-2);
       }
+
+      .rail-ext {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: -2px;
+    }
+  }
+
+  li.active a {
+    color: var(--ink);
+    font-weight: 600;
+    background-color: var(--row-active);
+
+    i {
+      color: var(--accent);
     }
   }
 }
 
-// Search / theme / language read as one segmented control rather than
-// three competing pills.
+.rail-label {
+  margin: 0 0 6px;
+  padding: 0 10px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.rail-nav {
+  margin-top: 22px;
+}
+
+// --- Footer: utilities + colophon -----------------------------------------
+
+.rail-foot {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+}
+
 .rail-tools {
-  display: inline-flex;
-  align-items: stretch;
-  margin-bottom: 1.1rem;
-  border: 1px solid var(--rule-strong);
-  border-radius: 9px;
-  background: var(--bg-elev);
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .rail-tool {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  height: 2.05rem;
-  min-width: 2.15rem;
-  padding: 0 0.6rem;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
+  gap: 7px;
+  height: 32px;
+  min-width: 32px;
+  padding: 0 8px;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--surface);
   color: var(--ink-2);
-  font-size: 0.78rem;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 500;
   cursor: pointer;
   transition:
-    color 0.16s ease,
-    background-color 0.16s ease;
+    background-color 0.14s ease,
+    border-color 0.14s ease,
+    color 0.14s ease;
 
-  .mono {
-    font-size: 0.6rem;
-    letter-spacing: 0.04em;
+  i {
+    font-size: 12.5px;
     color: var(--muted);
-    transition: color 0.16s ease;
+    transition: color 0.14s ease;
+  }
+
+  .mono,
+  kbd {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    background: none;
+    border: 0;
+    padding: 0;
   }
 
   &:hover {
     color: var(--ink);
-    background-color: var(--tint-strong);
+    border-color: var(--rule-strong);
+    background-color: var(--row-hover);
 
-    .mono {
-      color: var(--ink-2);
+    i {
+      color: var(--ink);
     }
   }
 
   &:focus-visible {
     outline: 2px solid var(--accent);
-    outline-offset: -2px;
+    outline-offset: 1px;
   }
 }
 
-.rail-tools > * + * {
-  border-left: 1px solid var(--rule-strong);
-}
+// Search takes the remaining width and reads like a command-palette trigger
+.rail-tool-search {
+  flex: 1;
+  justify-content: flex-start;
+  padding: 0 10px;
+  color: var(--muted);
+  font-weight: 400;
 
-.rail-tools > :first-child .rail-tool,
-.rail-tools > .rail-tool:first-child {
-  border-radius: 8px 0 0 8px;
-}
-
-.rail-tools > :last-child .rail-tool,
-.rail-tools > .rail-tool:last-child {
-  border-radius: 0 8px 8px 0;
+  span {
+    flex: 1;
+    text-align: left;
+  }
 }
 
 .rail-colophon {
-  margin: 0;
-  font-size: 0.58rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  margin: 12px 0 0;
+  padding: 0 4px;
+  font-size: 11px;
+  letter-spacing: 0;
   color: var(--muted);
 }
 
@@ -772,7 +764,7 @@ html[data-i18n-pending] .site-topbar {
 
 .lang-list {
   position: absolute;
-  left: 0;
+  right: 0;
   bottom: calc(100% + 0.5rem);
   z-index: 50;
   min-width: 11.5rem;

@@ -1,87 +1,118 @@
 {% comment %}
-  Desktop identity rail — fixed to the left edge. Holds name, role, numbered
-  section nav, contact links and the search / theme / language tools.
-  English text is authored here; data-i18n keys point into _data/i18n/*.yml.
+  Desktop sidebar — an app-style rail (identity header, grouped rows with
+  icons, footer tools). English text is authored here; data-i18n keys point
+  into _data/i18n/*.yml.
 {% endcomment %}
 {% assign t = site.data.i18n.en %}
 <aside class="site-rail" aria-label="Site navigation">
-  <div class="rail-top">
-    <a class="rail-identity" href="{{ '/' | relative_url }}">
-      <img class="rail-avatar" src="{{ '/assets/img/prof_pic_web.jpg' | relative_url }}" alt="Yuchen Hou" width="58" height="58">
+  <a class="rail-identity" href="{{ '/' | relative_url }}">
+    <img class="rail-avatar" src="{{ '/assets/img/prof_pic_web.jpg' | relative_url }}" alt="Yuchen Hou" width="40" height="40">
+    <span class="rail-id-text">
       <span class="rail-name">Yuchen Hou</span>
-      <span class="rail-role mono" data-i18n="ui.role">{{ t.ui.role }}</span>
-    </a>
+      <span class="rail-role" data-i18n="ui.role">{{ t.ui.role }}</span>
+    </span>
+  </a>
 
-    <nav class="rail-nav">
-      <ol>
-        <li class="{% if page.permalink == '/' %}active{% endif %}">
-          <a href="{{ '/' | relative_url }}"
-            ><span class="rail-idx mono">01</span><span data-i18n="ui.about">{{ t.ui.about }}</span></a
-          >
-        </li>
-        {% assign sorted_pages = site.pages | sort: 'nav_order' %}
-        {% assign idx = 1 %}
-        {% for p in sorted_pages %}
-          {% if p.nav and p.autogen == null and p.dropdown == null and p.permalink != '/' %}
-            {% assign idx = idx | plus: 1 %}
-            {% assign parent_link = p.permalink | remove: 'index.html' %}
-            {% assign key = p.i18n | default: p.title | downcase %}
-            <li class="{% if page.url contains parent_link %}active{% endif %}">
-              <a href="{{ p.url | relative_url }}"
-                ><span class="rail-idx mono">{{ idx | prepend: '0' | slice: -2, 2 }}</span><span data-i18n="ui.{{ key }}">{{ p.title }}</span></a
-              >
-            </li>
+  <nav class="rail-group rail-nav">
+    <p class="rail-label" data-i18n="ui.navigate">{{ t.ui.navigate }}</p>
+    <ul>
+      <li class="{% if page.permalink == '/' %}active{% endif %}">
+        <a
+          href="{{ '/' | relative_url }}"
+          {% if page.permalink == '/' %}
+            aria-current="page"
           {% endif %}
-        {% endfor %}
-      </ol>
-    </nav>
-  </div>
+        >
+          <i class="fa-solid fa-house"></i><span data-i18n="ui.about">{{ t.ui.about }}</span>
+        </a>
+      </li>
+      {% assign sorted_pages = site.pages | sort: 'nav_order' %}
+      {% for p in sorted_pages %}
+        {% if p.nav and p.autogen == null and p.dropdown == null and p.permalink != '/' %}
+          {% assign parent_link = p.permalink | remove: 'index.html' %}
+          {% assign key = p.i18n | default: p.title | downcase %}
+          {% assign icon = 'fa-solid fa-link' %}
+          {% if key == 'publications' -%}
+            {%- assign icon = 'fa-solid fa-book' %}
+          {% elsif key == 'projects' -%}
+            {%- assign icon = 'fa-solid fa-diagram-project' %}
+          {% elsif key == 'experience' -%}
+            {%- assign icon = 'fa-solid fa-file-lines' %}
+          {% elsif key == 'news' -%}
+            {%- assign icon = 'fa-solid fa-newspaper' -%}
+          {%- endif %}
+          {% assign is_active = false %}
+          {% if page.url contains parent_link %}{% assign is_active = true %}{% endif %}
+          <li class="{% if is_active %}active{% endif %}">
+            <a
+              href="{{ p.url | relative_url }}"
+              {% if is_active %}
+                aria-current="page"
+              {% endif %}
+            >
+              <i class="{{ icon }}"></i><span data-i18n="ui.{{ key }}">{{ p.title }}</span>
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </nav>
 
-  <div class="rail-bottom">
-    <ul class="rail-contact">
+  <div class="rail-group rail-links">
+    <p class="rail-label" data-i18n="ui.links">{{ t.ui.links }}</p>
+    <ul>
       {% if site.data.socials.email %}
         <li>
-          <a href="mailto:{{ site.data.socials.email }}" title="Email"
-            ><i class="fa-solid fa-envelope"></i><span data-i18n="ui.email">{{ t.ui.email }}</span></a
-          >
+          <a href="mailto:{{ site.data.socials.email }}">
+            <i class="fa-solid fa-envelope"></i><span data-i18n="ui.email">{{ t.ui.email }}</span>
+          </a>
         </li>
       {% endif %}
       {% if site.data.socials.github_username %}
         <li>
-          <a href="https://github.com/{{ site.data.socials.github_username }}" target="_blank" rel="noopener" title="GitHub"
-            ><i class="fa-brands fa-github"></i><span>GitHub</span></a
-          >
+          <a href="https://github.com/{{ site.data.socials.github_username }}" target="_blank" rel="noopener">
+            <i class="fa-brands fa-github"></i><span>GitHub</span><i class="rail-ext fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
         </li>
       {% endif %}
       {% if site.data.socials.linkedin_username %}
         <li>
-          <a href="https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}" target="_blank" rel="noopener" title="LinkedIn"
-            ><i class="fa-brands fa-linkedin-in"></i><span>LinkedIn</span></a
-          >
+          <a href="https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}" target="_blank" rel="noopener">
+            <i class="fa-brands fa-linkedin-in"></i><span>LinkedIn</span
+            ><i class="rail-ext fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
         </li>
       {% endif %}
       {% if site.data.socials.scholar_userid %}
         <li>
-          <a
-            href="https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}"
-            target="_blank"
-            rel="noopener"
-            title="Google Scholar"
-            ><i class="ai ai-google-scholar"></i><span>Scholar</span></a
-          >
+          <a href="https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}" target="_blank" rel="noopener">
+            <i class="ai ai-google-scholar"></i><span>Google Scholar</span
+            ><i class="rail-ext fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
         </li>
       {% endif %}
       <li>
-        <a href="{{ '/assets/pdf/CV_Yuchen_Hou.pdf' | relative_url }}" target="_blank" rel="noopener" title="CV (PDF)"
-          ><i class="fa-solid fa-file-arrow-down"></i><span data-i18n="ui.cv">{{ t.ui.cv }}</span></a
-        >
+        <a href="{{ '/assets/pdf/CV_Yuchen_Hou.pdf' | relative_url }}" target="_blank" rel="noopener">
+          <i class="fa-solid fa-file-arrow-down"></i
+          ><span
+            ><span data-i18n="ui.cv">{{ t.ui.cv }}</span> · PDF</span
+          >
+        </a>
       </li>
     </ul>
+  </div>
 
+  <div class="rail-foot">
     <div class="rail-tools">
       {% if site.search_enabled %}
-        <button id="search-toggle" class="rail-tool" title="Search (⌘K)" data-i18n-attr="title:ui.search" onclick="openSearchModal()">
-          <i class="fa-solid fa-magnifying-glass"></i><span class="mono">⌘K</span>
+        <button
+          id="search-toggle"
+          class="rail-tool rail-tool-search"
+          title="Search (⌘K)"
+          data-i18n-attr="title:ui.search"
+          onclick="openSearchModal()"
+        >
+          <i class="fa-solid fa-magnifying-glass"></i><span data-i18n="ui.search">{{ t.ui.search }}</span><kbd class="mono">⌘K</kbd>
         </button>
       {% endif %}
       {% if site.enable_darkmode %}
@@ -93,8 +124,7 @@
       {% endif %}
       {% include lang_menu.liquid class='rail-tool' %}
     </div>
-
-    <p class="rail-colophon mono">
+    <p class="rail-colophon">
       <span data-i18n="ui.colophon">{{ t.ui.colophon }}</span> · {{ site.time | date: '%Y' }}
     </p>
   </div>

@@ -26,6 +26,8 @@ ui:
   all_projects: All projects
   degree_in: "in"
   citations: citations
+  navigate: Navigate
+  links: Links
   present: Present
   role: M.Sc. ECE · NUS<br>Embodied AI · Robot learning
   colophon: Singapore
