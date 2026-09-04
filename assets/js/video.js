@@ -9,6 +9,42 @@
     var v = window.siteI18n && window.siteI18n.t("ui.loading");
     return v || "Loading…";
   }
+  // Preview loops (muted autoplay) are driven by visibility: play when on
+  // screen, pause when off. Mobile browsers only load them on a play()
+  // attempt, and may refuse autoplay (Low Power Mode, data saver) — then the
+  // poster simply stays, without a spinner.
+  var io =
+    "IntersectionObserver" in window
+      ? new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (en) {
+              var v = en.target;
+              if (en.isIntersecting) attemptPlay(v);
+              else if (!v.paused) v.pause();
+            });
+          },
+          { rootMargin: "120px 0px", threshold: 0.1 }
+        )
+      : null;
+
+  function attemptPlay(v) {
+    if (!v.paused && !v.ended) return;
+    var box = v.parentElement;
+    var pr = v.play();
+    if (pr && pr.then) {
+      pr.then(
+        function () {
+          v._playable = true;
+        },
+        function () {
+          // autoplay refused: static poster is the final state
+          v._playable = false;
+          box.classList.remove("is-loading");
+        }
+      );
+    }
+  }
+
   Array.prototype.forEach.call(videos, function (v) {
     var box = v.parentElement;
     if (!box) return;
@@ -19,36 +55,45 @@
     badge.textContent = label();
     box.appendChild(badge);
 
+    var timer = null;
     function busy(on) {
       box.classList.toggle("is-loading", on);
+      clearTimeout(timer);
+      // never spin forever: after 8 s fall back to the poster
+      if (on)
+        timer = setTimeout(function () {
+          box.classList.remove("is-loading");
+        }, 8000);
     }
-    // Autoplay loops: busy until the first frames are decodable
-    if (v.autoplay) busy(v.readyState < 3);
-    v.addEventListener("loadeddata", function () {
+    // Spinner only while a started playback is actually waiting for data
+    v.addEventListener("waiting", function () {
+      if (!v.paused) busy(true);
+    });
+    v.addEventListener("stalled", function () {
+      if (!v.paused) busy(true);
+    });
+    v.addEventListener("playing", function () {
       busy(false);
     });
     v.addEventListener("canplay", function () {
       busy(false);
     });
-    v.addEventListener("playing", function () {
+    v.addEventListener("pause", function () {
       busy(false);
-    });
-    v.addEventListener("waiting", function () {
-      busy(true);
-    });
-    v.addEventListener("stalled", function () {
-      busy(true);
     });
     v.addEventListener("error", function () {
       busy(false);
     });
-    // Retry autoplay after data arrives (some browsers pause muted loops that started empty)
+
     if (v.autoplay) {
-      v.addEventListener("canplay", function () {
-        if (v.paused) v.play().catch(function () {});
-      });
+      v.removeAttribute("autoplay"); // we decide when to play
+      v.muted = true;
+      v.setAttribute("playsinline", "");
+      if (io) io.observe(v);
+      else attemptPlay(v);
     }
   });
+
   // Publications: the "Video" link opens its own panel (and closes the abstract), not the abstract
   Array.prototype.forEach.call(document.querySelectorAll("a.video-toggle"), function (a) {
     a.addEventListener("click", function (e) {
