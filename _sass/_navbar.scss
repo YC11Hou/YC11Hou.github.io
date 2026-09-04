@@ -1,6 +1,15 @@
 /*******************************************************************************
- * Narrow-screen navigation — the floating glass dock.
+ * Narrow-screen navigation — the liquid glass dock.
  * (Desktop navigation is the rail; see _layout.scss.)
+ *
+ * Glass is built in layers, the way iOS renders it:
+ *   1. backdrop blur + saturation of whatever scrolls behind the capsule
+ *   2. a faint tinted fill so the glass has body
+ *   3. a refractive rim: bright inner edge top-left, shaded inner edge
+ *      bottom-right (inset box-shadows), plus a 1px outer highlight ring
+ *   4. specular streak along the top and a soft caustic glow at the bottom
+ *   5. depth shadow onto the page
+ * The selected-tab pill is the same recipe, brighter and more opaque.
  ******************************************************************************/
 
 @use "variables" as v;
@@ -12,7 +21,7 @@
   left: 0;
   right: 0;
   z-index: 1040;
-  padding: 0 14px 12px;
+  padding: 0 16px 12px;
   padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
   pointer-events: none; // dock itself catches events, not the strip
 }
@@ -31,78 +40,87 @@
 }
 /* purgecss end ignore */
 
-// The dock — a floating translucent capsule
+// ---------------------------------------------------------------------------
+// The capsule
+// ---------------------------------------------------------------------------
+
 .mobile-bottom-nav-bar {
   position: relative;
+  isolation: isolate;
   display: flex;
   align-items: center;
-  height: 62px;
-  flex: 1;
-  min-width: 0;
-  border-radius: 31px;
+  height: 64px;
+  padding: 0 6px;
+  border-radius: 32px;
   pointer-events: auto;
   touch-action: none; // the dock owns its gestures (drag-to-select)
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   user-select: none;
-  background: linear-gradient(rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04)), rgba(255, 253, 249, 0.55);
-  -webkit-backdrop-filter: blur(34px) saturate(180%);
-  backdrop-filter: blur(34px) saturate(180%);
-  border: 0.5px solid rgba(255, 255, 255, 0.6);
-  box-shadow:
-    0 16px 44px rgba(23, 22, 26, 0.16),
-    0 2px 8px rgba(23, 22, 26, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.75),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.04);
-  overflow: hidden;
 
-  // Specular sweep along the top edge
+  // 1 + 2: blur what's behind, tint lightly — kept sheer so content reads through
+  background:
+    radial-gradient(70% 60% at 50% 118%, rgba(255, 255, 255, 0.26), transparent 70%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.06) 55%, rgba(255, 255, 255, 0.16)), rgba(255, 252, 246, 0.18);
+  -webkit-backdrop-filter: blur(22px) saturate(190%) brightness(1.05);
+  backdrop-filter: blur(22px) saturate(190%) brightness(1.05);
+
+  // 3 + 5: inner shading and depth
+  box-shadow:
+    inset 1.5px 1.5px 1px -1px rgba(255, 255, 255, 0.9),
+    inset -1.5px -1.5px 1px -1px rgba(60, 50, 40, 0.14),
+    0 0 0 0.5px rgba(60, 50, 40, 0.08),
+    0 1px 1px rgba(0, 0, 0, 0.05),
+    0 12px 32px rgba(23, 22, 26, 0.16),
+    0 28px 60px -20px rgba(23, 22, 26, 0.25);
+
+  // 4: specular streak along the top edge
   &::before {
     content: "";
     position: absolute;
-    inset: 0 10% auto;
     top: 0;
+    left: 12%;
+    right: 12%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95), transparent);
+    border-radius: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95) 30%, rgba(255, 255, 255, 0.95) 70%, transparent);
     pointer-events: none;
+    z-index: 3;
   }
 
-  // Soft pooling along the bottom edge
+  // 3: the refractive rim — a 1.5px ring, bright where light enters (top-left),
+  // bright again where it exits (bottom-right), dim on the flanks
   &::after {
     content: "";
     position: absolute;
-    inset: auto 18% 0;
-    height: 40%;
-    background: radial-gradient(60% 130% at 50% 130%, rgba(255, 255, 255, 0.35), transparent 70%);
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.35) 28%,
+      rgba(255, 255, 255, 0.08) 50%,
+      rgba(255, 255, 255, 0.3) 72%,
+      rgba(255, 255, 255, 0.85) 100%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
     pointer-events: none;
+    z-index: 2;
   }
 }
 
-// Sliding pill marking the active tab — draggable
-.mobile-nav-glass-indicator {
-  position: absolute;
-  top: 6px;
-  left: 0;
-  height: calc(100% - 12px);
-  border-radius: 25px;
-  opacity: 0;
-  pointer-events: none;
-  background: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.6));
-  border: 0.5px solid rgba(255, 255, 255, 0.95);
-  box-shadow:
-    0 4px 12px rgba(23, 22, 26, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 1);
-  transition: scale 0.2s ease;
+// ---------------------------------------------------------------------------
+// Items — the resting pill is `.active::before`, present at first paint
+// ---------------------------------------------------------------------------
 
-  &.dragging {
-    scale: 1.04 1.12;
-    box-shadow:
-      0 8px 22px rgba(23, 22, 26, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 1);
-  }
-}
-
-// Individual nav item
 .mobile-bottom-nav-item {
   position: relative;
   z-index: 1;
@@ -112,9 +130,10 @@
   justify-content: center;
   flex: 1 0 0;
   min-width: 56px;
-  padding: 6px 4px;
+  height: 52px;
+  padding: 0 4px;
   color: var(--ink);
-  opacity: 0.5;
+  opacity: 0.55;
   text-decoration: none;
   font-family: var(--font-mono);
   font-size: 0.56rem;
@@ -150,7 +169,7 @@
   }
 
   &:active {
-    transform: scale(0.92);
+    transform: scale(0.94);
   }
 
   &.active,
@@ -159,57 +178,143 @@
     opacity: 1;
 
     i {
-      transform: scale(1.08);
+      transform: scale(1.06);
     }
+  }
+
+  // The selected-tab glass pill
+  &.active::before {
+    content: "";
+    position: absolute;
+    inset: 0 1px;
+    z-index: -1;
+    border-radius: 26px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0.72));
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.95),
+      inset 2px 2px 2px -1px rgba(255, 255, 255, 1),
+      inset -2px -2.5px 2px -1px rgba(60, 50, 40, 0.16),
+      0 0 0 0.5px rgba(60, 50, 40, 0.06),
+      0 1px 1px rgba(0, 0, 0, 0.04),
+      0 6px 14px -2px rgba(23, 22, 26, 0.18);
+    transition: opacity 0.18s ease;
+  }
+}
+
+// While dragging, the resting pill yields to the floating glass
+.mobile-bottom-nav-bar.dragging .mobile-bottom-nav-item.active::before {
+  opacity: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Floating glass shown only during a drag
+// ---------------------------------------------------------------------------
+
+.mobile-nav-glass-indicator {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  height: 52px;
+  width: 64px;
+  border-radius: 26px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform, width;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.66) 60%, rgba(255, 255, 255, 0.82));
+  -webkit-backdrop-filter: blur(6px) saturate(160%);
+  backdrop-filter: blur(6px) saturate(160%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.9),
+    inset 1.5px 1.5px 1px -1px rgba(255, 255, 255, 1),
+    inset -1.5px -2px 1px -1px rgba(60, 50, 40, 0.14),
+    0 1px 1px rgba(0, 0, 0, 0.04),
+    0 6px 14px -2px rgba(23, 22, 26, 0.16);
+  transition:
+    scale 0.22s cubic-bezier(0.32, 0.72, 0, 1),
+    box-shadow 0.22s ease,
+    opacity 0.15s ease;
+
+  // Lifted by the finger: swells and casts a deeper shadow, like a raised droplet
+  &.lifted {
+    scale: 1.06 1.14;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.95),
+      inset 1.5px 1.5px 1px -1px rgba(255, 255, 255, 1),
+      inset -1.5px -2px 1px -1px rgba(60, 50, 40, 0.14),
+      0 2px 2px rgba(0, 0, 0, 0.05),
+      0 14px 28px -4px rgba(23, 22, 26, 0.28);
   }
 }
 
 .mobile-bottom-nav-divider {
   width: 1px;
-  height: 28px;
-  background: var(--rule-strong);
-  opacity: 0.6;
+  height: 26px;
+  margin: 0 2px;
+  background: linear-gradient(180deg, transparent, rgba(60, 50, 40, 0.28), transparent);
   flex: 0 0 auto;
 }
 
 .mobile-bottom-nav-theme-btn {
-  // same footprint as nav items; the glass pill never covers it
+  // same footprint as nav items; never carries the pill
+  flex: 0 0 auto;
+  min-width: 60px;
 }
 
-// Dark mode
+// ---------------------------------------------------------------------------
+// Dark mode — smoked glass
+// ---------------------------------------------------------------------------
+
 html[data-theme="dark"] {
   .mobile-bottom-nav-bar {
-    background: linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01)), rgba(24, 24, 28, 0.6);
-    border-color: rgba(255, 255, 255, 0.14);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03) 55%, rgba(255, 255, 255, 0.07)), rgba(28, 28, 33, 0.5);
+    -webkit-backdrop-filter: blur(28px) saturate(170%) brightness(0.9);
+    backdrop-filter: blur(28px) saturate(170%) brightness(0.9);
     box-shadow:
-      0 12px 36px rgba(0, 0, 0, 0.55),
-      0 2px 8px rgba(0, 0, 0, 0.35),
-      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      inset 1.5px 1.5px 1px -1px rgba(255, 255, 255, 0.35),
+      inset -1.5px -1.5px 1px -1px rgba(0, 0, 0, 0.5),
+      0 0 0 0.5px rgba(0, 0, 0, 0.4),
+      0 1px 1px rgba(0, 0, 0, 0.3),
+      0 12px 32px rgba(0, 0, 0, 0.5),
+      0 28px 60px -20px rgba(0, 0, 0, 0.6);
 
     &::before {
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45) 30%, rgba(255, 255, 255, 0.45) 70%, transparent);
     }
 
     &::after {
-      background: radial-gradient(60% 130% at 50% 130%, rgba(255, 255, 255, 0.1), transparent 70%);
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.5) 0%,
+        rgba(255, 255, 255, 0.16) 28%,
+        rgba(255, 255, 255, 0.04) 50%,
+        rgba(255, 255, 255, 0.14) 72%,
+        rgba(255, 255, 255, 0.42) 100%
+      );
     }
   }
 
+  .mobile-bottom-nav-item.active::before,
   .mobile-nav-glass-indicator {
-    background: linear-gradient(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08));
-    border-color: rgba(255, 255, 255, 0.22);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.1) 60%, rgba(255, 255, 255, 0.16));
     box-shadow:
-      0 4px 14px rgba(0, 0, 0, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      inset 0 0 0 1px rgba(255, 255, 255, 0.3),
+      inset 1.5px 1.5px 1px -1px rgba(255, 255, 255, 0.55),
+      inset -1.5px -2px 1px -1px rgba(0, 0, 0, 0.45),
+      0 1px 1px rgba(0, 0, 0, 0.3),
+      0 6px 14px -2px rgba(0, 0, 0, 0.5);
+  }
 
-    &.dragging {
-      box-shadow:
-        0 8px 24px rgba(0, 0, 0, 0.55),
-        inset 0 1px 0 rgba(255, 255, 255, 0.25);
-    }
+  .mobile-nav-glass-indicator.lifted {
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.35),
+      inset 1.5px 1.5px 1px -1px rgba(255, 255, 255, 0.6),
+      inset -1.5px -2px 1px -1px rgba(0, 0, 0, 0.45),
+      0 2px 2px rgba(0, 0, 0, 0.3),
+      0 14px 28px -4px rgba(0, 0, 0, 0.65);
   }
 
   .mobile-bottom-nav-divider {
-    background: rgba(255, 255, 255, 0.15);
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.22), transparent);
   }
 }
