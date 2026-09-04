@@ -30,8 +30,8 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/experience/";
           },
-        },{id: "news-joined-nus-advanced-control-lab-started-master-s-program-at-nus",
-          title: 'Joined NUS Advanced Control Lab, started Master’s program at NUS.',
+        },{id: "news-joined-the-nus-core-lab-started-master-s-program-at-nus",
+          title: 'Joined the NUS CORE Lab, started Master’s program at NUS.',
           description: "",
           section: "News",},{id: "news-completed-robotics-software-internship-at-movel-ai-dec-2025-jan-2026-working-on-autonomous-forklift-navigation",
           title: 'Completed robotics software internship at Movel.AI (Dec 2025 – Jan 2026), working on...',
