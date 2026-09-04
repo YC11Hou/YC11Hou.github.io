@@ -80,7 +80,7 @@
 
   var links = headings.map(function (h) {
     var li = document.createElement("li");
-    var sub = h.tagName.toLowerCase() !== levels[0];
+    var sub = !h.matches(levels[0]);
     li.className = sub ? "pagenav-sub" : "pagenav-top";
     var a = document.createElement("a");
     a.href = "#" + h.getAttribute("data-pagenav-target");

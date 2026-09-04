@@ -5,6 +5,7 @@ title: Publications
 description: Peer-reviewed papers. Underlined name marks my authorship.
 i18n: publications
 eyebrow: 02 — Publications
+pagenav: h2.bibliography, .bibliography .title
 nav: true
 nav_order: 1
 ---
