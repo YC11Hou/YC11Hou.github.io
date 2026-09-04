@@ -3,6 +3,7 @@ layout: page
 title: Vision-Language Navigation on Autonomous Drone
 description: Built a robust pipeline to generate various 3D paths in the Habitat simulator. Overcame challenges of the simulator initially designed only for ground robots by designing a robust 3D navigation algorithm and obstacle detection method. Trained a strong and general policy for drone navigation.
 preview_video: /assets/video/vln_preview.mp4
+img: assets/img/vln_poster.jpg
 importance: 3
 category: master
 org: nus
@@ -23,12 +24,12 @@ github: https://github.com/YC11Hou/habitat-aerial-nav
 
 <div class="media-row">
   <div class="ratio-16x9">
-    <video controls preload="metadata">
+    <video controls preload="metadata" poster="/assets/img/vln_highlights_poster.jpg">
       <source src="/assets/video/vln_highlights.mp4" type="video/mp4">
     </video>
   </div>
   <div class="ratio-16x9">
-    <video autoplay loop muted playsinline>
+    <video autoplay loop muted playsinline preload="metadata" poster="/assets/img/vln_overview_poster.jpg">
       <source src="/assets/video/vln_overview.webm" type="video/webm">
     </video>
   </div>

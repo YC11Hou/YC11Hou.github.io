@@ -2,7 +2,7 @@
 layout: page
 title: "AION: Aerial Indoor Object-Goal Navigation"
 description: Accepted at IROS 2026. End-to-end dual-policy RL framework for vision-based aerial ObjectNav without external localization or global maps. Evaluated on AI2-THOR and IsaacSim.
-img: assets/img/aion_thumbnail.jpg
+img: assets/img/aion_poster.jpg
 preview_video: /assets/video/aion_preview.mp4
 importance: 2
 category: master

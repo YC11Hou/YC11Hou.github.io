@@ -2,7 +2,8 @@
 layout: page
 title: "Honor Humanoid: Online RL for VLA"
 description: VLA Algorithm Engineer Intern at Honor. Built a human-in-the-loop online SFT / online RL pipeline for Honor's self-developed humanoid robot — smooth teleoperator takeover, an intervention-driven data pipeline, and a distributed Actor–Learner–Robot learning loop.
-img: assets/video/honor/inference_demo_poster.jpg
+img: assets/img/honor_poster.jpg
+preview_video: /assets/video/honor_preview.mp4
 importance: 0
 category: master
 org: honor

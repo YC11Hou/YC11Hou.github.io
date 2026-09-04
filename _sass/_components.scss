@@ -981,3 +981,52 @@ ul.task-list input[type="checkbox"] {
   content: "· ";
   color: var(--muted);
 }
+
+// ---------------------------------------------------------------------------
+// Video loading state (assets/js/video.js): poster stays, badge while waiting
+// ---------------------------------------------------------------------------
+
+.video-shell {
+  position: relative;
+}
+
+.video-loading {
+  position: absolute;
+  left: 0.6rem;
+  bottom: 0.6rem;
+  z-index: 2;
+  display: none;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.28rem 0.6rem 0.28rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(20, 18, 24, 0.62);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+
+  &::before {
+    content: "";
+    width: 0.65rem;
+    height: 0.65rem;
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: video-spin 0.8s linear infinite;
+  }
+}
+
+.video-shell.is-loading .video-loading {
+  display: inline-flex;
+}
+
+@keyframes video-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

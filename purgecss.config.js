@@ -46,6 +46,8 @@ module.exports = {
       /lang-/,
       /pagenav/,
       /like/,
+      /video-/,
+      /is-loading/,
       /rail-animating/,
       /i18n/,
       /topbar/,

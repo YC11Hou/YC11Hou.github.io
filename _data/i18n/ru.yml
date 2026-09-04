@@ -37,6 +37,7 @@ ui:
   thanks: "Спасибо!"
   anonymous: "Аноним"
   guestbook: "Заметки посетителей"
+  loading: "Загрузка…"
   present: наст. время
   role: M.Sc. ECE · NUS<br>Воплощённый ИИ · Обучение роботов
   colophon: Сингапур

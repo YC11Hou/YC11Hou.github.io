@@ -2,7 +2,8 @@
 layout: page
 title: "LangGap: VLA Language Understanding Benchmark"
 description: Accepted at IROS 2026. Designed a systematic semantic perturbation evaluation framework revealing that state-of-the-art VLA models ignore language instructions despite high benchmark scores. Proposed multi-task same-scene training approach and constructed augmented dataset for fine-tuning.
-preview_video: /assets/video/grid_8x4.mp4
+preview_video: /assets/video/langgap_preview.mp4
+img: assets/img/langgap_poster.jpg
 importance: 1
 category: master
 org: nus
@@ -27,12 +28,12 @@ meta: First author
 
 <div class="media-row">
   <div class="ratio-16x9">
-    <video controls preload="metadata">
+    <video controls preload="metadata" poster="/assets/img/langgap_video_poster.jpg">
       <source src="/assets/video/langgap_video.mp4" type="video/mp4">
     </video>
   </div>
   <div class="ratio-16x9">
-    <video autoplay loop muted playsinline>
+    <video autoplay loop muted playsinline preload="metadata" poster="/assets/img/langgap_poster.jpg">
       <source src="/assets/video/grid_8x4.mp4" type="video/mp4">
     </video>
   </div>

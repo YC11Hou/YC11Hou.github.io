@@ -37,6 +37,7 @@ ui:
   thanks: "Danke!"
   anonymous: "Anonym"
   guestbook: "Notizen von Besuchern"
+  loading: "Lädt…"
   present: Heute
   role: M.Sc. ECE · NUS<br>Embodied AI · Robotisches Lernen
   colophon: Singapur

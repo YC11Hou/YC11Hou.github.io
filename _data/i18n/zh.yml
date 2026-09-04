@@ -37,6 +37,7 @@ ui:
   thanks: "谢谢！"
   anonymous: "匿名"
   guestbook: "访客留言"
+  loading: "加载中…"
   present: 至今
   role: 新加坡国立大学 · ECE 硕士<br>具身智能 · 机器人学习
   colophon: 新加坡

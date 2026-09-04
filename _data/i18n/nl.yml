@@ -37,6 +37,7 @@ ui:
   thanks: "Dank je!"
   anonymous: "Anoniem"
   guestbook: "Notities van bezoekers"
+  loading: "Laden…"
   present: Heden
   role: M.Sc. ECE · NUS<br>Embodied AI · Robotleren
   colophon: Singapore

@@ -6,7 +6,16 @@
       {% if entry.preview_video %}
         {% comment %} Short muted loop hosted on this site (assets/video/) {% endcomment %}
         <div class="pub-media">
-          <video autoplay loop muted playsinline preload="metadata">
+          <video
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="metadata"
+            {% if entry.preview %}
+              poster="{{ entry.preview | prepend: '/assets/img/' | relative_url }}"
+            {% endif %}
+          >
             <source src="{{ entry.preview_video | prepend: '/assets/video/' | relative_url }}" type="video/mp4">
           </video>
         </div>

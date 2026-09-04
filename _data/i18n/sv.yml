@@ -37,6 +37,7 @@ ui:
   thanks: "Tack!"
   anonymous: "Anonym"
   guestbook: "Hälsningar från besökare"
+  loading: "Laddar…"
   present: nu
   role: M.Sc. ECE · NUS<br>Förkroppsligad AI · Robotinlärning
   colophon: Singapore

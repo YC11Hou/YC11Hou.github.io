@@ -37,6 +37,7 @@ ui:
   thanks: "Merci !"
   anonymous: "Anonyme"
   guestbook: "Mots des visiteurs"
+  loading: "Chargement…"
   present: Aujourd'hui
   role: M.Sc. ECE · NUS<br>IA incarnée · Apprentissage robotique
   colophon: Singapour
