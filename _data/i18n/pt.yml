@@ -34,7 +34,7 @@ ui:
 
 home:
   eyebrow: 01 — Sobre
-  tagline: Investigador em IA incorporada, a trabalhar em modelos visão-linguagem-ação, navegação aérea e aprendizagem por reforço para <em>robôs reais</em>.
+  tagline: "Investigador em IA incorporada: modelos visão-linguagem-ação, aprendizagem por reforço online e pós-treino para <em>robôs reais</em>."
   quote: "“The darkest hour is just before the dawn.”"
   bio1: "Sou estudante de mestrado em Engenharia Elétrica na National University of Singapore (NUS) e membro principal do <strong>NUS CORE Lab</strong> (COntrol, Robotics &amp; Artificial IntElligence). Trabalho em <strong>IA incorporada</strong>: como os robôs percebem, compreendem a linguagem e agem no mundo físico. O que mais me importa é o ciclo completo: não só o algoritmo, mas os dados, a infraestrutura e a implementação que o transformam em comportamento num robô real."
   bio2: "No verão de 2026 (1 de junho – 31 de agosto) fui <strong>engenheiro de algoritmos VLA (estagiário)</strong> na equipa do robô humanoide <strong>Omega</strong> da <strong>Honor</strong> em Xangai, onde participei na construção desta direção de raiz e fiquei responsável por várias das suas peças centrais. Liderei a cadeia de teleoperação e dados — tomada de controlo humana suave durante execuções autónomas, gravação a bordo com envio automático — e fechei um ciclo distribuído <strong>online SFT / online RL</strong> entre as placas de bordo do robô, um actor x86 e um servidor learner. Com essa infraestrutura montada, desenhei eu próprio as experiências: reproduzi RL offline do tipo <strong>RECAP</strong> e combinei-o com adaptação rápida no espaço do ruído, elevando substancialmente a taxa de sucesso em tarefas nunca cobertas pelos dados offline."

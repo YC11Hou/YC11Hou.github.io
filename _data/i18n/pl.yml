@@ -34,7 +34,7 @@ ui:
 
 home:
   eyebrow: 01 — O mnie
-  tagline: Badacz ucieleśnionej SI — modele wizja-język-akcja, nawigacja powietrzna i uczenie ze wzmocnieniem dla <em>prawdziwych robotów</em>.
+  tagline: "Badacz ucieleśnionej SI: modele wizja-język-akcja, uczenie ze wzmocnieniem online i post-training dla <em>prawdziwych robotów</em>."
   quote: "“The darkest hour is just before the dawn.”"
   bio1: "Jestem studentem studiów magisterskich z elektrotechniki na National University of Singapore (NUS) i kluczowym członkiem <strong>NUS CORE Lab</strong> (COntrol, Robotics &amp; Artificial IntElligence). Zajmuję się <strong>ucieleśnioną SI</strong>: tym, jak roboty postrzegają, rozumieją język i działają w świecie fizycznym. Najbardziej zależy mi na całej pętli — nie tylko na algorytmie, ale na danych, infrastrukturze i wdrożeniu, które zamieniają go w zachowanie prawdziwego robota."
   bio2: "Latem 2026 (1 czerwca – 31 sierpnia) byłem <strong>inżynierem algorytmów VLA (stażystą)</strong> w zespole robota humanoidalnego <strong>Omega</strong> firmy <strong>Honor</strong> w Szanghaju, gdzie współtworzyłem ten kierunek od podstaw i odpowiadałem za kilka jego kluczowych elementów. Prowadziłem potok teleoperacji i danych — płynne przejęcie sterowania przez człowieka podczas autonomicznych przebiegów, rejestrację na robocie z automatycznym przesyłaniem — i zamknąłem rozproszoną pętlę <strong>online SFT / online RL</strong> obejmującą pokładowe płyty robota, aktora x86 i serwer learnera. Mając tę infrastrukturę, sam projektowałem eksperymenty: odtworzyłem RL offline w stylu <strong>RECAP</strong> i połączyłem go z szybką adaptacją w przestrzeni szumu, co znacząco podniosło skuteczność na zadaniach nigdy nieobjętych danymi offline."

@@ -34,7 +34,7 @@ ui:
 
 home:
   eyebrow: 01 — 关于
-  tagline: 具身智能研究者，方向为视觉-语言-动作模型、空中导航，以及面向<em>真实机器人</em>的强化学习。
+  tagline: "具身智能研究者，方向为视觉-语言-动作模型、在线强化学习，以及面向<em>真实机器人</em>的后训练。"
   quote: "“The darkest hour is just before the dawn.”"
   bio1: "我是新加坡国立大学（NUS）电气工程专业硕士研究生，<strong>NUS CORE Lab</strong>（COntrol, Robotics &amp; Artificial IntElligence）核心成员，研究方向是<strong>具身智能</strong>——让机器人在物理世界中感知、理解语言并行动。我最在意的是整条闭环：不只是算法本身，还有把算法变成真机行为所需的数据、基础设施与部署。"
   bio2: "2026 年夏（6 月 1 日 – 8 月 31 日），我在<strong>荣耀</strong>上海 <strong>Omega</strong> 人形机器人团队担任 <strong>VLA 算法工程师（实习）</strong>，深度参与了该方向从 0 到 1 的建设，并承担其中多项核心工作：主导搭建遥操作与数据采集链路——自主执行中顺滑的人工接管、机器人端数据落盘与自动上传——并打通了跨机载板卡、x86 Actor 与 Learner 服务器的分布式 <strong>online SFT / online RL</strong> 闭环。基础设施成型后，我独立设计实验：复现 <strong>RECAP</strong> 类离线强化学习，并融合噪声空间快速适应，在离线数据未覆盖的任务上大幅提升成功率。"
