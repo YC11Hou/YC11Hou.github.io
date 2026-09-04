@@ -49,6 +49,25 @@
       });
     }
   });
+  // Publications: the "Video" link opens its own panel (and closes the abstract), not the abstract
+  Array.prototype.forEach.call(document.querySelectorAll("a.video-toggle"), function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      var entry = a.closest("li") || a.parentElement.parentElement;
+      var panel = entry.querySelector(".video.hidden");
+      var abs = entry.querySelector(".abstract.hidden");
+      if (abs) abs.classList.remove("open");
+      if (panel) {
+        var open = panel.classList.toggle("open");
+        var vid = panel.querySelector("video");
+        if (vid) {
+          if (open) vid.play().catch(function () {});
+          else vid.pause();
+        }
+      }
+    });
+  });
+
   document.addEventListener("i18n:applied", function () {
     Array.prototype.forEach.call(document.querySelectorAll(".video-loading"), function (b) {
       b.textContent = label();

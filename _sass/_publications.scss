@@ -368,6 +368,19 @@
         max-height: 100em;
       }
 
+      div.video.hidden.open {
+        margin-top: 0.6rem;
+
+        figure {
+          margin: 0;
+        }
+
+        video {
+          width: 100%;
+          border-radius: 4px;
+        }
+      }
+
       div.abstract.hidden.open {
         margin-top: 0.4rem;
         padding-left: 1rem;
