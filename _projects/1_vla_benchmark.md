@@ -9,6 +9,7 @@ org: nus
 i18n_key: langgap
 venue: IROS 2026
 scholar_id: u-x6o8ySG0sC
+scholar_cites: 7631014917581332933
 arxiv: 2603.00592
 meta: Oct 2025 – Jun 2026 · First author
 ---

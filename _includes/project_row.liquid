@@ -30,7 +30,7 @@
         {% if project.scholar_id and site.data.citations.papers[project.scholar_id] -%}
           <a
             class="pub-cites"
-            href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user={{ site.data.socials.scholar_userid }}&citation_for_view={{ site.data.socials.scholar_userid }}:{{ project.scholar_id }}"
+            href="{% if project.scholar_cites %}https://scholar.google.com/scholar?cites={{ project.scholar_cites }}{% else %}https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}{% endif %}"
             target="_blank"
             rel="noopener"
             title="Google Scholar"

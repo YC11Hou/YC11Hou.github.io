@@ -46,7 +46,7 @@
       {% if citation_count != null %}
         <a
           class="pub-cites"
-          href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user={{ site.data.socials.scholar_userid }}&citation_for_view={{ site.data.socials.scholar_userid }}:{{ entry.google_scholar_id }}"
+          href="{% if entry.google_scholar_cites %}https://scholar.google.com/scholar?cites={{ entry.google_scholar_cites }}{% else %}https://scholar.google.com/citations?view_op=view_citation&hl=en&user={{ site.data.socials.scholar_userid }}&citation_for_view={{ site.data.socials.scholar_userid }}:{{ entry.google_scholar_id }}{% endif %}"
           target="_blank"
           rel="noopener"
           title="Google Scholar"

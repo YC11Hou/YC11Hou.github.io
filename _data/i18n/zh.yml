@@ -35,9 +35,9 @@ home:
   eyebrow: 01 — 关于
   tagline: 具身智能研究者，方向为视觉-语言-动作模型、空中导航，以及面向<em>真实机器人</em>的强化学习。
   quote: "“黎明之前，夜最黑。”"
-  bio1: 我是新加坡国立大学（NUS）电气工程专业硕士研究生，<strong>NUS CORE Lab</strong>（COntrol, Robotics &amp; Artificial IntElligence）核心成员，研究方向为<strong>具身智能</strong>与机器人自主决策。我以第一作者/合作作者身份完成的两篇论文 <strong>LangGap</strong> 与 <strong>AION</strong> 已被 <strong>IROS 2026</strong> 录用。
-  bio2: 2026 年夏（6 月 1 日 – 8 月 31 日），我在<strong>荣耀（Honor）</strong>担任 <strong>VLA 算法工程师（实习）</strong>，参与自研 <strong>Omega 人形机器人</strong>的研发：遥操作数据采集、回放、训练与真机部署，并针对自定义操作任务开展 VLA 模型的<strong>在线强化学习</strong>算法研究——搭建了完整的人在回路 <strong>online SFT / online RL</strong> 流水线（平滑的遥操作接管、干预数据流水线，以及跨机载 AGX/NX 板卡、x86 主机与开发服务器的分布式 Actor–Learner 架构），并研究 RECAP 式离线 RL 结合噪声空间快速适应，以应对离线训练未覆盖的任务。此外，我的研究还涵盖面向语言理解的<strong>视觉-语言-动作（VLA）</strong>模型基准测试、面向空中机器人的<strong>视觉-语言导航（VLN）</strong>，以及复杂三维环境中的<strong>端到端强化学习</strong>；同时具备 <strong>ROS2</strong>、SLAM 与真机部署等机器人开发经验。
-  bio3: 进入 NUS 之前，我在南京航空航天大学（NUAA）获得电子信息工程（电子与通信工程）学士学位。
+  bio1: "我是新加坡国立大学（NUS）电气工程专业硕士研究生，<strong>NUS CORE Lab</strong>（COntrol, Robotics &amp; Artificial IntElligence）核心成员，研究方向是<strong>具身智能</strong>——让机器人在物理世界中感知、理解语言并行动。我最在意的是整条闭环：不只是算法本身，还有把算法变成真机行为所需的数据、基础设施与部署。"
+  bio2: "2026 年夏（6 月 1 日 – 8 月 31 日），我在<strong>荣耀</strong>上海人形机器人团队担任 <strong>VLA 算法工程师（实习）</strong>，深度参与了该方向从 0 到 1 的建设，并承担其中多项核心工作：主导搭建遥操作与数据采集链路——自主执行中顺滑的人工接管、机器人端数据落盘与自动上传——并打通了跨机载板卡、x86 Actor 与 Learner 服务器的分布式 <strong>online SFT / online RL</strong> 闭环。基础设施成型后，我独立设计实验：复现 <strong>RECAP</strong> 类离线强化学习，并融合噪声空间快速适应，在离线数据未覆盖的任务上大幅提升成功率。"
+  bio3: "一年内我产出了两篇 <strong>IROS 2026</strong> 录用论文。作为 <strong>LangGap</strong> 第一作者，我揭示了当前最先进的 VLA 模型高分却大量忽视语言指令的问题，并提出语义扰动评测基准与同场景多任务训练来弥合这一鸿沟；在 <strong>AION</strong> 中，我负责设计与训练纯视觉探索策略，实现无人机零样本室内目标导航。进入 NUS 之前，我在南京航空航天大学（NUAA）攻读电子与通信工程。"
   news: 02 — 动态
   papers: 03 — 代表论文
   work: 04 — 代表项目
