@@ -33,12 +33,12 @@ ninja.data = [{
         },{id: "news-two-papers-accepted-to-iros-2026-langgap-first-author-and-aion-co-author",
           title: '🎉 Two papers accepted to IROS 2026: LangGap (first author) and AION (co-author)....',
           description: "",
-          section: "News",},{id: "news-completed-my-vla-algorithm-internship-at-honor-omega-humanoid-robot",
-          title: 'Completed my VLA algorithm internship at Honor (Omega humanoid robot).',
+          section: "News",},{id: "news-completed-my-vla-algorithm-internship-at-honor-humanoid-robot",
+          title: 'Completed my VLA algorithm internship at Honor (humanoid robot).',
           description: "",
-          section: "News",},{id: "projects-honor-omega-humanoid-online-rl-for-vla",
-          title: 'Honor Omega Humanoid: Online RL for VLA',
-          description: "VLA Algorithm Engineer Intern at Honor (Jun 1 – Aug 31, 2026). Built a human-in-the-loop online SFT / online RL pipeline for Honor&#39;s self-developed Omega humanoid robot — smooth teleoperator takeover, an intervention-driven data pipeline, and a distributed Actor–Learner–Robot learning loop.",
+          section: "News",},{id: "projects-honor-humanoid-online-rl-for-vla",
+          title: 'Honor Humanoid: Online RL for VLA',
+          description: "VLA Algorithm Engineer Intern at Honor (Jun 1 – Aug 31, 2026). Built a human-in-the-loop online SFT / online RL pipeline for Honor&#39;s self-developed humanoid robot — smooth teleoperator takeover, an intervention-driven data pipeline, and a distributed Actor–Learner–Robot learning loop.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/0_honor_internship/";
             },},{id: "projects-langgap-vla-language-understanding-benchmark",
