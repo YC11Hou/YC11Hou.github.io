@@ -10,22 +10,22 @@ ninja.data = [{
       window.location.href = "/";
     },
   },{id: "nav-publications",
-          title: "publications",
-          description: "",
+          title: "Publications",
+          description: "Peer-reviewed papers. Underlined name marks my authorship.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/publications/";
           },
         },{id: "nav-projects",
-          title: "projects",
-          description: "",
+          title: "Projects",
+          description: "Research and engineering work, organised by degree stage.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/projects/";
           },
         },{id: "nav-experience",
-          title: "experience",
-          description: "",
+          title: "Experience",
+          description: "Internships and education, most recent first.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/experience/";
