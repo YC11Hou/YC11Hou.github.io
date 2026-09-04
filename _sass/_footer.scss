@@ -1,56 +1,39 @@
 /*******************************************************************************
- * Footer styles
+ * Footer — a single hairline row at the end of the content column
  ******************************************************************************/
 
-footer.fixed-bottom {
-  background-color: var(--global-footer-bg-color);
-  font-size: 0.75rem;
-  z-index: 1030;
+@use "variables" as v;
 
-  .container {
-    color: var(--global-footer-text-color);
-    padding-top: 9px;
-    padding-bottom: 8px;
-    text-align: center;
-  }
+.site-footer {
+  width: 100%;
+  max-width: v.$content-width;
+  margin: 0 auto;
+  padding: 1.6rem 3.4rem 2.2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--rule);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
 
   a {
-    color: var(--global-footer-link-color);
+    color: var(--ink-2);
+    text-decoration: none;
 
     &:hover {
-      color: var(--global-theme-color);
+      color: var(--accent);
       text-decoration: none;
     }
   }
 }
 
-footer.sticky-bottom {
-  border-top: 1px solid var(--global-divider-color);
-  margin-top: 3rem;
-  padding-top: 28px;
-  padding-bottom: 28px;
-  font-size: 0.8rem;
-  color: var(--global-text-color-light);
-
-  .container {
-    text-align: center;
-    color: var(--global-text-color-light);
-  }
-
-  a {
-    color: var(--global-text-color);
-
-    &:hover {
-      color: var(--global-theme-color);
-      text-decoration: none;
-    }
+/* purgecss start ignore */
+@media (max-width: (v.$rail-bp - 0.02px)) {
+  .site-footer {
+    padding: 1.4rem 1.25rem 1.6rem;
   }
 }
-
-// On mobile, hide footer to make room for the frosted glass bottom nav
-@media (max-width: 767.98px) {
-  footer.sticky-bottom,
-  footer.fixed-bottom {
-    display: none !important;
-  }
-}
+/* purgecss end ignore */

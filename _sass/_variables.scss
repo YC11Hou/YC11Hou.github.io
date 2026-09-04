@@ -1,11 +1,15 @@
 /*******************************************************************************
  * Variables used throughout the theme.
- * To adjust anything, simply edit the variables below and rebuild the theme.
  ******************************************************************************/
 
 @use "sass:color";
 
-// Colors
+// Layout
+$rail-width: 268px !default; // fixed identity rail on the left
+$rail-bp: 900px !default; // below this the rail folds into topbar + dock
+$content-width: 920px !default;
+
+// Legacy colour names still referenced by inherited partials
 $red-color: #ff3636 !default;
 $red-color-dark: #b71c1c !default;
 $orange-color: #f29105 !default;
@@ -32,8 +36,6 @@ $grey-900: #212529;
 $white-color: #ffffff !default;
 $black-color: #000000 !default;
 
-// Theme colors
-
 $code-bg-color-light: rgba($purple-color, 0.05);
 $code-bg-color-dark: #2c3237 !default;
 
@@ -48,5 +50,5 @@ $back-to-top-diameter: 40px;
 $back-to-top-height: $back-to-top-diameter;
 $back-to-top-width: $back-to-top-diameter;
 
-// Max width default
+// Max width default (kept for main.scss `with` clause)
 $max-content-width: 930px !default;

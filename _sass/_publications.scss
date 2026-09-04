@@ -1,5 +1,6 @@
 /*******************************************************************************
- * Publication and bibliography styles
+ * Publications — numbered editorial list. Venue as a mono tag, title in the
+ * display face, links as plain uppercase mono text.
  ******************************************************************************/
 
 @use "variables" as v;
@@ -7,33 +8,27 @@
 .publications {
   margin-top: 0;
 
-  h1 {
-    color: var(--global-text-color);
-    font-size: 2rem;
-    text-align: center;
-    margin-top: 1em;
-    margin-bottom: 1em;
-  }
-
-  h2 {
-    margin-bottom: 1rem;
-
-    span {
-      font-size: 1.5rem;
-    }
-  }
-
+  // Year headings on /publications/
   h2.bibliography {
-    color: var(--global-text-color);
-    border-bottom: 1px solid var(--global-divider-color);
-    border-top: none;
-    padding-top: 0.5rem;
-    padding-bottom: 0.3rem;
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-    text-align: left;
-    font-size: 1.4rem;
-    font-weight: 600;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 2.6rem 0 0.4rem;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.5rem;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    border: 0;
+    padding: 0;
+
+    &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+      align-self: center;
+    }
   }
 
   h2.bibliography:first-child {
@@ -43,193 +38,223 @@
   ol.bibliography {
     list-style: none;
     padding: 0;
-    margin-top: 0;
+    margin: 0;
+    counter-reset: pub;
 
     li {
-      margin-bottom: 1rem;
-      padding: 1rem 0;
-      border-radius: 16px;
-      border-bottom: none;
-      transition: background-color 0.25s ease;
+      counter-increment: pub;
+      position: relative;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--rule);
 
-      // Roomy hover rows on desktop only (negative margins would overflow on mobile)
-      @media (min-width: 768px) {
-        padding: 1rem;
-        margin-left: -1rem;
-        margin-right: -1rem;
+      &:last-child {
+        border-bottom: 1px solid var(--rule);
+      }
 
-        &:hover {
-          background-color: var(--global-tint-color);
+      // Bootstrap grid inside bib.liquid → two-column grid: tag | body
+      .row {
+        display: grid;
+        grid-template-columns: 6rem minmax(0, 1fr);
+        gap: 0 1.6rem;
+        margin: 0;
+
+        > div {
+          flex: none;
+          max-width: none;
+          width: auto;
+          padding: 0;
+          min-width: 0;
         }
       }
 
-      .preview {
-        display: inline-block;
-      }
-
       .abbr {
-        margin-bottom: 0.5rem;
+        margin: 0;
+        padding-top: 0.35rem;
 
-        abbr {
+        abbr,
+        abbr.badge {
           display: inline-block;
-          background-color: var(--global-theme-color);
-          margin-bottom: 0.5rem;
-          color: #fff !important;
-          border-radius: 999px;
-          padding: 0.35em 1em;
-          font-size: 0.72rem;
-          font-weight: 700;
-          letter-spacing: 0.07em;
+          font-family: var(--font-mono);
+          font-size: 0.64rem;
+          font-weight: 500;
+          letter-spacing: 0.12em;
           text-transform: uppercase;
+          text-decoration: none;
+          color: var(--ink) !important;
+          background: transparent !important;
+          border: 1px solid var(--rule-strong);
+          border-radius: 3px;
+          padding: 0.3em 0.55em;
+          line-height: 1;
+          cursor: default;
 
-          a {
-            color: white;
-
-            &:hover {
-              text-decoration: none;
-            }
+          a,
+          div {
+            color: inherit;
+            text-decoration: none;
           }
         }
 
         .award {
-          color: var(--global-theme-color) !important;
-          border: 1px solid var(--global-theme-color);
+          color: var(--accent) !important;
+          border-color: var(--accent);
         }
       }
 
+      .preview {
+        display: block;
+        margin-top: 0.8rem;
+        border-radius: 4px;
+      }
+
       .title {
-        font-weight: 600;
-        font-size: 1.05rem;
-        line-height: 1.45;
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: 1.3rem;
+        line-height: 1.3;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+        text-wrap: pretty;
       }
 
       .author {
-        font-size: 0.9rem;
+        margin-top: 0.4rem;
+        font-size: 0.92rem;
+        color: var(--ink-2);
 
         a {
-          border-bottom: 1px dashed var(--global-theme-color);
+          color: var(--ink-2);
+          border-bottom: 1px dashed var(--rule-strong);
 
           &:hover {
+            color: var(--accent);
             border-bottom-style: solid;
             text-decoration: none;
           }
         }
 
         > em {
-          border-bottom: 1px solid;
           font-style: normal;
+          color: var(--ink);
+          border-bottom: 1.5px solid var(--accent);
         }
 
         > span.more-authors {
-          color: var(--global-text-color-light);
-          border-bottom: 1px dashed var(--global-text-color-light);
+          color: var(--muted);
+          border-bottom: 1px dashed var(--muted);
           cursor: pointer;
 
           &:hover {
-            color: var(--global-text-color);
-            border-bottom: 1px dashed var(--global-text-color);
+            color: var(--ink);
           }
         }
       }
 
       .periodical {
-        font-size: 0.9rem;
+        margin-top: 0.15rem;
+        font-size: 0.86rem;
+        color: var(--muted);
+
+        em {
+          font-style: normal;
+        }
+
+        &:empty {
+          display: none;
+        }
       }
 
       .links {
-        margin-top: 0.5rem;
+        margin-top: 0.75rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem 1.25rem;
 
         a.btn {
-          color: var(--global-text-color);
-          border: 1px solid var(--global-divider-color);
-          border-radius: 999px;
-          padding: 0.2rem 0.85rem;
-          margin-left: 0;
-          margin-bottom: 0.25rem;
-          font-size: 0.75rem;
+          margin: 0;
+          padding: 0;
+          border: 0;
+          border-radius: 0;
+          background: none;
+          box-shadow: none;
+          font-family: var(--font-mono);
+          font-size: 0.68rem;
           font-weight: 500;
-          letter-spacing: 0.03em;
-          transition:
-            color 0.2s ease,
-            background-color 0.2s ease,
-            border-color 0.2s ease;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: var(--accent);
+          line-height: 1.6;
+          border-bottom: 1px solid transparent;
+          transition: border-color 0.18s ease;
 
-          &:hover {
-            color: #fff;
-            background-color: var(--global-theme-color);
-            border-color: var(--global-theme-color);
+          &:hover,
+          &:focus {
+            color: var(--accent);
+            background: none;
+            border-bottom-color: var(--accent);
+            text-decoration: none;
           }
         }
+
         a.award.btn {
-          border-color: var(--global-highlight-color);
+          color: var(--ink);
         }
       }
 
       .badges {
         padding-bottom: 0.5rem;
+
         span {
           display: inline-block;
-          color: v.$black-color;
           height: 100%;
           padding-right: 0.5rem;
           vertical-align: middle;
-
-          &:hover {
-            text-decoration: underline;
-          }
         }
       }
 
+      // Collapsible abstract / bibtex blocks
       .hidden {
-        font-size: 0.875rem;
-        max-height: 0px;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        max-height: 0;
         overflow: hidden;
-        text-align: justify;
-        transition-property: 0.15s ease;
-        -moz-transition: 0.15s ease;
-        -ms-transition: 0.15s ease;
-        -o-transition: 0.15s ease;
-        transition: all 0.15s ease;
+        transition: all 0.2s ease;
+        color: var(--ink-2);
 
         p {
-          line-height: 1.4em;
-          margin: 10px;
+          margin: 0.9rem 0 0.2rem;
         }
 
         pre {
-          font-size: 1em;
-          line-height: 1.4em;
+          font-size: 0.8em;
+          line-height: 1.45;
           padding: 10px;
         }
       }
 
       .hidden.open {
         max-height: 100em;
-        transition-property: 0.15s ease;
-        -moz-transition: 0.15s ease;
-        -ms-transition: 0.15s ease;
-        -o-transition: 0.15s ease;
-        transition: all 0.15s ease;
-      }
-
-      div.abstract.hidden {
-        border: dashed 1px var(--global-bg-color);
       }
 
       div.abstract.hidden.open {
-        border-color: var(--global-text-color);
+        margin-top: 0.4rem;
+        padding-left: 1rem;
+        border-left: 2px solid var(--rule-strong);
       }
-    }
-    div.award.hidden {
-      border: dashed 1px var(--global-bg-color);
-    }
-    div.award.hidden.open {
-      border-color: var(--global-highlight-color);
     }
   }
 }
 
 .citation,
 .citation-number {
-  color: var(--global-theme-color);
+  color: var(--accent);
 }
+
+/* purgecss start ignore */
+@media (max-width: 575.98px) {
+  .publications ol.bibliography li .row {
+    grid-template-columns: 1fr;
+    gap: 0.6rem 0;
+  }
+}
+/* purgecss end ignore */

@@ -5,6 +5,8 @@ description: Built a robust pipeline to generate various 3D paths in the Habitat
 preview_video: /assets/video/vln_highlights.mp4
 importance: 3
 category: master
+org: nus
+meta: Habitat · Aerial VLN dataset pipeline
 github: https://github.com/YC11Hou/habitat-aerial-nav
 ---
 

@@ -1,42 +1,52 @@
 ---
 layout: page
-title: projects
+title: Projects
 permalink: /projects/
-description:
+description: Research and engineering work, organised by degree stage.
 nav: true
 nav_order: 2
-display_categories: [internship, master, bachelor]
-horizontal: true
+eyebrow: 03 — Projects
 ---
 
 <!-- pages/projects.md -->
 <div class="projects">
-{% if site.enable_project_categories and page.display_categories %}
-  <!-- Display categorized projects -->
-  {% for category in page.display_categories %}
-  <a id="{{ category }}" href=".#{{ category }}">
-    <h2 class="category">{{ category }}</h2>
-  </a>
-  {% assign categorized_projects = site.projects | where: "category", category %}
-  {% assign sorted_projects = categorized_projects | sort: "importance" %}
-  <!-- Generate cards for each project -->
-  <div class="row row-cols-1">
-    {% for project in sorted_projects %}
-      {% include projects_horizontal.liquid %}
-    {% endfor %}
-  </div>
-  {% endfor %}
+  {% comment %} ---------- Master's ---------- {% endcomment %}
+  <section class="proj-stage" id="master">
+    <header class="proj-stage-head">
+      <h2 class="proj-stage-title">Master's</h2>
+      <span class="proj-stage-period mono">2025 — present</span>
+    </header>
 
-{% else %}
+    <div class="proj-group">
+      <h3 class="proj-group-title mono">National University of Singapore <span class="proj-group-note">Research · NUS Advanced Control Lab</span></h3>
+      {% assign nus_projects = site.projects | where: "org", "nus" | sort: "importance" %}
+      {% for project in nus_projects %}
+        {% include project_row.liquid %}
+      {% endfor %}
+    </div>
 
-<!-- Display projects without categories -->
+    <div class="proj-group">
+      <h3 class="proj-group-title mono">Honor Device Co., Ltd. <span class="proj-group-note">Summer internship · Shanghai</span></h3>
+      {% assign honor_projects = site.projects | where: "org", "honor" | sort: "importance" %}
+      {% for project in honor_projects %}
+        {% include project_row.liquid %}
+      {% endfor %}
+    </div>
+  </section>
 
-{% assign sorted_projects = site.projects | sort: "importance" %}
+  {% comment %} ---------- Bachelor's ---------- {% endcomment %}
+  <section class="proj-stage" id="bachelor">
+    <header class="proj-stage-head">
+      <h2 class="proj-stage-title">Bachelor's</h2>
+      <span class="proj-stage-period mono">2021 — 2025</span>
+    </header>
 
-  <div class="row row-cols-1">
-    {% for project in sorted_projects %}
-      {% include projects_horizontal.liquid %}
-    {% endfor %}
-  </div>
-{% endif %}
+    <div class="proj-group">
+      <h3 class="proj-group-title mono">Nanjing University of Aeronautics and Astronautics <span class="proj-group-note">Electronic & Communication Engineering</span></h3>
+      {% assign nuaa_projects = site.projects | where: "org", "nuaa" | sort: "importance" %}
+      {% for project in nuaa_projects %}
+        {% include project_row.liquid %}
+      {% endfor %}
+    </div>
+  </section>
 </div>

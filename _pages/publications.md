@@ -1,8 +1,9 @@
 ---
 layout: page
 permalink: /publications/
-title: publications
-description:
+title: Publications
+description: Peer-reviewed papers. Underlined name marks my authorship.
+eyebrow: 02 — Publications
 nav: true
 nav_order: 1
 ---

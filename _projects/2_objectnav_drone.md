@@ -6,6 +6,8 @@ img: assets/img/aion_thumbnail.jpg
 video: https://www.youtube.com/embed/TgsUm6bb7zg
 importance: 2
 category: master
+org: nus
+meta: IROS 2026 · Co-author
 ---
 
 <p class="project-links">

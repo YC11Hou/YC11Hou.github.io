@@ -1,8 +1,9 @@
 ---
 layout: experience
 permalink: /experience/
-title: experience
+title: Experience
 nav: true
 nav_order: 3
-description:
+eyebrow: 04 — Experience
+description: Internships and education, most recent first.
 ---

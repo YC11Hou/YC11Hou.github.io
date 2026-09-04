@@ -1,0 +1,20 @@
+{% comment %}
+  Compact project tile for the home-page "Selected work" grid. Expects `project` in scope.
+{% endcomment %}
+{% assign project_href = project.redirect | default: project.url | relative_url %}
+<a class="work-tile" href="{{ project_href }}">
+  <span class="work-media">
+    {% if project.preview_video %}
+      <video autoplay loop muted playsinline preload="metadata">
+        <source src="{{ project.preview_video | relative_url }}" type="video/mp4">
+      </video>
+    {% elsif project.img %}
+      <img src="{{ project.img | relative_url }}" alt="" loading="lazy">
+    {% endif %}
+  </span>
+  {% if project.meta -%}
+    <span class="work-meta mono">{{ project.meta }}</span>
+  {%- endif %}
+  <span class="work-title">{{ project.title }}</span>
+  <span class="work-desc">{{ project.description }}</span>
+</a>

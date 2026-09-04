@@ -1,7 +1,8 @@
 ---
 layout: page
-title: news
+title: News
 permalink: /news/
+eyebrow: Archive
 ---
 
 {% include news.liquid %}

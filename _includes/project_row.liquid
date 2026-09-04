@@ -1,0 +1,38 @@
+{% comment %}
+  One project as a full-width editorial row: media on the left, text on the right.
+  Expects `project` in scope. Used on /projects/.
+{% endcomment %}
+{% assign project_href = project.redirect | default: project.url | relative_url %}
+<article class="proj-row">
+  <a class="proj-media" href="{{ project_href }}" aria-label="{{ project.title }}">
+    {% if project.preview_video %}
+      <video autoplay loop muted playsinline preload="metadata">
+        <source src="{{ project.preview_video | relative_url }}" type="video/mp4">
+      </video>
+    {% elsif project.img %}
+      <img src="{{ project.img | relative_url }}" alt="" loading="lazy">
+    {% elsif project.video %}
+      <iframe
+        src="{{ project.video }}?autoplay=1&mute=1&loop=1&playlist={{ project.video | split: '/' | last }}"
+        allow="autoplay"
+        allowfullscreen
+        title="{{ project.title }}"
+      ></iframe>
+    {% endif %}
+  </a>
+  <div class="proj-body">
+    {% if project.meta %}
+      <p class="proj-meta mono">{{ project.meta }}</p>
+    {% endif %}
+    <h4 class="proj-title">
+      <a href="{{ project_href }}">{{ project.title }}</a>
+    </h4>
+    <p class="proj-desc">{{ project.description }}</p>
+    <p class="proj-links">
+      <a class="proj-more" href="{{ project_href }}">Read more <span aria-hidden="true">→</span></a>
+      {% if project.github %}
+        <a class="proj-code" href="{{ project.github }}" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Code</a>
+      {% endif %}
+    </p>
+  </div>
+</article>

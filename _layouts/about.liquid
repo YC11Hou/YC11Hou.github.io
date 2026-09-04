@@ -1,87 +1,64 @@
 ---
 layout: default
 ---
-<div class="post">
-  <!-- Section 1: Hero -->
-  <div class="about-hero">
-    <img class="about-hero-bg" src="{{ '/assets/img/hero_castle.jpg' | relative_url }}" alt="" aria-hidden="true">
-    <div class="about-hero-scrim"></div>
-    <div class="about-hero-inner">
-      <div class="about-hero-left">
-        {% assign profile_image_path = 'assets/img/prof_pic_web.jpg' %}
-        {% assign profile_image_class = 'hero-avatar rounded-circle' %}
-        {%
-          include figure.liquid loading="eager" path=profile_image_path class=profile_image_class alt="Yuchen Hou"
-          cache_bust=true
-        %}
-        <h1 class="hero-name">Yuchen Hou</h1>
-        <p class="hero-subtitle">M.Sc. ECE, National University of Singapore</p>
-      </div>
-      <div class="hero-quote-card">
-        <p class="quote-text">"The darkest hour is just before the dawn."</p>
-      </div>
-    </div>
-    <span class="hero-credit">Neuschwanstein · photo: Thomas Wolf, CC BY-SA 3.0 DE</span>
-  </div>
+<div class="home">
+  <!-- Opening statement -->
+  <header class="home-opening">
+    <p class="eyebrow mono">01 — About</p>
+    <h1 class="home-title">{{ page.tagline }}</h1>
+  </header>
 
-  <article>
-    <!-- Section 2: About Me -->
-    <h2 class="section-heading">About Me</h2>
-    <div class="clearfix">{{ content }}</div>
+  <!-- Scenic banner with the personal motto -->
+  <figure class="home-banner">
+    <img src="{{ '/assets/img/hero_castle.jpg' | relative_url }}" alt="" aria-hidden="true">
+    <figcaption>
+      <p class="home-quote">“The darkest hour is just before the dawn.”</p>
+      <span class="home-credit mono">Neuschwanstein · photo: Thomas Wolf, CC BY-SA 3.0 DE</span>
+    </figcaption>
+  </figure>
 
-    <!-- Section 3: Contact -->
-    <h2 class="section-heading">Contact</h2>
-    <div class="about-contact">
-      {% if site.data.socials.email %}
-        <div class="contact-item">
-          <i class="fa-solid fa-envelope"></i>
-          <a href="mailto:{{ site.data.socials.email }}">{{ site.data.socials.email }}</a>
-        </div>
-      {% endif %}
-      {% if site.data.socials.github_username %}
-        <div class="contact-item">
-          <i class="fa-brands fa-github"></i>
-          <a href="https://github.com/{{ site.data.socials.github_username }}" target="_blank" rel="noopener noreferrer"
-            >github.com/{{ site.data.socials.github_username -}}
-          </a>
-        </div>
-      {% endif %}
-      {% if site.data.socials.linkedin_username %}
-        <div class="contact-item">
-          <i class="fa-brands fa-linkedin"></i>
-          <a href="https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}" target="_blank" rel="noopener noreferrer"
-            >linkedin.com/in/{{ site.data.socials.linkedin_username -}}
-          </a>
-        </div>
-      {% endif %}
-    </div>
+  <!-- Bio -->
+  <section class="section" id="bio">
+    <div class="prose lede">{{ content }}</div>
+  </section>
 
-    <!-- Section 4: News -->
-    {% if page.announcements and page.announcements.enabled %}
-      <h2 class="section-heading">
-        <a href="{{ '/news/' | relative_url }}" style="color: inherit">News</a>
-      </h2>
+  <!-- News -->
+  {% if page.announcements and page.announcements.enabled %}
+    <section class="section" id="news">
+      <h2 class="section-label mono"><span>02 — News</span><a class="section-more" href="{{ '/news/' | relative_url }}">All news</a></h2>
       {% include news.liquid limit=true %}
-    {% endif %}
+    </section>
+  {% endif %}
 
-    <!-- Latest posts -->
-    {% if page.latest_posts and page.latest_posts.enabled %}
-      <h2 class="section-heading">
-        <a href="{{ '/blog/' | relative_url }}" style="color: inherit">Latest Posts</a>
-      </h2>
-      {% include latest_posts.liquid %}
-    {% endif %}
-
-    <!-- Selected papers -->
-    {% if page.selected_papers %}
-      <h2 class="section-heading">
-        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">Selected Publications</a>
+  <!-- Selected publications -->
+  {% if page.selected_papers %}
+    <section class="section" id="papers">
+      <h2 class="section-label mono">
+        <span>03 — Selected publications</span><a class="section-more" href="{{ '/publications/' | relative_url }}">All publications</a>
       </h2>
       {% include selected_papers.liquid %}
-    {% endif %}
+    </section>
+  {% endif %}
 
-    {% if site.newsletter and site.newsletter.enabled and site.footer_fixed %}
-      {% include newsletter.liquid center=true %}
-    {% endif %}
-  </article>
+  <!-- Selected work -->
+  <section class="section" id="work">
+    <h2 class="section-label mono">
+      <span>04 — Selected work</span><a class="section-more" href="{{ '/projects/' | relative_url }}">All projects</a>
+    </h2>
+    <div class="work-grid">
+      {% assign featured = site.projects | where: 'category', 'master' | sort: 'importance' %}
+      {% for project in featured %}
+        {% include project_tile.liquid %}
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Closing contact line -->
+  <section class="section home-contact" id="contact">
+    <h2 class="section-label mono"><span>05 — Contact</span></h2>
+    <p class="home-contact-line">
+      Open to research collaborations and PhD opportunities in embodied AI. Reach me at
+      <a href="mailto:{{ site.data.socials.email }}">{{ site.data.socials.email }}</a>.
+    </p>
+  </section>
 </div>

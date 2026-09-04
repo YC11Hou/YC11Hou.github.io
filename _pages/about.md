@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Master Student, <a href='https://cde.nus.edu.sg/ece/'>Department of Electrical and Computer Engineering</a>, National University of Singapore
+tagline: Embodied AI researcher working on vision-language-action models, aerial navigation, and reinforcement learning for <em>real robots</em>.
 
 selected_papers: true
 

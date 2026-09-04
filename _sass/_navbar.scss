@@ -1,230 +1,12 @@
 /*******************************************************************************
- * Navigation bar and header customization
+ * Narrow-screen navigation — the floating glass dock.
+ * (Desktop navigation is the rail; see _layout.scss.)
  ******************************************************************************/
 
 @use "variables" as v;
 
-.navbar {
-  box-shadow: none;
-  border-bottom: 1px solid var(--global-divider-color);
-  background-color: var(--global-bg-color);
-  padding-left: env(safe-area-inset-left, 0px);
-  padding-right: env(safe-area-inset-right, 0px);
-
-  // Frosted glass (Apple-style) when supported
-  @supports ((-webkit-backdrop-filter: blur(20px)) or (backdrop-filter: blur(20px))) {
-    background-color: var(--global-navbar-bg);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    backdrop-filter: saturate(180%) blur(20px);
-  }
-
-  .navbar-nav .nav-link {
-    font-weight: 500;
-    font-size: 0.95rem;
-    letter-spacing: -0.01em;
-    transition: color 0.2s ease;
-  }
-}
-
-.navbar .dropdown-menu,
-.btn-group.dropdown .dropdown-menu {
-  background-color: var(--global-bg-color);
-  border: 1px solid var(--global-divider-color);
-
-  a:not(.active) {
-    color: var(--global-text-color);
-  }
-
-  a:hover {
-    color: var(--global-hover-color);
-  }
-
-  .dropdown-divider {
-    border-top: 1px solid var(--global-divider-color) !important;
-  }
-}
-
-.dropdown-item {
-  color: var(--global-text-color);
-
-  &:hover {
-    color: var(--global-hover-color);
-    background-color: var(--global-bg-color);
-  }
-}
-
-.dropdown-item.active,
-.dropdown-item:active {
-  background-color: var(--global-hover-color);
-  color: var(--global-hover-text-color) !important;
-
-  &:hover {
-    color: var(--global-hover-text-color);
-  }
-}
-
-.navbar.navbar-light {
-  a {
-    &:hover {
-      text-decoration: none;
-    }
-  }
-
-  .navbar-brand {
-    color: var(--global-text-color);
-  }
-
-  .navbar-nav .nav-item .nav-link {
-    color: var(--global-text-color);
-
-    &:hover {
-      color: var(--global-hover-color);
-    }
-  }
-
-  .navbar-nav .nav-item.active > .nav-link {
-    background-color: inherit;
-    font-weight: bolder;
-    color: var(--global-theme-color);
-
-    &:hover {
-      color: var(--global-hover-color);
-    }
-  }
-
-  .navbar-brand.social {
-    padding-bottom: 0;
-    padding-top: 0;
-    font-size: 1.7rem;
-
-    a {
-      img {
-        width: 1.7rem;
-        height: 1.7rem;
-        margin-bottom: 0.5rem;
-        // margin: 0.5rem;
-      }
-
-      svg {
-        width: 1.7rem;
-        height: 1.7rem;
-        margin-bottom: 0.5rem;
-
-        image {
-          width: 1.7rem;
-          height: 1.7rem;
-        }
-      }
-
-      i::before {
-        color: var(--global-text-color);
-        transition-property: all 0.2s ease-in-out;
-      }
-
-      &:hover {
-        i::before {
-          color: var(--global-theme-color);
-        }
-      }
-    }
-  }
-}
-
-// Mobile: left-align nav items when collapsed
-@media (max-width: 767.98px) {
-  .navbar-collapse {
-    text-align: left;
-  }
-
-  .navbar-nav {
-    margin-left: 0 !important;
-    padding-left: 1rem;
-  }
-
-  .navbar-nav .nav-link {
-    padding-left: 0;
-  }
-}
-
-.navbar-toggler {
-  .icon-bar {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background-color: var(--global-text-color);
-    border-radius: 1px;
-    margin-bottom: 4px;
-    transition: all 0.2s;
-  }
-
-  .top-bar {
-    transform: rotate(45deg);
-    transform-origin: 10% 10%;
-  }
-
-  .middle-bar {
-    opacity: 0;
-  }
-
-  .bottom-bar {
-    transform: rotate(-45deg);
-    transform-origin: 10% 90%;
-  }
-}
-
-.navbar-toggler.collapsed {
-  .top-bar {
-    transform: rotate(0);
-  }
-
-  .middle-bar {
-    opacity: 1;
-  }
-
-  .bottom-bar {
-    transform: rotate(0);
-  }
-}
-
-#light-toggle {
-  padding: 0;
-  border: 0;
-  background-color: inherit;
-  color: var(--global-text-color);
-  /* Fix footprint to prevent navbar shifting when icon changes */
-  width: 2rem;
-  height: 2rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  &:hover {
-    color: var(--global-hover-color);
-  }
-}
-
-@media (min-width: 576px) {
-  #light-toggle {
-    transform: translateY(4px);
-  }
-}
-
-#search-toggle {
-  padding: 0;
-  border: 0;
-  background-color: inherit;
-  color: var(--global-text-color);
-
-  &:hover {
-    color: var(--global-hover-color);
-  }
-}
-
-/*******************************************************************************
- * Mobile bottom navigation — Apple liquid-glass dock
- ******************************************************************************/
-
 .mobile-bottom-nav {
+  display: none;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -235,7 +17,21 @@
   pointer-events: none; // dock itself catches events, not the strip
 }
 
-// The dock — a floating translucent capsule of liquid glass
+/* purgecss start ignore */
+@media (max-width: (v.$rail-bp - 0.02px)) {
+  .mobile-bottom-nav {
+    display: block;
+  }
+
+  // Lift back-to-top above the dock so it never overlaps the Theme button
+  #back-to-top {
+    bottom: calc(92px + env(safe-area-inset-bottom, 0px)) !important;
+    right: 16px !important;
+  }
+}
+/* purgecss end ignore */
+
+// The dock — a floating translucent capsule
 .mobile-bottom-nav-bar {
   position: relative;
   display: flex;
@@ -246,22 +42,21 @@
   border-radius: 31px;
   pointer-events: auto;
   touch-action: none; // the dock owns its gestures (drag-to-select)
-  // iOS: no text selection / long-press link preview stealing the drag
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   user-select: none;
-  background: linear-gradient(rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04)), rgba(255, 255, 255, 0.5);
-  -webkit-backdrop-filter: blur(34px) saturate(200%);
-  backdrop-filter: blur(34px) saturate(200%);
-  border: 0.5px solid rgba(255, 255, 255, 0.55);
+  background: linear-gradient(rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04)), rgba(255, 253, 249, 0.55);
+  -webkit-backdrop-filter: blur(34px) saturate(180%);
+  backdrop-filter: blur(34px) saturate(180%);
+  border: 0.5px solid rgba(255, 255, 255, 0.6);
   box-shadow:
-    0 16px 44px rgba(0, 0, 0, 0.18),
-    0 2px 8px rgba(0, 0, 0, 0.08),
+    0 16px 44px rgba(23, 22, 26, 0.16),
+    0 2px 8px rgba(23, 22, 26, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.75),
     inset 0 -1px 0 rgba(0, 0, 0, 0.04);
   overflow: hidden;
 
-  // Specular sweep along the top edge — the "liquid" sheen
+  // Specular sweep along the top edge
   &::before {
     content: "";
     position: absolute;
@@ -272,7 +67,7 @@
     pointer-events: none;
   }
 
-  // Soft caustic pooling along the bottom edge
+  // Soft pooling along the bottom edge
   &::after {
     content: "";
     position: absolute;
@@ -283,7 +78,7 @@
   }
 }
 
-// Sliding pill marking the active tab — draggable liquid glass
+// Sliding pill marking the active tab — draggable
 .mobile-nav-glass-indicator {
   position: absolute;
   top: 6px;
@@ -292,18 +87,17 @@
   border-radius: 25px;
   opacity: 0;
   pointer-events: none;
-  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.55));
+  background: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.6));
   border: 0.5px solid rgba(255, 255, 255, 0.95);
   box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.12),
+    0 4px 12px rgba(23, 22, 26, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 1);
   transition: scale 0.2s ease;
 
-  // While the finger holds it, the glass swells slightly — like lifting a droplet
   &.dragging {
     scale: 1.04 1.12;
     box-shadow:
-      0 8px 22px rgba(0, 0, 0, 0.2),
+      0 8px 22px rgba(23, 22, 26, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 1);
   }
 }
@@ -319,12 +113,14 @@
   flex: 1 0 0;
   min-width: 56px;
   padding: 6px 4px;
-  color: var(--global-text-color);
+  color: var(--ink);
   opacity: 0.5;
   text-decoration: none;
-  font-size: 0.58rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   transition:
     color 0.25s ease,
     opacity 0.25s ease,
@@ -341,35 +137,25 @@
   white-space: nowrap;
 
   i {
-    font-size: 1.15rem;
-    margin-bottom: 2px;
+    font-size: 1.1rem;
+    margin-bottom: 3px;
     transition: transform 0.25s ease;
   }
 
   &:hover,
   &:focus {
     text-decoration: none;
-    color: var(--global-theme-color);
+    color: var(--accent);
     opacity: 0.85;
   }
 
-  // Press feedback — subtle squish, like iOS
   &:active {
     transform: scale(0.92);
   }
 
-  &.active {
-    color: var(--global-theme-color);
-    opacity: 1;
-
-    i {
-      transform: scale(1.08);
-    }
-  }
-
-  // Highlighted while the glass is dragged over it
+  &.active,
   &.drag-hover {
-    color: var(--global-theme-color);
+    color: var(--accent);
     opacity: 1;
 
     i {
@@ -378,42 +164,22 @@
   }
 }
 
-// Vertical divider between nav items and theme toggle
 .mobile-bottom-nav-divider {
   width: 1px;
   height: 28px;
-  background: var(--global-divider-color);
-  opacity: 0.4;
+  background: var(--rule-strong);
+  opacity: 0.6;
   flex: 0 0 auto;
 }
 
-// Theme toggle button (inside the bar, same style as nav items)
 .mobile-bottom-nav-theme-btn {
-  // Glass indicator should not cover this
+  // same footprint as nav items; the glass pill never covers it
 }
 
-// Add bottom padding to body on mobile so content is not hidden behind the bar
-@media (max-width: 767.98px) {
-  body {
-    padding-bottom: 80px;
-  }
-}
-
-// Hide the hamburger toggler and collapse menu on mobile (replaced by bottom nav)
-@media (max-width: 767.98px) {
-  .navbar-toggler {
-    display: none !important;
-  }
-
-  .navbar-collapse {
-    display: none !important;
-  }
-}
-
-// Dark mode adjustments
+// Dark mode
 html[data-theme="dark"] {
   .mobile-bottom-nav-bar {
-    background: linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01)), rgba(24, 24, 26, 0.55);
+    background: linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01)), rgba(24, 24, 28, 0.6);
     border-color: rgba(255, 255, 255, 0.14);
     box-shadow:
       0 12px 36px rgba(0, 0, 0, 0.55),
@@ -445,13 +211,5 @@ html[data-theme="dark"] {
 
   .mobile-bottom-nav-divider {
     background: rgba(255, 255, 255, 0.15);
-  }
-}
-
-// Back-to-top: lift it above the dock on mobile so it never overlaps the Theme button
-@media (max-width: 767.98px) {
-  #back-to-top {
-    bottom: calc(92px + env(safe-area-inset-bottom, 0px)) !important;
-    right: 16px !important;
   }
 }

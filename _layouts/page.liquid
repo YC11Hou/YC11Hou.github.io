@@ -8,10 +8,22 @@ layout: default
   </style>
 {% endif %}
 
-<div class="post">
-  <article>
+<article class="page">
+  <header class="page-head">
+    {% if page.eyebrow %}
+      <p class="eyebrow mono">{{ page.eyebrow }}</p>
+    {% elsif page.meta %}
+      <p class="eyebrow mono">{{ page.meta }}</p>
+    {% endif %}
+    <h1 class="page-title">{{ page.title }}</h1>
+    {% if page.description %}
+      <p class="page-desc">{{ page.description }}</p>
+    {% endif %}
+  </header>
+
+  <div class="prose">
     {{ content }}
-  </article>
+  </div>
 
   {% if page.related_publications %}
     <h2>References</h2>
@@ -23,4 +35,4 @@ layout: default
   {% if site.giscus and page.giscus_comments %}
     {% include giscus.liquid %}
   {% endif %}
-</div>
+</article>

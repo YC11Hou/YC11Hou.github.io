@@ -1,0 +1,83 @@
+{% comment %}
+  Desktop identity rail — fixed to the left edge. Holds name, role, numbered
+  section nav, contact links and the search / theme tools.
+{% endcomment %}
+<aside class="site-rail" aria-label="Site navigation">
+  <div class="rail-top">
+    <a class="rail-identity" href="{{ '/' | relative_url }}">
+      <img class="rail-avatar" src="{{ '/assets/img/prof_pic_web.jpg' | relative_url }}" alt="Yuchen Hou" width="72" height="72">
+      <span class="rail-name">Yuchen Hou</span>
+      <span class="rail-role mono"
+        >M.Sc. ECE · NUS<br>
+        Embodied AI · Robot learning</span
+      >
+    </a>
+
+    <nav class="rail-nav">
+      <ol>
+        <li class="{% if page.permalink == '/' %}active{% endif %}">
+          <a href="{{ '/' | relative_url }}"><span class="rail-idx mono">01</span>About</a>
+        </li>
+        {% assign sorted_pages = site.pages | sort: 'nav_order' %}
+        {% assign idx = 1 %}
+        {% for p in sorted_pages %}
+          {% if p.nav and p.autogen == null and p.dropdown == null and p.permalink != '/' %}
+            {% assign idx = idx | plus: 1 %}
+            {% assign parent_link = p.permalink | remove: 'index.html' %}
+            <li class="{% if page.url contains parent_link %}active{% endif %}">
+              <a href="{{ p.url | relative_url }}"
+                ><span class="rail-idx mono">{{ idx | prepend: '0' | slice: -2, 2 }}</span>{{ p.title -}}
+              </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ol>
+    </nav>
+  </div>
+
+  <div class="rail-bottom">
+    <ul class="rail-contact">
+      {% if site.data.socials.email %}
+        <li>
+          <a href="mailto:{{ site.data.socials.email }}" title="Email"><i class="fa-solid fa-envelope"></i><span>Email</span></a>
+        </li>
+      {% endif %}
+      {% if site.data.socials.github_username %}
+        <li>
+          <a href="https://github.com/{{ site.data.socials.github_username }}" target="_blank" rel="noopener" title="GitHub"
+            ><i class="fa-brands fa-github"></i><span>GitHub</span></a
+          >
+        </li>
+      {% endif %}
+      {% if site.data.socials.linkedin_username %}
+        <li>
+          <a href="https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}" target="_blank" rel="noopener" title="LinkedIn"
+            ><i class="fa-brands fa-linkedin-in"></i><span>LinkedIn</span></a
+          >
+        </li>
+      {% endif %}
+      <li>
+        <a href="{{ '/assets/pdf/CV_Yuchen_Hou.pdf' | relative_url }}" target="_blank" rel="noopener" title="CV (PDF)"
+          ><i class="fa-solid fa-file-arrow-down"></i><span>CV</span></a
+        >
+      </li>
+    </ul>
+
+    <div class="rail-tools">
+      {% if site.search_enabled %}
+        <button id="search-toggle" class="rail-tool" title="Search (⌘K)" onclick="openSearchModal()">
+          <i class="fa-solid fa-magnifying-glass"></i><span class="mono">⌘K</span>
+        </button>
+      {% endif %}
+      {% if site.enable_darkmode %}
+        <button id="light-toggle" class="rail-tool" title="Change theme">
+          <i class="fa-half-sun-moon" id="light-toggle-system"></i>
+          <i class="fa-solid fa-moon" id="light-toggle-dark"></i>
+          <i class="fa-solid fa-sun" id="light-toggle-light"></i>
+        </button>
+      {% endif %}
+    </div>
+
+    <p class="rail-colophon mono">Singapore · {{ site.time | date: '%Y' }}</p>
+  </div>
+</aside>

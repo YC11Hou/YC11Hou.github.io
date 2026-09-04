@@ -1,26 +1,28 @@
 /******************************************************************************
- * Content
+ * Page shell: identity rail (left) + content column (right).
+ * Below $rail-bp the rail disappears; a slim topbar and the bottom dock take over.
  ******************************************************************************/
 
 @use "variables" as v;
 
-body {
-  padding-bottom: 120px;
-  color: var(--global-text-color);
-  background-color: var(--global-bg-color);
-  font-family:
-    "Inter",
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Display",
-    "Segoe UI",
-    Roboto,
-    Helvetica,
-    Arial,
-    sans-serif;
+html {
+  scroll-behavior: smooth;
+}
+
+body.site-body {
+  margin: 0;
+  padding: 0;
+  color: var(--ink);
+  background-color: var(--bg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  font-feature-settings:
+    "kern" 1,
+    "liga" 1;
 
   h1,
   h2,
@@ -28,69 +30,538 @@ body {
   h4,
   h5,
   h6 {
-    scroll-margin-top: 66px;
-  }
-
-  // Ambient light — faint color glows so the canvas never reads as flat
-  // pure white / pure black. Fixed so it doesn't scroll; behind everything.
-  &::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background:
-      radial-gradient(52rem 36rem at 85% -8%, var(--global-ambient-1), transparent 62%),
-      radial-gradient(46rem 32rem at -12% 28%, var(--global-ambient-2), transparent 62%),
-      radial-gradient(40rem 30rem at 108% 82%, var(--global-ambient-2), transparent 65%);
+    scroll-margin-top: 1.5rem;
   }
 }
 
-body.fixed-top-nav {
-  // Add some padding for the nav-bar.
-  padding-top: 57px;
-}
+// ---------------------------------------------------------------------------
+// Identity rail
+// ---------------------------------------------------------------------------
 
-body.sticky-bottom-footer {
-  // Remove padding below footer.
-  padding-bottom: 0;
-}
+.site-rail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: v.$rail-width;
+  padding: 2.6rem 1.9rem 1.6rem 2.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid var(--rule);
+  background-color: var(--bg);
+  z-index: 20;
+  overflow-y: auto;
+  scrollbar-width: none;
 
-.container {
-  max-width: v.$max-content-width;
-}
-
-// Profile
-.profile {
-  img {
-    width: 100%;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
-// Page header (used by about layout)
-.post-header {
-  margin-bottom: 0.8rem;
+.rail-identity {
+  display: block;
+  text-decoration: none;
+  color: inherit;
 
-  .post-title {
-    font-size: 1.8rem;
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+
+    .rail-name {
+      color: var(--accent);
+    }
+  }
+}
+
+.rail-avatar {
+  display: block;
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid var(--rule-strong);
+  margin-bottom: 1.1rem;
+}
+
+.rail-name {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.6rem;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  transition: color 0.2s ease;
+}
+
+.rail-role {
+  display: block;
+  margin-top: 0.55rem;
+  font-size: 0.66rem;
+  line-height: 1.55;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.rail-nav {
+  margin-top: 2.6rem;
+
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    border-top: 1px solid var(--rule);
+
+    &:last-child {
+      border-bottom: 1px solid var(--rule);
+    }
+  }
+
+  a {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    padding: 0.62rem 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    text-transform: capitalize;
+    color: var(--ink-2);
+    text-decoration: none;
+    transition: color 0.18s ease;
+
+    &:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+  }
+
+  .rail-idx {
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    width: 1.4rem;
+    flex: none;
+  }
+
+  li.active a {
+    color: var(--ink);
     font-weight: 600;
-    margin-bottom: 0.2rem;
+
+    .rail-idx {
+      color: var(--accent);
+    }
+
+    &::after {
+      content: "";
+      margin-left: auto;
+      width: 0.42rem;
+      height: 0.42rem;
+      border-radius: 50%;
+      background: var(--accent);
+      align-self: center;
+    }
   }
 }
 
-// Content layout uses Bootstrap's grid system with responsive columns
-// Main content flows naturally through container-mt-5 and Bootstrap grid classes
-// See _layouts/default.liquid and _includes/projects.liquid for examples
+.rail-bottom {
+  margin-top: 2rem;
+}
 
-/******************************************************************************
- * Publications
- ******************************************************************************/
+.rail-contact {
+  list-style: none;
+  margin: 0 0 1.2rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.9rem;
 
-// Publications layout is defined in _includes/bib_search.liquid
-// Uses jekyll-scholar for BibTeX parsing and Bootstrap cards for display
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--ink-2);
+    text-decoration: none;
+    transition: color 0.18s ease;
 
-/*****************************************************************************
-* Projects
-*****************************************************************************/
+    i {
+      font-size: 0.8rem;
+      color: var(--muted);
+      transition: color 0.18s ease;
+    }
 
-// TODO: redefine projects layout.
+    &:hover {
+      color: var(--accent);
+      text-decoration: none;
+
+      i {
+        color: var(--accent);
+      }
+    }
+  }
+}
+
+.rail-tools {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.1rem;
+}
+
+.rail-tool {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  height: 2rem;
+  min-width: 2rem;
+  padding: 0 0.6rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-2);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    color 0.18s ease,
+    background-color 0.18s ease;
+
+  .mono {
+    font-size: 0.66rem;
+    letter-spacing: 0.04em;
+  }
+
+  &:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background-color: var(--accent-soft);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+.rail-colophon {
+  margin: 0;
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+// ---------------------------------------------------------------------------
+// Topbar (narrow screens only)
+// ---------------------------------------------------------------------------
+
+.site-topbar {
+  display: none;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.15rem;
+  padding-left: calc(1.15rem + env(safe-area-inset-left, 0px));
+  padding-right: calc(1.15rem + env(safe-area-inset-right, 0px));
+  border-bottom: 1px solid var(--rule);
+  background-color: var(--global-navbar-bg);
+  -webkit-backdrop-filter: saturate(160%) blur(16px);
+  backdrop-filter: saturate(160%) blur(16px);
+
+  .topbar-name {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .topbar-search {
+    border: 0;
+    background: none;
+    color: var(--ink-2);
+    font-size: 0.95rem;
+    padding: 0.3rem;
+    cursor: pointer;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Main content column
+// ---------------------------------------------------------------------------
+
+.site-main {
+  margin-left: v.$rail-width;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-content {
+  flex: 1;
+  width: 100%;
+  max-width: v.$content-width;
+  margin: 0 auto;
+  padding: 4.2rem 3.4rem 3rem;
+}
+
+// ---------------------------------------------------------------------------
+// Shared building blocks: labels, page heads, prose
+// ---------------------------------------------------------------------------
+
+.mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum" 1;
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.section {
+  margin-top: 4.25rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.section-label {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin: 0 0 1.4rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+
+  > span:first-child {
+    color: var(--ink);
+  }
+
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+    align-self: center;
+    order: 1;
+  }
+
+  .section-more {
+    order: 2;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.18s ease;
+
+    &:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+  }
+}
+
+.page-head {
+  margin-bottom: 2.8rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.page-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.1rem, 3.6vw, 2.9rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.page-desc {
+  margin: 1.1rem 0 0;
+  max-width: 62ch;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+// Long-form text (about bio, project detail pages, news archive)
+.prose {
+  font-size: 1rem;
+  line-height: 1.72;
+  color: var(--ink-2);
+
+  p {
+    margin: 0 0 1.15rem;
+  }
+
+  strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: rgba(181, 70, 31, 0.35);
+    text-underline-offset: 0.16em;
+    transition: text-decoration-color 0.18s ease;
+
+    &:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
+  }
+
+  h2 {
+    margin: 2.8rem 0 1rem;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.7rem;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+
+  h3 {
+    margin: 2rem 0 0.7rem;
+    font-size: 1.02rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+
+  ul,
+  ol {
+    padding-left: 1.3rem;
+    margin: 0 0 1.15rem;
+
+    li {
+      margin-bottom: 0.35rem;
+    }
+  }
+
+  img,
+  video {
+    max-width: 100%;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.45;
+    margin: 0.6rem 0 1rem;
+
+    th,
+    td {
+      padding: 0.45rem 0.7rem;
+      border-bottom: 1px solid var(--rule);
+      text-align: left;
+      color: var(--ink-2);
+      vertical-align: top;
+    }
+
+    th {
+      font-weight: 600;
+      color: var(--ink);
+      border-bottom: 1px solid var(--rule-strong);
+      letter-spacing: 0.02em;
+    }
+
+    strong {
+      color: var(--accent);
+    }
+  }
+
+  small {
+    display: block;
+    margin-top: 0.4rem;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  // Inline table headings on project pages (`<strong>Cross-Model Benchmark</strong>`)
+  .media-row > div > strong {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+}
+
+// The opening paragraph of the bio is set larger, in the display face
+.prose.lede > p:first-child {
+  font-family: var(--font-display);
+  font-size: 1.42rem;
+  line-height: 1.42;
+  letter-spacing: -0.008em;
+  color: var(--ink);
+  margin-bottom: 1.4rem;
+
+  strong {
+    font-weight: 500;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Narrow screens: rail folds away
+// ---------------------------------------------------------------------------
+
+/* purgecss start ignore */
+@media (max-width: (v.$rail-bp - 0.02px)) {
+  .site-rail {
+    display: none;
+  }
+
+  .site-topbar {
+    display: flex;
+  }
+
+  .site-main {
+    margin-left: 0;
+  }
+
+  .site-content {
+    padding: 2rem 1.25rem 2rem;
+  }
+
+  .section {
+    margin-top: 3.2rem;
+  }
+
+  .page-head {
+    margin-bottom: 2rem;
+    padding-bottom: 1.4rem;
+  }
+
+  .prose.lede > p:first-child {
+    font-size: 1.22rem;
+  }
+
+  body.site-body {
+    padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+  }
+}
+/* purgecss end ignore */

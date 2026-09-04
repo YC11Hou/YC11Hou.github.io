@@ -1,40 +1,58 @@
 /*******************************************************************************
- * Themes
+ * Themes — design tokens.
+ *
+ * The site's own tokens are the short names (--bg, --ink, --accent …). The
+ * --global-* names are kept as aliases so any theme partial that still reads
+ * them (search modal, code blocks, back-to-top) picks up the same palette.
  ******************************************************************************/
 @use "variables" as v;
 @use "sass:color";
 
 :root {
   color-scheme: light;
-  --global-bg-color: #f5f5f7;
-  --global-ambient-1: rgba(0, 102, 204, 0.055);
-  --global-ambient-2: rgba(88, 86, 214, 0.045);
-  --global-code-bg-color: #{v.$code-bg-color-light};
-  --global-text-color: #1d1d1f;
-  --global-text-color-light: #6e6e73;
-  --global-theme-color: #0066cc;
-  --global-hover-color: #0055aa;
-  --global-hover-text-color: #{v.$white-color};
-  --global-footer-bg-color: #{v.$grey-color-dark};
-  --global-footer-text-color: #{v.$grey-color-light};
-  --global-footer-link-color: #{v.$white-color};
-  --global-distill-app-color: #{v.$grey-color};
-  --global-divider-color: rgba(0, 0, 0, 0.08);
-  --global-card-bg-color: #{v.$white-color};
-  --global-tint-color: rgba(0, 102, 204, 0.07);
-  --global-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 6px 18px rgba(0, 0, 0, 0.05);
-  --global-card-shadow-hover: 0 2px 5px rgba(0, 0, 0, 0.04), 0 14px 32px rgba(0, 0, 0, 0.09);
-  --global-navbar-bg: rgba(245, 245, 247, 0.72);
-  --global-highlight-color: #{v.$red-color-dark};
-  --global-back-to-top-bg-color: rgba(
-    #{color.channel(v.$black-color, "red", v.$space: rgb)},
-    #{color.channel(v.$black-color, "green", v.$space: rgb)},
-    #{color.channel(v.$black-color, "blue", v.$space: rgb)},
-    0.4
-  );
-  --global-back-to-top-text-color: #{v.$white-color};
-  --global-newsletter-bg-color: #{v.$white-color};
-  --global-newsletter-text-color: #{v.$black-color};
+
+  // Warm paper + ink + a single rust accent
+  --bg: #f4f1ea;
+  --bg-elev: #faf8f3;
+  --surface: #fffdf9;
+  --ink: #17161a;
+  --ink-2: #45434c;
+  --muted: #7b7884;
+  --rule: #ddd8cc;
+  --rule-strong: #c6c0b2;
+  --accent: #b5461f;
+  --accent-ink: #8f3616;
+  --accent-soft: rgba(181, 70, 31, 0.1);
+  --logo-well: #ffffff;
+  --shadow: 0 1px 2px rgba(23, 22, 26, 0.04), 0 10px 30px rgba(23, 22, 26, 0.06);
+
+  --font-display: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  // Aliases for inherited partials
+  --global-bg-color: var(--bg);
+  --global-code-bg-color: rgba(181, 70, 31, 0.06);
+  --global-text-color: var(--ink);
+  --global-text-color-light: var(--muted);
+  --global-theme-color: var(--accent);
+  --global-hover-color: var(--accent-ink);
+  --global-hover-text-color: #fff;
+  --global-footer-bg-color: var(--bg);
+  --global-footer-text-color: var(--muted);
+  --global-footer-link-color: var(--ink);
+  --global-distill-app-color: var(--muted);
+  --global-divider-color: var(--rule);
+  --global-card-bg-color: var(--surface);
+  --global-tint-color: var(--accent-soft);
+  --global-card-shadow: var(--shadow);
+  --global-card-shadow-hover: var(--shadow);
+  --global-navbar-bg: rgba(244, 241, 234, 0.85);
+  --global-highlight-color: var(--accent);
+  --global-back-to-top-bg-color: rgba(23, 22, 26, 0.55);
+  --global-back-to-top-text-color: #fff;
+  --global-newsletter-bg-color: var(--surface);
+  --global-newsletter-text-color: var(--ink);
 
   --global-tip-block: #42b983;
   --global-tip-block-bg: #e2f5ec;
@@ -82,34 +100,25 @@
 
 html[data-theme="dark"] {
   color-scheme: dark;
-  --global-bg-color: #17171c;
-  --global-ambient-1: rgba(41, 151, 255, 0.07);
-  --global-ambient-2: rgba(125, 95, 255, 0.055);
-  --global-code-bg-color: #{v.$code-bg-color-dark};
-  --global-text-color: #f5f5f7;
-  --global-text-color-light: #a1a1a6;
-  --global-theme-color: #2997ff;
-  --global-hover-color: #52b0ff;
-  --global-hover-text-color: #{v.$white-color};
-  --global-footer-bg-color: #{v.$grey-color-light};
-  --global-footer-text-color: #{v.$grey-color-dark};
-  --global-footer-link-color: #{v.$black-color};
-  --global-distill-app-color: #{v.$grey-color-light};
-  --global-divider-color: #3a3a44;
-  --global-card-bg-color: #212127;
-  --global-tint-color: rgba(41, 151, 255, 0.12);
-  --global-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 8px 24px rgba(0, 0, 0, 0.35);
-  --global-card-shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.3), 0 16px 40px rgba(0, 0, 0, 0.5);
-  --global-navbar-bg: rgba(23, 23, 28, 0.72);
-  --global-back-to-top-bg-color: rgba(
-    #{color.channel(v.$white-color, "red", v.$space: rgb)},
-    #{color.channel(v.$white-color, "green", v.$space: rgb)},
-    #{color.channel(v.$white-color, "blue", v.$space: rgb)},
-    0.5
-  );
-  --global-back-to-top-text-color: #{v.$black-color};
-  --global-newsletter-bg-color: #{v.$grey-color-light};
-  --global-newsletter-text-color: #{v.$grey-color-dark};
+
+  --bg: #131316;
+  --bg-elev: #18181c;
+  --surface: #1c1c21;
+  --ink: #ebe8e0;
+  --ink-2: #bfbcb4;
+  --muted: #8a8791;
+  --rule: #2a2a31;
+  --rule-strong: #3b3b44;
+  --accent: #e8794a;
+  --accent-ink: #f09a74;
+  --accent-soft: rgba(232, 121, 74, 0.14);
+  --logo-well: #f4f1ea;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px rgba(0, 0, 0, 0.4);
+
+  --global-code-bg-color: #26262c;
+  --global-navbar-bg: rgba(19, 19, 22, 0.85);
+  --global-back-to-top-bg-color: rgba(235, 232, 224, 0.5);
+  --global-back-to-top-text-color: #131316;
 
   --global-tip-block: #42b983;
   --global-tip-block-bg: #215d42;
@@ -145,11 +154,6 @@ html[data-theme-setting="dark"] {
   #light-toggle-light {
     display: none;
   }
-
-  #back-to-top {
-    color: var(--global-back-to-top-text-color);
-    background: var(--global-back-to-top-bg-color);
-  }
 }
 
 html[data-theme-setting="light"] {
@@ -166,10 +170,10 @@ html[data-theme-setting="light"] {
   }
 }
 
+// Half sun / half moon glyph for the "system" theme state
 .fa-half-sun-moon {
   position: relative;
   display: inline-block;
-
   --fa-font: var(--fa-font-solid);
   speak: none;
   font-style: normal;
@@ -177,7 +181,6 @@ html[data-theme-setting="light"] {
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   width: 1em;
   height: 1em;
 }
@@ -191,30 +194,18 @@ html[data-theme-setting="light"] {
   bottom: -0.5px;
   text-align: center;
   line-height: 1em;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   font: var(--fa-font);
+  color: currentColor;
 }
 
-/* Left half: MOON */
 .fa-half-sun-moon::before {
   content: "\f111";
-  color: var(--global-text-color);
   clip-path: polygon(0 0, calc(50% - 0.5px) 0, calc(50% - 0.5px) 100%, 0 100%);
 }
 
-/* Right half: SUN */
 .fa-half-sun-moon::after {
   content: "\f185";
-  color: var(--global-text-color);
   clip-path: polygon(calc(50% + 0.5px) 0, 100% 0, 100% 100%, calc(50% + 0.5px) 100%);
-  right: -1.5px; /* slight overflow to avoid right-edge clipping */
-  transform: translateX(-1px); /* visually re-center the sun half */
-}
-
-#light-toggle:hover .fa-half-sun-moon::before {
-  color: var(--global-theme-color);
-}
-
-#light-toggle:hover .fa-half-sun-moon::after {
-  color: var(--global-theme-color);
+  right: -1.5px;
+  transform: translateX(-1px);
 }

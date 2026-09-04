@@ -5,6 +5,8 @@ description: Led a team to develop an autonomous exploration system using ROS2 a
 img: assets/img/p1_robot_real.jpg
 importance: 4
 category: bachelor
+org: nuaa
+meta: ROS 2 · Jetson Orin NX · Team lead
 ---
 
 ## Demo
