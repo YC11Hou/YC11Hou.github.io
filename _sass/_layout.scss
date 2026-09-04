@@ -43,12 +43,20 @@ body.site-body {
 // hover / selected fills, and a footer with the utility controls.
 // ---------------------------------------------------------------------------
 
+:root {
+  --rail-w: #{v.$rail-width};
+}
+
+html[data-rail="collapsed"] {
+  --rail-w: 64px;
+}
+
 .site-rail {
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
-  width: v.$rail-width;
+  width: var(--rail-w);
   padding: 18px 12px 14px;
   display: flex;
   flex-direction: column;
@@ -62,6 +70,49 @@ body.site-body {
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+// Width transitions only while toggling (not on load)
+html.rail-animating .site-rail,
+html.rail-animating .site-main {
+  transition:
+    width 0.22s cubic-bezier(0.32, 0.72, 0, 1),
+    margin-left 0.22s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+// --- Collapse toggle ------------------------------------------------------
+
+.rail-collapse {
+  position: absolute;
+  top: 18px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 7px;
+  background: none;
+  color: var(--muted);
+  font-size: 13px;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity 0.14s ease,
+    background-color 0.14s ease,
+    color 0.14s ease;
+
+  &:hover {
+    color: var(--ink);
+    background-color: var(--row-hover);
+  }
+}
+
+.site-rail:hover .rail-collapse,
+.rail-collapse:focus-visible,
+html[data-rail="collapsed"] .rail-collapse {
+  opacity: 1;
 }
 
 // --- Identity header ------------------------------------------------------
@@ -311,6 +362,95 @@ body.site-body {
   color: var(--muted);
 }
 
+// --- Collapsed: icons only ------------------------------------------------
+
+html[data-rail="collapsed"] {
+  .site-rail {
+    padding: 14px 10px 12px;
+    align-items: center;
+  }
+
+  .rail-collapse {
+    position: static;
+    margin: 0 0 6px;
+  }
+
+  .rail-identity {
+    grid-template-columns: 40px;
+    padding: 2px;
+    margin-bottom: 4px;
+  }
+
+  .rail-id-text,
+  .rail-label,
+  .rail-group a span,
+  .rail-ext,
+  .rail-tool-search span,
+  .rail-tool-search kbd,
+  .lang-current,
+  .rail-colophon {
+    display: none;
+  }
+
+  .rail-group {
+    width: 100%;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--rule);
+
+    a {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      width: 44px;
+      height: 40px;
+      margin: 0 auto;
+      padding: 0;
+      border-radius: 9px;
+
+      i {
+        font-size: 15px;
+      }
+    }
+  }
+
+  .rail-nav {
+    border-top: 0;
+    padding-top: 0;
+    margin-top: 2px;
+  }
+
+  .rail-foot {
+    width: 100%;
+    padding-top: 10px;
+  }
+
+  .rail-tools {
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .rail-tool {
+    width: 40px;
+    min-width: 0;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .rail-tool-search {
+    flex: none;
+  }
+
+  .lang-menu {
+    display: block;
+  }
+
+  .lang-list {
+    right: auto;
+    left: 0;
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Topbar (narrow screens only)
 // ---------------------------------------------------------------------------
@@ -365,7 +505,7 @@ body.site-body {
 // ---------------------------------------------------------------------------
 
 .site-main {
-  margin-left: v.$rail-width;
+  margin-left: var(--rail-w);
   min-height: 100vh;
   display: flex;
   flex-direction: column;

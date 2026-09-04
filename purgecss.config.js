@@ -45,6 +45,7 @@ module.exports = {
       /light-toggle/,
       /lang-/,
       /pagenav/,
+      /rail-animating/,
       /i18n/,
       /topbar/,
       /fa-half-sun-moon/,
