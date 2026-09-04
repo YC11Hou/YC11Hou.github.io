@@ -946,3 +946,10 @@ ul.task-list input[type="checkbox"] {
     color: var(--muted);
   }
 }
+
+// Dates and meta sit in the same head line; a middle dot separates them
+.proj-head .proj-meta[data-i18n]::before,
+.proj-head .work-meta[data-i18n]::before {
+  content: "· ";
+  color: var(--muted);
+}
