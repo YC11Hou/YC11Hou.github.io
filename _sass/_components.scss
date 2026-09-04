@@ -377,6 +377,7 @@ html[data-theme="dark"] .home-banner img {
 .proj-links {
   margin: 0;
   display: flex;
+  align-items: baseline;
   gap: 1.4rem;
   font-family: var(--font-mono);
   font-size: 0.68rem;
@@ -842,22 +843,49 @@ ul.task-list input[type="checkbox"] {
   display: none;
 }
 
+// Inline variant (link rows): reads exactly like the neighbouring text links —
+// same mono size, same baseline, no pill.
 .likes-inline .like-btn {
-  height: 1.55rem;
-  padding: 0 0.6rem 0 0.5rem;
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-family: var(--font-mono);
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
   background: none;
-  border-color: var(--rule);
+  gap: 0.35rem;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  line-height: 1.6;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.18s ease;
+
+  i {
+    font-size: 0.72rem;
+    align-self: center;
+  }
 
   .like-count {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--ink);
   }
 
   .like-label {
     display: none;
+  }
+
+  &:hover {
+    border-bottom-color: var(--accent);
+  }
+
+  &.liked {
+    background: none;
+    border-color: transparent;
   }
 }
 
