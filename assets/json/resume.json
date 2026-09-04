@@ -10,7 +10,23 @@
       "city": "Singapore",
       "countryCode": "SG"
     },
-    "profiles": []
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "YC11Hou",
+        "url": "https://github.com/YC11Hou"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "yuchen-hou-115025355",
+        "url": "https://www.linkedin.com/in/yuchen-hou-115025355"
+      },
+      {
+        "network": "Google Scholar",
+        "username": "4oFdrl8AAAAJ",
+        "url": "https://scholar.google.com/citations?user=4oFdrl8AAAAJ"
+      }
+    ]
   },
   "work": [
     {

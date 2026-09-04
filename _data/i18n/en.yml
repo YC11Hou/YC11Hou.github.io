@@ -17,6 +17,7 @@ ui:
   email: Email
   github: GitHub
   linkedin: LinkedIn
+  scholar: Google Scholar
   cv: CV
   read_more: Read more
   code: Code
