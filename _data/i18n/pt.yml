@@ -37,7 +37,7 @@ home:
   tagline: "Investigador em IA incorporada: modelos visão-linguagem-ação, aprendizagem por reforço online e pós-treino para <em>robôs reais</em>."
   quote: "“The darkest hour is just before the dawn.”"
   bio1: "Sou estudante de mestrado em Engenharia Elétrica na National University of Singapore (NUS) e membro principal do <strong>NUS CORE Lab</strong> (COntrol, Robotics &amp; Artificial IntElligence). Trabalho em <strong>IA incorporada</strong>: como os robôs percebem, compreendem a linguagem e agem no mundo físico. O que mais me importa é o ciclo completo: não só o algoritmo, mas os dados, a infraestrutura e a implementação que o transformam em comportamento num robô real."
-  bio2: "No verão de 2026 (1 de junho – 31 de agosto) fui <strong>engenheiro de algoritmos VLA (estagiário)</strong> na equipa do robô humanoide <strong>Omega</strong> da <strong>Honor</strong> em Xangai, onde participei na construção desta direção de raiz e fiquei responsável por várias das suas peças centrais. Liderei a cadeia de teleoperação e dados — tomada de controlo humana suave durante execuções autónomas, gravação a bordo com envio automático — e fechei um ciclo distribuído <strong>online SFT / online RL</strong> entre as placas de bordo do robô, um actor x86 e um servidor learner. Com essa infraestrutura montada, desenhei eu próprio as experiências: reproduzi RL offline do tipo <strong>RECAP</strong> e combinei-o com adaptação rápida no espaço do ruído, elevando substancialmente a taxa de sucesso em tarefas nunca cobertas pelos dados offline."
+  bio2: "No verão de 2026 (1 de junho – 31 de agosto) fui <strong>engenheiro de algoritmos VLA (estagiário)</strong> na equipa do robô humanoide da <strong>Honor</strong> em Xangai, onde participei na construção desta direção de raiz e fiquei responsável por várias das suas peças centrais. Liderei a cadeia de teleoperação e dados — tomada de controlo humana suave durante execuções autónomas, gravação a bordo com envio automático — e fechei um ciclo distribuído <strong>online SFT / online RL</strong> entre as placas de bordo do robô, um actor x86 e um servidor learner. Com essa infraestrutura montada, desenhei eu próprio as experiências: reproduzi RL offline do tipo <strong>RECAP</strong> e combinei-o com adaptação rápida no espaço do ruído, elevando substancialmente a taxa de sucesso em tarefas nunca cobertas pelos dados offline."
   bio3: "A minha investigação produziu dois artigos na <strong>IROS 2026</strong> num ano. Como primeiro autor do <strong>LangGap</strong>, mostrei que os modelos VLA de topo obtêm pontuações elevadas ignorando em grande medida a linguagem, e propus um benchmark de perturbações semânticas e treino multitarefa na mesma cena para fechar essa lacuna; no <strong>AION</strong> desenhei e treinei a política de exploração puramente visual para navegação aérea zero-shot até objetos. Antes da NUS estudei Engenharia Eletrónica e de Comunicações na Nanjing University of Aeronautics and Astronautics (NUAA)."
   news: 02 — Notícias
   papers: 03 — Publicações selecionadas
@@ -77,7 +77,7 @@ projects:
 proj:
   honor:
     meta: 1 jun – 31 ago 2026 · Honor Device Co., Ltd. · Estágio de verão
-    desc: Estagiário engenheiro de algoritmos VLA na Honor (1 de junho – 31 de agosto de 2026). Construção de um pipeline online SFT / online RL com o humano no ciclo para o robô humanoide Omega da Honor — tomada de controlo suave pelo teleoperador, pipeline de dados orientado por intervenções e um ciclo de aprendizagem distribuído Actor–Learner–Robô.
+    desc: Estagiário engenheiro de algoritmos VLA na Honor (1 de junho – 31 de agosto de 2026). Construção de um pipeline online SFT / online RL com o humano no ciclo para o robô humanoide da Honor — tomada de controlo suave pelo teleoperador, pipeline de dados orientado por intervenções e um ciclo de aprendizagem distribuído Actor–Learner–Robô.
   langgap:
     meta: Out 2025 – jun 2026 · Primeiro autor
     desc: Aceite na IROS 2026. Conceção de um enquadramento sistemático de avaliação com perturbações semânticas, revelando que os modelos VLA de topo ignoram as instruções em linguagem apesar das pontuações elevadas. Proposta de treino multitarefa na mesma cena e construção de um conjunto de dados aumentado para afinação.
@@ -92,7 +92,7 @@ proj:
     desc: Liderança de uma equipa no desenvolvimento de um sistema de exploração autónoma com ROS2 e LiDAR. Implementação de algoritmos SLAM (Cartographer, Navigation2) para mapeamento e planeamento em tempo real. Integração do YOLOv11 para deteção de objetos e implementação do sistema completo em hardware embebido.
 
 news:
-  announcement_7: "Concluído o estágio em algoritmos VLA na Honor (robô humanoide Omega)."
+  announcement_7: "Concluído o estágio em algoritmos VLA na Honor (robô humanoide)."
   announcement_6: "🎉 Dois artigos aceites na <strong>IROS 2026</strong>: <a href=\"https://arxiv.org/abs/2603.00592\">LangGap</a> (primeiro autor) e <a href=\"https://arxiv.org/abs/2601.15614\">AION</a> (coautor)."
 
 xp:
@@ -100,7 +100,7 @@ xp:
     - position: Engenheiro de algoritmos VLA (estagiário)
       location: Xangai, China
       h:
-        - "Trabalho no robô humanoide Omega da Honor: recolha de dados de teleoperação, replay, treino e implementação no robô."
+        - "Trabalho no robô humanoide da Honor: recolha de dados de teleoperação, replay, treino e implementação no robô."
         - Investigação em algoritmos de RL online para modelos Visão-Linguagem-Ação (VLA) em tarefas de manipulação personalizadas.
         - Implementação da tomada de controlo suave pelo teleoperador humano durante execuções autónomas, incluindo a máquina de estados de transição autonomia–teleoperação.
         - "Construção do pipeline de dados de aprendizagem online orientado por intervenções: gravação a bordo, persistência completa em disco local e envio automático para o servidor de desenvolvimento."

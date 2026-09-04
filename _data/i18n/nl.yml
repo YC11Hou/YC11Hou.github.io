@@ -37,7 +37,7 @@ home:
   tagline: "Onderzoeker in embodied AI: vision-language-action-modellen, online reinforcement learning en post-training voor <em>echte robots</em>."
   quote: "“The darkest hour is just before the dawn.”"
   bio1: "Ik ben masterstudent Elektrotechniek aan de National University of Singapore (NUS) en kernlid van het <strong>NUS CORE Lab</strong> (COntrol, Robotics &amp; Artificial IntElligence). Ik werk aan <strong>embodied AI</strong>: hoe robots waarnemen, taal begrijpen en handelen in de fysieke wereld. Wat mij het meest bezighoudt is de hele lus — niet alleen het algoritme, maar de data, de infrastructuur en de uitrol die het omzetten in gedrag op een echte robot."
-  bio2: "In de zomer van 2026 (1 juni – 31 augustus) was ik <strong>VLA-algoritme-engineer (stagiair)</strong> in het team van de humanoïde robot <strong>Omega</strong> van <strong>Honor</strong> in Shanghai, waar ik meebouwde aan deze richting vanaf nul en verschillende kernonderdelen voor mijn rekening nam. Ik leidde de teleoperatie- en datapipeline — soepele menselijke overname tijdens autonome uitvoering, opname aan boord met automatische upload — en sloot een gedistribueerde <strong>online SFT / online RL</strong>-lus over de boordcomputers van de robot, een x86-actor en een learner-server. Met die infrastructuur op zijn plaats ontwierp ik zelf de experimenten: <strong>RECAP</strong>-achtige offline RL nagebouwd en gecombineerd met snelle aanpassing in de ruisruimte, wat het slagingspercentage op taken die de offline data nooit dekten aanzienlijk verhoogde."
+  bio2: "In de zomer van 2026 (1 juni – 31 augustus) was ik <strong>VLA-algoritme-engineer (stagiair)</strong> in het team van de humanoïde robot van <strong>Honor</strong> in Shanghai, waar ik meebouwde aan deze richting vanaf nul en verschillende kernonderdelen voor mijn rekening nam. Ik leidde de teleoperatie- en datapipeline — soepele menselijke overname tijdens autonome uitvoering, opname aan boord met automatische upload — en sloot een gedistribueerde <strong>online SFT / online RL</strong>-lus over de boordcomputers van de robot, een x86-actor en een learner-server. Met die infrastructuur op zijn plaats ontwierp ik zelf de experimenten: <strong>RECAP</strong>-achtige offline RL nagebouwd en gecombineerd met snelle aanpassing in de ruisruimte, wat het slagingspercentage op taken die de offline data nooit dekten aanzienlijk verhoogde."
   bio3: "Mijn onderzoek leverde binnen een jaar twee papers op <strong>IROS 2026</strong> op. Als eerste auteur van <strong>LangGap</strong> liet ik zien dat toonaangevende VLA-modellen hoog scoren terwijl ze taal grotendeels negeren, en stelde ik een benchmark met semantische verstoringen plus multi-task training in dezelfde scène voor om die kloof te dichten; in <strong>AION</strong> ontwierp en trainde ik het puur visuele verkenningsbeleid voor zero-shot objectnavigatie in de lucht. Vóór NUS studeerde ik Elektronica- en Communicatietechniek aan de Nanjing University of Aeronautics and Astronautics (NUAA)."
   news: 02 — Nieuws
   papers: 03 — Geselecteerde publicaties
@@ -77,7 +77,7 @@ projects:
 proj:
   honor:
     meta: 1 jun – 31 aug 2026 · Honor Device Co., Ltd. · Zomerstage
-    desc: Stagiair VLA-algoritme-engineer bij Honor (1 juni – 31 augustus 2026). Bouwde een online SFT / online RL-pipeline met de mens in de lus voor Honors humanoïde robot Omega — soepele overname door de teleoperator, een interventiegedreven datapipeline en een gedistribueerde Actor–Learner–Robot-leerlus.
+    desc: Stagiair VLA-algoritme-engineer bij Honor (1 juni – 31 augustus 2026). Bouwde een online SFT / online RL-pipeline met de mens in de lus voor Honors humanoïde robot — soepele overname door de teleoperator, een interventiegedreven datapipeline en een gedistribueerde Actor–Learner–Robot-leerlus.
   langgap:
     meta: Okt 2025 – jun 2026 · Eerste auteur
     desc: Geaccepteerd voor IROS 2026. Ontwierp een systematisch evaluatiekader met semantische verstoringen dat aantoont dat toonaangevende VLA-modellen taalinstructies negeren ondanks hoge benchmarkscores. Stelde multi-task training in dezelfde scène voor en bouwde een uitgebreide dataset voor fine-tuning.
@@ -92,7 +92,7 @@ proj:
     desc: Leidde een team bij de ontwikkeling van een autonoom verkenningssysteem met ROS2 en LiDAR. Implementeerde SLAM-algoritmen (Cartographer, Navigation2) voor realtime kaartopbouw en padplanning. Integreerde YOLOv11 voor objectdetectie en zette het complete systeem uit op embedded hardware.
 
 news:
-  announcement_7: "VLA-algoritmestage bij Honor afgerond (humanoïde robot Omega)."
+  announcement_7: "VLA-algoritmestage bij Honor afgerond (humanoïde robot)."
   announcement_6: "🎉 Twee papers geaccepteerd voor <strong>IROS 2026</strong>: <a href=\"https://arxiv.org/abs/2603.00592\">LangGap</a> (eerste auteur) en <a href=\"https://arxiv.org/abs/2601.15614\">AION</a> (coauteur)."
 
 xp:
@@ -100,7 +100,7 @@ xp:
     - position: VLA-algoritme-engineer (stagiair)
       location: Shanghai, China
       h:
-        - "Werk aan Honors humanoïde robot Omega: verzamelen van teleoperatiedata, replay, training en uitrol op de robot."
+        - "Werk aan Honors humanoïde robot: verzamelen van teleoperatiedata, replay, training en uitrol op de robot."
         - Onderzoek naar online RL-algoritmen voor Vision-Language-Action (VLA)-modellen op maatwerk-manipulatietaken.
         - Implementatie van soepele overname door de menselijke teleoperator tijdens autonome uitvoering, inclusief de toestandsmachine voor de overgang autonomie–teleoperatie.
         - "Bouw van de interventiegedreven datapipeline voor online leren: opname aan boord, volledige lokale persistentie en automatische upload naar de ontwikkelserver."

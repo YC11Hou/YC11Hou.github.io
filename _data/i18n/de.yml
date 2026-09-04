@@ -37,7 +37,7 @@ home:
   tagline: "Forscher im Bereich Embodied AI: Vision-Language-Action-Modelle, Online-Reinforcement-Learning und Post-Training für <em>echte Roboter</em>."
   quote: "“The darkest hour is just before the dawn.”"
   bio1: "Ich bin Masterstudent der Elektrotechnik an der National University of Singapore (NUS) und Kernmitglied des <strong>NUS CORE Lab</strong> (COntrol, Robotics &amp; Artificial IntElligence). Ich arbeite an <strong>Embodied AI</strong> — wie Roboter wahrnehmen, Sprache verstehen und in der physischen Welt handeln. Am wichtigsten ist mir der ganze Kreislauf: nicht nur der Algorithmus, sondern die Daten, die Infrastruktur und der Einsatz, die ihn zu Verhalten auf einem echten Roboter machen."
-  bio2: "Im Sommer 2026 (1. Juni – 31. August) war ich <strong>VLA-Algorithmus-Ingenieur (Praktikant)</strong> im Team des humanoiden Roboters <strong>Omega</strong> von <strong>Honor</strong> in Shanghai, wo ich diese Richtung von Grund auf mit aufgebaut und mehrere zentrale Bausteine verantwortet habe. Ich habe die Teleoperations- und Datenpipeline geleitet — nahtlose menschliche Übernahme während autonomer Ausführung, Aufzeichnung auf dem Roboter mit automatischem Upload — und einen verteilten <strong>Online-SFT-/Online-RL</strong>-Kreislauf über die Bordrechner des Roboters, einen x86-Actor und einen Learner-Server geschlossen. Auf dieser Infrastruktur habe ich die Experimente selbst entworfen: <strong>RECAP</strong>-artiges Offline-RL reproduziert und mit schneller Anpassung im Rauschraum kombiniert, was die Erfolgsrate auf Aufgaben, die die Offline-Daten nie abdeckten, deutlich erhöht hat."
+  bio2: "Im Sommer 2026 (1. Juni – 31. August) war ich <strong>VLA-Algorithmus-Ingenieur (Praktikant)</strong> im Team des humanoiden Roboters von <strong>Honor</strong> in Shanghai, wo ich diese Richtung von Grund auf mit aufgebaut und mehrere zentrale Bausteine verantwortet habe. Ich habe die Teleoperations- und Datenpipeline geleitet — nahtlose menschliche Übernahme während autonomer Ausführung, Aufzeichnung auf dem Roboter mit automatischem Upload — und einen verteilten <strong>Online-SFT-/Online-RL</strong>-Kreislauf über die Bordrechner des Roboters, einen x86-Actor und einen Learner-Server geschlossen. Auf dieser Infrastruktur habe ich die Experimente selbst entworfen: <strong>RECAP</strong>-artiges Offline-RL reproduziert und mit schneller Anpassung im Rauschraum kombiniert, was die Erfolgsrate auf Aufgaben, die die Offline-Daten nie abdeckten, deutlich erhöht hat."
   bio3: "Meine Forschung hat innerhalb eines Jahres zwei Arbeiten auf der <strong>IROS 2026</strong> hervorgebracht. Als Erstautor von <strong>LangGap</strong> habe ich gezeigt, dass aktuelle VLA-Modelle hohe Werte erzielen und Sprache dabei weitgehend ignorieren, und einen Benchmark mit semantischen Störungen plus Multi-Task-Training in identischer Szene vorgeschlagen, um diese Lücke zu schließen; in <strong>AION</strong> habe ich die rein visuelle Explorationsstrategie für Zero-Shot-Objektnavigation in der Luft entworfen und trainiert. Vor der NUS studierte ich Elektronik- und Kommunikationstechnik an der Nanjing University of Aeronautics and Astronautics (NUAA)."
   news: 02 — Neuigkeiten
   papers: 03 — Ausgewählte Publikationen
@@ -77,7 +77,7 @@ projects:
 proj:
   honor:
     meta: 1. Juni – 31. Aug. 2026 · Honor Device Co., Ltd. · Sommerpraktikum
-    desc: VLA-Algorithmus-Ingenieur (Praktikant) bei Honor (1. Juni – 31. August 2026). Aufbau einer Online-SFT-/Online-RL-Pipeline mit Mensch in der Schleife für den humanoiden Roboter Omega von Honor — nahtlose Teleoperator-Übernahme, interventionsgetriebene Datenpipeline und eine verteilte Actor–Learner–Roboter-Lernschleife.
+    desc: VLA-Algorithmus-Ingenieur (Praktikant) bei Honor (1. Juni – 31. August 2026). Aufbau einer Online-SFT-/Online-RL-Pipeline mit Mensch in der Schleife für den humanoiden Roboter von Honor — nahtlose Teleoperator-Übernahme, interventionsgetriebene Datenpipeline und eine verteilte Actor–Learner–Roboter-Lernschleife.
   langgap:
     meta: Okt. 2025 – Juni 2026 · Erstautor
     desc: Angenommen bei IROS 2026. Entwurf eines systematischen Evaluationsrahmens mit semantischen Störungen, der zeigt, dass aktuelle VLA-Modelle Sprachanweisungen trotz hoher Benchmark-Werte weitgehend ignorieren. Vorschlag eines Multi-Task-Trainings in identischer Szene und Aufbau eines erweiterten Datensatzes zum Fine-Tuning.
@@ -92,7 +92,7 @@ proj:
     desc: Leitung eines Teams zur Entwicklung eines autonomen Explorationssystems mit ROS2 und LiDAR. Umsetzung von SLAM-Algorithmen (Cartographer, Navigation2) für Echtzeit-Kartierung und Pfadplanung. Integration von YOLOv11 zur Objekterkennung und Einsatz des Gesamtsystems auf eingebetteter Hardware.
 
 news:
-  announcement_7: "VLA-Algorithmus-Praktikum bei Honor abgeschlossen (humanoider Roboter Omega)."
+  announcement_7: "VLA-Algorithmus-Praktikum bei Honor abgeschlossen (humanoider Roboter)."
   announcement_6: "🎉 Zwei Arbeiten bei der <strong>IROS 2026</strong> angenommen: <a href=\"https://arxiv.org/abs/2603.00592\">LangGap</a> (Erstautor) und <a href=\"https://arxiv.org/abs/2601.15614\">AION</a> (Mitautor)."
 
 xp:
@@ -100,7 +100,7 @@ xp:
     - position: VLA-Algorithmus-Ingenieur (Praktikant)
       location: Shanghai, China
       h:
-        - "Arbeit am humanoiden Roboter Omega von Honor: Erfassung von Teleoperationsdaten, Replay, Training und Einsatz auf dem Roboter."
+        - "Arbeit am humanoiden Roboter von Honor: Erfassung von Teleoperationsdaten, Replay, Training und Einsatz auf dem Roboter."
         - Forschung zu Online-RL-Algorithmen für Vision-Language-Action-(VLA)-Modelle auf eigens definierten Manipulationsaufgaben.
         - Umsetzung einer nahtlosen Übernahme durch den menschlichen Teleoperator während autonomer Ausführung, inklusive Zustandsautomat für den Wechsel Autonomie–Teleoperation.
         - "Aufbau der interventionsgetriebenen Datenpipeline für Online-Lernen: Aufzeichnung auf dem Roboter, vollständige lokale Persistenz und automatischer Upload zum Entwicklungsserver."

@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Completed my VLA algorithm internship at Honor (Omega humanoid robot).
+Completed my VLA algorithm internship at Honor (humanoid robot).

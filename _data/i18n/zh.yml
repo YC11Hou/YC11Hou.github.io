@@ -37,7 +37,7 @@ home:
   tagline: "具身智能研究者，方向为视觉-语言-动作模型、在线强化学习，以及面向<em>真实机器人</em>的后训练。"
   quote: "“The darkest hour is just before the dawn.”"
   bio1: "我是新加坡国立大学（NUS）电气工程专业硕士研究生，<strong>NUS CORE Lab</strong>（COntrol, Robotics &amp; Artificial IntElligence）核心成员，研究方向是<strong>具身智能</strong>——让机器人在物理世界中感知、理解语言并行动。我最在意的是整条闭环：不只是算法本身，还有把算法变成真机行为所需的数据、基础设施与部署。"
-  bio2: "2026 年夏（6 月 1 日 – 8 月 31 日），我在<strong>荣耀</strong>上海 <strong>Omega</strong> 人形机器人团队担任 <strong>VLA 算法工程师（实习）</strong>，深度参与了该方向从 0 到 1 的建设，并承担其中多项核心工作：主导搭建遥操作与数据采集链路——自主执行中顺滑的人工接管、机器人端数据落盘与自动上传——并打通了跨机载板卡、x86 Actor 与 Learner 服务器的分布式 <strong>online SFT / online RL</strong> 闭环。基础设施成型后，我独立设计实验：复现 <strong>RECAP</strong> 类离线强化学习，并融合噪声空间快速适应，在离线数据未覆盖的任务上大幅提升成功率。"
+  bio2: "2026 年夏（6 月 1 日 – 8 月 31 日），我在<strong>荣耀</strong>上海 人形机器人团队担任 <strong>VLA 算法工程师（实习）</strong>，深度参与了该方向从 0 到 1 的建设，并承担其中多项核心工作：主导搭建遥操作与数据采集链路——自主执行中顺滑的人工接管、机器人端数据落盘与自动上传——并打通了跨机载板卡、x86 Actor 与 Learner 服务器的分布式 <strong>online SFT / online RL</strong> 闭环。基础设施成型后，我独立设计实验：复现 <strong>RECAP</strong> 类离线强化学习，并融合噪声空间快速适应，在离线数据未覆盖的任务上大幅提升成功率。"
   bio3: "一年内我产出了两篇 <strong>IROS 2026</strong> 录用论文。作为 <strong>LangGap</strong> 第一作者，我揭示了当前最先进的 VLA 模型高分却大量忽视语言指令的问题，并提出语义扰动评测基准与同场景多任务训练来弥合这一鸿沟；在 <strong>AION</strong> 中，我负责设计与训练纯视觉探索策略，实现无人机零样本室内目标导航。进入 NUS 之前，我在南京航空航天大学（NUAA）攻读电子与通信工程。"
   news: 02 — 动态
   papers: 03 — 代表论文
@@ -77,7 +77,7 @@ projects:
 proj:
   honor:
     meta: 2026 年 6 月 1 日 – 8 月 31 日 · 荣耀 · 暑期实习
-    desc: 荣耀 VLA 算法工程师实习（2026 年 6 月 1 日 – 8 月 31 日）。为荣耀自研 Omega 人形机器人搭建人在回路的 online SFT / online RL 流水线——平滑的遥操作接管、由干预驱动的数据流水线，以及分布式 Actor–Learner–Robot 学习闭环。
+    desc: 荣耀 VLA 算法工程师实习（2026 年 6 月 1 日 – 8 月 31 日）。为荣耀自研 人形机器人搭建人在回路的 online SFT / online RL 流水线——平滑的遥操作接管、由干预驱动的数据流水线，以及分布式 Actor–Learner–Robot 学习闭环。
   langgap:
     meta: 2025 年 10 月 – 2026 年 6 月 · 第一作者
     desc: 已被 IROS 2026 录用。设计了系统化的语义扰动评测框架，揭示出当前最先进的 VLA 模型尽管在基准上得分很高，却基本忽略语言指令；提出同场景多任务训练方法，并构建了用于微调的增广数据集。
@@ -92,7 +92,7 @@ proj:
     desc: 带领团队基于 ROS2 与激光雷达开发自主探索系统；实现 Cartographer、Navigation2 等 SLAM 算法用于实时建图与路径规划；集成 YOLOv11 目标检测，并将整套系统部署到嵌入式硬件。
 
 news:
-  announcement_7: "完成在荣耀的 VLA 算法实习（Omega 人形机器人）。"
+  announcement_7: "完成在荣耀的 VLA 算法实习（人形机器人）。"
   announcement_6: "🎉 两篇论文被 <strong>IROS 2026</strong> 录用：<a href=\"https://arxiv.org/abs/2603.00592\">LangGap</a>（第一作者）与 <a href=\"https://arxiv.org/abs/2601.15614\">AION</a>（合作作者）。"
 
 xp:
@@ -100,7 +100,7 @@ xp:
     - position: VLA 算法工程师（实习）
       location: 中国上海
       h:
-        - 参与荣耀自研 Omega 人形机器人研发：遥操作数据采集、回放、训练与真机部署。
+        - 参与荣耀自研 人形机器人研发：遥操作数据采集、回放、训练与真机部署。
         - 针对自定义操作任务，开展视觉-语言-动作（VLA）模型的在线强化学习算法研究。
         - 实现自主执行过程中人类遥操作者的平滑接管，包括自主—遥操作切换状态机。
         - 搭建由干预驱动的在线学习数据流水线：机载数据记录、本地磁盘完整持久化，并自动上传至开发服务器。

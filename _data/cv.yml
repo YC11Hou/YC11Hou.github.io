@@ -24,7 +24,7 @@ cv:
         end_date: 2026-08-31
         date_label: "Jun 1 – Aug 31, 2026"
         highlights:
-          - "Working on Honor's self-developed Omega humanoid robot: teleoperation data collection, replay, training, and on-robot deployment."
+          - "Working on Honor's self-developed humanoid robot: teleoperation data collection, replay, training, and on-robot deployment."
           - "Conducting online RL algorithm research for Vision-Language-Action (VLA) models on custom manipulation tasks."
           - "Implemented smooth human-teleoperator takeover during autonomous rollouts, including the autonomy-teleoperation transition state machine."
           - "Built the intervention-driven online-learning data pipeline: on-robot data recording, full local disk persistence, and automatic upload to the development server."

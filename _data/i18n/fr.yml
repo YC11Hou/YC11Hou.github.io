@@ -37,7 +37,7 @@ home:
   tagline: "Chercheur en IA incarnée : modèles vision-langage-action, apprentissage par renforcement en ligne et post-entraînement pour de <em>vrais robots</em>."
   quote: "“The darkest hour is just before the dawn.”"
   bio1: "Je suis étudiant en master de génie électrique à la National University of Singapore (NUS) et membre principal du <strong>NUS CORE Lab</strong> (COntrol, Robotics &amp; Artificial IntElligence). Je travaille sur l'<strong>IA incarnée</strong> : comment les robots perçoivent, comprennent le langage et agissent dans le monde physique. Ce qui m'importe le plus, c'est la boucle entière — pas seulement l'algorithme, mais les données, l'infrastructure et le déploiement qui le transforment en comportement sur un vrai robot."
-  bio2: "À l'été 2026 (1er juin – 31 août), j'ai été <strong>ingénieur algorithmes VLA (stagiaire)</strong> dans l'équipe du robot humanoïde <strong>Omega</strong> de <strong>Honor</strong> à Shanghai, où j'ai participé à construire cette direction depuis zéro et pris en charge plusieurs de ses briques centrales. J'ai piloté la chaîne de téléopération et de données — reprise en main fluide pendant les exécutions autonomes, enregistrement embarqué avec envoi automatique — et fermé une boucle distribuée <strong>online SFT / online RL</strong> entre les cartes embarquées du robot, un acteur x86 et un serveur apprenant. Sur cette infrastructure, j'ai conçu moi-même les expériences : reproduction du RL hors ligne de type <strong>RECAP</strong>, combiné à une adaptation rapide dans l'espace de bruit, ce qui a nettement augmenté le taux de succès sur des tâches jamais couvertes par les données hors ligne."
+  bio2: "À l'été 2026 (1er juin – 31 août), j'ai été <strong>ingénieur algorithmes VLA (stagiaire)</strong> dans l'équipe du robot humanoïde de <strong>Honor</strong> à Shanghai, où j'ai participé à construire cette direction depuis zéro et pris en charge plusieurs de ses briques centrales. J'ai piloté la chaîne de téléopération et de données — reprise en main fluide pendant les exécutions autonomes, enregistrement embarqué avec envoi automatique — et fermé une boucle distribuée <strong>online SFT / online RL</strong> entre les cartes embarquées du robot, un acteur x86 et un serveur apprenant. Sur cette infrastructure, j'ai conçu moi-même les expériences : reproduction du RL hors ligne de type <strong>RECAP</strong>, combiné à une adaptation rapide dans l'espace de bruit, ce qui a nettement augmenté le taux de succès sur des tâches jamais couvertes par les données hors ligne."
   bio3: "Mes recherches ont donné deux articles à <strong>IROS 2026</strong> en un an. Premier auteur de <strong>LangGap</strong>, j'ai montré que les modèles VLA de pointe obtiennent de hauts scores tout en ignorant largement le langage, et proposé un benchmark par perturbations sémantiques et un entraînement multi-tâches en scène identique pour combler cet écart ; dans <strong>AION</strong>, j'ai conçu et entraîné la politique d'exploration purement visuelle pour la navigation aérienne zéro-shot vers un objet. Avant NUS, j'ai étudié le génie électronique et des communications à la Nanjing University of Aeronautics and Astronautics (NUAA)."
   news: 02 — Actualités
   papers: 03 — Publications choisies
@@ -77,7 +77,7 @@ projects:
 proj:
   honor:
     meta: 1er juin – 31 août 2026 · Honor Device Co., Ltd. · Stage d'été
-    desc: Stagiaire ingénieur algorithmes VLA chez Honor (1er juin – 31 août 2026). Construction d'une chaîne online SFT / online RL avec l'humain dans la boucle pour le robot humanoïde Omega d'Honor — reprise en main fluide par le téléopérateur, pipeline de données piloté par les interventions et boucle d'apprentissage distribuée Acteur–Apprenant–Robot.
+    desc: Stagiaire ingénieur algorithmes VLA chez Honor (1er juin – 31 août 2026). Construction d'une chaîne online SFT / online RL avec l'humain dans la boucle pour le robot humanoïde d'Honor — reprise en main fluide par le téléopérateur, pipeline de données piloté par les interventions et boucle d'apprentissage distribuée Acteur–Apprenant–Robot.
   langgap:
     meta: Oct. 2025 – juin 2026 · Premier auteur
     desc: Accepté à IROS 2026. Conception d'un cadre d'évaluation systématique par perturbations sémantiques, révélant que les modèles VLA de pointe ignorent les instructions en langage malgré des scores élevés. Proposition d'un entraînement multi-tâches en scène identique et construction d'un jeu de données augmenté pour le fine-tuning.
@@ -92,7 +92,7 @@ proj:
     desc: Direction d'une équipe pour développer un système d'exploration autonome avec ROS2 et LiDAR. Mise en œuvre d'algorithmes SLAM (Cartographer, Navigation2) pour la cartographie et la planification en temps réel. Intégration de YOLOv11 pour la détection d'objets et déploiement complet sur matériel embarqué.
 
 news:
-  announcement_7: "Fin de mon stage en algorithmes VLA chez Honor (robot humanoïde Omega)."
+  announcement_7: "Fin de mon stage en algorithmes VLA chez Honor (robot humanoïde)."
   announcement_6: "🎉 Deux articles acceptés à <strong>IROS 2026</strong> : <a href=\"https://arxiv.org/abs/2603.00592\">LangGap</a> (premier auteur) et <a href=\"https://arxiv.org/abs/2601.15614\">AION</a> (co-auteur)."
 
 xp:
@@ -100,7 +100,7 @@ xp:
     - position: Ingénieur algorithmes VLA (stagiaire)
       location: Shanghai, Chine
       h:
-        - "Travail sur le robot humanoïde Omega d'Honor : collecte de données de téléopération, rejeu, entraînement et déploiement sur robot."
+        - "Travail sur le robot humanoïde d'Honor : collecte de données de téléopération, rejeu, entraînement et déploiement sur robot."
         - Recherche en algorithmes de RL en ligne pour des modèles Vision-Langage-Action (VLA) sur des tâches de manipulation sur mesure.
         - Mise en œuvre d'une reprise en main fluide par le téléopérateur pendant les exécutions autonomes, y compris la machine à états de transition autonomie–téléopération.
         - "Construction du pipeline de données d'apprentissage en ligne piloté par les interventions : enregistrement embarqué, persistance complète sur disque local et envoi automatique vers le serveur de développement."

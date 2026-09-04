@@ -1,7 +1,7 @@
 ---
 layout: page
-title: "Honor Omega Humanoid: Online RL for VLA"
-description: VLA Algorithm Engineer Intern at Honor (Jun 1 – Aug 31, 2026). Built a human-in-the-loop online SFT / online RL pipeline for Honor's self-developed Omega humanoid robot — smooth teleoperator takeover, an intervention-driven data pipeline, and a distributed Actor–Learner–Robot learning loop.
+title: "Honor Humanoid: Online RL for VLA"
+description: VLA Algorithm Engineer Intern at Honor (Jun 1 – Aug 31, 2026). Built a human-in-the-loop online SFT / online RL pipeline for Honor's self-developed humanoid robot — smooth teleoperator takeover, an intervention-driven data pipeline, and a distributed Actor–Learner–Robot learning loop.
 img: assets/video/honor/inference_demo_poster.jpg
 importance: 0
 category: master
@@ -11,7 +11,7 @@ meta: Jun 1 – Aug 31, 2026 · Honor Device Co., Ltd. · Summer internship
 related_publications: false
 ---
 
-Working on Honor's self-developed **Omega humanoid robot**: teleoperation data collection, replay, training, and on-robot deployment, along with **online RL** algorithm research for **Vision-Language-Action (VLA)** models on custom manipulation tasks.
+Working on Honor's self-developed **humanoid robot**: teleoperation data collection, replay, training, and on-robot deployment, along with **online RL** algorithm research for **Vision-Language-Action (VLA)** models on custom manipulation tasks.
 
 ## Demos
 

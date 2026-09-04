@@ -40,7 +40,7 @@ home:
   tagline: "Embodied AI researcher working on vision-language-action models, online reinforcement learning and post-training for <em>real robots</em>."
   quote: "“The darkest hour is just before the dawn.”"
   bio1: "I am a Master's student in Electrical Engineering at the National University of Singapore (NUS) and a core member of the <strong>NUS CORE Lab</strong> (COntrol, Robotics &amp; Artificial IntElligence). I work on <strong>Embodied AI</strong> — how robots perceive, understand language and act in the physical world. What I care about most is the whole loop: not just the algorithm, but the data, the infrastructure and the deployment that turn it into behaviour on a real robot."
-  bio2: "In summer 2026 (Jun 1 – Aug 31) I was a <strong>VLA Algorithm Engineer (Intern)</strong> on <strong>Honor</strong>'s <strong>Omega</strong> humanoid-robot team in Shanghai, where I took part in building the direction from the ground up and owned several of its core pieces. I led the teleoperation and data pipeline — smooth human takeover during autonomous rollouts, on-robot recording with automatic upload — and closed a distributed <strong>online SFT / online RL</strong> loop across the robot's onboard boards, an x86 actor and a learner server. With that infrastructure in place I designed the experiments myself: reproducing <strong>RECAP</strong>-style offline RL and combining it with noise-space fast adaptation, which substantially raised success rates on tasks the offline data never covered."
+  bio2: "In summer 2026 (Jun 1 – Aug 31) I was a <strong>VLA Algorithm Engineer (Intern)</strong> on <strong>Honor</strong>'s humanoid-robot team in Shanghai, where I took part in building the direction from the ground up and owned several of its core pieces. I led the teleoperation and data pipeline — smooth human takeover during autonomous rollouts, on-robot recording with automatic upload — and closed a distributed <strong>online SFT / online RL</strong> loop across the robot's onboard boards, an x86 actor and a learner server. With that infrastructure in place I designed the experiments myself: reproducing <strong>RECAP</strong>-style offline RL and combining it with noise-space fast adaptation, which substantially raised success rates on tasks the offline data never covered."
   bio3: "My research has produced two <strong>IROS 2026</strong> papers within a year. As first author of <strong>LangGap</strong> I showed that state-of-the-art VLA models score highly while largely ignoring language, and proposed a semantic-perturbation benchmark plus same-scene multi-task training to close the gap; in <strong>AION</strong> I designed and trained the vision-only exploration policy for zero-shot aerial object navigation. Before NUS I studied Electronic and Communication Engineering at Nanjing University of Aeronautics and Astronautics (NUAA)."
   news: 02 — News
   papers: 03 — Selected publications
@@ -80,7 +80,7 @@ projects:
 proj:
   honor:
     meta: Jun 1 – Aug 31, 2026 · Honor Device Co., Ltd. · Summer internship
-    desc: VLA Algorithm Engineer Intern at Honor (Jun 1 – Aug 31, 2026). Built a human-in-the-loop online SFT / online RL pipeline for Honor's self-developed Omega humanoid robot — smooth teleoperator takeover, an intervention-driven data pipeline, and a distributed Actor–Learner–Robot learning loop.
+    desc: VLA Algorithm Engineer Intern at Honor (Jun 1 – Aug 31, 2026). Built a human-in-the-loop online SFT / online RL pipeline for Honor's self-developed humanoid robot — smooth teleoperator takeover, an intervention-driven data pipeline, and a distributed Actor–Learner–Robot learning loop.
   langgap:
     meta: Oct 2025 – Jun 2026 · First author
     desc: Accepted at IROS 2026. Designed a systematic semantic perturbation evaluation framework revealing that state-of-the-art VLA models ignore language instructions despite high benchmark scores. Proposed multi-task same-scene training approach and constructed augmented dataset for fine-tuning.
@@ -95,7 +95,7 @@ proj:
     desc: Led a team to develop an autonomous exploration system using ROS2 and LiDAR. Implemented SLAM algorithms including Cartographer and Navigation2 for real-time mapping and path planning. Integrated YOLOv11 for object detection and deployed the complete system on embedded hardware.
 
 news:
-  announcement_7: "Completed my VLA algorithm internship at Honor (Omega humanoid robot)."
+  announcement_7: "Completed my VLA algorithm internship at Honor (humanoid robot)."
   announcement_6: "🎉 Two papers accepted to <strong>IROS 2026</strong>: <a href=\"https://arxiv.org/abs/2603.00592\">LangGap</a> (first author) and <a href=\"https://arxiv.org/abs/2601.15614\">AION</a> (co-author)."
 
 xp:
@@ -103,7 +103,7 @@ xp:
     - position: VLA Algorithm Engineer (Intern)
       location: Shanghai, China
       h:
-        - "Working on Honor's self-developed Omega humanoid robot: teleoperation data collection, replay, training, and on-robot deployment."
+        - "Working on Honor's self-developed humanoid robot: teleoperation data collection, replay, training, and on-robot deployment."
         - Conducting online RL algorithm research for Vision-Language-Action (VLA) models on custom manipulation tasks.
         - Implemented smooth human-teleoperator takeover during autonomous rollouts, including the autonomy-teleoperation transition state machine.
         - "Built the intervention-driven online-learning data pipeline: on-robot data recording, full local disk persistence, and automatic upload to the development server."
