@@ -878,7 +878,10 @@ html[data-lang="pl"] {
 // collapsible list under the page head. Two levels (h2 → h3).
 // ---------------------------------------------------------------------------
 
-.site-content.has-pagenav {
+// The page grid is the same on every page: text column + a 176px index
+// column on the right. Pages without an index leave the column empty, so the
+// reading measure never changes between pages.
+.site-content {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 176px;
   column-gap: 2.75rem;
@@ -981,8 +984,8 @@ html[data-lang="pl"] {
 
 /* purgecss start ignore */
 @media (max-width: 1199.98px) and (min-width: (v.$rail-bp)) {
-  // Not enough room beside the text: fold the index into the flow, above the content
-  .site-content.has-pagenav {
+  // Not enough room beside the text: single column, index folds into the flow
+  .site-content {
     display: block;
   }
 
@@ -992,7 +995,7 @@ html[data-lang="pl"] {
 }
 
 @media (max-width: 1199.98px) {
-  .site-content.has-pagenav > .pagenav {
+  .site-content > .pagenav {
     position: static;
     max-height: none;
   }
@@ -1057,7 +1060,7 @@ html[data-lang="pl"] {
 }
 
 @media (max-width: (v.$rail-bp - 0.02px)) {
-  .site-content.has-pagenav {
+  .site-content {
     display: block;
   }
 
