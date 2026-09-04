@@ -2,7 +2,7 @@
 layout: default
 ---
 {% assign t = site.data.i18n.en %}
-<div class="home">
+<div class="home" data-pagenav="h2">
   <!-- Opening statement -->
   <header class="home-opening">
     <p class="eyebrow mono" data-i18n="home.eyebrow">{{ t.home.eyebrow }}</p>
@@ -10,6 +10,7 @@ layout: default
   </header>
 
   <!-- Scenic banner with the personal motto -->
+  <div data-pagenav-anchor hidden></div>
   <figure class="home-banner">
     <img src="{{ '/assets/img/hero_castle.jpg' | relative_url }}" alt="" aria-hidden="true">
     <figcaption>

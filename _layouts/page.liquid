@@ -45,7 +45,7 @@ layout: default
     {% endif %}
   </header>
 
-  <div class="prose">
+  <div class="prose" data-pagenav="{{ page.pagenav | default: 'h2' }}">
     {{ content }}
   </div>
 

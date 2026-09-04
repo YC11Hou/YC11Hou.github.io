@@ -7,6 +7,7 @@ nav: true
 nav_order: 2
 i18n: projects
 eyebrow: 03 — Projects
+pagenav: h2,h3
 ---
 
 {% assign t = site.data.i18n.en %}

@@ -263,6 +263,7 @@
       opts[o].setAttribute("aria-selected", on ? "true" : "false");
     }
     current = lang;
+    document.dispatchEvent(new CustomEvent("i18n:applied", { detail: { lang: lang } }));
   }
 
   function reveal() {

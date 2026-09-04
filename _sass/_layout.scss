@@ -895,3 +895,97 @@ html[data-lang="pl"] {
   }
 }
 /* purgecss end ignore */
+
+// ---------------------------------------------------------------------------
+// In-page section navigation (assets/js/pagenav.js)
+// A sticky row of chips built from the page's headings; sits under the mobile
+// topbar on narrow screens.
+// ---------------------------------------------------------------------------
+
+.pagenav {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  margin: 0 0 1.6rem;
+  padding: 0.55rem 0;
+  background-color: var(--global-navbar-bg);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  backdrop-filter: saturate(160%) blur(14px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.pagenav-inner {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.pagenav-item {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 11px;
+  border-radius: 7px;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: -0.004em;
+  color: var(--muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color 0.14s ease,
+    background-color 0.14s ease;
+
+  &:hover {
+    color: var(--ink);
+    background-color: var(--row-hover);
+    text-decoration: none;
+  }
+
+  &.active {
+    color: var(--ink);
+    background-color: var(--row-active);
+  }
+
+  &.pagenav-sub {
+    font-weight: 400;
+
+    &::before {
+      content: "";
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.55;
+      margin-right: 7px;
+    }
+  }
+}
+
+// Home: the bar sits right under the opening statement, above the banner
+.home > .pagenav {
+  margin: -0.6rem 0 1.8rem;
+}
+
+/* purgecss start ignore */
+@media (max-width: (v.$rail-bp - 0.02px)) {
+  .pagenav {
+    margin: 0 -16px 1.4rem;
+    padding: 0.45rem 16px;
+    border-bottom-width: 0.5px;
+  }
+
+  .pagenav-item {
+    height: 32px;
+    font-size: 13px;
+  }
+}
+/* purgecss end ignore */
