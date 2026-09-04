@@ -11,7 +11,7 @@
 // hashed IP, TTL 24h). Notes are capped (name 40 chars, text 140 chars), HTML
 // stripped, last 200 kept per id.
 
-const ALLOWED_ORIGINS = ["https://yuchenhou.me", "https://www.yuchenhou.me", "https://yc11hou.github.io", "http://localhost:8765", "http://localhost:8790"];
+const ALLOWED_ORIGINS = ["https://yuchenhou.me", "https://www.yuchenhou.me", "https://yuchenhou.pages.dev", "https://yc11hou.github.io", "http://localhost:8765", "http://localhost:8790"];
 const ID_RE = /^[a-z0-9:_-]{1,64}$/i;
 
 function cors(req) {
