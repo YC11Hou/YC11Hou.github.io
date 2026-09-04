@@ -92,11 +92,10 @@ proj:
     desc: Kierowałem zespołem tworzącym system autonomicznej eksploracji oparty na ROS2 i LiDAR. Wdrożyłem algorytmy SLAM (Cartographer, Navigation2) do mapowania i planowania trasy w czasie rzeczywistym. Zintegrowałem YOLOv11 do detekcji obiektów i wdrożyłem cały system na sprzęcie wbudowanym.
 
 news:
-  announcement_6: "🎉 Dwie prace przyjęte na <strong>IROS 2026</strong>: <a href=\"https://arxiv.org/abs/2603.00592\">LangGap</a> (pierwszy autor) i <a href=\"https://arxiv.org/abs/2601.15614\">AION</a> (współautor). Do zobaczenia w Pittsburghu!"
-  announcement_5: Dołączyłem do Honor jako inżynier algorytmów VLA (stażysta) przy robocie humanoidalnym Omega — dane z teleoperacji, trening i wdrożenie.
-  announcement_4: Ukończyłem staż badawczy w Huawei Norbert Wiener Research Center (marzec – maj 2026), głębokie uczenie dla radaru krótkiego zasięgu.
-  announcement_3: Ukończyłem staż z oprogramowania robotycznego w Movel.AI (gru 2025 – sty 2026), autonomiczna nawigacja wózków widłowych.
-  announcement_2: Dołączyłem do NUS CORE Lab i rozpocząłem studia magisterskie na NUS.
+  announcement_7: "Ukończyłem staż z algorytmów VLA w Honor (robot humanoidalny Omega)."
+  announcement_6: "🎉 Dwie prace przyjęte na <strong>IROS 2026</strong>: <a href=\"https://arxiv.org/abs/2603.00592\">LangGap</a> (pierwszy autor) i <a href=\"https://arxiv.org/abs/2601.15614\">AION</a> (współautor)."
+  announcement_5: "Dołączyłem do Honor jako inżynier algorytmów VLA (stażysta), zespół robota humanoidalnego Omega."
+  announcement_2: "Dołączyłem do NUS CORE Lab i rozpocząłem studia magisterskie na NUS."
 
 xp:
   intern:

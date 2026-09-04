@@ -95,11 +95,10 @@ proj:
     desc: Led a team to develop an autonomous exploration system using ROS2 and LiDAR. Implemented SLAM algorithms including Cartographer and Navigation2 for real-time mapping and path planning. Integrated YOLOv11 for object detection and deployed the complete system on embedded hardware.
 
 news:
-  announcement_6: "🎉 Two papers accepted to <strong>IROS 2026</strong>: <a href=\"https://arxiv.org/abs/2603.00592\">LangGap</a> (first author) and <a href=\"https://arxiv.org/abs/2601.15614\">AION</a> (co-author). See you in Pittsburgh!"
-  announcement_5: Joined Honor as a VLA Algorithm Engineer (Intern), working on the Omega humanoid robot — teleoperation data collection, training, and deployment.
-  announcement_4: Completed my research internship at Huawei Norbert Wiener Research Center (Mar – May 2026), working on deep learning for short-range radar sensing.
-  announcement_3: Completed robotics software internship at Movel.AI (Dec 2025 – Jan 2026), working on autonomous forklift navigation.
-  announcement_2: Joined the NUS CORE Lab, started Master's program at NUS.
+  announcement_7: "Completed my VLA algorithm internship at Honor (Omega humanoid robot)."
+  announcement_6: "🎉 Two papers accepted to <strong>IROS 2026</strong>: <a href=\"https://arxiv.org/abs/2603.00592\">LangGap</a> (first author) and <a href=\"https://arxiv.org/abs/2601.15614\">AION</a> (co-author)."
+  announcement_5: "Joined Honor as a VLA Algorithm Engineer (Intern), Omega humanoid robot team."
+  announcement_2: "Joined the NUS CORE Lab and started my Master's at NUS."
 
 xp:
   intern:

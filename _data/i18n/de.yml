@@ -92,11 +92,10 @@ proj:
     desc: Leitung eines Teams zur Entwicklung eines autonomen Explorationssystems mit ROS2 und LiDAR. Umsetzung von SLAM-Algorithmen (Cartographer, Navigation2) für Echtzeit-Kartierung und Pfadplanung. Integration von YOLOv11 zur Objekterkennung und Einsatz des Gesamtsystems auf eingebetteter Hardware.
 
 news:
-  announcement_6: "🎉 Zwei Arbeiten bei der <strong>IROS 2026</strong> angenommen: <a href=\"https://arxiv.org/abs/2603.00592\">LangGap</a> (Erstautor) und <a href=\"https://arxiv.org/abs/2601.15614\">AION</a> (Mitautor). Wir sehen uns in Pittsburgh!"
-  announcement_5: Start bei Honor als VLA-Algorithmus-Ingenieur (Praktikant) am humanoiden Roboter Omega — Teleoperationsdaten, Training und Einsatz.
-  announcement_4: Forschungspraktikum am Huawei Norbert Wiener Research Center abgeschlossen (März – Mai 2026), Deep Learning für Nahbereichsradar.
-  announcement_3: Praktikum in Robotiksoftware bei Movel.AI abgeschlossen (Dez. 2025 – Jan. 2026), autonome Gabelstapler-Navigation.
-  announcement_2: Beitritt zum NUS CORE Lab und Beginn des Masterstudiums an der NUS.
+  announcement_7: "VLA-Algorithmus-Praktikum bei Honor abgeschlossen (humanoider Roboter Omega)."
+  announcement_6: "🎉 Zwei Arbeiten bei der <strong>IROS 2026</strong> angenommen: <a href=\"https://arxiv.org/abs/2603.00592\">LangGap</a> (Erstautor) und <a href=\"https://arxiv.org/abs/2601.15614\">AION</a> (Mitautor)."
+  announcement_5: "Start bei Honor als VLA-Algorithmus-Ingenieur (Praktikant), Team des humanoiden Roboters Omega."
+  announcement_2: "Beitritt zum NUS CORE Lab und Beginn des Masterstudiums an der NUS."
 
 xp:
   intern:
