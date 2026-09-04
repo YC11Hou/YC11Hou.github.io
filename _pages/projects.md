@@ -18,6 +18,13 @@ eyebrow: 03 — Projects
     </header>
 
     <div class="proj-group">
+      <h3 class="proj-group-title mono">Honor Device Co., Ltd. <span class="proj-group-note">Summer internship · Shanghai</span></h3>
+      {% assign honor_projects = site.projects | where: "org", "honor" | sort: "importance" %}
+      {% for project in honor_projects %}
+        {% include project_row.liquid %}
+      {% endfor %}
+    </div>
+    <div class="proj-group">
       <h3 class="proj-group-title mono">National University of Singapore <span class="proj-group-note">Research · NUS Advanced Control Lab</span></h3>
       {% assign nus_projects = site.projects | where: "org", "nus" | sort: "importance" %}
       {% for project in nus_projects %}
@@ -25,13 +32,6 @@ eyebrow: 03 — Projects
       {% endfor %}
     </div>
 
-    <div class="proj-group">
-      <h3 class="proj-group-title mono">Honor Device Co., Ltd. <span class="proj-group-note">Summer internship · Shanghai</span></h3>
-      {% assign honor_projects = site.projects | where: "org", "honor" | sort: "importance" %}
-      {% for project in honor_projects %}
-        {% include project_row.liquid %}
-      {% endfor %}
-    </div>
   </section>
 
   {% comment %} ---------- Bachelor's ---------- {% endcomment %}
