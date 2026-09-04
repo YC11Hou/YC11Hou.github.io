@@ -1,10 +1,10 @@
-// In-page section navigation.
+// In-page index ("On this page").
 //
-// Long, structured pages (Projects, Experience, project write-ups, the home
-// page) get a sticky bar of section chips built from their headings. Clicking
-// a chip scrolls to the section; the chip for the section in view is
-// highlighted. Labels follow the current language: they are re-read from the
-// headings whenever i18n.js finishes applying a dictionary.
+// Long, structured pages get a vertical index built from their headings:
+// a sticky column to the right of the content on desktop, a collapsible list
+// under the page head on narrow screens. Two levels (h2 → h3). The entry for
+// the section in view is highlighted. Labels follow the current language:
+// they are re-read from the headings whenever i18n.js applies a dictionary.
 (function () {
   var root = document.querySelector(".site-content");
   if (!root) return;
@@ -19,14 +19,10 @@
   });
   if (headings.length < 2) return;
 
-  var anchor = root.querySelector("[data-pagenav-anchor]") || root.querySelector(".page-head") || root.querySelector(".home-opening");
-  if (!anchor) return;
-
   function slug(text) {
     return (
       text
         .toLowerCase()
-        .replace(/<[^>]+>/g, "")
         .replace(/[^\w一-鿿Ѐ-ӿ]+/g, "-")
         .replace(/^-+|-+$/g, "")
         .slice(0, 48) || "section"
@@ -36,14 +32,17 @@
   function labelOf(h) {
     // Prefer the translatable span; drop the "02 — " index and any trailing "All …" link
     var src = h.querySelector("[data-i18n]") || h;
-    var text = src.textContent.replace(/\s+/g, " ").trim();
-    return text.replace(/^\d+\s*[—–-]\s*/, "");
+    return src.textContent
+      .replace(/\s+/g, " ")
+      .trim()
+      .replace(/^\d+\s*[—–-]\s*/, "");
   }
 
-  // Ensure stable ids
+  // Stable ids: reuse the enclosing <section id> when the heading is its title
   var used = {};
   headings.forEach(function (h) {
-    var target = h.closest("section[id]") && h.closest("section[id]").querySelector(levels[0]) === h ? h.closest("section[id]") : h;
+    var sec = h.closest("section[id]");
+    var target = sec && sec.querySelector(levels[0]) === h ? sec : h;
     if (!target.id) {
       var base = slug(labelOf(h));
       var id = base;
@@ -55,33 +54,69 @@
     h.setAttribute("data-pagenav-target", target.id);
   });
 
+  // ---- build ---------------------------------------------------------------
   var nav = document.createElement("nav");
   nav.className = "pagenav";
   nav.setAttribute("aria-label", "On this page");
-  var inner = document.createElement("div");
-  inner.className = "pagenav-inner";
-  nav.appendChild(inner);
+
+  var toggle = document.createElement("button");
+  toggle.type = "button";
+  toggle.className = "pagenav-toggle";
+  toggle.setAttribute("aria-expanded", "false");
+  var title = document.createElement("span");
+  title.className = "pagenav-title";
+  title.setAttribute("data-i18n", "ui.on_this_page");
+  title.textContent = "On this page";
+  toggle.appendChild(title);
+  var chevron = document.createElement("i");
+  chevron.className = "fa-solid fa-chevron-down pagenav-chevron";
+  chevron.setAttribute("aria-hidden", "true");
+  toggle.appendChild(chevron);
+  nav.appendChild(toggle);
+
+  var list = document.createElement("ol");
+  list.className = "pagenav-list";
+  nav.appendChild(list);
 
   var links = headings.map(function (h) {
+    var li = document.createElement("li");
+    var sub = h.tagName.toLowerCase() !== levels[0];
+    li.className = sub ? "pagenav-sub" : "pagenav-top";
     var a = document.createElement("a");
     a.href = "#" + h.getAttribute("data-pagenav-target");
-    a.className = "pagenav-item" + (h.tagName.toLowerCase() === levels[0] ? "" : " pagenav-sub");
     a.textContent = labelOf(h);
-    inner.appendChild(a);
+    li.appendChild(a);
+    list.appendChild(li);
     return a;
   });
 
-  anchor.insertAdjacentElement("afterend", nav);
+  root.classList.add("has-pagenav");
+  // Desktop: a column beside the content. Narrow screens: right under the page head.
+  var head = root.querySelector(".page-head, .home-opening");
+  if (window.matchMedia("(max-width: 1199.98px)").matches && head) {
+    head.insertAdjacentElement("afterend", nav);
+  } else {
+    root.appendChild(nav);
+  }
 
-  // Offsets: the bar sits under the mobile topbar; headings must clear both.
+  toggle.addEventListener("click", function () {
+    var open = nav.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  list.addEventListener("click", function (e) {
+    if (e.target.closest("a")) {
+      nav.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  // ---- offsets -------------------------------------------------------------
   function topbarHeight() {
     var tb = document.querySelector(".site-topbar");
     return tb && getComputedStyle(tb).display !== "none" ? tb.offsetHeight : 0;
   }
   function layout() {
-    var top = topbarHeight();
-    nav.style.top = top + "px";
-    var clear = top + nav.offsetHeight + 12;
+    var clear = topbarHeight() + 20;
     headings.forEach(function (h) {
       var t = document.getElementById(h.getAttribute("data-pagenav-target"));
       if (t) t.style.scrollMarginTop = clear + "px";
@@ -93,7 +128,7 @@
     clearance = layout();
   });
 
-  // Active chip = last heading above the reading line
+  // ---- active entry ----------------------------------------------------------
   var ticking = false;
   function update() {
     ticking = false;
@@ -102,19 +137,10 @@
     for (var i = 0; i < headings.length; i++) {
       if (headings[i].getBoundingClientRect().top - line <= 0) current = i;
     }
-    // At the very bottom, light the last chip
     if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) current = headings.length - 1;
     links.forEach(function (a, i) {
       a.classList.toggle("active", i === current);
     });
-    var active = links[current];
-    if (active && inner.scrollWidth > inner.clientWidth) {
-      var r = active.getBoundingClientRect();
-      var ir = inner.getBoundingClientRect();
-      if (r.left < ir.left || r.right > ir.right) {
-        inner.scrollTo({ left: active.offsetLeft - 16, behavior: "smooth" });
-      }
-    }
   }
   window.addEventListener(
     "scroll",
@@ -128,7 +154,6 @@
   );
   update();
 
-  // Re-label after a translation lands
   document.addEventListener("i18n:applied", function () {
     links.forEach(function (a, i) {
       a.textContent = labelOf(headings[i]);
