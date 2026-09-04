@@ -864,7 +864,8 @@ html[data-rail="collapsed"] {
 // (assets/js/i18n.js removes the attribute; a 1.6 s safety valve also does).
 html[data-i18n-pending] .site-main,
 html[data-i18n-pending] .site-rail,
-html[data-i18n-pending] .site-topbar {
+html[data-i18n-pending] .site-topbar,
+html[data-i18n-pending] .mobile-bottom-nav {
   visibility: hidden;
 }
 

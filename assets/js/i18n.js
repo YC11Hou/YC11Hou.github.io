@@ -154,7 +154,7 @@
   }
 
   function geoLanguage() {
-    var cached = sread("geo-lang");
+    var cached = read("geo-lang");
     if (cached) return Promise.resolve(cached === "none" ? null : cached);
     var attempts = GEO_ENDPOINTS.map(function (ep) {
       return fetchJSON(ep.url, 2500).then(function (j) {
@@ -173,13 +173,14 @@
             if (done) return;
             done = true;
             var lang = COUNTRY[cc] || null;
-            sstore("geo-lang", lang || "none");
+            store("geo-lang", lang || "none");
             resolve(lang);
           },
           function () {
             if (--pending === 0 && !done) {
               done = true;
-              sstore("geo-lang", "none");
+              // don't persist a failure: try again next visit
+
               resolve(null);
             }
           }
@@ -198,10 +199,32 @@
     return cur;
   }
 
+  var BUILD = html.getAttribute("data-build") || "0";
+
+  function cachedDict(lang) {
+    if (dicts[lang]) return dicts[lang];
+    try {
+      var raw = localStorage.getItem("i18n:" + lang);
+      if (!raw) return null;
+      var obj = JSON.parse(raw);
+      if (obj.build !== BUILD) return null;
+      dicts[lang] = obj.dict;
+      return obj.dict;
+    } catch (e) {
+      return null;
+    }
+  }
+
   function loadDict(lang) {
-    if (dicts[lang]) return Promise.resolve(dicts[lang]);
+    var hit = cachedDict(lang);
+    if (hit) return Promise.resolve(hit);
     return fetchJSON(BASE + "/assets/i18n/" + lang + ".json", 6000).then(function (d) {
       dicts[lang] = d;
+      try {
+        localStorage.setItem("i18n:" + lang, JSON.stringify({ build: BUILD, dict: d }));
+      } catch (e) {
+        /* quota / private mode */
+      }
       return d;
     });
   }
@@ -341,26 +364,29 @@
   }
 
   // ---- boot --------------------------------------------------------------
+  // Order of authority: the visitor's explicit pick → the browser's language
+  // list (what the person configured on their device — the professional
+  // standard, and the only signal that is right for expats and multilingual
+  // countries) → the country by IP, used only when the browser lists none of
+  // the languages we ship → English.
   var picked = supported(read("lang"));
   var browser = fromBrowser();
-  var initial = picked || browser;
+  var geoKnown = read("geo-lang");
+  var initial = picked || browser || (geoKnown && geoKnown !== "none" ? geoKnown : null);
 
-  // Hide translatable content until the dictionary lands, so non-English
-  // visitors never see an English flash. Safety valve: reveal after 1.6 s.
+  // Keep content hidden until the dictionary is applied so nothing flashes in
+  // English first. With the dictionary cached this happens before first paint;
+  // a 1.6 s valve guarantees the page never stays hidden.
   if (initial && initial !== DEFAULT) html.setAttribute("data-i18n-pending", "");
   setTimeout(reveal, 1600);
 
   function boot() {
     wireSwitcher();
-    if (picked) {
-      setLanguage(picked, false);
+    if (initial) {
+      setLanguage(initial, false);
       return;
     }
-    if (browser && browser !== DEFAULT) {
-      setLanguage(browser, false);
-      return;
-    }
-    // Browser says English (or something we don't ship): let the country decide.
+    // The browser lists no language we ship: fall back to the country, once.
     reveal();
     geoLanguage().then(function (geo) {
       if (geo && geo !== DEFAULT) setLanguage(geo, false);
