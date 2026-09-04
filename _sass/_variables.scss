@@ -7,9 +7,9 @@
 // Layout
 $rail-width: 264px !default; // fixed identity rail on the left
 $rail-bp: 900px !default; // below this the rail folds into topbar + dock
-$content-width: 1080px !default; // text column + index column + gap
-$text-width: 760px !default; // reading column
-$content-gutter: 4.5rem !default; // distance from the rail to the text column
+$content-width: 1320px !default; // outer cap of the page composition (text + index)
+$text-width: 880px !default; // reading column cap
+$content-gutter: 3rem !default; // side padding of the composition
 
 // Legacy colour names still referenced by inherited partials
 $red-color: #ff3636 !default;
