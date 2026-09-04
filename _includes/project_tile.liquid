@@ -31,6 +31,7 @@
         >
       {%- endif %}
     {%- endif %}
+    {% include project_dates.liquid class='work-meta' %}
     {% if project.meta -%}
       <span class="work-meta mono" data-i18n="proj.{{ project.i18n_key }}.meta">{{ project.meta }}</span>
     {%- endif %}

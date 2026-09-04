@@ -8,7 +8,9 @@ importance: 4
 category: bachelor
 org: nuaa
 i18n_key: vehicle
-meta: Sep 2024 – Apr 2025 · ROS 2 · Jetson Orin NX · Team lead
+start: 2024-09
+end: 2025-04
+meta: ROS 2 · Jetson Orin NX · Team lead
 ---
 
 ## Demo

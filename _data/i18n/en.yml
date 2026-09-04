@@ -32,8 +32,10 @@ ui:
   on_this_page: On this page
   like: "Like"
   liked: "Liked"
-  your_name: "Your name (optional)"
-  your_note: "A short note (optional)"
+  your_name: "Your name"
+  your_email: "Email (required, not shown)"
+  your_note: "Your note"
+  leave_note: "Leave a note"
   send: "Send"
   thanks: "Thank you!"
   anonymous: "Anonymous"
@@ -87,19 +89,19 @@ projects:
 
 proj:
   honor:
-    meta: Jun 1 – Aug 31, 2026 · Honor Device Co., Ltd. · Summer internship
-    desc: VLA Algorithm Engineer Intern at Honor (Jun 1 – Aug 31, 2026). Built a human-in-the-loop online SFT / online RL pipeline for Honor's self-developed humanoid robot — smooth teleoperator takeover, an intervention-driven data pipeline, and a distributed Actor–Learner–Robot learning loop.
+    meta: Honor Device Co., Ltd. · Summer internship
+    desc: VLA Algorithm Engineer Intern at Honor. Built a human-in-the-loop online SFT / online RL pipeline for Honor's self-developed humanoid robot — smooth teleoperator takeover, an intervention-driven data pipeline, and a distributed Actor–Learner–Robot learning loop.
   langgap:
-    meta: Oct 2025 – Jun 2026 · First author
+    meta: First author
     desc: Accepted at IROS 2026. Designed a systematic semantic perturbation evaluation framework revealing that state-of-the-art VLA models ignore language instructions despite high benchmark scores. Proposed multi-task same-scene training approach and constructed augmented dataset for fine-tuning.
   aion:
-    meta: Jun 2025 – Jun 2026 · Co-author
+    meta: Co-author
     desc: Accepted at IROS 2026. End-to-end dual-policy RL framework for vision-based aerial ObjectNav without external localization or global maps. Evaluated on AI2-THOR and IsaacSim.
   vln:
-    meta: Jun 2025 – Feb 2026 · Habitat · Aerial VLN dataset pipeline
+    meta: Habitat · Aerial VLN dataset pipeline
     desc: Built a robust pipeline to generate various 3D paths in the Habitat simulator. Overcame challenges of the simulator initially designed only for ground robots by designing a robust 3D navigation algorithm and obstacle detection method. Trained a strong and general policy for drone navigation.
   vehicle:
-    meta: Sep 2024 – Apr 2025 · ROS 2 · Jetson Orin NX · Team lead
+    meta: ROS 2 · Jetson Orin NX · Team lead
     desc: Led a team to develop an autonomous exploration system using ROS2 and LiDAR. Implemented SLAM algorithms including Cartographer and Navigation2 for real-time mapping and path planning. Integrated YOLOv11 for object detection and deployed the complete system on embedded hardware.
 
 news:

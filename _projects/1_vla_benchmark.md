@@ -11,7 +11,9 @@ venue: IROS 2026
 scholar_id: u-x6o8ySG0sC
 scholar_cites: 7631014917581332933
 arxiv: 2603.00592
-meta: Oct 2025 – Jun 2026 · First author
+start: 2025-10
+end: 2026-06
+meta: First author
 ---
 
 <p class="project-links">

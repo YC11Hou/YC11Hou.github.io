@@ -2,7 +2,9 @@
 //
 //   GET  /likes?ids=a,b,c        -> { counts: {a: n, ...} }
 //   GET  /notes?id=home&limit=20 -> { notes: [{name, text, ts}, ...] }
-//   POST /like  {id, name?, text?}  -> { count, liked: true }
+//   POST /like  {id, name?, email?, text?}  -> { count, liked: true }
+//        a note (text) is accepted only with name + valid email; e-mail is
+//        stored for accountability but never returned by the API
 //
 // Anonymous by default. One like per id per visitor per day (keyed by a
 // hashed IP, TTL 24h). Notes are capped (name 40 chars, text 140 chars), HTML
@@ -59,7 +61,7 @@ export default {
       if (!ID_RE.test(id)) return json({ error: "bad id" }, req, 400);
       const limit = Math.min(parseInt(url.searchParams.get("limit") || "20", 10) || 20, 100);
       const notes = JSON.parse((await env.LIKES.get("notes:" + id)) || "[]");
-      return json({ notes: notes.slice(0, limit) }, req);
+      return json({ notes: notes.slice(0, limit).map((n) => ({ name: n.name, text: n.text, ts: n.ts })) }, req);
     }
 
     if (req.method === "POST" && url.pathname === "/like") {
@@ -74,6 +76,11 @@ export default {
 
       const name = clean(body.name, 40);
       const text = clean(body.text, 140);
+      const email = clean(body.email, 80).toLowerCase();
+      // A note is only accepted with a real-looking name and e-mail; likes stay anonymous.
+      if (text && (name.length < 2 || !/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(email))) {
+        return json({ error: "name and email required for a note" }, req, 422);
+      }
       let count = parseInt((await env.LIKES.get("count:" + id)) || "0", 10);
 
       if (!already) {
@@ -86,7 +93,7 @@ export default {
         const noteGuard = "noted:" + id + ":" + visitor;
         if (!(await env.LIKES.get(noteGuard))) {
           const notes = JSON.parse((await env.LIKES.get("notes:" + id)) || "[]");
-          notes.unshift({ name, text, ts: Date.now() });
+          notes.unshift({ name, text, ts: Date.now(), email, ip: visitor });
           await env.LIKES.put("notes:" + id, JSON.stringify(notes.slice(0, 200)));
           await env.LIKES.put(noteGuard, "1", { expirationTtl: 86400 });
         }

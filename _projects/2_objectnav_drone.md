@@ -12,7 +12,9 @@ venue: IROS 2026
 scholar_id: u5HHmVD_uO8C
 scholar_cites: 17972743793882607765
 arxiv: 2601.15614
-meta: Jun 2025 – Jun 2026 · Co-author
+start: 2025-06
+end: 2026-06
+meta: Co-author
 ---
 
 <p class="project-links">

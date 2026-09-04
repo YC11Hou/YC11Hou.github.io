@@ -25,9 +25,13 @@ layout: default
         <p class="page-desc" data-i18n="pages.{{ page.i18n }}.desc">{{ page.description }}</p>
       {% endif %}
     {% elsif page.i18n_key %}
-      {% if page.meta %}
-        <p class="eyebrow mono" data-i18n="proj.{{ page.i18n_key }}.meta">{{ page.meta }}</p>
-      {% endif %}
+      {% assign project = page %}
+      <p class="eyebrow mono">
+        {% include project_dates.liquid class='eyebrow-dates' %}
+        {% if page.meta -%}
+          · <span data-i18n="proj.{{ page.i18n_key }}.meta">{{ page.meta }}</span>
+        {%- endif %}
+      </p>
       <h1 class="page-title">{{ page.title }}</h1>
       {% if page.description %}
         <p class="page-desc" data-i18n="proj.{{ page.i18n_key }}.desc">{{ page.description }}</p>

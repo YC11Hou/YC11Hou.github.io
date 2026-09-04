@@ -29,8 +29,10 @@ ui:
   on_this_page: Op deze pagina
   like: "Vind ik leuk"
   liked: "Geliked"
-  your_name: "Je naam (optioneel)"
-  your_note: "Een korte notitie (optioneel)"
+  your_name: "Je naam"
+  your_email: "E-mail (verplicht, niet zichtbaar)"
+  your_note: "Je notitie"
+  leave_note: "Laat een notitie achter"
   send: "Versturen"
   thanks: "Dank je!"
   anonymous: "Anoniem"
@@ -84,19 +86,19 @@ projects:
 
 proj:
   honor:
-    meta: 1 jun – 31 aug 2026 · Honor Device Co., Ltd. · Zomerstage
-    desc: Stagiair VLA-algoritme-engineer bij Honor (1 juni – 31 augustus 2026). Bouwde een online SFT / online RL-pipeline met de mens in de lus voor Honors humanoïde robot — soepele overname door de teleoperator, een interventiegedreven datapipeline en een gedistribueerde Actor–Learner–Robot-leerlus.
+    meta: Honor Device Co., Ltd. · Zomerstage
+    desc: Stagiair VLA-algoritme-engineer bij Honor. Bouwde een online SFT / online RL-pipeline met de mens in de lus voor Honors humanoïde robot — soepele overname door de teleoperator, een interventiegedreven datapipeline en een gedistribueerde Actor–Learner–Robot-leerlus.
   langgap:
-    meta: Okt 2025 – jun 2026 · Eerste auteur
+    meta: Eerste auteur
     desc: Geaccepteerd voor IROS 2026. Ontwierp een systematisch evaluatiekader met semantische verstoringen dat aantoont dat toonaangevende VLA-modellen taalinstructies negeren ondanks hoge benchmarkscores. Stelde multi-task training in dezelfde scène voor en bouwde een uitgebreide dataset voor fine-tuning.
   aion:
-    meta: Jun 2025 – jun 2026 · Coauteur
+    meta: Coauteur
     desc: Geaccepteerd voor IROS 2026. End-to-end RL-raamwerk met twee beleidsfuncties voor visie-gebaseerde ObjectNav in de lucht, zonder externe lokalisatie of globale kaarten. Geëvalueerd op AI2-THOR en IsaacSim.
   vln:
-    meta: Jun 2025 – feb 2026 · Habitat · Datapipeline voor VLN in de lucht
+    meta: Habitat · Datapipeline voor VLN in de lucht
     desc: Bouwde een robuuste pipeline om uiteenlopende 3D-paden te genereren in de Habitat-simulator. Overwon de beperkingen van een simulator die voor grondrobots was ontworpen met een robuust 3D-navigatie-algoritme en obstakeldetectie. Trainde een sterk, algemeen navigatiebeleid voor drones.
   vehicle:
-    meta: Sep 2024 – apr 2025 · ROS 2 · Jetson Orin NX · Teamleider
+    meta: ROS 2 · Jetson Orin NX · Teamleider
     desc: Leidde een team bij de ontwikkeling van een autonoom verkenningssysteem met ROS2 en LiDAR. Implementeerde SLAM-algoritmen (Cartographer, Navigation2) voor realtime kaartopbouw en padplanning. Integreerde YOLOv11 voor objectdetectie en zette het complete systeem uit op embedded hardware.
 
 news:

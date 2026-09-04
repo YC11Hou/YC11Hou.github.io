@@ -800,6 +800,32 @@ ul.task-list input[type="checkbox"] {
   }
 }
 
+.like-note-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 2rem;
+  margin-left: 0.5rem;
+  padding: 0 0.8rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: none;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--ink);
+    background: var(--row-hover);
+  }
+}
+
+.likes-inline .like-note-btn {
+  display: none;
+}
+
 .likes-inline .like-btn {
   height: 1.55rem;
   padding: 0 0.6rem 0 0.5rem;
@@ -867,6 +893,11 @@ ul.task-list input[type="checkbox"] {
 
 .likes-inline .like-form {
   flex-basis: 100%;
+}
+
+.like-form.invalid input:invalid,
+.like-form.invalid input:placeholder-shown {
+  border-color: var(--accent);
 }
 
 .like-thanks {

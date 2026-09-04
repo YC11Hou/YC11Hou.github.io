@@ -29,8 +29,10 @@ ui:
   on_this_page: Na tej stronie
   like: "Lubię to"
   liked: "Polubione"
-  your_name: "Twoje imię (opcjonalnie)"
-  your_note: "Krótka notatka (opcjonalnie)"
+  your_name: "Twoje imię"
+  your_email: "E-mail (wymagany, niewidoczny)"
+  your_note: "Twoja notatka"
+  leave_note: "Zostaw notatkę"
   send: "Wyślij"
   thanks: "Dziękuję!"
   anonymous: "Anonim"
@@ -84,19 +86,19 @@ projects:
 
 proj:
   honor:
-    meta: 1 cze – 31 sie 2026 · Honor Device Co., Ltd. · Staż letni
-    desc: Stażysta inżynier algorytmów VLA w Honor (1 czerwca – 31 sierpnia 2026). Zbudowałem potok online SFT / online RL z człowiekiem w pętli dla robota humanoidalnego firmy Honor — płynne przejęcie sterowania przez teleoperatora, potok danych sterowany interwencjami oraz rozproszoną pętlę uczenia Actor–Learner–Robot.
+    meta: Honor Device Co., Ltd. · Staż letni
+    desc: Stażysta inżynier algorytmów VLA w Honor. Zbudowałem potok online SFT / online RL z człowiekiem w pętli dla robota humanoidalnego firmy Honor — płynne przejęcie sterowania przez teleoperatora, potok danych sterowany interwencjami oraz rozproszoną pętlę uczenia Actor–Learner–Robot.
   langgap:
-    meta: Paź 2025 – cze 2026 · Pierwszy autor
+    meta: Pierwszy autor
     desc: Przyjęte na IROS 2026. Zaprojektowałem systematyczne ramy ewaluacji z perturbacjami semantycznymi, pokazujące, że najnowsze modele VLA ignorują instrukcje językowe mimo wysokich wyników w benchmarkach. Zaproponowałem trening wielozadaniowy w tej samej scenie i zbudowałem rozszerzony zbiór danych do dostrajania.
   aion:
-    meta: Cze 2025 – cze 2026 · Współautor
+    meta: Współautor
     desc: Przyjęte na IROS 2026. Kompleksowe ramy RL z dwiema politykami dla powietrznego ObjectNav opartego na wizji, bez zewnętrznej lokalizacji i map globalnych. Ocenione w AI2-THOR i IsaacSim.
   vln:
-    meta: Cze 2025 – lut 2026 · Habitat · Potok danych VLN dla dronów
+    meta: Habitat · Potok danych VLN dla dronów
     desc: Zbudowałem solidny potok generowania różnorodnych ścieżek 3D w symulatorze Habitat. Ograniczenia symulatora zaprojektowanego dla robotów naziemnych pokonałem dzięki odpornemu algorytmowi nawigacji 3D i metodzie wykrywania przeszkód. Wytrenowałem silną, ogólną politykę nawigacji dronów.
   vehicle:
-    meta: Wrz 2024 – kwi 2025 · ROS 2 · Jetson Orin NX · Lider zespołu
+    meta: ROS 2 · Jetson Orin NX · Lider zespołu
     desc: Kierowałem zespołem tworzącym system autonomicznej eksploracji oparty na ROS2 i LiDAR. Wdrożyłem algorytmy SLAM (Cartographer, Navigation2) do mapowania i planowania trasy w czasie rzeczywistym. Zintegrowałem YOLOv11 do detekcji obiektów i wdrożyłem cały system na sprzęcie wbudowanym.
 
 news:

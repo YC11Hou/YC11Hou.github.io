@@ -29,8 +29,10 @@ ui:
   on_this_page: 本页内容
   like: "点赞"
   liked: "已赞"
-  your_name: "你的名字（可选）"
-  your_note: "留一句话（可选）"
+  your_name: "你的名字"
+  your_email: "邮箱（必填，不公开）"
+  your_note: "留言内容"
+  leave_note: "留言"
   send: "发送"
   thanks: "谢谢！"
   anonymous: "匿名"
@@ -84,19 +86,19 @@ projects:
 
 proj:
   honor:
-    meta: 2026 年 6 月 1 日 – 8 月 31 日 · 荣耀 · 暑期实习
-    desc: 荣耀 VLA 算法工程师实习（2026 年 6 月 1 日 – 8 月 31 日）。为荣耀自研 人形机器人搭建人在回路的 online SFT / online RL 流水线——平滑的遥操作接管、由干预驱动的数据流水线，以及分布式 Actor–Learner–Robot 学习闭环。
+    meta: 荣耀 · 暑期实习
+    desc: 荣耀 VLA 算法工程师实习。为荣耀自研 人形机器人搭建人在回路的 online SFT / online RL 流水线——平滑的遥操作接管、由干预驱动的数据流水线，以及分布式 Actor–Learner–Robot 学习闭环。
   langgap:
-    meta: 2025 年 10 月 – 2026 年 6 月 · 第一作者
+    meta: 第一作者
     desc: 已被 IROS 2026 录用。设计了系统化的语义扰动评测框架，揭示出当前最先进的 VLA 模型尽管在基准上得分很高，却基本忽略语言指令；提出同场景多任务训练方法，并构建了用于微调的增广数据集。
   aion:
-    meta: 2025 年 6 月 – 2026 年 6 月 · 合作作者
+    meta: 合作作者
     desc: 已被 IROS 2026 录用。面向基于视觉的空中目标物导航（ObjectNav）的端到端双策略强化学习框架，无需外部定位或全局地图；在 AI2-THOR 与 IsaacSim 上完成评测。
   vln:
-    meta: 2025 年 6 月 – 2026 年 2 月 · Habitat · 空中 VLN 数据集流水线
+    meta: Habitat · 空中 VLN 数据集流水线
     desc: 在 Habitat 仿真器中构建了生成多样化三维路径的稳健流水线。针对该仿真器最初只面向地面机器人的局限，设计了稳健的三维导航算法与障碍检测方法，并训练出泛化性强的无人机导航策略。
   vehicle:
-    meta: 2024 年 9 月 – 2025 年 4 月 · ROS 2 · Jetson Orin NX · 团队负责人
+    meta: ROS 2 · Jetson Orin NX · 团队负责人
     desc: 带领团队基于 ROS2 与激光雷达开发自主探索系统；实现 Cartographer、Navigation2 等 SLAM 算法用于实时建图与路径规划；集成 YOLOv11 目标检测，并将整套系统部署到嵌入式硬件。
 
 news:

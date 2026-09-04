@@ -18,7 +18,7 @@ pagenav: h2,h3
   <section class="proj-stage" id="master">
     <header class="proj-stage-head">
       <h2 class="proj-stage-title" data-i18n="projects.master">{{ t.projects.master }}</h2>
-      <span class="proj-stage-period mono" data-start="2025-08-01" data-end="present" data-inline>Aug 2025 – Present</span>
+      {% assign edu = site.data.cv.cv.sections.Education | where: 'institution', 'National University of Singapore' | first %}{% include stage_dates.liquid entry=edu %}
     </header>
 
     <div class="proj-group">
@@ -43,7 +43,7 @@ pagenav: h2,h3
   <section class="proj-stage" id="bachelor">
     <header class="proj-stage-head">
       <h2 class="proj-stage-title" data-i18n="projects.bachelor">{{ t.projects.bachelor }}</h2>
-      <span class="proj-stage-period mono" data-start="2021-09-01" data-end="2025-07-01" data-inline>Sep 2021 – Jul 2025</span>
+      {% assign edu = site.data.cv.cv.sections.Education | where: 'institution', 'Nanjing University of Aeronautics and Astronautics' | first %}{% include stage_dates.liquid entry=edu %}
     </header>
 
     <div class="proj-group">

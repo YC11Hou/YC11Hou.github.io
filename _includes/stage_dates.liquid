@@ -1,0 +1,12 @@
+{% comment %} Degree-stage period, read from the Education entry in _data/cv.yml {% endcomment %}
+{% assign ps = include.entry.start_date | append: '' %}
+{% assign pe = include.entry.end_date | append: '' %}
+{% assign ps_parts = ps | split: '-' %}
+{% if ps_parts.size == 2 %}{% assign ps = ps | append: '-01' %}{% endif %}
+{% assign pe_parts = pe | split: '-' %}
+{% if pe_parts.size == 2 %}{% assign pe = pe | append: '-01' %}{% endif %}
+{% assign present = false %}
+{% if pe == '' or pe == 'Present' or pe == 'present' %}{% assign present = true %}{% endif %}
+<span class="proj-stage-period mono" data-start="{{ ps }}" data-end="{% if present %}present{% else %}{{ pe }}{% endif %}" data-inline>
+  {{- ps | date: '%b %Y' }} – {% if present %}Present{% else %}{{ pe | date: '%b %Y' }}{% endif -%}
+</span>

@@ -29,8 +29,10 @@ ui:
   on_this_page: Nesta página
   like: "Gosto"
   liked: "Gostaste"
-  your_name: "O teu nome (opcional)"
-  your_note: "Uma nota curta (opcional)"
+  your_name: "O teu nome"
+  your_email: "E-mail (obrigatório, não é mostrado)"
+  your_note: "A tua nota"
+  leave_note: "Deixar uma nota"
   send: "Enviar"
   thanks: "Obrigado!"
   anonymous: "Anónimo"
@@ -84,19 +86,19 @@ projects:
 
 proj:
   honor:
-    meta: 1 jun – 31 ago 2026 · Honor Device Co., Ltd. · Estágio de verão
-    desc: Estagiário engenheiro de algoritmos VLA na Honor (1 de junho – 31 de agosto de 2026). Construção de um pipeline online SFT / online RL com o humano no ciclo para o robô humanoide da Honor — tomada de controlo suave pelo teleoperador, pipeline de dados orientado por intervenções e um ciclo de aprendizagem distribuído Actor–Learner–Robô.
+    meta: Honor Device Co., Ltd. · Estágio de verão
+    desc: Estagiário engenheiro de algoritmos VLA na Honor. Construção de um pipeline online SFT / online RL com o humano no ciclo para o robô humanoide da Honor — tomada de controlo suave pelo teleoperador, pipeline de dados orientado por intervenções e um ciclo de aprendizagem distribuído Actor–Learner–Robô.
   langgap:
-    meta: Out 2025 – jun 2026 · Primeiro autor
+    meta: Primeiro autor
     desc: Aceite na IROS 2026. Conceção de um enquadramento sistemático de avaliação com perturbações semânticas, revelando que os modelos VLA de topo ignoram as instruções em linguagem apesar das pontuações elevadas. Proposta de treino multitarefa na mesma cena e construção de um conjunto de dados aumentado para afinação.
   aion:
-    meta: Jun 2025 – jun 2026 · Coautor
+    meta: Coautor
     desc: Aceite na IROS 2026. Enquadramento RL ponta a ponta de dupla política para ObjectNav aéreo baseado em visão, sem localização externa nem mapas globais. Avaliado em AI2-THOR e IsaacSim.
   vln:
-    meta: Jun 2025 – fev 2026 · Habitat · Pipeline de dados VLN aéreo
+    meta: Habitat · Pipeline de dados VLN aéreo
     desc: Construção de um pipeline robusto para gerar trajetórias 3D variadas no simulador Habitat. Superação das limitações de um simulador concebido para robôs terrestres através de um algoritmo de navegação 3D robusto e de um método de deteção de obstáculos. Treino de uma política de navegação de drones sólida e geral.
   vehicle:
-    meta: Set 2024 – abr 2025 · ROS 2 · Jetson Orin NX · Líder de equipa
+    meta: ROS 2 · Jetson Orin NX · Líder de equipa
     desc: Liderança de uma equipa no desenvolvimento de um sistema de exploração autónoma com ROS2 e LiDAR. Implementação de algoritmos SLAM (Cartographer, Navigation2) para mapeamento e planeamento em tempo real. Integração do YOLOv11 para deteção de objetos e implementação do sistema completo em hardware embebido.
 
 news:

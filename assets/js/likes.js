@@ -42,9 +42,11 @@
       '<button type="button" class="like-btn" aria-pressed="false">' +
       '<i class="fa-regular fa-heart" aria-hidden="true"></i><span class="like-count">–</span>' +
       '<span class="like-label" data-i18n="ui.like">Like</span></button>' +
+      '<button type="button" class="like-note-btn"><i class="fa-regular fa-comment" aria-hidden="true"></i><span data-i18n="ui.leave_note">Leave a note</span></button>' +
       '<form class="like-form" hidden>' +
-      '<input class="like-name" type="text" maxlength="40" data-i18n-attr="placeholder:ui.your_name" placeholder="Your name (optional)">' +
-      '<input class="like-text" type="text" maxlength="140" data-i18n-attr="placeholder:ui.your_note" placeholder="A short note (optional)">' +
+      '<input class="like-name" type="text" maxlength="40" required data-i18n-attr="placeholder:ui.your_name" placeholder="Your name">' +
+      '<input class="like-email" type="email" maxlength="80" required data-i18n-attr="placeholder:ui.your_email" placeholder="Email (required, not shown)">' +
+      '<input class="like-text" type="text" maxlength="140" required data-i18n-attr="placeholder:ui.your_note" placeholder="Your note">' +
       '<button type="submit" class="like-send" data-i18n="ui.send">Send</button>' +
       "</form>" +
       '<p class="like-thanks" hidden data-i18n="ui.thanks">Thank you!</p>' +
@@ -67,6 +69,11 @@
       label.textContent = t("ui.liked", "Liked");
     }
     if (liked(id)) setLiked();
+
+    host.querySelector(".like-note-btn").addEventListener("click", function () {
+      form.hidden = !form.hidden;
+      if (!form.hidden) form.querySelector(".like-name").focus();
+    });
 
     btn.addEventListener("click", function () {
       if (btn.classList.contains("liked")) {
@@ -94,17 +101,23 @@
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var name = form.querySelector(".like-name").value;
-      var text = form.querySelector(".like-text").value;
-      if (!text.trim() && !name.trim()) {
-        form.hidden = true;
+      var name = form.querySelector(".like-name").value.trim();
+      var email = form.querySelector(".like-email").value.trim();
+      var text = form.querySelector(".like-text").value.trim();
+      // A note is only sent with a real name and a valid e-mail (the server enforces the same)
+      if (name.length < 2 || !/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(email) || !text) {
+        form.classList.add("invalid");
         return;
       }
+      form.classList.remove("invalid");
       fetch(API + "/like", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: id, name: name, text: text || name }),
+        body: JSON.stringify({ id: id, name: name, email: email, text: text }),
       })
+        .then(function (r) {
+          if (!r.ok) throw new Error(String(r.status));
+        })
         .then(function () {
           form.hidden = true;
           thanks.hidden = false;

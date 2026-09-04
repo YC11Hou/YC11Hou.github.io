@@ -1,0 +1,40 @@
+{% comment %}
+  Resolves a project's date range from ONE source and renders it as a localized
+  span. Projects tied to an internship set `xp_company` and inherit the dates
+  from _data/cv.yml; research projects carry `start` / `end` (YYYY-MM) in
+  their own front matter. `end` may be omitted or "Present".
+{% endcomment %}
+{% assign pday = false %}
+{% if project.xp_company %}
+  {% assign xp = site.data.cv.cv.sections['Internship Experience'] | where: 'company', project.xp_company | first %}
+  {% assign ps = xp.start_date | append: '' %}
+  {% assign pe = xp.end_date | append: '' %}
+  {% if xp.date_label %}{% assign pday = true %}{% endif %}
+{% else %}
+  {% assign ps = project.start | append: '' %}
+  {% assign pe = project.end | append: '' %}
+{% endif %}
+{% assign ps_parts = ps | split: '-' %}
+{% if ps_parts.size == 2 %}{% assign ps = ps | append: '-01' %}{% endif %}
+{% assign pe_parts = pe | split: '-' %}
+{% if pe_parts.size == 2 %}{% assign pe = pe | append: '-01' %}{% endif %}
+{% assign present = false %}
+{% if pe == '' or pe == 'Present' or pe == 'present' %}{% assign present = true %}{% endif %}
+{% if pday %}
+  {% capture s_disp %}{{ ps | date: '%b %-d' }}{% endcapture %}
+  {% capture e_disp %}{% if present %}Present{% else %}{{ pe | date: '%b %-d, %Y' }}{% endif %}{% endcapture %}
+{% else %}
+  {% capture s_disp %}{{ ps | date: '%b %Y' }}{% endcapture %}
+  {% capture e_disp %}{% if present %}Present{% else %}{{ pe | date: '%b %Y' }}{% endif %}{% endcapture %}
+{% endif %}
+<span
+  class="{{ include.class | default: 'proj-dates' }} mono"
+  data-start="{{ ps }}"
+  data-end="{% if present %}present{% else %}{{ pe }}{% endif %}"
+  data-inline
+  {% if pday %}
+    data-day
+  {% endif %}
+>
+  {{- s_disp }} – {{ e_disp -}}
+</span>

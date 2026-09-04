@@ -29,8 +29,10 @@ ui:
   on_this_page: På den här sidan
   like: "Gilla"
   liked: "Gillad"
-  your_name: "Ditt namn (valfritt)"
-  your_note: "En kort hälsning (valfritt)"
+  your_name: "Ditt namn"
+  your_email: "E-post (krävs, visas inte)"
+  your_note: "Din hälsning"
+  leave_note: "Lämna en hälsning"
   send: "Skicka"
   thanks: "Tack!"
   anonymous: "Anonym"
@@ -84,19 +86,19 @@ projects:
 
 proj:
   honor:
-    meta: 1 jun – 31 aug 2026 · Honor Device Co., Ltd. · Sommarpraktik
-    desc: Praktikant som VLA-algoritmingenjör på Honor (1 juni – 31 augusti 2026). Byggde en online SFT / online RL-pipeline med människan i loopen för Honors humanoida robot — sömlöst övertagande av teleoperatören, en ingripandedriven datapipeline och en distribuerad Actor–Learner–Robot-inlärningsloop.
+    meta: Honor Device Co., Ltd. · Sommarpraktik
+    desc: Praktikant som VLA-algoritmingenjör på Honor. Byggde en online SFT / online RL-pipeline med människan i loopen för Honors humanoida robot — sömlöst övertagande av teleoperatören, en ingripandedriven datapipeline och en distribuerad Actor–Learner–Robot-inlärningsloop.
   langgap:
-    meta: Okt 2025 – jun 2026 · Förstaförfattare
+    meta: Förstaförfattare
     desc: Antagen till IROS 2026. Utformade ett systematiskt utvärderingsramverk med semantiska störningar som visar att ledande VLA-modeller ignorerar språkinstruktioner trots höga benchmarkresultat. Föreslog fleruppgiftsträning i samma scen och byggde ett utökat dataset för finjustering.
   aion:
-    meta: Jun 2025 – jun 2026 · Medförfattare
+    meta: Medförfattare
     desc: Antagen till IROS 2026. End-to-end-RL-ramverk med dubbla policyer för visionsbaserad ObjectNav i luften, utan extern lokalisering eller globala kartor. Utvärderat i AI2-THOR och IsaacSim.
   vln:
-    meta: Jun 2025 – feb 2026 · Habitat · Datapipeline för VLN i luften
+    meta: Habitat · Datapipeline för VLN i luften
     desc: Byggde en robust pipeline för att generera varierade 3D-banor i Habitat-simulatorn. Övervann begränsningarna hos en simulator byggd för markrobotar med en robust 3D-navigeringsalgoritm och hinderdetektering. Tränade en stark och generell navigeringspolicy för drönare.
   vehicle:
-    meta: Sep 2024 – apr 2025 · ROS 2 · Jetson Orin NX · Teamledare
+    meta: ROS 2 · Jetson Orin NX · Teamledare
     desc: Ledde ett team som utvecklade ett autonomt utforskningssystem med ROS2 och LiDAR. Implementerade SLAM-algoritmer (Cartographer, Navigation2) för kartläggning och banplanering i realtid. Integrerade YOLOv11 för objektdetektering och driftsatte hela systemet på inbyggd hårdvara.
 
 news:
