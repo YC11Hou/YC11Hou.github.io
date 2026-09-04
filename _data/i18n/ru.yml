@@ -94,8 +94,6 @@ proj:
 news:
   announcement_7: "Завершил стажировку по алгоритмам VLA в Honor (гуманоидный робот Omega)."
   announcement_6: "🎉 Две статьи приняты на <strong>IROS 2026</strong>: <a href=\"https://arxiv.org/abs/2603.00592\">LangGap</a> (первый автор) и <a href=\"https://arxiv.org/abs/2601.15614\">AION</a> (соавтор)."
-  announcement_5: "Присоединился к Honor как инженер по алгоритмам VLA (стажёр), команда гуманоидного робота Omega."
-  announcement_2: "Присоединился к NUS CORE Lab и начал магистратуру в NUS."
 
 xp:
   intern:

@@ -94,8 +94,6 @@ proj:
 news:
   announcement_7: "完成在荣耀的 VLA 算法实习（Omega 人形机器人）。"
   announcement_6: "🎉 两篇论文被 <strong>IROS 2026</strong> 录用：<a href=\"https://arxiv.org/abs/2603.00592\">LangGap</a>（第一作者）与 <a href=\"https://arxiv.org/abs/2601.15614\">AION</a>（合作作者）。"
-  announcement_5: "加入荣耀 Omega 人形机器人团队，任 VLA 算法工程师（实习）。"
-  announcement_2: "加入 NUS CORE Lab，开始在 NUS 的硕士学习。"
 
 xp:
   intern:

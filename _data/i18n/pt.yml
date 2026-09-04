@@ -94,8 +94,6 @@ proj:
 news:
   announcement_7: "Concluído o estágio em algoritmos VLA na Honor (robô humanoide Omega)."
   announcement_6: "🎉 Dois artigos aceites na <strong>IROS 2026</strong>: <a href=\"https://arxiv.org/abs/2603.00592\">LangGap</a> (primeiro autor) e <a href=\"https://arxiv.org/abs/2601.15614\">AION</a> (coautor)."
-  announcement_5: "Entrada na Honor como engenheiro de algoritmos VLA (estagiário), equipa do robô humanoide Omega."
-  announcement_2: "Entrada no NUS CORE Lab e início do mestrado na NUS."
 
 xp:
   intern:
