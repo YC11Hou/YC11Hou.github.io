@@ -742,3 +742,160 @@ ul.task-list input[type="checkbox"] {
 .d2h-diff-table {
   position: relative;
 }
+
+// ---------------------------------------------------------------------------
+// Likes + guestbook (assets/js/likes.js)
+// ---------------------------------------------------------------------------
+
+.likes-row {
+  margin: 2.4rem 0 0;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.like-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  height: 2rem;
+  padding: 0 0.85rem 0 0.7rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-2);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+
+  i {
+    font-size: 0.9rem;
+    color: var(--accent);
+  }
+
+  .like-count {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--ink);
+  }
+
+  &.liked {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+}
+
+.likes-inline .like-btn {
+  height: 1.55rem;
+  padding: 0 0.6rem 0 0.5rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  background: none;
+  border-color: var(--rule);
+
+  .like-count {
+    font-size: 0.7rem;
+  }
+
+  .like-label {
+    display: none;
+  }
+}
+
+.like-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+
+  input {
+    flex: 1 1 12rem;
+    height: 2rem;
+    padding: 0 0.7rem;
+    border: 1px solid var(--rule-strong);
+    border-radius: 7px;
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+
+    &:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+      border-color: var(--accent);
+    }
+  }
+
+  .like-text {
+    flex: 3 1 18rem;
+  }
+
+  .like-send {
+    height: 2rem;
+    padding: 0 0.9rem;
+    border: 0;
+    border-radius: 7px;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--accent-ink);
+    }
+  }
+}
+
+.likes-inline .like-form {
+  flex-basis: 100%;
+}
+
+.like-thanks {
+  margin: 0.6rem 0 0;
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+
+.like-notes {
+  list-style: none;
+  margin: 1.2rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+
+  li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem 0.7rem;
+    padding: 0.55rem 0.8rem;
+    border-radius: 8px;
+    background: var(--row-hover);
+    font-size: 0.88rem;
+    color: var(--ink);
+  }
+
+  .like-note-who {
+    font-size: 0.74rem;
+    color: var(--muted);
+  }
+}

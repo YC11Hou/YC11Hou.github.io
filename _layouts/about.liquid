@@ -72,5 +72,8 @@ layout: default
       <span data-i18n="home.contact_line">{{ t.home.contact_line }}</span>
       <a href="mailto:{{ site.data.socials.email }}">{{ site.data.socials.email }}</a>.
     </p>
+    {% if site.likes_api != '' %}
+      <div class="likes-row likes-home" data-like-id="home" data-like-notes></div>
+    {% endif %}
   </section>
 </div>

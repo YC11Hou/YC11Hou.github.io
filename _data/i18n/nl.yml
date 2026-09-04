@@ -27,6 +27,14 @@ ui:
   navigate: Navigatie
   links: Links
   on_this_page: Op deze pagina
+  like: "Vind ik leuk"
+  liked: "Geliked"
+  your_name: "Je naam (optioneel)"
+  your_note: "Een korte notitie (optioneel)"
+  send: "Versturen"
+  thanks: "Dank je!"
+  anonymous: "Anoniem"
+  guestbook: "Notities van bezoekers"
   present: Heden
   role: M.Sc. ECE · NUS<br>Embodied AI · Robotleren
   colophon: Singapore

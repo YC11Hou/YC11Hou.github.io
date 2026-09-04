@@ -30,6 +30,14 @@ ui:
   navigate: Navigate
   links: Links
   on_this_page: On this page
+  like: "Like"
+  liked: "Liked"
+  your_name: "Your name (optional)"
+  your_note: "A short note (optional)"
+  send: "Send"
+  thanks: "Thank you!"
+  anonymous: "Anonymous"
+  guestbook: "Notes from visitors"
   present: Present
   role: M.Sc. ECE · NUS<br>Embodied AI · Robot learning
   colophon: Singapore

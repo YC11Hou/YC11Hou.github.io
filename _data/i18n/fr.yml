@@ -27,6 +27,14 @@ ui:
   navigate: Navigation
   links: Liens
   on_this_page: Sur cette page
+  like: "J'aime"
+  liked: "Aimé"
+  your_name: "Votre nom (facultatif)"
+  your_note: "Un petit mot (facultatif)"
+  send: "Envoyer"
+  thanks: "Merci !"
+  anonymous: "Anonyme"
+  guestbook: "Mots des visiteurs"
   present: Aujourd'hui
   role: M.Sc. ECE · NUS<br>IA incarnée · Apprentissage robotique
   colophon: Singapour

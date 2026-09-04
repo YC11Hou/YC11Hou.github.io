@@ -27,6 +27,14 @@ ui:
   navigate: Navigation
   links: Links
   on_this_page: Auf dieser Seite
+  like: "Gefällt mir"
+  liked: "Gefällt dir"
+  your_name: "Dein Name (optional)"
+  your_note: "Eine kurze Notiz (optional)"
+  send: "Senden"
+  thanks: "Danke!"
+  anonymous: "Anonym"
+  guestbook: "Notizen von Besuchern"
   present: Heute
   role: M.Sc. ECE · NUS<br>Embodied AI · Robotisches Lernen
   colophon: Singapur

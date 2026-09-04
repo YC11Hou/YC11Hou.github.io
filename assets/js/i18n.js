@@ -234,6 +234,24 @@
     }
   }
 
+  function translateTree(root, dict) {
+    var nodes = root.querySelectorAll("[data-i18n]");
+    for (var i = 0; i < nodes.length; i++) {
+      var val = getPath(dict, nodes[i].getAttribute("data-i18n"));
+      if (typeof val === "string") nodes[i].innerHTML = val;
+    }
+    var attrNodes = root.querySelectorAll("[data-i18n-attr]");
+    for (var k = 0; k < attrNodes.length; k++) {
+      var spec = attrNodes[k].getAttribute("data-i18n-attr").split(";");
+      for (var m = 0; m < spec.length; m++) {
+        var pair = spec[m].split(":");
+        if (pair.length !== 2) continue;
+        var v = getPath(dict, pair[1].trim());
+        if (typeof v === "string") attrNodes[k].setAttribute(pair[0].trim(), v.replace(/<[^>]+>/g, ""));
+      }
+    }
+  }
+
   function applyDict(lang, dict) {
     var nodes = document.querySelectorAll("[data-i18n]");
     for (var i = 0; i < nodes.length; i++) {
@@ -356,6 +374,15 @@
   }
 
   window.siteI18n = {
+    t: function (key) {
+      var d = dicts[current];
+      var v = d ? getPath(d, key) : undefined;
+      return typeof v === "string" ? v : null;
+    },
+    translate: function (el) {
+      var d = dicts[current];
+      if (d && el) translateTree(el, d);
+    },
     set: function (l) {
       return setLanguage(l, true);
     },

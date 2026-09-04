@@ -49,6 +49,10 @@ layout: default
     {{ content }}
   </div>
 
+  {% if page.i18n_key and site.likes_api != '' %}
+    <div class="likes-row" data-like-id="proj:{{ page.i18n_key }}"></div>
+  {% endif %}
+
   {% if page.related_publications %}
     <h2>References</h2>
     <div class="publications">

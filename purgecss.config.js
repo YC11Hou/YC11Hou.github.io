@@ -45,6 +45,7 @@ module.exports = {
       /light-toggle/,
       /lang-/,
       /pagenav/,
+      /like/,
       /rail-animating/,
       /i18n/,
       /topbar/,

@@ -27,6 +27,14 @@ ui:
   navigate: 导航
   links: 链接
   on_this_page: 本页内容
+  like: "点赞"
+  liked: "已赞"
+  your_name: "你的名字（可选）"
+  your_note: "留一句话（可选）"
+  send: "发送"
+  thanks: "谢谢！"
+  anonymous: "匿名"
+  guestbook: "访客留言"
   present: 至今
   role: 新加坡国立大学 · ECE 硕士<br>具身智能 · 机器人学习
   colophon: 新加坡

@@ -27,6 +27,14 @@ ui:
   navigate: Navigering
   links: Länkar
   on_this_page: På den här sidan
+  like: "Gilla"
+  liked: "Gillad"
+  your_name: "Ditt namn (valfritt)"
+  your_note: "En kort hälsning (valfritt)"
+  send: "Skicka"
+  thanks: "Tack!"
+  anonymous: "Anonym"
+  guestbook: "Hälsningar från besökare"
   present: nu
   role: M.Sc. ECE · NUS<br>Förkroppsligad AI · Robotinlärning
   colophon: Singapore
