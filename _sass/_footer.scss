@@ -7,8 +7,8 @@
 .site-footer {
   width: 100%;
   max-width: v.$content-width;
-  margin: 0 auto;
-  padding: 1.6rem 3.4rem 2.2rem;
+  margin: 0;
+  padding: 1.6rem 3rem 2.2rem v.$content-gutter;
   display: flex;
   justify-content: space-between;
   gap: 1rem;

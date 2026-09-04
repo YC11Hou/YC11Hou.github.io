@@ -371,12 +371,16 @@ body.site-body {
   flex-direction: column;
 }
 
+// Content is anchored to the rail with a fixed gutter, not centred in the
+// leftover space: rail → gutter → text column → index column → free space.
+// The free space always falls on the far right, so wide screens read as one
+// left-aligned composition instead of a floating block with two unequal gaps.
 .site-content {
   flex: 1;
   width: 100%;
   max-width: v.$content-width;
-  margin: 0 auto;
-  padding: 4.2rem 3.4rem 3rem;
+  margin: 0;
+  padding: 4.2rem 3rem 3rem v.$content-gutter;
 }
 
 // ---------------------------------------------------------------------------
@@ -883,8 +887,9 @@ html[data-lang="pl"] {
 // reading measure never changes between pages.
 .site-content {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 176px;
-  column-gap: 2.75rem;
+  grid-template-columns: minmax(0, v.$text-width) 176px;
+  column-gap: 3.25rem;
+  justify-content: start;
   align-items: start;
 
   > .page,
