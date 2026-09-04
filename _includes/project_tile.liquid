@@ -24,6 +24,12 @@
   <span class="proj-head work-head">
     {% if project.venue -%}
       <span class="pub-venue">{{ project.venue }}</span>
+      {% if project.scholar_id and site.data.citations.papers[project.scholar_id] -%}
+        <span class="pub-cites"
+          ><i class="ai ai-google-scholar"></i><span class="pub-cites-n">{{ site.data.citations.papers[project.scholar_id].citations }}</span
+          ><span data-i18n="ui.citations">citations</span></span
+        >
+      {%- endif %}
     {%- endif %}
     {% if project.meta -%}
       <span class="work-meta mono" data-i18n="proj.{{ project.i18n_key }}.meta">{{ project.meta }}</span>

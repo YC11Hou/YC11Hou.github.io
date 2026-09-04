@@ -9,6 +9,7 @@ category: master
 org: nus
 i18n_key: aion
 venue: IROS 2026
+scholar_id: u5HHmVD_uO8C
 arxiv: 2601.15614
 meta: Jun 2025 – Jun 2026 · Co-author
 ---

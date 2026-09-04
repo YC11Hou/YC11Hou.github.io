@@ -27,6 +27,17 @@
     <p class="proj-head">
       {% if project.venue -%}
         <span class="pub-venue">{{ project.venue }}</span>
+        {% if project.scholar_id and site.data.citations.papers[project.scholar_id] -%}
+          <a
+            class="pub-cites"
+            href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user={{ site.data.socials.scholar_userid }}&citation_for_view={{ site.data.socials.scholar_userid }}:{{ project.scholar_id }}"
+            target="_blank"
+            rel="noopener"
+            title="Google Scholar"
+            ><i class="ai ai-google-scholar"></i><span class="pub-cites-n">{{ site.data.citations.papers[project.scholar_id].citations }}</span
+            ><span data-i18n="ui.citations">citations</span></a
+          >
+        {%- endif %}
       {%- endif %}
       {% if project.meta -%}
         <span class="proj-meta mono" data-i18n="proj.{{ project.i18n_key }}.meta">{{ project.meta }}</span>
