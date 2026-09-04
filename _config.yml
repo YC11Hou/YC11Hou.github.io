@@ -8,7 +8,7 @@ middle_name:
 last_name: Hou
 contact_note:
 description: >
-  Master student at NUS, focusing on Embodied AI and Multimodal Learning.
+  Yuchen Hou — Embodied AI researcher at NUS (M.Sc. ECE, NUS CORE Lab): vision-language-action models, online reinforcement learning and post-training for real robots. Two IROS 2026 papers (LangGap, AION).
 footer_text: >
   Embodied AI · Robot learning · Singapore
 keywords: embodied-ai, robotics, reinforcement-learning, vision-language-navigation, NUS
@@ -18,7 +18,7 @@ languages: [en, zh, fr, de, es, it, pt, nl, pl, sv, ru] # shipped translations; 
 timezone: Asia/Singapore # ensures dates render consistently regardless of build machine
 icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
-url: https://yc11hou.github.io # the base hostname & protocol for your site
+url: https://yuchenhou.me # canonical host (github.io redirects here); drives canonical links, sitemap, OG
 baseurl: # the subpath of your site, e.g. /blog/. Leave blank for root
 last_updated: false # set to true if you want to display last updated in the footer
 impressum_path: # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
@@ -68,9 +68,9 @@ max_width: 930px
 # -----------------------------------------------------------------------------
 # Display links to the page with a preview object on social media.
 # see https://schema.org/docs/faq.html for more information
-serve_og_meta: false # Include Open Graph meta tags in the HTML head
-serve_schema_org: false # Include Schema.org in the HTML head
-og_image: # The site-wide (default for all links) Open Graph preview image
+serve_og_meta: true # Include Open Graph meta tags in the HTML head
+serve_schema_org: true # Include Schema.org in the HTML head
+og_image: prof_pic_web.jpg # The site-wide (default for all links) Open Graph preview image
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification
