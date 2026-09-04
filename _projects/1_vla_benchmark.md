@@ -6,6 +6,7 @@ preview_video: /assets/video/grid_8x4.mp4
 importance: 1
 category: master
 org: nus
+i18n_key: langgap
 meta: Oct 2025 – Jun 2026 · IROS 2026 · First author
 ---
 

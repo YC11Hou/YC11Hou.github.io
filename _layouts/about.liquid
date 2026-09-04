@@ -1,31 +1,39 @@
 ---
 layout: default
 ---
+{% assign t = site.data.i18n.en %}
 <div class="home">
   <!-- Opening statement -->
   <header class="home-opening">
-    <p class="eyebrow mono">01 — About</p>
-    <h1 class="home-title">{{ page.tagline }}</h1>
+    <p class="eyebrow mono" data-i18n="home.eyebrow">{{ t.home.eyebrow }}</p>
+    <h1 class="home-title" data-i18n="home.tagline">{{ t.home.tagline }}</h1>
   </header>
 
   <!-- Scenic banner with the personal motto -->
   <figure class="home-banner">
     <img src="{{ '/assets/img/hero_castle.jpg' | relative_url }}" alt="" aria-hidden="true">
     <figcaption>
-      <p class="home-quote">“The darkest hour is just before the dawn.”</p>
+      <p class="home-quote" data-i18n="home.quote">{{ t.home.quote }}</p>
       <span class="home-credit mono">Neuschwanstein · photo: Thomas Wolf, CC BY-SA 3.0 DE</span>
     </figcaption>
   </figure>
 
-  <!-- Bio -->
+  <!-- Bio (three paragraphs, each its own key so translations swap cleanly) -->
   <section class="section" id="bio">
-    <div class="prose lede">{{ content }}</div>
+    <div class="prose lede">
+      <p data-i18n="home.bio1">{{ t.home.bio1 }}</p>
+      <p data-i18n="home.bio2">{{ t.home.bio2 }}</p>
+      <p data-i18n="home.bio3">{{ t.home.bio3 }}</p>
+    </div>
   </section>
 
   <!-- News -->
   {% if page.announcements and page.announcements.enabled %}
     <section class="section" id="news">
-      <h2 class="section-label mono"><span>02 — News</span><a class="section-more" href="{{ '/news/' | relative_url }}">All news</a></h2>
+      <h2 class="section-label mono">
+        <span data-i18n="home.news">{{ t.home.news }}</span
+        ><a class="section-more" href="{{ '/news/' | relative_url }}" data-i18n="ui.all_news">{{ t.ui.all_news }}</a>
+      </h2>
       {% include news.liquid limit=true %}
     </section>
   {% endif %}
@@ -34,7 +42,8 @@ layout: default
   {% if page.selected_papers %}
     <section class="section" id="papers">
       <h2 class="section-label mono">
-        <span>03 — Selected publications</span><a class="section-more" href="{{ '/publications/' | relative_url }}">All publications</a>
+        <span data-i18n="home.papers">{{ t.home.papers }}</span
+        ><a class="section-more" href="{{ '/publications/' | relative_url }}" data-i18n="ui.all_publications">{{ t.ui.all_publications }}</a>
       </h2>
       {% include selected_papers.liquid %}
     </section>
@@ -43,7 +52,8 @@ layout: default
   <!-- Selected work -->
   <section class="section" id="work">
     <h2 class="section-label mono">
-      <span>04 — Selected work</span><a class="section-more" href="{{ '/projects/' | relative_url }}">All projects</a>
+      <span data-i18n="home.work">{{ t.home.work }}</span
+      ><a class="section-more" href="{{ '/projects/' | relative_url }}" data-i18n="ui.all_projects">{{ t.ui.all_projects }}</a>
     </h2>
     <div class="work-grid">
       {% assign featured = site.projects | where: 'category', 'master' | sort: 'importance' %}
@@ -55,10 +65,11 @@ layout: default
 
   <!-- Closing contact line -->
   <section class="section home-contact" id="contact">
-    <h2 class="section-label mono"><span>05 — Contact</span></h2>
+    <h2 class="section-label mono">
+      <span data-i18n="home.contact">{{ t.home.contact }}</span>
+    </h2>
     <p class="home-contact-line">
-      I'm looking for research positions in industry labs working on embodied AI and robot learning, and am equally open to
-      PhD opportunities and academic collaborations. Reach me at
+      <span data-i18n="home.contact_line">{{ t.home.contact_line }}</span>
       <a href="mailto:{{ site.data.socials.email }}">{{ site.data.socials.email }}</a>.
     </p>
   </section>

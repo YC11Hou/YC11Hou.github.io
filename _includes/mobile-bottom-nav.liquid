@@ -20,7 +20,7 @@
       class="mobile-bottom-nav-item {% if page.permalink == '/' %}active{% endif %}"
     >
       <i class="fa-solid fa-house"></i>
-      <span>{{ about_title }}</span>
+      <span data-i18n="ui.about">{{ about_title }}</span>
     </a>
 
     <!-- Other nav pages -->
@@ -57,7 +57,7 @@
           class="mobile-bottom-nav-item {% if page.url contains parent_link %}active{% endif %}"
         >
           <i class="{{ icon_class }}"></i>
-          <span>{{ p.title }}</span>
+          <span data-i18n="ui.{{ p.i18n | default: title_lower }}">{{ p.title }}</span>
         </a>
       {% endif %}
     {% endfor %}
@@ -71,7 +71,7 @@
         onclick="document.getElementById('light-toggle').click()"
       >
         <i class="fa-solid fa-circle-half-stroke"></i>
-        <span>Theme</span>
+        <span data-i18n="ui.theme">Theme</span>
       </button>
     {% endif %}
   </nav>

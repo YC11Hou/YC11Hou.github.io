@@ -5,7 +5,16 @@
 <a class="work-tile" href="{{ project_href }}">
   <span class="work-media">
     {% if project.preview_video %}
-      <video autoplay loop muted playsinline preload="metadata">
+      <video
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="metadata"
+        {% if project.img %}
+          poster="{{ project.img | relative_url }}"
+        {% endif %}
+      >
         <source src="{{ project.preview_video | relative_url }}" type="video/mp4">
       </video>
     {% elsif project.img %}
@@ -13,8 +22,8 @@
     {% endif %}
   </span>
   {% if project.meta -%}
-    <span class="work-meta mono">{{ project.meta }}</span>
+    <span class="work-meta mono" data-i18n="proj.{{ project.i18n_key }}.meta">{{ project.meta }}</span>
   {%- endif %}
   <span class="work-title">{{ project.title }}</span>
-  <span class="work-desc">{{ project.description }}</span>
+  <span class="work-desc" data-i18n="proj.{{ project.i18n_key }}.desc">{{ project.description }}</span>
 </a>

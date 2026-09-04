@@ -7,6 +7,7 @@ preview_video: /assets/video/aion_preview.mp4
 importance: 2
 category: master
 org: nus
+i18n_key: aion
 meta: Jun 2025 – Jun 2026 · IROS 2026 · Co-author
 ---
 

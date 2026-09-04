@@ -1,0 +1,32 @@
+{% comment %}
+  Language switcher. `include.class` is added to the trigger button.
+  Options come from site.languages, labels from each _data/i18n/<lang>.yml `name`.
+{% endcomment %}
+<div class="lang-menu">
+  <button
+    type="button"
+    class="lang-btn {{ include.class }}"
+    aria-haspopup="listbox"
+    aria-expanded="false"
+    title="Language"
+    data-i18n-attr="title:ui.language"
+  >
+    <i class="fa-solid fa-globe"></i><span class="mono lang-current">EN</span>
+  </button>
+  <ul class="lang-list" role="listbox" hidden>
+    {% for code in site.languages %}
+      {% assign L = site.data.i18n[code] %}
+      <li>
+        <button
+          type="button"
+          role="option"
+          data-lang="{{ code }}"
+          aria-selected="{% if code == 'en' %}true{% else %}false{% endif %}"
+          lang="{{ code }}"
+        >
+          <span class="lang-code mono">{{ code | upcase }}</span>{{ L.name }}
+        </button>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

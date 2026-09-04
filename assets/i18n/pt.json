@@ -1,0 +1,4 @@
+---
+# Generated from _data/i18n/pt.yml at build time
+---
+{{ site.data.i18n.pt | jsonify }}

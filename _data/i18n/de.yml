@@ -1,0 +1,127 @@
+name: Deutsch
+code: de
+dir: ltr
+
+ui:
+  about: Über mich
+  publications: Publikationen
+  projects: Projekte
+  experience: Erfahrung
+  news: Neuigkeiten
+  theme: Design
+  search: Suchen
+  language: Sprache
+  email: E-Mail
+  github: GitHub
+  linkedin: LinkedIn
+  cv: Lebenslauf
+  read_more: Mehr lesen
+  code: Code
+  all_news: Alle Neuigkeiten
+  all_publications: Alle Publikationen
+  all_projects: Alle Projekte
+  degree_in: "in"
+  present: Heute
+  role: M.Sc. ECE · NUS<br>Embodied AI · Robotisches Lernen
+  colophon: Singapur
+  footer: Embodied AI · Robotisches Lernen · Singapur
+
+home:
+  eyebrow: 01 — Über mich
+  tagline: Forscher im Bereich Embodied AI – Vision-Language-Action-Modelle, Luftnavigation und Reinforcement Learning für <em>echte Roboter</em>.
+  quote: "„Die dunkelste Stunde ist die vor der Dämmerung.“"
+  bio1: Ich bin Masterstudent der Elektrotechnik an der National University of Singapore (NUS) und Kernmitglied des <strong>NUS CORE Lab</strong> (COntrol, Robotics &amp; Artificial IntElligence). Mein Forschungsschwerpunkt liegt auf <strong>Embodied AI</strong> und autonomer Entscheidungsfindung von Robotern. Zwei meiner Arbeiten als Erst- bzw. Mitautor — <strong>LangGap</strong> und <strong>AION</strong> — wurden bei der <strong>IROS 2026</strong> angenommen.
+  bio2: "Im Sommer 2026 (1. Juni – 31. August) war ich <strong>VLA-Algorithmus-Ingenieur (Praktikant)</strong> bei <strong>Honor</strong> und arbeitete am hauseigenen humanoiden Roboter <strong>Omega</strong>: Erfassung von Teleoperationsdaten, Replay, Training und Einsatz auf dem Roboter sowie Forschung zu <strong>Online-RL</strong> für VLA-Modelle auf eigens definierten Manipulationsaufgaben — eine vollständige <strong>Online-SFT-/Online-RL</strong>-Pipeline mit Mensch in der Schleife (nahtlose Übernahme durch den Teleoperator, Datenpipeline für Interventionen und eine verteilte Actor–Learner-Architektur über die AGX/NX-Boards des Roboters, einen x86-Host und einen Entwicklungsserver), ergänzt um RECAP-artiges Offline-RL mit schneller Anpassung im Rauschraum für Aufgaben, die das Offline-Training nicht abdeckt. Darüber hinaus befasse ich mich mit dem Benchmarking von <strong>Vision-Language-Action-(VLA)</strong>-Modellen hinsichtlich Sprachverständnis, <strong>Vision-Language Navigation (VLN)</strong> für Flugroboter und <strong>End-to-End-Reinforcement-Learning</strong> in komplexen 3D-Umgebungen. Ich habe außerdem Erfahrung in der Robotikentwicklung mit <strong>ROS2</strong>, SLAM und dem Einsatz auf realen Systemen."
+  bio3: Vor der NUS erwarb ich meinen Bachelor in Elektronik- und Kommunikationstechnik an der Nanjing University of Aeronautics and Astronautics (NUAA).
+  news: 02 — Neuigkeiten
+  papers: 03 — Ausgewählte Publikationen
+  work: 04 — Ausgewählte Arbeiten
+  contact: 05 — Kontakt
+  contact_line: Ich suche Forschungsstellen in Industrielabors, die an Embodied AI und robotischem Lernen arbeiten, und bin ebenso offen für Promotionsstellen und akademische Kooperationen. Erreichen Sie mich unter
+
+pages:
+  publications:
+    eyebrow: 02 — Publikationen
+    title: Publikationen
+    desc: Begutachtete Arbeiten. Der unterstrichene Name markiert meine Autorschaft.
+  projects:
+    eyebrow: 03 — Projekte
+    title: Projekte
+    desc: Forschungs- und Ingenieurarbeiten, nach Studienabschnitt geordnet.
+  experience:
+    eyebrow: 04 — Erfahrung
+    title: Erfahrung
+    desc: Praktika und Ausbildung, das Neueste zuerst.
+    internships: Praktika
+    education: Ausbildung
+  news:
+    eyebrow: Archiv
+    title: Neuigkeiten
+
+projects:
+  master: Master
+  bachelor: Bachelor
+  nus: National University of Singapore
+  nus_note: Forschung · NUS CORE Lab
+  honor: Honor Device Co., Ltd.
+  honor_note: Sommerpraktikum · Shanghai
+  nuaa: Nanjing University of Aeronautics and Astronautics
+  nuaa_note: Elektronik- &amp; Kommunikationstechnik
+
+proj:
+  honor:
+    meta: 1. Juni – 31. Aug. 2026 · Honor Device Co., Ltd. · Sommerpraktikum
+    desc: VLA-Algorithmus-Ingenieur (Praktikant) bei Honor (1. Juni – 31. August 2026). Aufbau einer Online-SFT-/Online-RL-Pipeline mit Mensch in der Schleife für den humanoiden Roboter Omega von Honor — nahtlose Teleoperator-Übernahme, interventionsgetriebene Datenpipeline und eine verteilte Actor–Learner–Roboter-Lernschleife.
+  langgap:
+    meta: Okt. 2025 – Juni 2026 · IROS 2026 · Erstautor
+    desc: Angenommen bei IROS 2026. Entwurf eines systematischen Evaluationsrahmens mit semantischen Störungen, der zeigt, dass aktuelle VLA-Modelle Sprachanweisungen trotz hoher Benchmark-Werte weitgehend ignorieren. Vorschlag eines Multi-Task-Trainings in identischer Szene und Aufbau eines erweiterten Datensatzes zum Fine-Tuning.
+  aion:
+    meta: Juni 2025 – Juni 2026 · IROS 2026 · Mitautor
+    desc: Angenommen bei IROS 2026. End-to-End-RL-Framework mit zwei Strategien für visionsbasierte ObjectNav in der Luft, ohne externe Lokalisierung oder globale Karten. Evaluiert in AI2-THOR und IsaacSim.
+  vln:
+    meta: Juni 2025 – Feb. 2026 · Habitat · Datenpipeline für VLN in der Luft
+    desc: Aufbau einer robusten Pipeline zur Erzeugung vielfältiger 3D-Pfade im Habitat-Simulator. Die Grenzen des ursprünglich für Bodenroboter ausgelegten Simulators wurden durch einen robusten 3D-Navigationsalgorithmus und eine Hinderniserkennung überwunden. Training einer starken, allgemeinen Navigationsstrategie für Drohnen.
+  vehicle:
+    meta: Sept. 2024 – Apr. 2025 · ROS 2 · Jetson Orin NX · Teamleitung
+    desc: Leitung eines Teams zur Entwicklung eines autonomen Explorationssystems mit ROS2 und LiDAR. Umsetzung von SLAM-Algorithmen (Cartographer, Navigation2) für Echtzeit-Kartierung und Pfadplanung. Integration von YOLOv11 zur Objekterkennung und Einsatz des Gesamtsystems auf eingebetteter Hardware.
+
+news:
+  announcement_6: "🎉 Zwei Arbeiten bei der <strong>IROS 2026</strong> angenommen: <a href=\"https://arxiv.org/abs/2603.00592\">LangGap</a> (Erstautor) und <a href=\"https://arxiv.org/abs/2601.15614\">AION</a> (Mitautor). Wir sehen uns in Pittsburgh!"
+  announcement_5: Start bei Honor als VLA-Algorithmus-Ingenieur (Praktikant) am humanoiden Roboter Omega — Teleoperationsdaten, Training und Einsatz.
+  announcement_4: Forschungspraktikum am Huawei Norbert Wiener Research Center abgeschlossen (März – Mai 2026), Deep Learning für Nahbereichsradar.
+  announcement_3: Praktikum in Robotiksoftware bei Movel.AI abgeschlossen (Dez. 2025 – Jan. 2026), autonome Gabelstapler-Navigation.
+  announcement_2: Beitritt zum NUS CORE Lab und Beginn des Masterstudiums an der NUS.
+
+xp:
+  intern:
+    - position: VLA-Algorithmus-Ingenieur (Praktikant)
+      location: Shanghai, China
+      h:
+        - "Arbeit am humanoiden Roboter Omega von Honor: Erfassung von Teleoperationsdaten, Replay, Training und Einsatz auf dem Roboter."
+        - Forschung zu Online-RL-Algorithmen für Vision-Language-Action-(VLA)-Modelle auf eigens definierten Manipulationsaufgaben.
+        - Umsetzung einer nahtlosen Übernahme durch den menschlichen Teleoperator während autonomer Ausführung, inklusive Zustandsautomat für den Wechsel Autonomie–Teleoperation.
+        - "Aufbau der interventionsgetriebenen Datenpipeline für Online-Lernen: Aufzeichnung auf dem Roboter, vollständige lokale Persistenz und automatischer Upload zum Entwicklungsserver."
+        - "Schließen der Schleife über eine verteilte Lernarchitektur: AGX/NX-Boards an Bord (Topic-Publishing, Befehlsausführung, Datenerfassung), ein x86-Host als Actor (Inferenz, Streaming der Aktionen zum Roboter) und ein Entwicklungsserver als Learner (Datenaggregation, Training, Checkpoint-Verteilung) — eine vollständige Online-SFT-/Online-RL-Pipeline."
+        - "Forschung zu RECAP-artigem (π0.6) Offline-RL kombiniert mit schneller Anpassung im Rauschraum (DSRL-ähnlich): Lernen eines korrigierenden Rauschens aus menschlichen Interventionen, um Übernahmeverhalten schnell zu imitieren, bevor ein neuer Checkpoint fertig trainiert ist — deutlich höhere Erfolgsraten bei nicht abgedeckten Aufgaben, mit Erweiterung auf Loko-Manipulation."
+    - position: Forschungspraktikant
+      location: Singapur
+      h:
+        - Entwicklung von Deep-Learning-Backend-Modellen für die Signalverarbeitung von Nahbereichsradar.
+        - Forschung zu Downstream-Aufgaben wie Schätzung menschlicher Körperhaltung und Innenraumkartierung/SLAM aus Radardaten.
+    - position: Praktikant Robotiksoftware
+      location: Singapur
+      h:
+        - Vor-Ort-Validierung und Werkseinsatz autonomer Navigation für Gabelstapler-Roboter in realen Lagerumgebungen (ROS2).
+  edu:
+    - degree: Master of Science
+      area: Elektrotechnik
+      location: Singapur
+      h:
+        - Kernmitglied des NUS CORE Lab (COntrol, Robotics &amp; Artificial IntElligence) mit Fokus auf Embodied AI und autonomer Entscheidungsfindung von Robotern.
+        - Forschung zu Wahrnehmung und Planung für Flugroboter mittels Vision-Language Navigation (VLN) sowie End-to-End-Reinforcement-Learning in komplexen 3D-Umgebungen.
+    - degree: Bachelor of Engineering
+      area: Elektronik- und Kommunikationstechnik
+      location: Nanjing, China
+      h:
+        - "Notendurchschnitt: 88/100"
+        - "Schwerpunktfächer: Höhere Mathematik (96), Wahrscheinlichkeitstheorie (97), Analyse stochastischer Signale (97), Mikrowellentechnik und Antennen (97), Grundlagen der Kommunikation (95), Funktionentheorie (99)."

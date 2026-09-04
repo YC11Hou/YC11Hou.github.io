@@ -1,12 +1,13 @@
 ---
 layout: default
 ---
+{% assign t = site.data.i18n.en %}
 <article class="page">
   <header class="page-head">
-    <p class="eyebrow mono">{{ page.eyebrow | default: '04 — Experience' }}</p>
-    <h1 class="page-title">{{ page.title }}</h1>
+    <p class="eyebrow mono" data-i18n="pages.experience.eyebrow">{{ page.eyebrow | default: '04 — Experience' }}</p>
+    <h1 class="page-title" data-i18n="pages.experience.title">{{ page.title }}</h1>
     {% if page.description %}
-      <p class="page-desc">{{ page.description }}</p>
+      <p class="page-desc" data-i18n="pages.experience.desc">{{ page.description }}</p>
     {% endif %}
   </header>
 
@@ -20,18 +21,30 @@ layout: default
     {% assign combined = exp | concat: vol %}
     {% if combined.size > 0 %}
       <section class="xp-section">
-        <h2 class="section-label mono"><span>Internship experience</span></h2>
+        <h2 class="section-label mono">
+          <span data-i18n="pages.experience.internships">{{ t.pages.experience.internships }}</span>
+        </h2>
         {% for entry in combined %}
+          {% assign i = forloop.index0 %}
           {% assign sd = entry.start_date | append: '' %}
           {% assign ed = entry.end_date | append: '' %}
           {% assign sd_parts = sd | split: '-' %}
           {% if sd_parts.size == 2 %}{% assign sd = sd | append: '-01' %}{% endif %}
           {% assign ed_parts = ed | split: '-' %}
           {% if ed_parts.size == 2 %}{% assign ed = ed | append: '-01' %}{% endif %}
+          {% assign is_present = false %}
+          {% if ed == '' or ed == 'Present' or ed == 'present' %}{% assign is_present = true %}{% endif %}
           {% capture start_disp %}{% if sd contains '-' %}{{ sd | date: '%b %Y' }}{% else %}{{ sd }}{% endif %}{% endcapture %}
-          {% capture end_disp %}{% if ed == '' or ed == 'Present' or ed == 'present' %}Present{% elsif ed contains '-' %}{{ ed | date: '%b %Y' }}{% else %}{{ ed }}{% endif %}{% endcapture %}
+          {% capture end_disp %}{% if is_present %}Present{% elsif ed contains '-' %}{{ ed | date: '%b %Y' }}{% else %}{{ ed }}{% endif %}{% endcapture %}
           <div class="xp-entry">
-            <div class="xp-when mono">
+            <div
+              class="xp-when mono"
+              data-start="{{ sd }}"
+              data-end="{% if is_present %}present{% else %}{{ ed }}{% endif %}"
+              {% if entry.date_label %}
+                data-day
+              {% endif %}
+            >
               {% if entry.date_label %}
                 {{ entry.date_label }}
               {% else %}
@@ -48,7 +61,7 @@ layout: default
               {% endif %}
             </div>
             <div class="xp-body">
-              <h3 class="xp-title">{{ entry.position }}</h3>
+              <h3 class="xp-title" data-i18n="xp.intern.{{ i }}.position">{{ entry.position }}</h3>
               <p class="xp-org">
                 {%- if entry.url -%}
                   <a href="{{ entry.url }}">{{ entry.company | default: entry.name }}</a>
@@ -56,13 +69,13 @@ layout: default
                   {{ entry.company | default: entry.name }}
                 {%- endif -%}
                 {% if entry.location -%}
-                  <span class="xp-loc mono">{{ entry.location }}</span>
+                  <span class="xp-loc mono" data-i18n="xp.intern.{{ i }}.location">{{ entry.location }}</span>
                 {%- endif %}
               </p>
               {% if entry.highlights %}
                 <ul class="xp-highlights">
                   {% for item in entry.highlights %}
-                    <li>{{ item | markdownify | remove: '<p>' | remove: '</p>' }}</li>
+                    <li data-i18n="xp.intern.{{ i }}.h.{{ forloop.index0 }}">{{ item | markdownify | remove: '<p>' | remove: '</p>' }}</li>
                   {% endfor %}
                 </ul>
               {% endif %}
@@ -75,18 +88,23 @@ layout: default
     {% comment %} ---------- Education ---------- {% endcomment %}
     {% if cv.sections.Education.size > 0 %}
       <section class="xp-section">
-        <h2 class="section-label mono"><span>Education</span></h2>
+        <h2 class="section-label mono">
+          <span data-i18n="pages.experience.education">{{ t.pages.experience.education }}</span>
+        </h2>
         {% for entry in cv.sections.Education %}
+          {% assign i = forloop.index0 %}
           {% assign sd = entry.start_date | append: '' %}
           {% assign ed = entry.end_date | append: '' %}
           {% assign sd_parts = sd | split: '-' %}
           {% if sd_parts.size == 2 %}{% assign sd = sd | append: '-01' %}{% endif %}
           {% assign ed_parts = ed | split: '-' %}
           {% if ed_parts.size == 2 %}{% assign ed = ed | append: '-01' %}{% endif %}
+          {% assign is_present = false %}
+          {% if ed == '' or ed == 'Present' or ed == 'present' %}{% assign is_present = true %}{% endif %}
           {% capture start_disp %}{% if sd contains '-' %}{{ sd | date: '%b %Y' }}{% else %}{{ sd }}{% endif %}{% endcapture %}
-          {% capture end_disp %}{% if ed == '' or ed == 'Present' or ed == 'present' %}Present{% elsif ed contains '-' %}{{ ed | date: '%b %Y' }}{% else %}{{ ed }}{% endif %}{% endcapture %}
+          {% capture end_disp %}{% if is_present %}Present{% elsif ed contains '-' %}{{ ed | date: '%b %Y' }}{% else %}{{ ed }}{% endif %}{% endcapture %}
           <div class="xp-entry">
-            <div class="xp-when mono">
+            <div class="xp-when mono" data-start="{{ sd }}" data-end="{% if is_present %}present{% else %}{{ ed }}{% endif %}">
               {{ start_disp | strip -}}
               <br>
               — {{ end_disp | strip }}
@@ -100,9 +118,11 @@ layout: default
             </div>
             <div class="xp-body">
               <h3 class="xp-title">
-                {{ entry.studyType | default: entry.degree -}}
+                <span data-i18n="xp.edu.{{ i }}.degree">{{ entry.studyType | default: entry.degree }}</span>
                 {%- if entry.area %}
-                  <span class="xp-area">in {{ entry.area }}</span>
+                  <span class="xp-area"
+                    ><span data-i18n="ui.degree_in">in</span> <span data-i18n="xp.edu.{{ i }}.area">{{ entry.area }}</span></span
+                  >
                 {%- endif %}
               </h3>
               <p class="xp-org">
@@ -112,13 +132,13 @@ layout: default
                   {{ entry.institution }}
                 {%- endif -%}
                 {% if entry.location -%}
-                  <span class="xp-loc mono">{{ entry.location }}</span>
+                  <span class="xp-loc mono" data-i18n="xp.edu.{{ i }}.location">{{ entry.location }}</span>
                 {%- endif %}
               </p>
               {% if entry.highlights %}
                 <ul class="xp-highlights">
                   {% for item in entry.highlights %}
-                    <li>{{ item | markdownify | remove: '<p>' | remove: '</p>' }}</li>
+                    <li data-i18n="xp.edu.{{ i }}.h.{{ forloop.index0 }}">{{ item | markdownify | remove: '<p>' | remove: '</p>' }}</li>
                   {% endfor %}
                 </ul>
               {% endif %}

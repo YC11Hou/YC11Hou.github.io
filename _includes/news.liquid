@@ -10,8 +10,15 @@
     <ol class="news-list">
       {% for item in news limit: news_limit %}
         <li>
-          <time class="news-date mono" datetime="{{ item.date | date: '%Y-%m-%d' }}">{{ item.date | date: '%b %d, %Y' }}</time>
-          <div class="news-body">
+          <time class="news-date mono" datetime="{{ item.date | date: '%Y-%m-%d' }}" data-date="{{ item.date | date: '%Y-%m-%d' }}">
+            {{- item.date | date: '%b %d, %Y' -}}
+          </time>
+          <div
+            class="news-body"
+            {% if item.inline %}
+              data-i18n="news.{{ item.slug }}"
+            {% endif %}
+          >
             {% if item.inline %}
               {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
             {% else %}

@@ -8,16 +8,40 @@ layout: default
   </style>
 {% endif %}
 
+{% comment %}
+  Section pages (publications, projects, news) set `i18n: <name>` and are
+  translated via pages.<name>.*; project detail pages set `i18n_key` and get
+  their meta line + description from proj.<key>.*. Titles of projects and
+  long-form project bodies stay in English.
+{% endcomment %}
 <article class="page">
   <header class="page-head">
-    {% if page.eyebrow %}
-      <p class="eyebrow mono">{{ page.eyebrow }}</p>
-    {% elsif page.meta %}
-      <p class="eyebrow mono">{{ page.meta }}</p>
-    {% endif %}
-    <h1 class="page-title">{{ page.title }}</h1>
-    {% if page.description %}
-      <p class="page-desc">{{ page.description }}</p>
+    {% if page.i18n %}
+      {% if page.eyebrow %}
+        <p class="eyebrow mono" data-i18n="pages.{{ page.i18n }}.eyebrow">{{ page.eyebrow }}</p>
+      {% endif %}
+      <h1 class="page-title" data-i18n="pages.{{ page.i18n }}.title">{{ page.title }}</h1>
+      {% if page.description %}
+        <p class="page-desc" data-i18n="pages.{{ page.i18n }}.desc">{{ page.description }}</p>
+      {% endif %}
+    {% elsif page.i18n_key %}
+      {% if page.meta %}
+        <p class="eyebrow mono" data-i18n="proj.{{ page.i18n_key }}.meta">{{ page.meta }}</p>
+      {% endif %}
+      <h1 class="page-title">{{ page.title }}</h1>
+      {% if page.description %}
+        <p class="page-desc" data-i18n="proj.{{ page.i18n_key }}.desc">{{ page.description }}</p>
+      {% endif %}
+    {% else %}
+      {% if page.eyebrow %}
+        <p class="eyebrow mono">{{ page.eyebrow }}</p>
+      {% elsif page.meta %}
+        <p class="eyebrow mono">{{ page.meta }}</p>
+      {% endif %}
+      <h1 class="page-title">{{ page.title }}</h1>
+      {% if page.description %}
+        <p class="page-desc">{{ page.description }}</p>
+      {% endif %}
     {% endif %}
   </header>
 

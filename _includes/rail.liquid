@@ -1,22 +1,23 @@
 {% comment %}
   Desktop identity rail — fixed to the left edge. Holds name, role, numbered
-  section nav, contact links and the search / theme tools.
+  section nav, contact links and the search / theme / language tools.
+  English text is authored here; data-i18n keys point into _data/i18n/*.yml.
 {% endcomment %}
+{% assign t = site.data.i18n.en %}
 <aside class="site-rail" aria-label="Site navigation">
   <div class="rail-top">
     <a class="rail-identity" href="{{ '/' | relative_url }}">
       <img class="rail-avatar" src="{{ '/assets/img/prof_pic_web.jpg' | relative_url }}" alt="Yuchen Hou" width="72" height="72">
       <span class="rail-name">Yuchen Hou</span>
-      <span class="rail-role mono"
-        >M.Sc. ECE · NUS<br>
-        Embodied AI · Robot learning</span
-      >
+      <span class="rail-role mono" data-i18n="ui.role">{{ t.ui.role }}</span>
     </a>
 
     <nav class="rail-nav">
       <ol>
         <li class="{% if page.permalink == '/' %}active{% endif %}">
-          <a href="{{ '/' | relative_url }}"><span class="rail-idx mono">01</span>About</a>
+          <a href="{{ '/' | relative_url }}"
+            ><span class="rail-idx mono">01</span><span data-i18n="ui.about">{{ t.ui.about }}</span></a
+          >
         </li>
         {% assign sorted_pages = site.pages | sort: 'nav_order' %}
         {% assign idx = 1 %}
@@ -24,10 +25,11 @@
           {% if p.nav and p.autogen == null and p.dropdown == null and p.permalink != '/' %}
             {% assign idx = idx | plus: 1 %}
             {% assign parent_link = p.permalink | remove: 'index.html' %}
+            {% assign key = p.i18n | default: p.title | downcase %}
             <li class="{% if page.url contains parent_link %}active{% endif %}">
               <a href="{{ p.url | relative_url }}"
-                ><span class="rail-idx mono">{{ idx | prepend: '0' | slice: -2, 2 }}</span>{{ p.title -}}
-              </a>
+                ><span class="rail-idx mono">{{ idx | prepend: '0' | slice: -2, 2 }}</span><span data-i18n="ui.{{ key }}">{{ p.title }}</span></a
+              >
             </li>
           {% endif %}
         {% endfor %}
@@ -39,7 +41,9 @@
     <ul class="rail-contact">
       {% if site.data.socials.email %}
         <li>
-          <a href="mailto:{{ site.data.socials.email }}" title="Email"><i class="fa-solid fa-envelope"></i><span>Email</span></a>
+          <a href="mailto:{{ site.data.socials.email }}" title="Email"
+            ><i class="fa-solid fa-envelope"></i><span data-i18n="ui.email">{{ t.ui.email }}</span></a
+          >
         </li>
       {% endif %}
       {% if site.data.socials.github_username %}
@@ -58,26 +62,29 @@
       {% endif %}
       <li>
         <a href="{{ '/assets/pdf/CV_Yuchen_Hou.pdf' | relative_url }}" target="_blank" rel="noopener" title="CV (PDF)"
-          ><i class="fa-solid fa-file-arrow-down"></i><span>CV</span></a
+          ><i class="fa-solid fa-file-arrow-down"></i><span data-i18n="ui.cv">{{ t.ui.cv }}</span></a
         >
       </li>
     </ul>
 
     <div class="rail-tools">
       {% if site.search_enabled %}
-        <button id="search-toggle" class="rail-tool" title="Search (⌘K)" onclick="openSearchModal()">
+        <button id="search-toggle" class="rail-tool" title="Search (⌘K)" data-i18n-attr="title:ui.search" onclick="openSearchModal()">
           <i class="fa-solid fa-magnifying-glass"></i><span class="mono">⌘K</span>
         </button>
       {% endif %}
       {% if site.enable_darkmode %}
-        <button id="light-toggle" class="rail-tool" title="Change theme">
+        <button id="light-toggle" class="rail-tool" title="Change theme" data-i18n-attr="title:ui.theme">
           <i class="fa-half-sun-moon" id="light-toggle-system"></i>
           <i class="fa-solid fa-moon" id="light-toggle-dark"></i>
           <i class="fa-solid fa-sun" id="light-toggle-light"></i>
         </button>
       {% endif %}
+      {% include lang_menu.liquid class='rail-tool' %}
     </div>
 
-    <p class="rail-colophon mono">Singapore · {{ site.time | date: '%Y' }}</p>
+    <p class="rail-colophon mono">
+      <span data-i18n="ui.colophon">{{ t.ui.colophon }}</span> · {{ site.time | date: '%Y' }}
+    </p>
   </div>
 </aside>

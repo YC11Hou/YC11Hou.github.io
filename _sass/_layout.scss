@@ -565,3 +565,148 @@ body.site-body {
   }
 }
 /* purgecss end ignore */
+
+// ---------------------------------------------------------------------------
+// Localisation: language switcher + no-flash gate + CJK fallbacks
+// ---------------------------------------------------------------------------
+
+// Content stays invisible until the chosen dictionary has been applied
+// (assets/js/i18n.js removes the attribute; a 1.6 s safety valve also does).
+html[data-i18n-pending] .site-main,
+html[data-i18n-pending] .site-rail,
+html[data-i18n-pending] .site-topbar {
+  visibility: hidden;
+}
+
+.lang-menu {
+  position: relative;
+  display: inline-flex;
+}
+
+.lang-btn .lang-current {
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+}
+
+.lang-list {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 0.5rem);
+  z-index: 50;
+  min-width: 11.5rem;
+  margin: 0;
+  padding: 0.35rem;
+  list-style: none;
+  background: var(--surface);
+  border: 1px solid var(--rule-strong);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+
+  li {
+    margin: 0;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    width: 100%;
+    padding: 0.42rem 0.6rem;
+    border: 0;
+    border-radius: 6px;
+    background: none;
+    color: var(--ink-2);
+    font-family: var(--font-body);
+    font-size: 0.86rem;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--accent-soft);
+      color: var(--ink);
+    }
+
+    &[aria-selected="true"] {
+      color: var(--ink);
+      font-weight: 600;
+
+      .lang-code {
+        color: var(--accent);
+      }
+    }
+  }
+
+  .lang-code {
+    width: 1.7rem;
+    flex: none;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+}
+
+// Topbar variant: opens downward, right-aligned
+.site-topbar .lang-list {
+  left: auto;
+  right: 0;
+  top: calc(100% + 0.5rem);
+  bottom: auto;
+}
+
+.topbar-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.topbar-tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 0;
+  background: none;
+  color: var(--ink-2);
+  font-size: 0.95rem;
+  padding: 0.35rem 0.45rem;
+  cursor: pointer;
+  border-radius: 6px;
+
+  &:hover {
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+}
+
+// CJK / Cyrillic: the display serif has no glyphs, so fall back gracefully and
+// drop the tight tracking that only suits Latin.
+html[data-lang="zh"] {
+  --font-display: "Newsreader", "Songti SC", "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+
+  .home-title,
+  .page-title,
+  .rail-name,
+  .proj-title,
+  .work-title,
+  .xp-title,
+  .proj-stage-title,
+  .prose.lede > p:first-child,
+  .home-contact-line,
+  .home-quote {
+    letter-spacing: 0;
+  }
+
+  .home-title {
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  .prose.lede > p:first-child {
+    line-height: 1.7;
+  }
+}
+
+html[data-lang="ru"],
+html[data-lang="pl"] {
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, "Times New Roman", serif;
+}

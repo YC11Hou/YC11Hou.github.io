@@ -1,9 +1,12 @@
 {% comment %} Slim header shown only when the rail is hidden (narrow screens). {% endcomment %}
 <header class="site-topbar">
   <a class="topbar-name" href="{{ '/' | relative_url }}">Yuchen Hou</a>
-  {% if site.search_enabled %}
-    <button class="topbar-search" title="Search" onclick="openSearchModal()" aria-label="Search">
-      <i class="fa-solid fa-magnifying-glass"></i>
-    </button>
-  {% endif %}
+  <div class="topbar-tools">
+    {% include lang_menu.liquid class='topbar-tool' %}
+    {% if site.search_enabled %}
+      <button class="topbar-tool" title="Search" data-i18n-attr="title:ui.search" onclick="openSearchModal()" aria-label="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    {% endif %}
+  </div>
 </header>
