@@ -30,22 +30,10 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/experience/";
           },
-        },{id: "news-announcement-2",
-          title: 'Announcement_2',
+        },{id: "news-two-papers-accepted-to-iros-2026-langgap-first-author-and-aion-co-author",
+          title: '🎉 Two papers accepted to IROS 2026: LangGap (first author) and AION (co-author)....',
           description: "",
-          section: "News",handler: () => {
-              window.location.href = "/news/announcement_2/";
-            },},{id: "news-announcement-5",
-          title: 'Announcement_5',
-          description: "",
-          section: "News",handler: () => {
-              window.location.href = "/news/announcement_5/";
-            },},{id: "news-announcement-6",
-          title: 'Announcement_6',
-          description: "",
-          section: "News",handler: () => {
-              window.location.href = "/news/announcement_6/";
-            },},{id: "news-completed-my-vla-algorithm-internship-at-honor-omega-humanoid-robot",
+          section: "News",},{id: "news-completed-my-vla-algorithm-internship-at-honor-omega-humanoid-robot",
           title: 'Completed my VLA algorithm internship at Honor (Omega humanoid robot).',
           description: "",
           section: "News",},{id: "projects-honor-omega-humanoid-online-rl-for-vla",
