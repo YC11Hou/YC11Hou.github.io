@@ -593,20 +593,6 @@ body.site-body {
   }
 }
 
-// The opening paragraph of the bio carries one step more size and darker ink
-.prose.lede > p:first-child {
-  font-size: 1.24rem;
-  line-height: 1.58;
-  letter-spacing: -0.008em;
-  max-width: 58ch;
-  color: var(--ink);
-  margin-bottom: 1.5rem;
-
-  strong {
-    font-weight: 600;
-  }
-}
-
 // ---------------------------------------------------------------------------
 // Narrow screens: rail folds away
 // ---------------------------------------------------------------------------
@@ -683,11 +669,6 @@ body.site-body {
   .prose {
     font-size: 1.03rem;
     line-height: 1.66;
-  }
-
-  .prose.lede > p:first-child {
-    font-size: 1.16rem;
-    line-height: 1.5;
   }
 
   .eyebrow,
@@ -864,7 +845,6 @@ html[data-lang="zh"] {
   .work-title,
   .xp-title,
   .proj-stage-title,
-  .prose.lede > p:first-child,
   .home-contact-line,
   .home-quote {
     letter-spacing: 0;
@@ -873,10 +853,6 @@ html[data-lang="zh"] {
   .home-title {
     font-weight: 500;
     line-height: 1.25;
-  }
-
-  .prose.lede > p:first-child {
-    line-height: 1.7;
   }
 }
 
