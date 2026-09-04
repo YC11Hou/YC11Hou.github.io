@@ -230,7 +230,7 @@
       var s = fmtDate(el.getAttribute("data-start"), lang, withDay);
       var endIso = el.getAttribute("data-end");
       var e = !endIso || endIso === "present" ? present : fmtDate(endIso, lang, withDay);
-      el.innerHTML = s + "<br>— " + e;
+      el.innerHTML = el.hasAttribute("data-inline") ? s + " – " + e : s + "<br>— " + e;
     }
   }
 
