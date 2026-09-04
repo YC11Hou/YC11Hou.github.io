@@ -565,20 +565,6 @@ html[data-theme="dark"] .home-banner img {
   }
 }
 
-.venue-badge {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.64rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink) !important;
-  border: 1px solid var(--rule-strong);
-  border-radius: 3px;
-  padding: 0.3em 0.55em;
-  line-height: 1;
-}
-
 .media-row {
   display: flex;
   align-items: flex-start;

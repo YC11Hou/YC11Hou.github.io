@@ -78,10 +78,10 @@ proj:
     meta: 1 jun – 31 aug 2026 · Honor Device Co., Ltd. · Sommarpraktik
     desc: Praktikant som VLA-algoritmingenjör på Honor (1 juni – 31 augusti 2026). Byggde en online SFT / online RL-pipeline med människan i loopen för Honors humanoida robot Omega — sömlöst övertagande av teleoperatören, en ingripandedriven datapipeline och en distribuerad Actor–Learner–Robot-inlärningsloop.
   langgap:
-    meta: Okt 2025 – jun 2026 · IROS 2026 · Förstaförfattare
+    meta: Okt 2025 – jun 2026 · Förstaförfattare
     desc: Antagen till IROS 2026. Utformade ett systematiskt utvärderingsramverk med semantiska störningar som visar att ledande VLA-modeller ignorerar språkinstruktioner trots höga benchmarkresultat. Föreslog fleruppgiftsträning i samma scen och byggde ett utökat dataset för finjustering.
   aion:
-    meta: Jun 2025 – jun 2026 · IROS 2026 · Medförfattare
+    meta: Jun 2025 – jun 2026 · Medförfattare
     desc: Antagen till IROS 2026. End-to-end-RL-ramverk med dubbla policyer för visionsbaserad ObjectNav i luften, utan extern lokalisering eller globala kartor. Utvärderat i AI2-THOR och IsaacSim.
   vln:
     meta: Jun 2025 – feb 2026 · Habitat · Datapipeline för VLN i luften

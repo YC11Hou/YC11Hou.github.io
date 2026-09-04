@@ -24,9 +24,14 @@
     {% endif %}
   </a>
   <div class="proj-body">
-    {% if project.meta %}
-      <p class="proj-meta mono" data-i18n="proj.{{ project.i18n_key }}.meta">{{ project.meta }}</p>
-    {% endif %}
+    <p class="proj-head">
+      {% if project.venue -%}
+        <span class="pub-venue">{{ project.venue }}</span>
+      {%- endif %}
+      {% if project.meta -%}
+        <span class="proj-meta mono" data-i18n="proj.{{ project.i18n_key }}.meta">{{ project.meta }}</span>
+      {%- endif %}
+    </p>
     <h4 class="proj-title">
       <a href="{{ project_href }}">{{ project.title }}</a>
     </h4>

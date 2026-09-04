@@ -8,8 +8,9 @@ importance: 2
 category: master
 org: nus
 i18n_key: aion
+venue: IROS 2026
 arxiv: 2601.15614
-meta: Jun 2025 – Jun 2026 · IROS 2026 · Co-author
+meta: Jun 2025 – Jun 2026 · Co-author
 ---
 
 <p class="project-links">

@@ -7,8 +7,9 @@ importance: 1
 category: master
 org: nus
 i18n_key: langgap
+venue: IROS 2026
 arxiv: 2603.00592
-meta: Oct 2025 – Jun 2026 · IROS 2026 · First author
+meta: Oct 2025 – Jun 2026 · First author
 ---
 
 <p class="project-links">

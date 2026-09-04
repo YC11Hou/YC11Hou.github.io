@@ -2,29 +2,7 @@
 ---
 <div class="row">
   {% if site.enable_publication_thumbnails %}
-    <div class="col col-sm-2 abbr pub-side">
-      {%- if entry.abbr -%}
-        {%- if site.data.venues[entry.abbr] -%}
-          {% assign venue_style = null %}
-          {% if site.data.venues[entry.abbr].color != blank %}
-            {% assign venue_style = site.data.venues[entry.abbr].color | prepend: 'style="background-color:' | append: '"' %}
-          {%- endif -%}
-          <abbr
-            class="badge rounded-pill"
-            {% if venue_style %}
-              {{ venue_style }}
-            {% endif -%}
-          >
-            {% if site.data.venues[entry.abbr].url %}
-              <a href="{{ site.data.venues[entry.abbr].url }}">{{ entry.abbr }}</a>
-            {% else %}
-              <div>{{- entry.abbr -}}</div>
-            {% endif %}
-          </abbr>
-        {% else %}
-          <abbr class="badge rounded-pill">{{ entry.abbr }}</abbr>
-        {% endif %}
-      {% endif %}
+    <div class="col col-sm-2 pub-side">
       {% if entry.preview_video %}
         {% comment %} Short muted loop hosted on this site (assets/video/) {% endcomment %}
         <div class="pub-media">
@@ -46,6 +24,39 @@
 
   <!-- Entry bib key -->
   <div id="{{ entry.key }}" class="{% if site.enable_publication_thumbnails %}col-sm-8{% else %}col-sm-10{% endif %}">
+    <!-- Head: venue + live citation count, always together, always first -->
+    {% assign citation_count = null %}
+    {% if entry.google_scholar_id and site.data.citations.papers[entry.google_scholar_id] %}
+      {% assign citation_count = site.data.citations.papers[entry.google_scholar_id].citations %}
+    {% endif %}
+    <div class="pub-head">
+      {% if entry.abbr %}
+        {% if site.data.venues[entry.abbr] and site.data.venues[entry.abbr].url %}
+          <a class="pub-venue" href="{{ site.data.venues[entry.abbr].url }}" target="_blank" rel="noopener">
+            {{- entry.abbr }}
+            {{ entry.year -}}
+          </a>
+        {% else %}
+          <span class="pub-venue">
+            {{- entry.abbr }}
+            {{ entry.year -}}
+          </span>
+        {% endif %}
+      {% endif %}
+      {% if citation_count != null %}
+        <a
+          class="pub-cites"
+          href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user={{ site.data.socials.scholar_userid }}&citation_for_view={{ site.data.socials.scholar_userid }}:{{ entry.google_scholar_id }}"
+          target="_blank"
+          rel="noopener"
+          title="Google Scholar"
+        >
+          <i class="ai ai-google-scholar"></i>
+          <span class="pub-cites-n">{{ citation_count }}</span>
+          <span data-i18n="ui.citations">citations</span>
+        </a>
+      {% endif %}
+    </div>
     <!-- Title -->
     <div class="title">{{ entry.title }}</div>
     <!-- Author -->
@@ -278,7 +289,7 @@
       {% if entry.inspirehep_id %}
         {% assign entry_has_inspirehep_badge = true %}
       {% endif %}
-      {% if entry_has_altmetric_badge or entry_has_dimensions_badge or entry_has_google_scholar_badge or entry_has_inspirehep_badge %}
+      {% if entry_has_altmetric_badge or entry_has_dimensions_badge or entry_has_inspirehep_badge %}
         <div class="badges">
           {% if site.enable_publication_badges.altmetric and entry_has_altmetric_badge %}
             <span
@@ -314,23 +325,6 @@
               data-legend="hover-right"
               style="margin-bottom: 3px;"
             ></span>
-          {% endif %}
-          {% if site.enable_publication_badges.google_scholar and entry_has_google_scholar_badge %}
-            {% assign citation_count = 0 %}
-            {% if site.data.citations.papers[entry.google_scholar_id] %}
-              {% assign citation_count = site.data.citations.papers[entry.google_scholar_id].citations %}
-            {% endif %}
-            <a
-              class="pub-cites"
-              href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user={{ site.data.socials.scholar_userid }}&citation_for_view={{ site.data.socials.scholar_userid }}:{{ entry.google_scholar_id }}"
-              target="_blank"
-              rel="noopener"
-              title="Google Scholar"
-            >
-              <i class="ai ai-google-scholar"></i>
-              <span class="pub-cites-n">{{ citation_count }}</span>
-              <span data-i18n="ui.citations">citations</span>
-            </a>
           {% endif %}
           {% if site.enable_publication_badges.inspirehep and entry_has_inspirehep_badge %}
             <a

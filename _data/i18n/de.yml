@@ -78,10 +78,10 @@ proj:
     meta: 1. Juni – 31. Aug. 2026 · Honor Device Co., Ltd. · Sommerpraktikum
     desc: VLA-Algorithmus-Ingenieur (Praktikant) bei Honor (1. Juni – 31. August 2026). Aufbau einer Online-SFT-/Online-RL-Pipeline mit Mensch in der Schleife für den humanoiden Roboter Omega von Honor — nahtlose Teleoperator-Übernahme, interventionsgetriebene Datenpipeline und eine verteilte Actor–Learner–Roboter-Lernschleife.
   langgap:
-    meta: Okt. 2025 – Juni 2026 · IROS 2026 · Erstautor
+    meta: Okt. 2025 – Juni 2026 · Erstautor
     desc: Angenommen bei IROS 2026. Entwurf eines systematischen Evaluationsrahmens mit semantischen Störungen, der zeigt, dass aktuelle VLA-Modelle Sprachanweisungen trotz hoher Benchmark-Werte weitgehend ignorieren. Vorschlag eines Multi-Task-Trainings in identischer Szene und Aufbau eines erweiterten Datensatzes zum Fine-Tuning.
   aion:
-    meta: Juni 2025 – Juni 2026 · IROS 2026 · Mitautor
+    meta: Juni 2025 – Juni 2026 · Mitautor
     desc: Angenommen bei IROS 2026. End-to-End-RL-Framework mit zwei Strategien für visionsbasierte ObjectNav in der Luft, ohne externe Lokalisierung oder globale Karten. Evaluiert in AI2-THOR und IsaacSim.
   vln:
     meta: Juni 2025 – Feb. 2026 · Habitat · Datenpipeline für VLN in der Luft

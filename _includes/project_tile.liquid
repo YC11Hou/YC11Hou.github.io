@@ -21,9 +21,14 @@
       <img src="{{ project.img | relative_url }}" alt="" loading="lazy">
     {% endif %}
   </span>
-  {% if project.meta -%}
-    <span class="work-meta mono" data-i18n="proj.{{ project.i18n_key }}.meta">{{ project.meta }}</span>
-  {%- endif %}
+  <span class="proj-head work-head">
+    {% if project.venue -%}
+      <span class="pub-venue">{{ project.venue }}</span>
+    {%- endif %}
+    {% if project.meta -%}
+      <span class="work-meta mono" data-i18n="proj.{{ project.i18n_key }}.meta">{{ project.meta }}</span>
+    {%- endif %}
+  </span>
   <span class="work-title">{{ project.title }}</span>
   <span class="work-desc" data-i18n="proj.{{ project.i18n_key }}.desc">{{ project.description }}</span>
 </a>

@@ -81,10 +81,10 @@ proj:
     meta: Jun 1 – Aug 31, 2026 · Honor Device Co., Ltd. · Summer internship
     desc: VLA Algorithm Engineer Intern at Honor (Jun 1 – Aug 31, 2026). Built a human-in-the-loop online SFT / online RL pipeline for Honor's self-developed Omega humanoid robot — smooth teleoperator takeover, an intervention-driven data pipeline, and a distributed Actor–Learner–Robot learning loop.
   langgap:
-    meta: Oct 2025 – Jun 2026 · IROS 2026 · First author
+    meta: Oct 2025 – Jun 2026 · First author
     desc: Accepted at IROS 2026. Designed a systematic semantic perturbation evaluation framework revealing that state-of-the-art VLA models ignore language instructions despite high benchmark scores. Proposed multi-task same-scene training approach and constructed augmented dataset for fine-tuning.
   aion:
-    meta: Jun 2025 – Jun 2026 · IROS 2026 · Co-author
+    meta: Jun 2025 – Jun 2026 · Co-author
     desc: Accepted at IROS 2026. End-to-end dual-policy RL framework for vision-based aerial ObjectNav without external localization or global maps. Evaluated on AI2-THOR and IsaacSim.
   vln:
     meta: Jun 2025 – Feb 2026 · Habitat · Aerial VLN dataset pipeline

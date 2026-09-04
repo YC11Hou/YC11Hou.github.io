@@ -78,10 +78,10 @@ proj:
     meta: 1 jun – 31 aug 2026 · Honor Device Co., Ltd. · Zomerstage
     desc: Stagiair VLA-algoritme-engineer bij Honor (1 juni – 31 augustus 2026). Bouwde een online SFT / online RL-pipeline met de mens in de lus voor Honors humanoïde robot Omega — soepele overname door de teleoperator, een interventiegedreven datapipeline en een gedistribueerde Actor–Learner–Robot-leerlus.
   langgap:
-    meta: Okt 2025 – jun 2026 · IROS 2026 · Eerste auteur
+    meta: Okt 2025 – jun 2026 · Eerste auteur
     desc: Geaccepteerd voor IROS 2026. Ontwierp een systematisch evaluatiekader met semantische verstoringen dat aantoont dat toonaangevende VLA-modellen taalinstructies negeren ondanks hoge benchmarkscores. Stelde multi-task training in dezelfde scène voor en bouwde een uitgebreide dataset voor fine-tuning.
   aion:
-    meta: Jun 2025 – jun 2026 · IROS 2026 · Coauteur
+    meta: Jun 2025 – jun 2026 · Coauteur
     desc: Geaccepteerd voor IROS 2026. End-to-end RL-raamwerk met twee beleidsfuncties voor visie-gebaseerde ObjectNav in de lucht, zonder externe lokalisatie of globale kaarten. Geëvalueerd op AI2-THOR en IsaacSim.
   vln:
     meta: Jun 2025 – feb 2026 · Habitat · Datapipeline voor VLN in de lucht

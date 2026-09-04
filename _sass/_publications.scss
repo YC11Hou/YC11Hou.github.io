@@ -67,40 +67,6 @@
         }
       }
 
-      .abbr {
-        margin: 0;
-        padding-top: 0.35rem;
-
-        abbr,
-        abbr.badge {
-          display: inline-block;
-          font-family: var(--font-mono);
-          font-size: 0.64rem;
-          font-weight: 500;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          text-decoration: none;
-          color: var(--ink) !important;
-          background: transparent !important;
-          border: 1px solid var(--rule-strong);
-          border-radius: 3px;
-          padding: 0.3em 0.55em;
-          line-height: 1;
-          cursor: default;
-
-          a,
-          div {
-            color: inherit;
-            text-decoration: none;
-          }
-        }
-
-        .award {
-          color: var(--accent) !important;
-          border-color: var(--accent);
-        }
-      }
-
       .pub-media {
         margin-top: 0.85rem;
         aspect-ratio: 16 / 9;
@@ -125,6 +91,10 @@
           width: 100%;
           border-radius: 4px;
         }
+      }
+
+      .pub-head {
+        margin-bottom: 0.55rem;
       }
 
       .title {
@@ -227,8 +197,112 @@
         }
       }
 
-      .badges {
-        margin-top: 0.7rem;
+      .badges:empty {
+        display: none;
+      }
+
+      .title {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: 1.3rem;
+        line-height: 1.3;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+        text-wrap: pretty;
+      }
+
+      // Metadata stays in the UI sans even though the list sits inside
+      // `.prose`, so entries read the same here and on the home page.
+      .author {
+        margin-top: 0.4rem;
+        font-family: var(--font-body);
+        font-size: 0.88rem;
+        line-height: 1.5;
+        color: var(--ink-2);
+
+        a {
+          color: var(--ink-2);
+          border-bottom: 1px dashed var(--rule-strong);
+
+          &:hover {
+            color: var(--accent);
+            border-bottom-style: solid;
+            text-decoration: none;
+          }
+        }
+
+        > em {
+          font-style: normal;
+          color: var(--ink);
+          border-bottom: 1.5px solid var(--accent);
+        }
+
+        > span.more-authors {
+          color: var(--muted);
+          border-bottom: 1px dashed var(--muted);
+          cursor: pointer;
+
+          &:hover {
+            color: var(--ink);
+          }
+        }
+      }
+
+      .periodical {
+        margin-top: 0.2rem;
+        font-family: var(--font-body);
+        font-size: 0.82rem;
+        line-height: 1.5;
+        color: var(--muted);
+
+        em {
+          font-style: normal;
+        }
+
+        &:empty {
+          display: none;
+        }
+      }
+
+      .links {
+        margin-top: 0.75rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem 1.25rem;
+
+        a.btn {
+          margin: 0;
+          padding: 0;
+          border: 0;
+          border-radius: 0;
+          background: none;
+          box-shadow: none;
+          font-family: var(--font-mono);
+          font-size: 0.68rem;
+          font-weight: 500;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: var(--accent);
+          line-height: 1.6;
+          border-bottom: 1px solid transparent;
+          transition: border-color 0.18s ease;
+
+          &:hover,
+          &:focus {
+            color: var(--accent);
+            background: none;
+            border-bottom-color: var(--accent);
+            text-decoration: none;
+          }
+        }
+
+        a.award.btn {
+          color: var(--ink);
+        }
+      }
+
+      .badges:empty {
+        display: none;
       }
 
       // Live Google Scholar citation count (refreshed by the update-citations workflow)
@@ -315,3 +389,87 @@
   }
 }
 /* purgecss end ignore */
+
+// ---------------------------------------------------------------------------
+// Shared "head" slot — venue badge + citation count + meta, always on one line,
+// always the first thing in an entry (publications, project rows, home tiles).
+// ---------------------------------------------------------------------------
+
+.pub-head,
+.proj-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.7rem;
+  margin: 0 0 0.5rem;
+}
+
+.pub-venue,
+.venue-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 1.45rem;
+  padding: 0 0.6rem;
+  border-radius: 5px;
+  background: var(--accent);
+  color: #fff !important;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 1;
+
+  &:hover {
+    color: #fff;
+    background: var(--accent-ink);
+    text-decoration: none;
+  }
+}
+
+.pub-cites {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 1.45rem;
+  padding: 0 0.65rem 0 0.55rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 5px;
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 1;
+  transition:
+    color 0.18s ease,
+    border-color 0.18s ease;
+
+  i {
+    font-size: 0.85rem;
+    color: var(--accent);
+  }
+
+  .pub-cites-n {
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0;
+    color: var(--ink);
+  }
+
+  &:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    text-decoration: none;
+  }
+}
+
+.proj-head .proj-meta,
+.proj-head .work-meta {
+  margin: 0;
+}

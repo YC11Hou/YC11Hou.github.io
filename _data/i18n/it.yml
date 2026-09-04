@@ -78,10 +78,10 @@ proj:
     meta: 1 giu – 31 ago 2026 · Honor Device Co., Ltd. · Stage estivo
     desc: Stagista ingegnere di algoritmi VLA presso Honor (1 giugno – 31 agosto 2026). Realizzazione di una pipeline online SFT / online RL con l'umano nel ciclo per il robot umanoide Omega di Honor — presa di controllo fluida del teleoperatore, pipeline dei dati guidata dagli interventi e ciclo di apprendimento distribuito Actor–Learner–Robot.
   langgap:
-    meta: Ott 2025 – giu 2026 · IROS 2026 · Primo autore
+    meta: Ott 2025 – giu 2026 · Primo autore
     desc: Accettato a IROS 2026. Progettazione di un framework sistematico di valutazione con perturbazioni semantiche che rivela come i modelli VLA all'avanguardia ignorino le istruzioni linguistiche nonostante punteggi elevati. Proposta di addestramento multi-task nella stessa scena e costruzione di un dataset aumentato per il fine-tuning.
   aion:
-    meta: Giu 2025 – giu 2026 · IROS 2026 · Coautore
+    meta: Giu 2025 – giu 2026 · Coautore
     desc: Accettato a IROS 2026. Framework RL end-to-end a doppia politica per ObjectNav aereo basato sulla visione, senza localizzazione esterna né mappe globali. Valutato su AI2-THOR e IsaacSim.
   vln:
     meta: Giu 2025 – feb 2026 · Habitat · Pipeline dati VLN aereo
