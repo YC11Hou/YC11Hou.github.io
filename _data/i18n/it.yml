@@ -22,6 +22,7 @@ ui:
   all_publications: Tutte le pubblicazioni
   all_projects: Tutti i progetti
   degree_in: "in"
+  citations: citazioni
   present: Oggi
   role: M.Sc. ECE · NUS<br>IA incarnata · Apprendimento robotico
   colophon: Singapore

@@ -22,6 +22,7 @@ ui:
   all_publications: Alla publikationer
   all_projects: Alla projekt
   degree_in: "i"
+  citations: citeringar
   present: nu
   role: M.Sc. ECE · NUS<br>Förkroppsligad AI · Robotinlärning
   colophon: Singapore

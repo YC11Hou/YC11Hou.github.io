@@ -22,6 +22,7 @@ ui:
   all_publications: 全部论文
   all_projects: 全部项目
   degree_in: "·"
+  citations: 次引用
   present: 至今
   role: 新加坡国立大学 · ECE 硕士<br>具身智能 · 机器人学习
   colophon: 新加坡
