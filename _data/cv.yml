@@ -19,7 +19,8 @@ cv:
         location: Shanghai, China
         logo: logo_honor.png
         start_date: 2026-06-01
-        end_date: Present
+        end_date: 2026-08-31
+        date_label: "Jun 1 – Aug 31, 2026"
         highlights:
           - "Working on Honor's self-developed Omega humanoid robot: teleoperation data collection, replay, training, and on-robot deployment."
           - "Conducting online RL algorithm research for Vision-Language-Action (VLA) models on custom manipulation tasks."

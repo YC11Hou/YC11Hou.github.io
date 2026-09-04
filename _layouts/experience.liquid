@@ -32,9 +32,13 @@ layout: default
           {% capture end_disp %}{% if ed == '' or ed == 'Present' or ed == 'present' %}Present{% elsif ed contains '-' %}{{ ed | date: '%b %Y' }}{% else %}{{ ed }}{% endif %}{% endcapture %}
           <div class="xp-entry">
             <div class="xp-when mono">
-              {{ start_disp | strip -}}
-              <br>
-              — {{ end_disp | strip }}
+              {% if entry.date_label %}
+                {{ entry.date_label }}
+              {% else %}
+                {{ start_disp | strip -}}
+                <br>
+                — {{ end_disp | strip }}
+              {% endif %}
             </div>
             <div class="xp-logo">
               {% if entry.logo %}
