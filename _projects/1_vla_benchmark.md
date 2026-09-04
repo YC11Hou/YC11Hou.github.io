@@ -6,7 +6,7 @@ preview_video: /assets/video/grid_8x4.mp4
 importance: 1
 category: master
 org: nus
-meta: IROS 2026 · First author
+meta: Oct 2025 – Jun 2026 · IROS 2026 · First author
 ---
 
 <p class="project-links">

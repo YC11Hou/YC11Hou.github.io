@@ -6,7 +6,7 @@ img: assets/video/honor/inference_demo_poster.jpg
 importance: 0
 category: master
 org: honor
-meta: Honor Device Co., Ltd. · Summer internship · Jun 1 – Aug 31, 2026
+meta: Jun 1 – Aug 31, 2026 · Honor Device Co., Ltd. · Summer internship
 related_publications: false
 ---
 

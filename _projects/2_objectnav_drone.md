@@ -7,7 +7,7 @@ video: https://www.youtube.com/embed/TgsUm6bb7zg
 importance: 2
 category: master
 org: nus
-meta: IROS 2026 · Co-author
+meta: Jun 2025 – Jun 2026 · IROS 2026 · Co-author
 ---
 
 <p class="project-links">

@@ -6,7 +6,7 @@ img: assets/img/p1_robot_real.jpg
 importance: 4
 category: bachelor
 org: nuaa
-meta: ROS 2 · Jetson Orin NX · Team lead
+meta: Sep 2024 – Apr 2025 · ROS 2 · Jetson Orin NX · Team lead
 ---
 
 ## Demo

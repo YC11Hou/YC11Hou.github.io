@@ -6,7 +6,7 @@ preview_video: /assets/video/vln_highlights.mp4
 importance: 3
 category: master
 org: nus
-meta: Habitat · Aerial VLN dataset pipeline
+meta: Jun 2025 – Feb 2026 · Habitat · Aerial VLN dataset pipeline
 github: https://github.com/YC11Hou/habitat-aerial-nav
 ---
 
