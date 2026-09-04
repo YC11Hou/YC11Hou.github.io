@@ -56,12 +56,15 @@
     box.appendChild(badge);
 
     var timer = null;
+    var gaveUp = false;
     function busy(on) {
+      if (gaveUp) on = false;
       box.classList.toggle("is-loading", on);
       clearTimeout(timer);
-      // never spin forever: after 8 s fall back to the poster
+      // never spin forever: one 8 s budget per video, then the poster is final
       if (on)
         timer = setTimeout(function () {
+          gaveUp = true;
           box.classList.remove("is-loading");
         }, 8000);
     }
@@ -87,6 +90,13 @@
 
     if (v.autoplay) {
       v.removeAttribute("autoplay"); // we decide when to play
+      // In-app browsers (WeChat, QQ) neither autoplay reliably nor report it
+      // honestly: show the poster only, no playback attempt, no spinner.
+      if (/MicroMessenger|QQ\//i.test(navigator.userAgent)) {
+        v.removeAttribute("loop");
+        badge.remove();
+        return;
+      }
       v.muted = true;
       v.setAttribute("playsinline", "");
       if (io) io.observe(v);
