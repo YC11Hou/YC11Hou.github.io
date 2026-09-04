@@ -30,20 +30,23 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/experience/";
           },
-        },{id: "news-joined-the-nus-core-lab-started-master-s-program-at-nus",
-          title: 'Joined the NUS CORE Lab, started Master’s program at NUS.',
+        },{id: "news-announcement-2",
+          title: 'Announcement_2',
           description: "",
-          section: "News",},{id: "news-completed-robotics-software-internship-at-movel-ai-dec-2025-jan-2026-working-on-autonomous-forklift-navigation",
-          title: 'Completed robotics software internship at Movel.AI (Dec 2025 – Jan 2026), working on...',
+          section: "News",handler: () => {
+              window.location.href = "/news/announcement_2/";
+            },},{id: "news-announcement-5",
+          title: 'Announcement_5',
           description: "",
-          section: "News",},{id: "news-completed-my-research-internship-at-huawei-norbert-wiener-research-center-mar-may-2026-working-on-deep-learning-for-short-range-radar-sensing",
-          title: 'Completed my research internship at Huawei Norbert Wiener Research Center (Mar – May...',
+          section: "News",handler: () => {
+              window.location.href = "/news/announcement_5/";
+            },},{id: "news-announcement-6",
+          title: 'Announcement_6',
           description: "",
-          section: "News",},{id: "news-joined-honor-as-a-vla-algorithm-engineer-intern-working-on-the-omega-humanoid-robot-teleoperation-data-collection-training-and-deployment",
-          title: 'Joined Honor as a VLA Algorithm Engineer (Intern), working on the Omega humanoid...',
-          description: "",
-          section: "News",},{id: "news-two-papers-accepted-to-iros-2026-langgap-first-author-and-aion-co-author-see-you-in-pittsburgh",
-          title: '🎉 Two papers accepted to IROS 2026: LangGap (first author) and AION (co-author)....',
+          section: "News",handler: () => {
+              window.location.href = "/news/announcement_6/";
+            },},{id: "news-completed-my-vla-algorithm-internship-at-honor-omega-humanoid-robot",
+          title: 'Completed my VLA algorithm internship at Honor (Omega humanoid robot).',
           description: "",
           section: "News",},{id: "projects-honor-omega-humanoid-online-rl-for-vla",
           title: 'Honor Omega Humanoid: Online RL for VLA',
