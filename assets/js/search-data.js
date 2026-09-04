@@ -47,7 +47,7 @@ ninja.data = [{
           description: "",
           section: "News",},{id: "projects-honor-omega-humanoid-online-rl-for-vla",
           title: 'Honor Omega Humanoid: Online RL for VLA',
-          description: "VLA Algorithm Engineer Intern at Honor (Jun 2026 – present). Built a human-in-the-loop online SFT / online RL pipeline for Honor&#39;s self-developed Omega humanoid robot — smooth teleoperator takeover, an intervention-driven data pipeline, and a distributed Actor–Learner–Robot learning loop.",
+          description: "VLA Algorithm Engineer Intern at Honor (Jun 1 – Aug 31, 2026). Built a human-in-the-loop online SFT / online RL pipeline for Honor&#39;s self-developed Omega humanoid robot — smooth teleoperator takeover, an intervention-driven data pipeline, and a distributed Actor–Learner–Robot learning loop.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/0_honor_internship/";
             },},{id: "projects-langgap-vla-language-understanding-benchmark",
