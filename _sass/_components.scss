@@ -17,7 +17,6 @@
 // the measure holds as the type scales; `text-wrap: pretty` keeps the rag even.
 .home-title {
   margin: 0;
-  max-width: 40ch;
   font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(1.6rem, 2.55vw, 2.05rem);
@@ -88,7 +87,6 @@ html[data-theme="dark"] .home-banner img {
 
 .home-contact-line {
   margin: 0;
-  max-width: 52ch;
   font-family: var(--font-display);
   font-size: 1.3rem;
   line-height: 1.45;

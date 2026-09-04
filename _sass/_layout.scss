@@ -465,7 +465,6 @@ body.site-body {
 
 .page-desc {
   margin: 0.95rem 0 0;
-  max-width: 60ch;
   font-size: 0.98rem;
   line-height: 1.62;
   color: var(--ink-2);
@@ -484,16 +483,8 @@ body.site-body {
     margin: 0 0 1.15rem;
   }
 
-  // Comfortable measure for the top-level flow only; nested blocks
-  // (media rows, the bibliography list) keep the full column width.
-  > p {
-    max-width: 68ch;
-  }
-
-  > ul,
-  > ol {
-    max-width: 66ch;
-  }
+  // Every block spans the full text column: one width, site-wide. The column
+  // itself is capped at $text-width, which is the reading measure.
 
   strong {
     color: var(--ink);
