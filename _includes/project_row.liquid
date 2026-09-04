@@ -35,6 +35,11 @@
       <a class="proj-more" href="{{ project_href }}"
         ><span data-i18n="ui.read_more">{{ t.ui.read_more }}</span> <span aria-hidden="true">→</span></a
       >
+      {% if project.arxiv %}
+        <a class="proj-paper" href="https://arxiv.org/abs/{{ project.arxiv }}" target="_blank" rel="noopener"
+          ><i class="ai ai-arxiv"></i> <span data-i18n="ui.paper">{{ t.ui.paper }}</span> · arXiv:{{ project.arxiv -}}
+        </a>
+      {% endif %}
       {% if project.github %}
         <a class="proj-code" href="{{ project.github }}" target="_blank" rel="noopener"
           ><i class="fa-brands fa-github"></i> <span data-i18n="ui.code">{{ t.ui.code }}</span></a
