@@ -5,7 +5,7 @@
 @use "sass:color";
 
 // Layout
-$rail-width: 268px !default; // fixed identity rail on the left
+$rail-width: 284px !default; // fixed identity rail on the left
 $rail-bp: 900px !default; // below this the rail folds into topbar + dock
 $content-width: 920px !default;
 

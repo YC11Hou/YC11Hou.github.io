@@ -9,19 +9,22 @@
 // ---------------------------------------------------------------------------
 
 .home-opening {
-  margin-bottom: 2.4rem;
+  margin-bottom: 2.6rem;
 }
 
+// The opening statement. Sized so the English text sets in three lines and the
+// ~40 % longer French in four — a statement, not a wall. `max-width` is in ch so
+// the measure holds as the type scales; `text-wrap: pretty` keeps the rag even.
 .home-title {
   margin: 0;
-  max-width: 21ch;
+  max-width: 40ch;
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(2.2rem, 4.1vw, 3.35rem);
-  line-height: 1.06;
-  letter-spacing: -0.022em;
+  font-size: clamp(1.6rem, 2.55vw, 2.05rem);
+  line-height: 1.34;
+  letter-spacing: -0.012em;
   color: var(--ink);
-  text-wrap: balance;
+  text-wrap: pretty;
 
   em {
     font-style: italic;
@@ -363,9 +366,12 @@ html[data-theme="dark"] .home-banner img {
   }
 }
 
+// Listing copy stays in the UI sans (the projects page body sits inside
+// `.prose`, which is serif) — same voice as the home tiles and the timeline.
 .proj-desc {
   margin: 0 0 0.8rem;
-  font-size: 0.92rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
   line-height: 1.6;
   color: var(--ink-2);
 }

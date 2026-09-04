@@ -136,9 +136,9 @@
   opacity: 0.55;
   text-decoration: none;
   font-family: var(--font-mono);
-  font-size: 0.56rem;
+  font-size: 10px; // iOS tab-bar label size
   font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   transition:
     color 0.25s ease,

@@ -137,9 +137,13 @@
         text-wrap: pretty;
       }
 
+      // Metadata stays in the UI sans even though the list sits inside
+      // `.prose`, so entries read the same here and on the home page.
       .author {
         margin-top: 0.4rem;
-        font-size: 0.92rem;
+        font-family: var(--font-body);
+        font-size: 0.88rem;
+        line-height: 1.5;
         color: var(--ink-2);
 
         a {
@@ -171,8 +175,10 @@
       }
 
       .periodical {
-        margin-top: 0.15rem;
-        font-size: 0.86rem;
+        margin-top: 0.2rem;
+        font-family: var(--font-body);
+        font-size: 0.82rem;
+        line-height: 1.5;
         color: var(--muted);
 
         em {
