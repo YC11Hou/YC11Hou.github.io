@@ -30,6 +30,8 @@
   --tint-strong: rgba(181, 70, 31, 0.095);
   // Sidebar surfaces: neutral ink-based hover / selected fills (app-style)
   --rail-bg: #faf8f3;
+  // Veil over the ambient background video (see _bgvideo.scss)
+  --bg-scrim: rgba(244, 241, 234, 0.7);
   --row-hover: rgba(23, 22, 26, 0.045);
   --row-active: rgba(23, 22, 26, 0.075);
 
@@ -133,6 +135,7 @@ html[data-theme="dark"] {
   --tint: rgba(232, 121, 74, 0.08);
   --tint-strong: rgba(232, 121, 74, 0.15);
   --rail-bg: #18181c;
+  --bg-scrim: rgba(19, 19, 22, 0.76);
   --row-hover: rgba(235, 232, 224, 0.06);
   --row-active: rgba(235, 232, 224, 0.1);
 

@@ -1,0 +1,27 @@
+{% comment %}
+  Full-page ambient video background (site.bg_video). Sits fixed behind the
+  content column under a theme-tinted scrim so text keeps its contrast.
+  Skipped for reduced-motion / data-saver / in-app browsers by the inline
+  script; the poster remains as a static backdrop in those cases.
+{% endcomment %}
+{% if site.bg_video and site.bg_video != "" %}
+  <div class="site-bg" aria-hidden="true" style="background-image: url('{{ site.bg_video_poster | relative_url }}')">
+    <video class="site-bg-video" muted loop playsinline preload="metadata" poster="{{ site.bg_video_poster | relative_url }}" data-src="{{ site.bg_video | relative_url }}"></video>
+    <div class="site-bg-scrim"></div>
+  </div>
+  <script>
+    (function () {
+      var v = document.querySelector(".site-bg-video");
+      if (!v) return;
+      var m = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var c = navigator.connection || {};
+      if (m || c.saveData || /MicroMessenger|QQ\//i.test(navigator.userAgent)) { v.remove(); return; }
+      v.src = v.getAttribute("data-src");
+      v.muted = true;
+      var p = v.play();
+      if (p && p.catch) p.catch(function () { v.remove(); });
+      v.addEventListener("playing", function () { v.classList.add("is-playing"); });
+      document.addEventListener("visibilitychange", function () { if (document.hidden) v.pause(); else v.play().catch(function () {}); });
+    })();
+  </script>
+{% endif %}

@@ -3,7 +3,7 @@
 // "Loading…" badge shows whenever the browser is waiting for data (initial
 // load of autoplay loops, or buffering after the user presses play).
 (function () {
-  var videos = document.querySelectorAll("video");
+  var videos = document.querySelectorAll("video:not(.site-bg-video)");
   if (!videos.length) return;
   function label() {
     var v = window.siteI18n && window.siteI18n.t("ui.loading");
