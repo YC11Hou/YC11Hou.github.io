@@ -66,6 +66,8 @@
     }
     if (menu) menu.addEventListener("click", function () { setRail(html.getAttribute("data-home-rail") !== "open"); });
     if (scrim) scrim.addEventListener("click", function () { setRail(false); });
+    var railBtn = document.querySelector(".rail-collapse");
+    if (railBtn) railBtn.addEventListener("click", function (e) { e.stopImmediatePropagation(); setRail(false); }, true);
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") setRail(false);
       if ((e.metaKey || e.ctrlKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase() === "b") {
