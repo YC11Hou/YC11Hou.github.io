@@ -1,19 +1,29 @@
 {% comment %}
-  Home hero. A muted video reel (site.hero_video) under the opening statement,
-  the motto and three primary links. Reduced-motion / data-saver / in-app
-  browsers keep the poster only. Strings reuse existing i18n keys.
+  Home hero: one full-viewport screen of video (site.hero_video), the opening
+  statement, motto and primary links. It stays pinned while the content grid
+  slides over it (see _hero.scss); the copy fades out with scroll progress.
+  Reduced-motion / data-saver / in-app browsers keep the poster only.
 {% endcomment %}
 {% assign t = site.data.i18n.en %}
-<header class="home-hero{% if site.hero_video == "" or site.hero_video == nil %} is-static{% endif %}">
+<section class="home-hero" id="top">
   <div class="hero-media" aria-hidden="true" style="background-image: url('{{ site.hero_poster | relative_url }}')">
     {% if site.hero_video and site.hero_video != "" %}
-      <video class="hero-video" muted loop playsinline preload="metadata" poster="{{ site.hero_poster | relative_url }}" data-src="{{ site.hero_video | relative_url }}"></video>
+      <video
+        class="hero-video"
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="{{ site.hero_poster | relative_url }}"
+        data-src="{{ site.hero_video | relative_url }}"
+        data-src-small="{{ site.hero_video_small | default: site.hero_video | relative_url }}"
+      ></video>
     {% endif %}
     <div class="hero-shade"></div>
   </div>
   <div class="hero-body">
     <p class="eyebrow mono hero-eyebrow" data-i18n="home.eyebrow">{{ t.home.eyebrow }}</p>
-    <h1 class="home-title hero-title" data-i18n="home.tagline">{{ t.home.tagline }}</h1>
+    <h1 class="hero-title" data-i18n="home.tagline">{{ t.home.tagline }}</h1>
     <p class="hero-quote" data-i18n="home.quote">{{ t.home.quote }}</p>
     <nav class="hero-actions" aria-label="Primary">
       <a class="hero-btn is-primary" href="{{ '/publications/' | relative_url }}" data-i18n="ui.publications">{{ t.ui.publications }}</a>
@@ -21,21 +31,42 @@
       <a class="hero-btn" href="{{ '/assets/pdf/CV_Yuchen_Hou.pdf' | relative_url }}" target="_blank" rel="noopener"><span data-i18n="ui.cv">{{ t.ui.cv }}</span><span>&nbsp;· PDF</span></a>
     </nav>
   </div>
-</header>
-{% if site.hero_video and site.hero_video != "" %}
-  <script>
-    (function () {
-      var v = document.querySelector(".hero-video");
-      if (!v) return;
-      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  <a class="hero-scroll mono" href="#bio" aria-label="Scroll down"><span class="hero-scroll-line"></span></a>
+</section>
+<script>
+  (function () {
+    var hero = document.querySelector(".home-hero");
+    if (!hero) return;
+    var v = hero.querySelector(".hero-video");
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (v) {
       var c = navigator.connection || {};
-      if (reduce || c.saveData || /MicroMessenger|QQ\//i.test(navigator.userAgent)) { v.remove(); return; }
-      v.src = v.getAttribute("data-src");
-      v.muted = true;
-      v.addEventListener("playing", function () { v.classList.add("is-playing"); });
-      var p = v.play();
-      if (p && p.catch) p.catch(function () { v.remove(); });
-      document.addEventListener("visibilitychange", function () { if (document.hidden) v.pause(); else v.play().catch(function () {}); });
-    })();
-  </script>
-{% endif %}
+      if (reduce || c.saveData || /MicroMessenger|QQ\//i.test(navigator.userAgent)) {
+        v.remove();
+      } else {
+        v.src = v.getAttribute(window.innerWidth < 900 ? "data-src-small" : "data-src");
+        v.muted = true;
+        v.addEventListener("playing", function () { v.classList.add("is-playing"); });
+        var p = v.play();
+        if (p && p.catch) p.catch(function () { v.remove(); });
+        document.addEventListener("visibilitychange", function () {
+          if (document.hidden) v.pause(); else v.play().catch(function () {});
+        });
+      }
+    }
+    if (reduce) return;
+    // Scroll progress 0..1 across the first viewport drives the copy fade and the media dim
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var h = hero.offsetHeight || window.innerHeight;
+      var p = Math.min(1, Math.max(0, window.scrollY / (h * 0.7)));
+      hero.style.setProperty("--hero-p", p.toFixed(3));
+      hero.classList.toggle("is-scrolled", p >= 1);
+    }
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
+  })();
+</script>

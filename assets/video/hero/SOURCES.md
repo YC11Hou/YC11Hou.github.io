@@ -1,20 +1,17 @@
 # Hero reel sources
 
-`reel.mp4` is cut from the clips below (6 s each, 1 s cross-fades, unified grade), in order.
-Stock clips are from Mixkit under the Mixkit Stock Video Free License (free for commercial use, no attribution required).
+`reel-1080.mp4` (desktop) and `reel-720.mp4` (below 900 px) are the same cut: 9 clips, 7 s each (clip 9 is 5 s),
+1 s cross-fades, unified grade, 54 s; 1080p at CRF 28, 720p at CRF 29. The reel ends on the two seconds that precede clip 1's in-point, so the loop is seamless.
+Stock clips are Mixkit 1080p originals under the Mixkit Stock Video Free License (free for commercial use, no attribution required).
 
 | # | Clip | Source |
 |---|------|--------|
-| 1 | Geometric figures of metal networks | https://mixkit.co/free-stock-video/geometric-figures-of-metal-networks-32922/ |
-| 2 | Night air view of a roundabout | https://mixkit.co/free-stock-video/night-air-view-of-a-roundabout-with-cars-3221/ |
-| 3 | Light beams breaking into points of light | https://mixkit.co/free-stock-video/light-beams-breaking-into-points-of-light-31536/ |
-| 4 | Aerial view of a city at night | https://mixkit.co/free-stock-video/side-by-side-aerial-view-of-a-city-at-night-49846/ |
-| 5 | Robot in an electronics facility | https://mixkit.co/free-stock-video/robot-working-in-an-electronics-manufacturing-facility-47258/ |
-| 6 | Digital network sphere | https://mixkit.co/free-stock-video/digital-network-concept-in-sphere-shape-3d-animation-14143/ |
-| 7 | LangGap simulation grid (own) | assets/video/grid_8x4.mp4 |
-| 8 | Infinity corridor | https://mixkit.co/free-stock-video/infinity-corridor-with-futuristic-style-32960/ |
-| 9 | Honor humanoid teleop takeover (own) | profile/assets/past_projects/honor_takeover_demo.mp4 |
-| 10 | Virtual representation of information | https://mixkit.co/free-stock-video/virtual-representation-of-information-in-the-cloud-30565/ |
-| 11 | Satellite shot of planet Earth | https://mixkit.co/free-stock-video/beautiful-satellite-shot-of-planet-earth-45033/ |
-
-The reel ends on the two seconds that precede clip 1's in-point, so the loop is seamless.
+| 1 | Smoke in motion | https://mixkit.co/free-stock-video/smoke-in-motion-1964/ |
+| 2 | Aerial view of a big city at night | https://mixkit.co/free-stock-video/aerial-view-of-a-big-city-at-night-3223/ |
+| 3 | Snowy hills with clouds | https://mixkit.co/free-stock-video/snowy-hills-with-clouds-3371/ |
+| 4 | Aerial view of Guadalajara at night | https://mixkit.co/free-stock-video/aerial-view-of-guadalajara-at-night-43292/ |
+| 5 | Time-lapse of traffic at night | https://mixkit.co/free-stock-video/time-lapse-of-traffic-at-night-4240/ |
+| 6 | Stars in space | https://mixkit.co/free-stock-video/stars-in-space-background-1610/ |
+| 7 | Honor humanoid teleop takeover (own, darkened) | profile/assets/past_projects/honor_takeover_demo.mp4 |
+| 8 | White particles | https://mixkit.co/free-stock-video/white-particles-moving-on-multicolor-background-4408/ |
+| 9 | Futuristic landscape animation | https://mixkit.co/free-stock-video/futuristic-landscape-animation-99544/ |

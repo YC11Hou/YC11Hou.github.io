@@ -14,7 +14,8 @@ footer_text: >
 keywords: embodied-ai, robotics, reinforcement-learning, vision-language-navigation, NUS
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 likes_api: "https://yuchenhou-likes.yuchenhou.workers.dev" # likes/guestbook backend (Cloudflare Worker, see cf/likes); empty = feature hidden
-hero_video: /assets/video/hero/reel.mp4 # home-page hero reel (muted loop, local file); empty = no video hero
+hero_video: /assets/video/hero/reel-1080.mp4 # home hero reel, desktop (muted loop, local file); empty = no video
+hero_video_small: /assets/video/hero/reel-720.mp4 # served below 900px
 hero_poster: /assets/video/hero/reel_poster.jpg
 languages: [en, zh, fr, de, es, it, pt, nl, pl, sv, ru] # shipped translations; order = switcher order (see _data/i18n/)
 timezone: Asia/Singapore # ensures dates render consistently regardless of build machine

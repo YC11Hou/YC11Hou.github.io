@@ -1,51 +1,38 @@
 /******************************************************************************
- * Home hero: a full-width video reel under the opening statement.
- * Bleeds past the content gutters to the rail edge; always dark-on-video, so
- * its colours are fixed rather than theme tokens.
+ * Home hero. One full-viewport screen of video pinned to the top of the main
+ * column; the content grid then slides over it through a soft fade. Colours
+ * are fixed (always light-on-dark video) rather than theme tokens.
+ * --hero-p (0..1, set by hero.liquid) is the scroll progress across the hero.
  ******************************************************************************/
 @use "variables" as v;
 
-// Grid placement: the hero takes row 1 across both columns (the in-page index
-// drops to row 2), and stretches to the full width of the main column via
-// container units, so no 100vw scrollbar arithmetic is needed.
-.site-main {
-  container-type: inline-size;
-}
-
-.site-content > .home-hero {
-  grid-column: 1 / -1;
-  grid-row: 1;
-}
-
-.site-content > .home {
-  grid-row: 2;
-}
-
-.site-content:has(> .home-hero) > .pagenav {
-  grid-row: 2;
-}
+$hero-fade: 7rem;
 
 .home-hero {
-  position: relative;
-  width: 100cqw;
-  margin: -4.2rem 0 3.4rem calc(50% - 50cqw);
-  min-height: clamp(440px, 74vh, 720px);
-  padding: 0 v.$content-gutter;
-  box-sizing: border-box;
+  --hero-p: 0;
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
   display: flex;
   align-items: flex-end;
-  overflow: hidden;
-  background: #0d0f14;
+  padding: 0 v.$content-gutter;
+  box-sizing: border-box;
+  background: #0b0d12;
   color: #fff;
-  isolation: isolate;
 }
 
 .hero-media {
   position: absolute;
   inset: 0;
-  z-index: 0;
   background-size: cover;
   background-position: center;
+  // Slow drift + dim as the reader scrolls away
+  transform: translate3d(0, calc(var(--hero-p) * 4vh), 0) scale(calc(1 + var(--hero-p) * 0.1));
+  filter: brightness(calc(1 - var(--hero-p) * 0.35));
+  will-change: transform, filter;
 }
 
 .hero-video {
@@ -55,45 +42,52 @@
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 1.2s ease;
+  transition: opacity 1.4s ease;
 
   &.is-playing {
     opacity: 1;
   }
 }
 
-// Two shades: a left-to-right wash for the copy, a bottom lift for the buttons
+// A light veil so the footage keeps its detail; the copy sits on a bottom lift
 .hero-shade {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(8, 10, 16, 0.78) 0%, rgba(8, 10, 16, 0.45) 55%, rgba(8, 10, 16, 0.15) 100%),
-    linear-gradient(180deg, rgba(8, 10, 16, 0.1) 0%, rgba(8, 10, 16, 0.05) 45%, rgba(8, 10, 16, 0.82) 100%);
+    linear-gradient(180deg, rgba(8, 10, 16, 0.22) 0%, rgba(8, 10, 16, 0) 30%, rgba(8, 10, 16, 0) 50%, rgba(8, 10, 16, 0.72) 100%),
+    linear-gradient(90deg, rgba(8, 10, 16, 0.32) 0%, rgba(8, 10, 16, 0) 60%);
 }
 
-// Same width and centring as the page grid (text column + gap + index), so
-// the hero copy lines up with the prose underneath at every viewport width.
 .hero-body {
   position: relative;
   z-index: 1;
   width: 100%;
   max-width: calc(#{v.$text-width} + 4rem + 192px);
   margin: 0 auto;
-  padding: 4.5rem 0 3.2rem;
+  padding: 0 0 8rem;
+  opacity: calc(1 - var(--hero-p) * 1.25);
+  transform: translate3d(0, calc(var(--hero-p) * -2.5rem), 0);
+  will-change: opacity, transform;
 }
 
 .hero-eyebrow {
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.7);
 }
 
-.home-hero .hero-title {
-  color: #fff;
-  font-size: clamp(1.7rem, 2.9vw, 2.45rem);
-  line-height: 1.24;
+.hero-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 3.1vw, 2.65rem);
+  line-height: 1.2;
+  letter-spacing: -0.014em;
   max-width: 30ch;
-  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+  color: #fff;
+  text-wrap: pretty;
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.5);
 
   em {
+    font-style: italic;
     color: #f2a67f;
   }
 }
@@ -104,7 +98,7 @@
   font-style: italic;
   font-size: clamp(0.98rem, 1.3vw, 1.12rem);
   color: rgba(255, 255, 255, 0.72);
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
 }
 
 .hero-actions {
@@ -120,10 +114,10 @@
   min-height: 40px;
   padding: 0 1.15rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.38);
   background: rgba(255, 255, 255, 0.08);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   color: #fff;
   font-family: var(--font-body);
   font-size: 0.86rem;
@@ -135,7 +129,7 @@
   &:hover,
   &:focus-visible {
     background: rgba(255, 255, 255, 0.18);
-    border-color: rgba(255, 255, 255, 0.6);
+    border-color: rgba(255, 255, 255, 0.65);
     color: #fff;
     text-decoration: none;
     transform: translateY(-1px);
@@ -154,26 +148,94 @@
   }
 }
 
+// Scroll cue: a thin line that keeps dropping, bottom centre
+.hero-scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 1.6rem;
+  z-index: 1;
+  width: 1px;
+  height: 46px;
+  margin-left: -0.5px;
+  overflow: hidden;
+  opacity: calc(0.7 - var(--hero-p) * 1.4);
+  background: rgba(255, 255, 255, 0.18);
+  mix-blend-mode: difference;
+
+  .hero-scroll-line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 40%;
+    background: #fff;
+    animation: hero-drop 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+}
+
+@keyframes hero-drop {
+  0% {
+    transform: translateY(-100%);
+  }
+  60%,
+  100% {
+    transform: translateY(260%);
+  }
+}
+
+// The content grid rides over the pinned hero on the page background, with a
+// soft fade at its top edge so the video dissolves into the paper.
+.site-main.has-hero > .site-content {
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -$hero-fade;
+    height: $hero-fade;
+    background: linear-gradient(180deg, rgba(8, 10, 16, 0) 0%, var(--bg) 100%);
+    pointer-events: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .hero-video {
+  .hero-video,
+  .hero-scroll {
     display: none;
+  }
+
+  .hero-media,
+  .hero-body {
+    transform: none;
+    filter: none;
+    opacity: 1;
   }
 }
 
 @media (max-width: v.$rail-bp - 1px) {
   .home-hero {
-    margin: -1.25rem 0 2.4rem calc(50% - 50cqw);
-    min-height: clamp(400px, 62vh, 560px);
+    // The topbar is sticky above; the hero fills the rest of the first screen
+    height: calc(100vh - 44px);
+    height: calc(100svh - 44px);
     padding-left: calc(16px + env(safe-area-inset-left, 0px));
     padding-right: calc(16px + env(safe-area-inset-right, 0px));
   }
 
   .hero-body {
-    padding: 3rem 0 1.9rem;
+    padding-bottom: 6.5rem;
   }
 
-  .home-hero .hero-title {
-    font-size: 1.55rem;
-    line-height: 1.3;
+  .hero-title {
+    font-size: 1.62rem;
+    line-height: 1.28;
+  }
+
+  .hero-scroll {
+    bottom: 1.1rem;
+    height: 36px;
   }
 }

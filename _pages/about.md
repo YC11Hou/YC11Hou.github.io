@@ -2,6 +2,7 @@
 layout: about
 title: About
 permalink: /
+hero: true
 tagline: Embodied AI researcher working on vision-language-action models, aerial navigation, and reinforcement learning for <em>real robots</em>.
 
 selected_papers: true
