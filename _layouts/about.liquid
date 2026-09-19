@@ -2,22 +2,8 @@
 layout: default
 ---
 {% assign t = site.data.i18n.en %}
+{% include hero.liquid %}
 <div class="home" data-pagenav="h2">
-  <!-- Opening statement -->
-  <header class="home-opening">
-    <p class="eyebrow mono" data-i18n="home.eyebrow">{{ t.home.eyebrow }}</p>
-    <h1 class="home-title" data-i18n="home.tagline">{{ t.home.tagline }}</h1>
-  </header>
-
-  <!-- Scenic banner with the personal motto -->
-  <figure class="home-banner">
-    <img src="{{ '/assets/img/hero_castle.jpg' | relative_url }}" alt="" aria-hidden="true">
-    <figcaption>
-      <p class="home-quote" data-i18n="home.quote">{{ t.home.quote }}</p>
-      <span class="home-credit mono">Neuschwanstein · photo: Thomas Wolf, CC BY-SA 3.0 DE</span>
-    </figcaption>
-  </figure>
-
   <!-- Bio (three paragraphs, each its own key so translations swap cleanly) -->
   <section class="section" id="bio">
     <div class="prose lede">

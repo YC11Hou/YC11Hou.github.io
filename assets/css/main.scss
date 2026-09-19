@@ -17,7 +17,7 @@
    (or `@use "variables" as *;`) inside each file and qualify variables if needed. */
 @use "themes";
 @use "layout";
-@use "bgvideo";
+@use "hero";
 
 // Core styles organized by usage
 @use "typography";
