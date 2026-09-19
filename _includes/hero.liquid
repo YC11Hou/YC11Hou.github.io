@@ -1,10 +1,14 @@
 {% comment %}
-  Home hero: one full-viewport screen of video (site.hero_video), the opening
-  statement, motto and primary links. It stays pinned while the content grid
-  slides over it (see _hero.scss); the copy fades out with scroll progress.
-  Reduced-motion / data-saver / in-app browsers keep the poster only.
+  Landing page: one full-viewport screen of video (site.hero_video), the
+  opening statement, motto and the four primary links, all centred. The
+  navigation rail is off-canvas here and opens as an overlay from the corner
+  button. Reduced-motion / data-saver / in-app browsers keep the poster only.
 {% endcomment %}
 {% assign t = site.data.i18n.en %}
+<button type="button" class="hero-menu" aria-label="Open navigation" aria-expanded="false" title="Navigation (⌘B)">
+  <i class="fa-solid fa-table-columns"></i>
+</button>
+<div class="rail-scrim" aria-hidden="true"></div>
 <section class="home-hero" id="top">
   <div class="hero-media" aria-hidden="true" style="background-image: url('{{ site.hero_poster | relative_url }}')">
     {% if site.hero_video and site.hero_video != "" %}
@@ -22,24 +26,23 @@
     <div class="hero-shade"></div>
   </div>
   <div class="hero-body">
-    <p class="eyebrow mono hero-eyebrow" data-i18n="home.eyebrow">{{ t.home.eyebrow }}</p>
+    <p class="eyebrow mono hero-eyebrow" data-i18n="ui.name">{{ t.ui.name }}</p>
     <h1 class="hero-title" data-i18n="home.tagline">{{ t.home.tagline }}</h1>
     <p class="hero-quote" data-i18n="home.quote">{{ t.home.quote }}</p>
     <nav class="hero-actions" aria-label="Primary">
-      <a class="hero-btn is-primary" href="{{ '/publications/' | relative_url }}" data-i18n="ui.publications">{{ t.ui.publications }}</a>
+      <a class="hero-btn is-primary" href="{{ '/about/' | relative_url }}" data-i18n="ui.about">{{ t.ui.about }}</a>
+      <a class="hero-btn" href="{{ '/publications/' | relative_url }}" data-i18n="ui.publications">{{ t.ui.publications }}</a>
       <a class="hero-btn" href="{{ '/projects/' | relative_url }}" data-i18n="ui.projects">{{ t.ui.projects }}</a>
       <a class="hero-btn" href="{{ '/assets/pdf/CV_Yuchen_Hou.pdf' | relative_url }}" target="_blank" rel="noopener"><span data-i18n="ui.cv">{{ t.ui.cv }}</span><span>&nbsp;· PDF</span></a>
     </nav>
   </div>
-  <a class="hero-scroll mono" href="#bio" aria-label="Scroll down"><span class="hero-scroll-line"></span></a>
 </section>
 <script>
   (function () {
-    var hero = document.querySelector(".home-hero");
-    if (!hero) return;
-    var v = hero.querySelector(".hero-video");
-    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var html = document.documentElement;
+    var v = document.querySelector(".hero-video");
     if (v) {
+      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       var c = navigator.connection || {};
       if (reduce || c.saveData || /MicroMessenger|QQ\//i.test(navigator.userAgent)) {
         v.remove();
@@ -54,19 +57,21 @@
         });
       }
     }
-    if (reduce) return;
-    // Scroll progress 0..1 across the first viewport drives the copy fade and the media dim
-    var ticking = false;
-    function update() {
-      ticking = false;
-      var h = hero.offsetHeight || window.innerHeight;
-      var p = Math.min(1, Math.max(0, window.scrollY / (h * 0.7)));
-      hero.style.setProperty("--hero-p", p.toFixed(3));
-      hero.classList.toggle("is-scrolled", p >= 1);
+    // Rail overlay: corner button, scrim, Esc and ⌘/Ctrl+B all toggle it
+    var menu = document.querySelector(".hero-menu");
+    var scrim = document.querySelector(".rail-scrim");
+    function setRail(open) {
+      html.setAttribute("data-home-rail", open ? "open" : "hidden");
+      if (menu) menu.setAttribute("aria-expanded", open ? "true" : "false");
     }
-    window.addEventListener("scroll", function () {
-      if (!ticking) { ticking = true; requestAnimationFrame(update); }
-    }, { passive: true });
-    update();
+    if (menu) menu.addEventListener("click", function () { setRail(html.getAttribute("data-home-rail") !== "open"); });
+    if (scrim) scrim.addEventListener("click", function () { setRail(false); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setRail(false);
+      if ((e.metaKey || e.ctrlKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase() === "b") {
+        e.preventDefault(); e.stopImmediatePropagation();
+        setRail(html.getAttribute("data-home-rail") !== "open");
+      }
+    }, true);
   })();
 </script>

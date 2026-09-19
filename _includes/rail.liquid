@@ -26,19 +26,19 @@
   <nav class="rail-group rail-nav">
     <p class="rail-label" data-i18n="ui.navigate">{{ t.ui.navigate }}</p>
     <ul>
-      <li class="{% if page.permalink == '/' %}active{% endif %}">
+      <li class="{% if page.permalink == '/about/' %}active{% endif %}">
         <a
-          href="{{ '/' | relative_url }}"
-          {% if page.permalink == '/' %}
+          href="{{ '/about/' | relative_url }}"
+          {% if page.permalink == '/about/' %}
             aria-current="page"
           {% endif %}
         >
-          <i class="fa-solid fa-house"></i><span data-i18n="ui.about">{{ t.ui.about }}</span>
+          <i class="fa-solid fa-user"></i><span data-i18n="ui.about">{{ t.ui.about }}</span>
         </a>
       </li>
       {% assign sorted_pages = site.pages | sort: 'nav_order' %}
       {% for p in sorted_pages %}
-        {% if p.nav and p.autogen == null and p.dropdown == null and p.permalink != '/' %}
+        {% if p.nav and p.autogen == null and p.dropdown == null and p.permalink != '/' and p.permalink != '/about/' %}
           {% assign parent_link = p.permalink | remove: 'index.html' %}
           {% assign key = p.i18n | default: p.title | downcase %}
           {% assign icon = 'fa-solid fa-link' %}

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ site.lang }}" data-baseurl="{{ site.baseurl }}" data-languages="{{ site.languages | join: ',' }}" data-likes-api="{{ site.likes_api }}" data-build="{{ site.time | date: '%s' }}">
+<html lang="{{ site.lang }}"{% if page.hero %} data-home-rail="hidden"{% endif %} data-baseurl="{{ site.baseurl }}" data-languages="{{ site.languages | join: ',' }}" data-likes-api="{{ site.likes_api }}" data-build="{{ site.time | date: '%s' }}">
   <!-- Head -->
   <head>
     {% if page.redirect %}
@@ -21,11 +21,14 @@
     {% include topbar.liquid %}
 
     <main class="site-main{% if page.hero %} has-hero{% endif %}" role="main">
-      {% if page.hero %}{% include hero.liquid %}{% endif %}
-      <div class="site-content">
-        {{ content }}
-      </div>
-      {% include footer.liquid %}
+      {% if page.hero %}
+        {% include hero.liquid %}
+      {% else %}
+        <div class="site-content">
+          {{ content }}
+        </div>
+        {% include footer.liquid %}
+      {% endif %}
     </main>
 
     <!-- Mobile Bottom Navigation -->
