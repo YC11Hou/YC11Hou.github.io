@@ -14,6 +14,15 @@
       {% endif %}
     {% endfor %}
 
+    <!-- Home -->
+    <a
+      href="{{ '/' | relative_url }}"
+      class="mobile-bottom-nav-item mobile-nav-home {% if page.permalink == '/' %}active{% endif %}"
+    >
+      <i class="fa-solid fa-house"></i>
+      <span data-i18n="ui.home">{{ site.data.i18n.en.ui.home }}</span>
+    </a>
+
     <!-- About -->
     <a
       href="{{ '/about/' | relative_url }}"

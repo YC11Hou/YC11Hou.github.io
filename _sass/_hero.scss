@@ -251,6 +251,32 @@ html[data-home-rail="open"] .rail-collapse {
     display: none;
   }
 
+  // Six tabs in the dock once Home is in: proportional sentence-case labels
+  // (the mono caps do not fit five page names at 375 px) and an icon-only
+  // theme toggle so the page tabs keep their room.
+  .mobile-bottom-nav-bar:has(> .mobile-nav-home) {
+    .mobile-bottom-nav-item {
+      min-width: 0;
+      padding: 0 2px;
+
+      span {
+        font-family: var(--font-body);
+        font-size: 9.5px;
+        font-weight: 600;
+        letter-spacing: 0;
+        text-transform: none;
+      }
+    }
+
+    .mobile-bottom-nav-theme-btn {
+      flex: 0 0 44px;
+
+      span {
+        display: none;
+      }
+    }
+  }
+
   .home-hero {
     // The topbar is sticky above; the hero fills the rest of the first screen
     height: calc(100vh - 44px);

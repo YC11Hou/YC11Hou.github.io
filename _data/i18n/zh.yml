@@ -5,6 +5,7 @@ dir: ltr
 ui:
   name: 侯育辰
   about: 关于
+  home: 首页
   publications: 论文
   projects: 项目
   experience: 经历

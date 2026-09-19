@@ -5,6 +5,7 @@ dir: ltr
 ui:
   name: Yuchen Hou
   about: Über mich
+  home: Startseite
   publications: Publikationen
   projects: Projekte
   experience: Erfahrung

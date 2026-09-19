@@ -26,6 +26,16 @@
   <nav class="rail-group rail-nav">
     <p class="rail-label" data-i18n="ui.navigate">{{ t.ui.navigate }}</p>
     <ul>
+      <li class="{% if page.permalink == '/' %}active{% endif %}">
+        <a
+          href="{{ '/' | relative_url }}"
+          {% if page.permalink == '/' %}
+            aria-current="page"
+          {% endif %}
+        >
+          <i class="fa-solid fa-house"></i><span data-i18n="ui.home">{{ t.ui.home }}</span>
+        </a>
+      </li>
       <li class="{% if page.permalink == '/about/' %}active{% endif %}">
         <a
           href="{{ '/about/' | relative_url }}"

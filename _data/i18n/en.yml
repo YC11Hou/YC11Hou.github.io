@@ -8,6 +8,7 @@ dir: ltr
 ui:
   name: Yuchen Hou
   about: About
+  home: Home
   publications: Publications
   projects: Projects
   experience: Experience
