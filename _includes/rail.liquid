@@ -36,19 +36,14 @@
           <i class="fa-solid fa-house"></i><span data-i18n="ui.home">{{ t.ui.home }}</span>
         </a>
       </li>
-      <li class="{% if page.permalink == '/about/' %}active{% endif %}">
-        <a
-          href="{{ '/about/' | relative_url }}"
-          {% if page.permalink == '/about/' %}
-            aria-current="page"
-          {% endif %}
-        >
+      <li>
+        <a href="{{ '/#about' | relative_url }}">
           <i class="fa-solid fa-user"></i><span data-i18n="ui.about">{{ t.ui.about }}</span>
         </a>
       </li>
       {% assign sorted_pages = site.pages | sort: 'nav_order' %}
       {% for p in sorted_pages %}
-        {% if p.nav and p.autogen == null and p.dropdown == null and p.permalink != '/' and p.permalink != '/about/' %}
+        {% if p.nav and p.autogen == null and p.dropdown == null and p.permalink != '/' %}
           {% assign parent_link = p.permalink | remove: 'index.html' %}
           {% assign key = p.i18n | default: p.title | downcase %}
           {% assign icon = 'fa-solid fa-link' %}

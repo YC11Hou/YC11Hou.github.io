@@ -8,11 +8,6 @@
     -->
     <div class="mobile-nav-glass-indicator" aria-hidden="true"></div>
 
-    {% for page_item in site.pages %}
-      {% if page_item.permalink == '/about/' %}
-        {% assign about_title = page_item.title %}
-      {% endif %}
-    {% endfor %}
 
     <!-- Home -->
     <a
@@ -25,11 +20,11 @@
 
     <!-- About -->
     <a
-      href="{{ '/about/' | relative_url }}"
-      class="mobile-bottom-nav-item {% if page.permalink == '/about/' %}active{% endif %}"
+      href="{{ '/#about' | relative_url }}"
+      class="mobile-bottom-nav-item"
     >
       <i class="fa-solid fa-user"></i>
-      <span data-i18n="ui.about">{{ about_title }}</span>
+      <span data-i18n="ui.about">{{ site.data.i18n.en.ui.about }}</span>
     </a>
 
     <!-- Other nav pages -->
