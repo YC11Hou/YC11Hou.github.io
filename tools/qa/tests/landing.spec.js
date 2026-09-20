@@ -25,55 +25,52 @@ test.describe("landing page", () => {
     expect(start).toBeLessThan(4);
   });
 
-  test("scroll sequence matches the approved look", async ({ page }) => {
+  test("landing matches the approved look", async ({ page }) => {
     await page.goto("/");
     await page.waitForFunction(() => document.querySelector(".hero-video.is-playing"));
     // Freeze the video on one frame so snapshots are deterministic
     await page.evaluate(() => { const v = document.querySelector(".hero-video"); v.pause(); v.currentTime = 2; });
     await page.waitForTimeout(400);
-    const h = await page.evaluate(() => document.querySelector(".home-hero").offsetHeight);
-    for (const f of [0, 0.5, 1]) {
-      await page.evaluate((y) => window.scrollTo(0, y), Math.round(h * f));
-      await page.waitForTimeout(350);
-      await expect(page).toHaveScreenshot(`landing-${f}.png`);
-    }
+    await expect(page).toHaveScreenshot("landing.png");
   });
 
   test("rail opens and pushes the page like other pages", async ({ page, isMobile }) => {
     test.skip(isMobile, "rail is a dock on phones");
     await page.goto("/projects/");
-    const projLeft = await page.evaluate(() => document.querySelector(".site-content > .page").getBoundingClientRect().left);
+    const projLeft = await page.evaluate(() => document.querySelector(".site-main").getBoundingClientRect().left);
     await page.goto("/");
     await page.click(".hero-menu");
-    // The push is a 280 ms transition: poll until the column has settled where Projects puts it
-    await expect.poll(() => page.evaluate(() => document.querySelector(".site-content > .home").getBoundingClientRect().left), { timeout: 3000 })
+    // The push is a 280 ms transition: poll until the hero has settled where Projects puts its column
+    await expect.poll(() => page.evaluate(() => document.querySelector(".site-main").getBoundingClientRect().left), { timeout: 3000 })
       .toBeCloseTo(projLeft, 0);
     await expect(page.locator(".hero-menu")).toHaveCSS("opacity", "0");
   });
 
   test("other pages carry no hero and navigation is consistent", async ({ page }) => {
-    for (const path of ["/publications/", "/projects/", "/experience/"]) {
+    for (const path of ["/about/", "/publications/", "/projects/", "/experience/"]) {
       const r = await page.goto(path);
       expect(r.status()).toBe(200);
       expect(await page.locator(".home-hero").count()).toBe(0);
-      expect(await page.locator('a[href="/#about"]').count()).toBeGreaterThan(0);
+      expect(await page.locator('a[href="/about/"]').count()).toBeGreaterThan(0);
     }
   });
 
-  test("rail marks Home in the hero and About once scrolled to it", async ({ page, isMobile }) => {
-    test.skip(isMobile, "rail is a dock on phones");
-    const active = () => page.evaluate(() => Array.from(document.querySelectorAll(".rail-nav li.active")).map((li) => li.dataset.railSection));
-    await page.goto("/");
-    await page.waitForFunction(() => document.querySelector(".hero-video.is-playing"));
-    expect(await active()).toEqual(["hero"]);
-    await page.evaluate(() => document.getElementById("about").scrollIntoView());
-    await expect.poll(active).toEqual(["about"]);
-    await page.evaluate(() => window.scrollTo(0, 0));
-    await expect.poll(active).toEqual(["hero"]);
-    await page.goto("/#about");
-    await expect.poll(active).toEqual(["about"]);
+  test("About is a page like the others: same head offset, and the nav marks exactly it", async ({ page, isMobile }) => {
+    const nav = isMobile ? ".mobile-bottom-nav-item" : ".rail-nav li";
+    const active = () => page.evaluate((sel) => Array.from(document.querySelectorAll(sel + ".active")).map((e) => e.querySelector("[data-i18n]").getAttribute("data-i18n")), nav);
+    const headTop = () => page.evaluate(() => document.querySelector(".page-head .eyebrow").getBoundingClientRect().top);
     await page.goto("/projects/");
-    expect(await active()).toEqual([]);
+    const ref = await headTop();
+    await page.goto("/about/");
+    expect(await headTop()).toBeCloseTo(ref, 0);
+    expect(ref).toBeGreaterThan(16);
+    expect(await active()).toEqual(["ui.about"]);
+    expect(await page.locator("#about #bio p").count()).toBe(3);
+    await page.goto("/");
+    expect(await active()).toEqual(["ui.home"]);
+    expect(await page.locator("#about").count()).toBe(0);
+    // Nothing scrolls beneath the hero
+    expect(await page.evaluate(() => document.documentElement.scrollHeight - window.innerHeight)).toBeLessThanOrEqual(1);
   });
 
   // Guards the inlined theme script: a minifier bug once stripped it from the production build

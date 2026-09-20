@@ -1,0 +1,18 @@
+---
+layout: default
+---
+{% comment %}
+  /about/ shares the page shell of every other section page (eyebrow, title,
+  description at the same offset) and reuses the existing home.* strings, so
+  no new i18n keys are needed.
+{% endcomment %}
+{% assign t = site.data.i18n.en %}
+<article class="page">
+  <header class="page-head">
+    <p class="eyebrow mono" data-i18n="home.eyebrow">{{ t.home.eyebrow }}</p>
+    <h1 class="page-title" data-i18n="ui.about">{{ t.ui.about }}</h1>
+    <p class="page-desc" data-i18n="home.tagline">{{ t.home.tagline }}</p>
+  </header>
+
+  {% include about_body.liquid opening=false %}
+</article>

@@ -87,8 +87,6 @@ html[data-home-rail="open"] .rail-collapse {
 }
 
 // --- Hero -------------------------------------------------------------------
-$hero-fade: 7rem;
-
 .home-hero {
   --hero-p: 0;
   --hero-y: 0px;
@@ -409,22 +407,13 @@ $hero-fade: 7rem;
   }
 }
 
-// The content grid rides over the pinned hero on the page background, with a
-// soft fade at its top edge so the video dissolves into the paper.
-.site-main.has-hero > .site-sheet {
-  position: relative;
-  z-index: 1;
-  background: var(--bg);
+// The landing page is the hero alone: nothing to scroll to beneath it
+// (the hero sizes the screen itself, so the shell's min-height must not add to it)
+.site-main.has-hero {
+  min-height: 0;
 
-  &::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: -$hero-fade;
-    height: $hero-fade;
-    background: linear-gradient(180deg, rgba(8, 10, 16, 0) 0%, var(--bg) 100%);
-    pointer-events: none;
+  > .site-sheet {
+    display: none;
   }
 }
 
@@ -450,6 +439,11 @@ $hero-fade: 7rem;
   .hero-menu,
   .rail-scrim {
     display: none;
+  }
+
+  // The dock floats over the video; the room pages reserve for it would only add scroll here
+  html[data-home-rail] body.site-body {
+    padding-bottom: 0;
   }
 
   // Six tabs in the dock once Home is in: proportional sentence-case labels

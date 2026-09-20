@@ -1,6 +1,7 @@
 {% comment %}
   Landing page: one full-viewport screen of video (site.hero_video), the
-  opening statement, motto and the four primary links, all centred. The
+  opening statement, motto and the four primary links, all centred; nothing
+  scrolls beneath it, About is its own page at /about/. The
   navigation rail is off-canvas here and opens as an overlay from the corner
   button. Reduced-motion / data-saver / in-app browsers keep the poster only.
 {% endcomment %}
@@ -30,13 +31,13 @@
     <h1 class="hero-title" data-i18n="home.tagline">{{ t.home.tagline }}</h1>
     <p class="hero-quote" data-i18n="home.quote">{{ t.home.quote }}</p>
     <nav class="hero-actions" aria-label="Primary">
-      <a class="hero-btn is-primary" href="#about" data-i18n="ui.about">{{ t.ui.about }}</a>
+      <a class="hero-btn is-primary" href="{{ '/about/' | relative_url }}" data-i18n="ui.about">{{ t.ui.about }}</a>
       <a class="hero-btn" href="{{ '/publications/' | relative_url }}" data-i18n="ui.publications">{{ t.ui.publications }}</a>
       <a class="hero-btn" href="{{ '/projects/' | relative_url }}" data-i18n="ui.projects">{{ t.ui.projects }}</a>
       <a class="hero-btn" href="{{ '/assets/pdf/CV_Yuchen_Hou.pdf' | relative_url }}" target="_blank" rel="noopener"><span data-i18n="ui.cv">{{ t.ui.cv }}</span><span>&nbsp;· PDF</span></a>
     </nav>
   </div>
-  <a class="hero-scroll" href="#about" aria-label="Scroll to About">
+  <a class="hero-scroll" href="{{ '/about/' | relative_url }}" aria-label="About">
     <span class="hero-scroll-label mono" data-i18n="ui.about">{{ t.ui.about }}</span>
     <span class="hero-scroll-line"><span></span></span>
   </a>

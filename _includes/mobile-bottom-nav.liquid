@@ -18,15 +18,6 @@
       <span data-i18n="ui.home">{{ site.data.i18n.en.ui.home }}</span>
     </a>
 
-    <!-- About -->
-    <a
-      href="{{ '/#about' | relative_url }}"
-      class="mobile-bottom-nav-item"
-    >
-      <i class="fa-solid fa-user"></i>
-      <span data-i18n="ui.about">{{ site.data.i18n.en.ui.about }}</span>
-    </a>
-
     <!-- Other nav pages -->
     {% assign sorted_pages = site.pages | sort: 'nav_order' %}
     {% for p in sorted_pages %}
@@ -42,7 +33,9 @@
 
         {% assign icon_class = 'fa-solid fa-link' %}
         {% assign title_lower = p.title | downcase %}
-        {% if title_lower contains 'publication' %}
+        {% if title_lower contains 'about' %}
+          {% assign icon_class = 'fa-solid fa-user' %}
+        {% elsif title_lower contains 'publication' %}
           {% assign icon_class = 'fa-solid fa-book' %}
         {% elsif title_lower contains 'project' %}
           {% assign icon_class = 'fa-solid fa-diagram-project' %}
