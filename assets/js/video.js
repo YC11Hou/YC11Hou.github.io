@@ -88,7 +88,9 @@
       busy(false);
     });
 
-    if (v.autoplay) {
+    // Preview loops carry data-autoplay (a real autoplay attribute would make the
+    // browser fetch every loop at page load, before this script runs)
+    if (v.autoplay || v.hasAttribute("data-autoplay")) {
       v.removeAttribute("autoplay"); // we decide when to play
       // In-app browsers (WeChat, QQ) neither autoplay reliably nor report it
       // honestly: show the poster only, no playback attempt, no spinner.

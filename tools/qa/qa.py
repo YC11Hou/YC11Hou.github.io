@@ -24,7 +24,7 @@ def build(out_dir):
 
 class Chrome:
     def __init__(self, profile, width, height, dpr):
-        self.proc = subprocess.Popen([CHROME, "--headless=new", "--no-first-run", "--user-data-dir=" + profile,
+        self.proc = subprocess.Popen([CHROME, "--headless=new", "--no-first-run", "--no-proxy-server", "--user-data-dir=" + profile,
             "--autoplay-policy=no-user-gesture-required", "--remote-debugging-port=%d" % DEVPORT,
             "--window-size=%d,%d" % (width, height), "--hide-scrollbars", "--force-device-scale-factor=%s" % dpr, "about:blank"],
             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
