@@ -70,6 +70,18 @@ html[data-home-rail="open"] .site-rail {
     border-color: rgba(255, 255, 255, 0.65);
   }
 
+  // Over the paper once the hero has scrolled away
+  html.hero-scrolled & {
+    border-color: var(--rule-strong);
+    background: color-mix(in srgb, var(--bg-elev) 82%, transparent);
+    color: var(--ink);
+
+    &:hover,
+    &:focus-visible {
+      background: var(--surface);
+    }
+  }
+
   // Out of the way while the rail is open; the rail's own button closes it
   html[data-home-rail="open"] & {
     opacity: 0;
@@ -82,8 +94,13 @@ html[data-home-rail="open"] .rail-collapse {
 }
 
 // --- Hero -------------------------------------------------------------------
+$hero-fade: 7rem;
+
 .home-hero {
-  position: relative;
+  --hero-p: 0;
+  position: sticky;
+  top: 0;
+  z-index: 0;
   height: 100vh;
   height: 100svh;
   overflow: hidden;
@@ -102,6 +119,10 @@ html[data-home-rail="open"] .rail-collapse {
   inset: 0;
   background-size: cover;
   background-position: center;
+  // Slow drift + dim as the reader scrolls away; scale keeps the box covered
+  transform: translate3d(0, calc(var(--hero-p) * 4vh), 0) scale(calc(1 + var(--hero-p) * 0.1));
+  filter: brightness(calc(1 - var(--hero-p) * 0.35));
+  will-change: transform, filter;
 }
 
 .hero-video {
@@ -137,6 +158,9 @@ html[data-home-rail="open"] .rail-collapse {
   display: flex;
   flex-direction: column;
   align-items: center;
+  opacity: calc(1 - var(--hero-p) * 1.3);
+  transform: translate3d(0, calc(var(--hero-p) * -2.5rem), 0);
+  will-change: opacity, transform;
 }
 
 .hero-eyebrow {
@@ -252,6 +276,7 @@ html[data-home-rail="open"] .rail-collapse {
   gap: 0.55rem;
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
+  opacity: calc(1 - var(--hero-p) * 2);
   transition: color 0.18s ease;
 
   &:hover,
@@ -295,10 +320,37 @@ html[data-home-rail="open"] .rail-collapse {
   }
 }
 
+// The content grid rides over the pinned hero on the page background, with a
+// soft fade at its top edge so the video dissolves into the paper.
+.site-main.has-hero > .site-sheet {
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -$hero-fade;
+    height: $hero-fade;
+    background: linear-gradient(180deg, rgba(8, 10, 16, 0) 0%, var(--bg) 100%);
+    pointer-events: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-video,
   .hero-scroll-line {
     display: none;
+  }
+
+  .hero-media,
+  .hero-body,
+  .hero-scroll {
+    transform: none;
+    filter: none;
+    opacity: 1;
   }
 }
 

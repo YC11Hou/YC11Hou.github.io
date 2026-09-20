@@ -21,14 +21,13 @@
     {% include topbar.liquid %}
 
     <main class="site-main{% if page.hero %} has-hero{% endif %}" role="main">
-      {% if page.hero %}
-        {% include hero.liquid %}
-      {% else %}
+      {% if page.hero %}{% include hero.liquid %}{% endif %}
+      <div class="site-sheet">
         <div class="site-content">
           {{ content }}
         </div>
         {% include footer.liquid %}
-      {% endif %}
+      </div>
     </main>
 
     <!-- Mobile Bottom Navigation -->
