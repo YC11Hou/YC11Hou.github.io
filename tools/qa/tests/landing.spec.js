@@ -60,6 +60,22 @@ test.describe("landing page", () => {
     }
   });
 
+  test("rail marks Home in the hero and About once scrolled to it", async ({ page, isMobile }) => {
+    test.skip(isMobile, "rail is a dock on phones");
+    const active = () => page.evaluate(() => Array.from(document.querySelectorAll(".rail-nav li.active")).map((li) => li.dataset.railSection));
+    await page.goto("/");
+    await page.waitForFunction(() => document.querySelector(".hero-video.is-playing"));
+    expect(await active()).toEqual(["hero"]);
+    await page.evaluate(() => document.getElementById("about").scrollIntoView());
+    await expect.poll(active).toEqual(["about"]);
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await expect.poll(active).toEqual(["hero"]);
+    await page.goto("/#about");
+    await expect.poll(active).toEqual(["about"]);
+    await page.goto("/projects/");
+    expect(await active()).toEqual([]);
+  });
+
   // Guards the inlined theme script: a minifier bug once stripped it from the production build
   for (const scheme of ["light", "dark"]) {
     test(`colours follow the system ${scheme} preference`, async ({ browser }) => {
