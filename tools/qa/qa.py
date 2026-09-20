@@ -129,17 +129,24 @@ async def run(args):
         if args.throttle:
             await ch.call("Network.emulateNetworkConditions", {"offline": False, "latency": 40,
                 "downloadThroughput": args.throttle * 125000, "uploadThroughput": 5 * 125000})
-        t0 = time.time()
-        await ch.call("Page.navigate", {"url": base + "/"})
-        # Video start-up: poll until the first real frame is shown
-        first = None
-        for _ in range(100):
-            v = await ch.js(VIDEO_PROBE)
-            if v.get("playing") and v.get("t", 0) > 0.05:
-                first = round(time.time() - t0, 2)
-                break
-            await asyncio.sleep(0.1)
+        # Video start-up: median of three cache-disabled loads (single runs vary by ~1 s)
+        await ch.call("Network.setCacheDisabled", {"cacheDisabled": True})
+        starts = []
+        for _ in range(3):
+            t0 = time.time()
+            await ch.call("Page.navigate", {"url": base + "/"})
+            got = None
+            for _ in range(100):
+                v = await ch.js(VIDEO_PROBE)
+                if v.get("playing") and v.get("t", 0) > 0.05:
+                    got = round(time.time() - t0, 2)
+                    break
+                await asyncio.sleep(0.1)
+            starts.append(got if got is not None else 99)
+        await ch.call("Network.setCacheDisabled", {"cacheDisabled": False})
+        first = sorted(starts)[1]
         report["video_first_frame_s"] = first
+        report["video_first_frame_runs_s"] = starts
         await ch.shot(os.path.join(out, "01_top.png"))
         # Stalls during 8 s of playback
         stalls = 0
@@ -177,7 +184,7 @@ async def run(args):
     # Verdicts
     v = report.get("video", {})
     verdict = []
-    verdict.append(("video started < 2.5 s", first is not None and first < 2.5, first))
+    verdict.append(("video started < 2.5 s (median of 3)", first is not None and first < 2.5, report.get("video_first_frame_runs_s")))
     verdict.append(("no stalls in 8 s", report["video_stalls_in_8s"] == 0, report["video_stalls_in_8s"]))
     verdict.append(("dropped frames < 2 %", v.get("total", 0) > 0 and v.get("dropped", 0) / max(1, v.get("total", 1)) < 0.02, "%s/%s" % (v.get("dropped"), v.get("total"))))
     sc = report.get("scroll") or {}
