@@ -239,8 +239,65 @@ html[data-home-rail="open"] .rail-collapse {
   }
 }
 
+// Scroll cue, bottom centre: the next section's name and a dropping line
+.hero-scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 1.8rem;
+  z-index: 1;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.18s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+.hero-scroll-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.hero-scroll-line {
+  position: relative;
+  width: 1px;
+  height: 44px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.2);
+
+  span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 40%;
+    background: #fff;
+    animation: hero-drop 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+}
+
+@keyframes hero-drop {
+  0% {
+    transform: translateY(-100%);
+  }
+  60%,
+  100% {
+    transform: translateY(260%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .hero-video {
+  .hero-video,
+  .hero-scroll-line {
     display: none;
   }
 }
@@ -287,6 +344,10 @@ html[data-home-rail="open"] .rail-collapse {
 
   .hero-body {
     padding-bottom: 5rem;
+  }
+
+  .hero-scroll {
+    bottom: calc(92px + env(safe-area-inset-bottom, 0px));
   }
 
   .hero-btn {

@@ -20,6 +20,7 @@
         preload="metadata"
         poster="{{ site.hero_poster | relative_url }}"
         data-src="{{ site.hero_video | relative_url }}"
+        data-src-hd="{{ site.hero_video_hd | default: site.hero_video | relative_url }}"
         data-src-small="{{ site.hero_video_small | default: site.hero_video | relative_url }}"
       ></video>
     {% endif %}
@@ -36,6 +37,10 @@
       <a class="hero-btn" href="{{ '/assets/pdf/CV_Yuchen_Hou.pdf' | relative_url }}" target="_blank" rel="noopener"><span data-i18n="ui.cv">{{ t.ui.cv }}</span><span>&nbsp;· PDF</span></a>
     </nav>
   </div>
+  <a class="hero-scroll" href="{{ '/about/' | relative_url }}" aria-label="Continue to About">
+    <span class="hero-scroll-label mono" data-i18n="ui.about">{{ t.ui.about }}</span>
+    <span class="hero-scroll-line"><span></span></span>
+  </a>
 </section>
 <script>
   (function () {
@@ -47,7 +52,8 @@
       if (reduce || c.saveData || /MicroMessenger|QQ\//i.test(navigator.userAgent)) {
         v.remove();
       } else {
-        v.src = v.getAttribute(window.innerWidth < 900 ? "data-src-small" : "data-src");
+        var w = window.innerWidth, dpr = window.devicePixelRatio || 1;
+        v.src = v.getAttribute(w < 900 ? "data-src-small" : (w >= 1100 && dpr >= 1.5 ? "data-src-hd" : "data-src"));
         v.muted = true;
         v.addEventListener("playing", function () { v.classList.add("is-playing"); });
         var p = v.play();
@@ -68,6 +74,31 @@
     if (scrim) scrim.addEventListener("click", function () { setRail(false); });
     var railBtn = document.querySelector(".rail-collapse");
     if (railBtn) railBtn.addEventListener("click", function (e) { e.stopImmediatePropagation(); setRail(false); }, true);
+    // Scrolling down (wheel, swipe, keys) continues to the About page
+    var aboutUrl = document.querySelector(".hero-scroll").getAttribute("href");
+    var acc = 0, last = 0, leaving = false;
+    function leave() {
+      if (leaving) return;
+      leaving = true;
+      window.location.assign(aboutUrl);
+    }
+    window.addEventListener("wheel", function (e) {
+      if (html.getAttribute("data-home-rail") === "open") return;
+      var now = Date.now();
+      if (now - last > 400) acc = 0;
+      last = now;
+      acc += e.deltaY;
+      if (acc > 180) leave();
+    }, { passive: true });
+    var ty = null;
+    window.addEventListener("touchstart", function (e) { ty = e.touches[0].clientY; }, { passive: true });
+    window.addEventListener("touchmove", function (e) {
+      if (ty !== null && ty - e.touches[0].clientY > 90) leave();
+    }, { passive: true });
+    document.addEventListener("keydown", function (e) {
+      if (html.getAttribute("data-home-rail") === "open") return;
+      if (e.key === "ArrowDown" || e.key === "PageDown" || (e.key === " " && !e.shiftKey)) { e.preventDefault(); leave(); }
+    });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") setRail(false);
       if ((e.metaKey || e.ctrlKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase() === "b") {

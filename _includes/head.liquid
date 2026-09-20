@@ -90,6 +90,25 @@
 <!-- Sidebar collapsed/expanded state, applied before first paint -->
 <script src="{{ '/assets/js/rail.js' | relative_url | bust_file_cache }}"></script>
 
+<!-- Page transitions (View Transitions API) and hover prerendering of in-site pages -->
+<script src="{{ '/assets/js/transitions.js' | relative_url | bust_file_cache }}"></script>
+<script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "where": {
+          "and": [
+            { "href_matches": "/*" },
+            { "not": { "href_matches": "/assets/*" } },
+            { "not": { "selector_matches": "[target=_blank]" } }
+          ]
+        },
+        "eagerness": "moderate"
+      }
+    ]
+  }
+</script>
+
 <!-- Localisation: picks the language and swaps data-i18n text (assets/js/i18n.js) -->
 <script src="{{ '/assets/js/i18n.js' | relative_url | bust_file_cache }}"></script>
 

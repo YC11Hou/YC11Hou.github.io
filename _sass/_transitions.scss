@@ -1,0 +1,77 @@
+/******************************************************************************
+ * Cross-document page transitions (View Transitions API). Browsers without it
+ * navigate instantly. The rail, topbar and dock keep their own names so they
+ * hold still (or slide into place) while the page content cross-fades.
+ ******************************************************************************/
+
+@view-transition {
+  navigation: auto;
+}
+
+.site-rail {
+  view-transition-name: rail;
+}
+
+.site-topbar {
+  view-transition-name: topbar;
+}
+
+.mobile-bottom-nav {
+  view-transition-name: dock;
+}
+
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes vt-rise {
+  from {
+    transform: translateY(14px);
+  }
+}
+
+@keyframes vt-slide-up {
+  from {
+    transform: translateY(6vh);
+  }
+}
+
+::view-transition-old(root) {
+  animation: 180ms cubic-bezier(0.4, 0, 1, 1) both vt-fade-out;
+}
+
+::view-transition-new(root) {
+  animation:
+    260ms cubic-bezier(0, 0, 0.2, 1) both vt-fade-in,
+    380ms cubic-bezier(0.32, 0.72, 0, 1) both vt-rise;
+}
+
+// Leaving the landing page by scrolling: the next page rises in from below
+html:active-view-transition-type(from-home)::view-transition-new(root) {
+  animation:
+    300ms cubic-bezier(0, 0, 0.2, 1) both vt-fade-in,
+    520ms cubic-bezier(0.32, 0.72, 0, 1) both vt-slide-up;
+}
+
+::view-transition-group(rail),
+::view-transition-group(topbar),
+::view-transition-group(dock) {
+  animation-duration: 360ms;
+  animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
