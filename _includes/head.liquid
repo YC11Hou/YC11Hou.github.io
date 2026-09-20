@@ -74,7 +74,10 @@
 
 {% if site.enable_darkmode %}
   <!-- Dark Mode -->
-  <script src="{{ '/assets/js/theme.js' | relative_url | bust_file_cache }}"></script>
+  <!-- Pre-paint scripts are inlined: each external <script> in <head> cost a blocking round trip before the body (and the hero video) could parse -->
+  <script>
+{% include js/theme.js %}
+  </script>
   <link
     defer
     rel="stylesheet"
@@ -88,14 +91,18 @@
 {% endif %}
 
 <!-- Sidebar collapsed/expanded state, applied before first paint -->
-<script src="{{ '/assets/js/rail.js' | relative_url | bust_file_cache }}"></script>
+<script>
+{% include js/rail.js %}
+</script>
 
 {% if page.hero and site.hero_video != "" %}
   <link rel="preload" as="image" href="{{ site.hero_poster | relative_url }}" fetchpriority="high">
 {% endif %}
 
 <!-- Page transitions (View Transitions API) and hover prerendering of in-site pages -->
-<script src="{{ '/assets/js/transitions.js' | relative_url | bust_file_cache }}"></script>
+<script>
+{% include js/transitions.js %}
+</script>
 <script type="speculationrules">
   {
     "prerender": [
@@ -113,8 +120,10 @@
   }
 </script>
 
-<!-- Localisation: picks the language and swaps data-i18n text (assets/js/i18n.js) -->
-<script src="{{ '/assets/js/i18n.js' | relative_url | bust_file_cache }}"></script>
+<!-- Localisation: picks the language and swaps data-i18n text (_includes/js/i18n.js) -->
+<script>
+{% include js/i18n.js %}
+</script>
 
 {% if page.map %}
   <!-- GeoJSON support via Leaflet -->
