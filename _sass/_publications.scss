@@ -390,6 +390,37 @@
   }
 }
 
+// Papers with a project page: the title and thumbnail are links, styled like a project row
+.publications ol.bibliography li {
+  .title a {
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.18s ease;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--accent);
+      text-decoration: none;
+    }
+  }
+
+  .pub-media-link {
+    display: block;
+    text-decoration: none;
+    border: 0;
+
+    video,
+    img {
+      transition: transform 0.4s ease;
+    }
+
+    &:hover video,
+    &:hover img {
+      transform: scale(1.02);
+    }
+  }
+}
+
 .citation,
 .citation-number {
   color: var(--accent);

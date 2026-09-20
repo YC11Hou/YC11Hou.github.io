@@ -73,6 +73,22 @@ test.describe("landing page", () => {
     expect(await page.evaluate(() => document.documentElement.scrollHeight - window.innerHeight)).toBeLessThanOrEqual(1);
   });
 
+  test("a paper opens the same project page from Publications and from Projects", async ({ page }) => {
+    await page.goto("/publications/");
+    const fromPubs = await page.evaluate(() => Array.from(document.querySelectorAll(".bibliography .title a")).map((a) => [a.textContent.trim(), a.getAttribute("href")]));
+    expect(fromPubs.length).toBeGreaterThan(0);
+    await page.goto("/projects/");
+    const projectHrefs = await page.evaluate(() => Array.from(document.querySelectorAll(".proj-title a")).map((a) => a.getAttribute("href")));
+    for (const [, href] of fromPubs) expect(projectHrefs).toContain(href);
+    // The first-author paper carries its IROS 2026 poster
+    await page.goto("/publications/");
+    const poster = page.locator('a[href="/assets/pdf/LangGap-IROS2026-poster.pdf"]');
+    expect(await poster.count()).toBe(1);
+    const r = await page.request.get(await poster.getAttribute("href"));
+    expect(r.status()).toBe(200);
+    expect(r.headers()["content-type"]).toContain("pdf");
+  });
+
   // Guards the inlined theme script: a minifier bug once stripped it from the production build
   for (const scheme of ["light", "dark"]) {
     test(`colours follow the system ${scheme} preference`, async ({ browser }) => {

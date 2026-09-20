@@ -11,7 +11,7 @@ i18n_key: langgap
 venue: IROS 2026
 scholar_id: u-x6o8ySG0sC
 scholar_cites: 7631014917581332933
-arxiv: 2603.00592
+arxiv: "2603.00592"
 start: 2025-10
 end: 2026-06
 meta: First author
@@ -21,6 +21,9 @@ meta: First author
   <span class="venue-badge">IROS 2026</span>
   <a href="https://arxiv.org/abs/2603.00592" target="_blank" rel="noopener">
     <i class="ai ai-arxiv"></i> arXiv: 2603.00592
+  </a>
+  <a href="/assets/pdf/LangGap-IROS2026-poster.pdf" target="_blank" rel="noopener">
+    <i class="fa-solid fa-image"></i> Poster (IROS 2026)
   </a>
 </p>
 

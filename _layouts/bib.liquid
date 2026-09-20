@@ -1,8 +1,20 @@
 ---
 ---
+{% comment %}
+  A paper that also has a project page (matched on the arXiv id) links to it from
+  the title and the thumbnail, so the same paper opens the same page from
+  Publications and from Projects.
+{% endcomment %}
+{% assign pub_project = nil %}
+{% if entry.arxiv %}
+  {% for p in site.projects %}
+    {% if p.arxiv == entry.arxiv %}{% assign pub_project = p %}{% break %}{% endif %}
+  {% endfor %}
+{% endif %}
 <div class="row">
   {% if site.enable_publication_thumbnails %}
     <div class="col col-sm-2 pub-side">
+      {% if pub_project %}<a class="pub-media-link" href="{{ pub_project.url | relative_url }}" aria-label="{{ entry.title }}">{% endif %}
       {% if entry.preview_video %}
         {% comment %} Short muted loop hosted on this site (assets/video/) {% endcomment %}
         <div class="pub-media">
@@ -28,6 +40,7 @@
           {% endif %}
         </div>
       {% endif %}
+      {% if pub_project %}</a>{% endif %}
     </div>
   {% endif %}
 
@@ -67,7 +80,9 @@
       {% endif %}
     </div>
     <!-- Title -->
-    <div class="title">{{ entry.title }}</div>
+    <div class="title">
+      {% if pub_project %}<a href="{{ pub_project.url | relative_url }}">{{ entry.title }}</a>{% else %}{{ entry.title }}{% endif %}
+    </div>
     <!-- Author -->
     <div class="author">
       {% assign author_array_size = entry.author_array | size %}

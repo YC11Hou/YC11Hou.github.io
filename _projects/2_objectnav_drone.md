@@ -11,7 +11,7 @@ i18n_key: aion
 venue: IROS 2026
 scholar_id: u5HHmVD_uO8C
 scholar_cites: 17972743793882607765
-arxiv: 2601.15614
+arxiv: "2601.15614"
 start: 2025-06
 end: 2026-06
 meta: Co-author
