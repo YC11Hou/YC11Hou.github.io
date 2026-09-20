@@ -74,7 +74,7 @@
 
 {% if site.enable_darkmode %}
   <!-- Dark Mode -->
-  <!-- Pre-paint scripts are inlined: each external <script> in <head> cost a blocking round trip before the body (and the hero video) could parse -->
+  <!-- Pre-paint scripts are inlined: each external head script cost a blocking round trip before the body (and the hero video) could parse. Keep angle brackets out of HTML comments: jekyll-minifier's comment stripper swallows everything up to the next comment when it sees one -->
   <script>
 {% include js/theme.js %}
   </script>

@@ -59,4 +59,18 @@ test.describe("landing page", () => {
       expect(await page.locator('a[href="/#about"]').count()).toBeGreaterThan(0);
     }
   });
+
+  // Guards the inlined theme script: a minifier bug once stripped it from the production build
+  for (const scheme of ["light", "dark"]) {
+    test(`colours follow the system ${scheme} preference`, async ({ browser }) => {
+      const ctx = await browser.newContext({ colorScheme: scheme });
+      const page = await ctx.newPage();
+      await page.goto("/");
+      await expect(page.locator("html")).toHaveAttribute("data-theme", scheme);
+      const [r, g, b] = await page.evaluate(() => getComputedStyle(document.body).backgroundColor.match(/\d+/g).map(Number));
+      const luma = (r + g + b) / 3;
+      expect(scheme === "dark" ? luma < 80 : luma > 200).toBe(true);
+      await ctx.close();
+    });
+  }
 });
