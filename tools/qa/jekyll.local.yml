@@ -1,0 +1,3 @@
+# Local-build overrides for the QA loop (the notebook converter and drafts are CI-only concerns)
+exclude: [assets/jupyter, _posts, vendor, node_modules, tools]
+destination: _site

@@ -13,3 +13,10 @@ assets/rendercv/rendercv_output/*.typ
 Gemfile.lock
 node_modules/
 vendor
+# QA tooling
+tools/qa/node_modules/
+tools/qa/test-results/
+tools/qa/playwright-report/
+tools/qa/reports/
+_qa/
+tools/qa/.lighthouseci/

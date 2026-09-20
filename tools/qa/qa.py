@@ -7,6 +7,9 @@ import argparse, asyncio, base64, json, os, shutil, subprocess, sys, tempfile, t
 import websockets
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Own backend only (likes / guestbook Worker); everything else must be self-hosted
+ALLOWED_HOSTS = {"yuchenhou-likes.yuchenhou.workers.dev"}
+base_host_global = [""]
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 PORT = 8797
 DEVPORT = 9446
@@ -47,6 +50,8 @@ class Chrome:
         await self.ws.send(json.dumps({"id": self.i, "method": method, "params": params or {}}))
         while True:
             m = json.loads(await asyncio.wait_for(self.ws.recv(), 30))
+            if m.get("method") == "Network.requestWillBeSent" and hasattr(self, "on_request"):
+                self.on_request(m["params"]["request"]["url"])
             if m.get("id") == self.i:
                 return m.get("result", {})
 
@@ -101,7 +106,7 @@ new Promise(res => {
 async def run(args):
     out = args.out
     os.makedirs(out, exist_ok=True)
-    site = build(out) if not args.no_build else os.path.join(out, "_site")
+    site = args.site or (build(out) if not args.no_build else os.path.join(ROOT, "_site"))
     server = subprocess.Popen([sys.executable, "-m", "http.server", str(PORT), "--bind", "127.0.0.1"], cwd=site,
                               stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     time.sleep(1)
@@ -113,6 +118,14 @@ async def run(args):
         await ch.connect()
         await ch.call("Page.enable")
         await ch.call("Network.enable")
+        # Every request host is recorded; anything outside the allowlist fails the run
+        # (the site must stay reachable from mainland China: no third-party runtime requests)
+        hosts = set()
+        base_host = base.split("//")[1].split("/")[0]
+        def on_request(u):
+            if u.startswith("http"):
+                hosts.add(u.split("//")[1].split("/")[0])
+        ch.on_request = on_request
         if args.throttle:
             await ch.call("Network.emulateNetworkConditions", {"offline": False, "latency": 40,
                 "downloadThroughput": args.throttle * 125000, "uploadThroughput": 5 * 125000})
@@ -134,7 +147,9 @@ async def run(args):
         for _ in range(16):
             await asyncio.sleep(0.5)
             cur = await ch.js(VIDEO_PROBE)
-            if not cur.get("paused") and cur.get("t", 0) - prev.get("t", 0) < 0.2:
+            advanced = cur.get("t", 0) - prev.get("t", 0)
+            looped = cur.get("t", 0) < prev.get("t", 0)  # loop wrapped: not a stall
+            if not cur.get("paused") and not looped and advanced < 0.2:
                 stalls += 1
             prev = cur
         report["video"] = cur
@@ -153,6 +168,8 @@ async def run(args):
             await asyncio.sleep(1.5)
             ok = await ch.js("!!document.querySelector('.site-content') && !document.querySelector('.home-hero')")
             report["checks"].append({"page": path, "clean": bool(ok)})
+        report["hosts"] = sorted(hosts)
+        base_host_global[0] = base_host
     finally:
         ch.close()
         server.terminate()
@@ -167,6 +184,8 @@ async def run(args):
     verdict.append(("scroll >= 50 fps, <= 3 janky frames", sc.get("fps", 0) >= 50 and sc.get("janky", 99) <= 3, sc))
     for c in report["checks"]:
         verdict.append(("%s has no hero" % c["page"], c["clean"], ""))
+    foreign = sorted(h for h in report.get("hosts", []) if h != base_host_global[0] and h not in ALLOWED_HOSTS)
+    verdict.append(("no third-party hosts beyond the allowlist", not foreign, foreign or "ok"))
     report["verdict"] = [{"check": a, "pass": bool(b), "value": c} for a, b, c in verdict]
     json.dump(report, open(os.path.join(out, "report.json"), "w"), indent=2, default=str)
     for a, b, c in verdict:
@@ -178,7 +197,8 @@ async def run(args):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--no-build", action="store_true")
+    ap.add_argument("--no-build", action="store_true", help="serve the repo's _site (from `npm run build`) instead of building")
+    ap.add_argument("--site", help="serve this built directory")
     ap.add_argument("--url", help="test a deployed site instead of the local build")
     ap.add_argument("--out", default=os.path.join(tempfile.gettempdir(), "site-qa"))
     ap.add_argument("--width", type=int, default=1440)

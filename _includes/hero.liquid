@@ -12,20 +12,16 @@
   <div class="hero-media" aria-hidden="true" style="background-image: url('{{ site.hero_poster | relative_url }}')">
     {% if site.hero_video and site.hero_video != "" %}
       {% assign v = site.hero_video | relative_url %}
-      <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="{{ site.hero_poster | relative_url }}" data-base="{{ v }}"></video>
-      <script>
-        // Pick the rendition here, synchronously, so the fetch starts during parsing:
-        // 720p below 900 px or on a slow link, HEVC first (hardware on every Mac / iPhone), then AV1, then H.264.
-        (function () {
-          var v = document.currentScript.previousElementSibling, b = v.getAttribute("data-base");
-          var c = navigator.connection || {}, slow = c.downlink && c.downlink < 10;
-          var r = (window.innerWidth < 900 || slow) ? "720" : "1080";
-          [["hevc", 'video/mp4; codecs="hvc1.1.6.L120.B0"'], ["av1", 'video/mp4; codecs="av01.0.08M.08"'], ["h264", 'video/mp4; codecs="avc1.640028"']].forEach(function (k) {
-            var s = document.createElement("source"); s.src = b + "-" + r + "." + k[0] + ".mp4"; s.type = k[1]; v.appendChild(s);
-          });
-          v.load();
-        })();
-      </script>
+      {% comment %}
+        Two codecs only (HEVC = hardware on Apple / recent Chrome; H.264 everywhere);
+        720p below 900 px via the source media attribute, no connection sniffing.
+      {% endcomment %}
+      <video class="hero-video" autoplay muted loop playsinline poster="{{ site.hero_poster | relative_url }}">
+        <source src="{{ v }}-720.hevc.mp4" type='video/mp4; codecs="hvc1.1.6.L120.B0"' media="(max-width: 899px)">
+        <source src="{{ v }}-720.h264.mp4" type='video/mp4; codecs="avc1.640028"' media="(max-width: 899px)">
+        <source src="{{ v }}-1080.hevc.mp4" type='video/mp4; codecs="hvc1.1.6.L120.B0"'>
+        <source src="{{ v }}-1080.h264.mp4" type='video/mp4; codecs="avc1.640028"'>
+      </video>
     {% endif %}
     <div class="hero-shade"></div>
   </div>
@@ -84,7 +80,17 @@
     // Scroll progress 0..1 across the hero drives the copy fade, the media drift and the corner button style
     var hero = document.querySelector(".home-hero");
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (hero && !reduce) {
+    var cssDriven = window.CSS && CSS.supports && CSS.supports("animation-timeline: scroll()");
+    if (cssDriven) html.classList.add("hero-css-scroll");
+    // Corner button switches to paper styling once the hero has scrolled away (both paths)
+    if (hero) {
+      var flag = false;
+      window.addEventListener("scroll", function () {
+        var on = window.scrollY > (hero.offsetHeight || window.innerHeight) * 0.55;
+        if (on !== flag) { flag = on; html.classList.toggle("hero-scrolled", on); }
+      }, { passive: true });
+    }
+    if (hero && !reduce && !cssDriven) {
       var ticking = false;
       function update() {
         ticking = false;
@@ -93,7 +99,6 @@
         var p = Math.min(1, y / (h * 0.7));
         hero.style.setProperty("--hero-y", y.toFixed(1) + "px");
         hero.style.setProperty("--hero-p", p.toFixed(3));
-        html.classList.toggle("hero-scrolled", p >= 0.55);
       }
       window.addEventListener("scroll", function () {
         if (!ticking) { ticking = true; requestAnimationFrame(update); }

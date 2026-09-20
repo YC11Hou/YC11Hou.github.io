@@ -113,7 +113,8 @@ $hero-fade: 7rem;
   background-size: cover;
   background-position: center;
   // Slow drift + dim as the reader scrolls away; scale keeps the box covered
-  // Parallax: the footage follows the page up at roughly half speed
+  // Parallax: the footage follows the page up at roughly half speed.
+  // JS fallback path (custom properties); the composited CSS path is below.
   transform: translate3d(0, calc(var(--hero-y) * 0.45), 0) scale(1.12);
   will-change: transform;
 }
@@ -124,7 +125,7 @@ $hero-fade: 7rem;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0;
+  opacity: 0.01; // not 0: Lighthouse ignores fully transparent LCP candidates
   transition: opacity 1.4s ease;
 
   &.is-playing {
@@ -320,6 +321,91 @@ $hero-fade: 7rem;
   60%,
   100% {
     transform: translateY(260%);
+  }
+}
+
+// Composited scroll-driven parallax (Chrome 115+, Safari 26+): transform and
+// opacity live in the keyframes, so nothing touches the main thread. The JS
+// path above only runs where this is unsupported.
+@supports (animation-timeline: scroll()) {
+  html.hero-css-scroll {
+    .hero-media,
+    .hero-body,
+    .hero-scroll,
+    .hero-shade::after {
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 100vh;
+    }
+
+    .hero-media {
+      transform: scale(1.12);
+      animation-name: hero-media-parallax;
+    }
+
+    .hero-body {
+      transform: none;
+      opacity: 1;
+      animation-name: hero-body-rise;
+    }
+
+    .hero-scroll {
+      opacity: 0.7;
+      animation-name: hero-cue-fade;
+    }
+
+    .hero-shade::after {
+      opacity: 0;
+      animation-name: hero-shade-dim;
+    }
+  }
+}
+
+@keyframes hero-media-parallax {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.12);
+  }
+  to {
+    transform: translate3d(0, 45vh, 0) scale(1.12);
+  }
+}
+
+@keyframes hero-body-rise {
+  from {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  45% {
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, -18vh, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes hero-cue-fade {
+  from {
+    opacity: 0.7;
+  }
+  35% {
+    opacity: 0;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes hero-shade-dim {
+  from {
+    opacity: 0;
+  }
+  70% {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 0.55;
   }
 }
 

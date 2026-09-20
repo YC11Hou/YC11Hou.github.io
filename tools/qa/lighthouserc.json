@@ -1,0 +1,70 @@
+{
+  "ci": {
+    "collect": {
+      "staticDistDir": "../../_site",
+      "url": [
+        "http://localhost/index.html",
+        "http://localhost/publications/index.html",
+        "http://localhost/projects/index.html"
+      ],
+      "numberOfRuns": 1,
+      "settings": {
+        "preset": "desktop",
+        "chromeFlags": "--headless=new --no-proxy-server"
+      }
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": [
+          "warn",
+          {
+            "minScore": 0.85
+          }
+        ],
+        "categories:accessibility": [
+          "warn",
+          {
+            "minScore": 0.85
+          }
+        ],
+        "largest-contentful-paint": [
+          "error",
+          {
+            "maxNumericValue": 2500
+          }
+        ],
+        "cumulative-layout-shift": [
+          "error",
+          {
+            "maxNumericValue": 0.1
+          }
+        ],
+        "total-blocking-time": [
+          "error",
+          {
+            "maxNumericValue": 200
+          }
+        ],
+        "resource-summary:media:size": [
+          "error",
+          {
+            "maxNumericValue": 4000000
+          }
+        ],
+        "resource-summary:total:size": [
+          "error",
+          {
+            "maxNumericValue": 6000000
+          }
+        ],
+        "resource-summary:third-party:count": [
+          "off"
+        ]
+      }
+    },
+    "upload": {
+      "target": "filesystem",
+      "outputDir": "./reports/lhci"
+    }
+  }
+}

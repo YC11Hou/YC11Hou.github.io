@@ -1,0 +1,19 @@
+{
+  "name": "site-qa",
+  "private": true,
+  "description": "Local verification loop: jekyll build -> DevTools video/scroll metrics (qa.py) -> Lighthouse CI assertions -> Playwright visual regression. `npm run qa` before every push.",
+  "devDependencies": {
+    "@playwright/test": "^1.50.0",
+    "lighthouse": "^12.0.0",
+    "@lhci/cli": "^0.15.0"
+  },
+  "scripts": {
+    "build": "cd ../.. && bundle exec jekyll build --quiet --config _config.yml,tools/qa/jekyll.local.yml 2>&1 | grep -v '^Terser' ; test -f _site/index.html",
+    "qa:video": "python3 qa.py --no-build --out ../../_qa --throttle 20",
+    "qa:lh": "lhci autorun --config=lighthouserc.json",
+    "qa:visual": "playwright test",
+    "qa": "npm run build && python3 qa.py --no-build --out ../../_qa --throttle 20 && npm run qa:lh && npm run qa:visual",
+    "qa:live": "python3 qa.py --no-build --out ../../_qa --url https://yuchenhou.me && SITE_URL=https://yuchenhou.me playwright test --grep-invert 'approved look'",
+    "snapshots": "playwright test --update-snapshots"
+  }
+}

@@ -1,0 +1,62 @@
+const { test, expect } = require("@playwright/test");
+
+const probe = () => {
+  const v = document.querySelector(".hero-video");
+  if (!v) return null;
+  const q = v.getVideoPlaybackQuality ? v.getVideoPlaybackQuality() : {};
+  return { src: v.currentSrc.split("/").pop(), t: v.currentTime, paused: v.paused, w: v.videoWidth,
+    total: q.totalVideoFrames || 0, dropped: q.droppedVideoFrames || 0, playing: v.classList.contains("is-playing") };
+};
+
+test.describe("landing page", () => {
+  test("hero video starts quickly and keeps playing", async ({ page }) => {
+    const t0 = Date.now();
+    await page.goto("/");
+    await page.waitForFunction(() => { const v = document.querySelector(".hero-video"); return v && v.classList.contains("is-playing") && v.currentTime > 0.05; }, null, { timeout: 15_000 });
+    const start = (Date.now() - t0) / 1000;
+    test.info().annotations.push({ type: "first-frame-s", description: String(start) });
+    await page.waitForTimeout(4000);
+    const p = await page.evaluate(probe);
+    expect(p.paused).toBe(false);
+    expect(p.t).toBeGreaterThan(3);
+    // Dropped frames are asserted in qa.py (real Chrome, hardware decode); the headless shell
+    // decodes in software, so here they are only recorded
+    test.info().annotations.push({ type: "dropped-ratio", description: (p.dropped / Math.max(1, p.total)).toFixed(3) + " on " + p.src });
+    expect(start).toBeLessThan(4);
+  });
+
+  test("scroll sequence matches the approved look", async ({ page }) => {
+    await page.goto("/");
+    await page.waitForFunction(() => document.querySelector(".hero-video.is-playing"));
+    // Freeze the video on one frame so snapshots are deterministic
+    await page.evaluate(() => { const v = document.querySelector(".hero-video"); v.pause(); v.currentTime = 2; });
+    await page.waitForTimeout(400);
+    const h = await page.evaluate(() => document.querySelector(".home-hero").offsetHeight);
+    for (const f of [0, 0.5, 1]) {
+      await page.evaluate((y) => window.scrollTo(0, y), Math.round(h * f));
+      await page.waitForTimeout(350);
+      await expect(page).toHaveScreenshot(`landing-${f}.png`);
+    }
+  });
+
+  test("rail opens and pushes the page like other pages", async ({ page, isMobile }) => {
+    test.skip(isMobile, "rail is a dock on phones");
+    await page.goto("/projects/");
+    const projLeft = await page.evaluate(() => document.querySelector(".site-content > .page").getBoundingClientRect().left);
+    await page.goto("/");
+    await page.click(".hero-menu");
+    await page.waitForTimeout(400);
+    const homeLeft = await page.evaluate(() => document.querySelector(".site-content > .home").getBoundingClientRect().left);
+    expect(Math.abs(homeLeft - projLeft)).toBeLessThan(2);
+    await expect(page.locator(".hero-menu")).toHaveCSS("opacity", "0");
+  });
+
+  test("other pages carry no hero and navigation is consistent", async ({ page }) => {
+    for (const path of ["/publications/", "/projects/", "/experience/"]) {
+      const r = await page.goto(path);
+      expect(r.status()).toBe(200);
+      expect(await page.locator(".home-hero").count()).toBe(0);
+      expect(await page.locator('a[href="/#about"]').count()).toBeGreaterThan(0);
+    }
+  });
+});
