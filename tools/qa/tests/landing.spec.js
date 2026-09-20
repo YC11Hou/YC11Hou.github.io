@@ -45,9 +45,9 @@ test.describe("landing page", () => {
     const projLeft = await page.evaluate(() => document.querySelector(".site-content > .page").getBoundingClientRect().left);
     await page.goto("/");
     await page.click(".hero-menu");
-    await page.waitForTimeout(400);
-    const homeLeft = await page.evaluate(() => document.querySelector(".site-content > .home").getBoundingClientRect().left);
-    expect(Math.abs(homeLeft - projLeft)).toBeLessThan(2);
+    // The push is a 280 ms transition: poll until the column has settled where Projects puts it
+    await expect.poll(() => page.evaluate(() => document.querySelector(".site-content > .home").getBoundingClientRect().left), { timeout: 3000 })
+      .toBeCloseTo(projLeft, 0);
     await expect(page.locator(".hero-menu")).toHaveCSS("opacity", "0");
   });
 
