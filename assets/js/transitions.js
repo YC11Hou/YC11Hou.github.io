@@ -1,1 +1,0 @@
-"navigation"in window&&window.addEventListener("pagereveal",function(i){if(i.viewTransition){var n=navigation.activation&&navigation.activation.from;if(n&&n.url){var a=new URL(n.url).pathname.replace(/index\.html$/,"");"/"!==a&&""!==a||i.viewTransition.types.add("from-home")}}});
