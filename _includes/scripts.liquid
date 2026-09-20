@@ -198,8 +198,8 @@
   <script async src="https://badge.dimensions.ai/badge.js"></script>
 {% endif %}
 
-{% if site.enable_math %}
-  <!-- MathJax -->
+{% if site.enable_math and page.hero != true %}
+  <!-- MathJax (skipped on the landing page: no math there, 1 MB competing with the hero video) -->
   <script
     defer
     type="text/javascript"

@@ -8,21 +8,24 @@
 <button type="button" class="hero-menu" aria-label="Open navigation" aria-expanded="false" title="Navigation (⌘B)">
   <i class="fa-solid fa-table-columns"></i>
 </button>
-<div class="rail-scrim" aria-hidden="true"></div>
 <section class="home-hero" id="top">
   <div class="hero-media" aria-hidden="true" style="background-image: url('{{ site.hero_poster | relative_url }}')">
     {% if site.hero_video and site.hero_video != "" %}
-      <video
-        class="hero-video"
-        muted
-        loop
-        playsinline
-        preload="metadata"
-        poster="{{ site.hero_poster | relative_url }}"
-        data-src="{{ site.hero_video | relative_url }}"
-        data-src-hd="{{ site.hero_video_hd | default: site.hero_video | relative_url }}"
-        data-src-small="{{ site.hero_video_small | default: site.hero_video | relative_url }}"
-      ></video>
+      {% assign v = site.hero_video | relative_url %}
+      <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="{{ site.hero_poster | relative_url }}" data-base="{{ v }}"></video>
+      <script>
+        // Pick the rendition here, synchronously, so the fetch starts during parsing:
+        // 720p below 900 px or on a slow link, HEVC first (hardware on every Mac / iPhone), then AV1, then H.264.
+        (function () {
+          var v = document.currentScript.previousElementSibling, b = v.getAttribute("data-base");
+          var c = navigator.connection || {}, slow = c.downlink && c.downlink < 10;
+          var r = (window.innerWidth < 900 || slow) ? "720" : "1080";
+          [["hevc", 'video/mp4; codecs="hvc1.1.6.L120.B0"'], ["av1", 'video/mp4; codecs="av01.0.08M.08"'], ["h264", 'video/mp4; codecs="avc1.640028"']].forEach(function (k) {
+            var s = document.createElement("source"); s.src = b + "-" + r + "." + k[0] + ".mp4"; s.type = k[1]; v.appendChild(s);
+          });
+          v.load();
+        })();
+      </script>
     {% endif %}
     <div class="hero-shade"></div>
   </div>
@@ -52,9 +55,6 @@
       if (reduce || c.saveData || /MicroMessenger|QQ\//i.test(navigator.userAgent)) {
         v.remove();
       } else {
-        var w = window.innerWidth, dpr = window.devicePixelRatio || 1;
-        v.src = v.getAttribute(w < 900 ? "data-src-small" : (w >= 1100 && dpr >= 1.5 ? "data-src-hd" : "data-src"));
-        v.muted = true;
         v.addEventListener("playing", function () { v.classList.add("is-playing"); });
         var p = v.play();
         if (p && p.catch) p.catch(function () { v.remove(); });
@@ -65,13 +65,13 @@
     }
     // Rail overlay: corner button, scrim, Esc and ⌘/Ctrl+B all toggle it
     var menu = document.querySelector(".hero-menu");
-    var scrim = document.querySelector(".rail-scrim");
     function setRail(open) {
       html.setAttribute("data-home-rail", open ? "open" : "hidden");
       if (menu) menu.setAttribute("aria-expanded", open ? "true" : "false");
+      try { localStorage.setItem("homeRail", open ? "open" : "hidden"); } catch (e) {}
     }
+    try { if (localStorage.getItem("homeRail") === "open") setRail(true); } catch (e) {}
     if (menu) menu.addEventListener("click", function () { setRail(html.getAttribute("data-home-rail") !== "open"); });
-    if (scrim) scrim.addEventListener("click", function () { setRail(false); });
     var railBtn = document.querySelector(".rail-collapse");
     if (railBtn) railBtn.addEventListener("click", function (e) { e.stopImmediatePropagation(); setRail(false); }, true);
     document.addEventListener("keydown", function (e) {
@@ -89,7 +89,9 @@
       function update() {
         ticking = false;
         var h = hero.offsetHeight || window.innerHeight;
-        var p = Math.min(1, Math.max(0, window.scrollY / (h * 0.75)));
+        var y = Math.min(h, Math.max(0, window.scrollY));
+        var p = Math.min(1, y / (h * 0.7));
+        hero.style.setProperty("--hero-y", y.toFixed(1) + "px");
         hero.style.setProperty("--hero-p", p.toFixed(3));
         html.classList.toggle("hero-scrolled", p >= 0.55);
       }

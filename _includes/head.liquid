@@ -90,6 +90,10 @@
 <!-- Sidebar collapsed/expanded state, applied before first paint -->
 <script src="{{ '/assets/js/rail.js' | relative_url | bust_file_cache }}"></script>
 
+{% if page.hero and site.hero_video != "" %}
+  <link rel="preload" as="image" href="{{ site.hero_poster | relative_url }}" fetchpriority="high">
+{% endif %}
+
 <!-- Page transitions (View Transitions API) and hover prerendering of in-site pages -->
 <script src="{{ '/assets/js/transitions.js' | relative_url | bust_file_cache }}"></script>
 <script type="speculationrules">
