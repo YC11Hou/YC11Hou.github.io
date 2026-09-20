@@ -1,28 +1,22 @@
-# Hero reel sources
+# Hero loop sources
 
-One 33 s cut, delivered as six files so every browser gets the cheapest codec it can decode
-(chosen in `_includes/hero.liquid`: HEVC -> AV1 -> H.264; 720p below 900 px or when the browser reports a link under 10 Mbps, 1080p otherwise).
-All are scaled from the clips' 4K originals (Lanczos + light sharpen) through a CRF 14 H.264 master,
-then rate-capped so playback never outruns an ordinary connection:
+A 12 s muted loop (the industry norm for a hero is 5-10 s: Apple ships 5 s / 335 KB, Anthropic 4.6 s / 1 MB), delivered as four files;
+`_includes/hero.liquid` lists them as `<source>` elements with `media` attributes (720p below 900 px), HEVC first, H.264 fallback.
+No connection sniffing (`navigator.connection` does not exist in Safari). All scaled from 4K originals through a CRF 14 H.264 master, then rate-capped:
 
 | File | Codec | Cap | Size |
 |---|---|---|---|
-| reel-1080.av1.mp4 | AV1 (SVT, crf 34) | 5 Mbps | ~15 MB |
-| reel-1080.hevc.mp4 | HEVC (x265, crf 26, hvc1) | 5 Mbps | ~17 MB |
-| reel-1080.h264.mp4 | H.264 high (crf 23) | 5 Mbps | ~20 MB |
-| reel-720.* | same three | 2.5 Mbps | 8 - 10 MB |
+| reel-1080.hevc.mp4 | HEVC (x265, crf 27, hvc1) | 2.2 Mbps | 3.4 MB |
+| reel-1080.h264.mp4 | H.264 high (crf 24) | 2.2 Mbps | 3.4 MB |
+| reel-720.hevc.mp4 / .h264.mp4 | same two | 1.1 Mbps | 1.7 MB |
 
-8 clips of 5 s (Honor 4 s), 1 s cross-fades; the reel ends on the two seconds before clip 1's in-point, so the loop is seamless.
+Cut: 4 s + 4 s + 2.5 s + 4 s with 0.8 s cross-fades; the loop ends on the second before clip 1's in-point, so it is seamless.
+Render: `tools/qa/render_reel.py <dir with the 4K mixkit files> <out dir>`.
 Stock clips are Mixkit originals under the Mixkit Stock Video Free License (free for commercial use, no attribution required).
-Render script: `tools/qa/render_reel.py` (edit the clip list and source paths there).
 
 | # | Clip | Source |
 |---|------|--------|
-| 1 | Landscape of a mountain range | https://mixkit.co/free-stock-video/landscape-of-a-mountain-range-4366/ |
-| 2 | Rocky cape seen from above | https://mixkit.co/free-stock-video/rocky-cape-seen-from-above-5012/ |
-| 3 | Snowy mountains, aerial | https://mixkit.co/free-stock-video/beautiful-landscape-of-snowy-mountains-aerial-3365/ |
+| 1 | Rocky cape seen from above | https://mixkit.co/free-stock-video/rocky-cape-seen-from-above-5012/ |
+| 2 | Landscape of a mountain range | https://mixkit.co/free-stock-video/landscape-of-a-mountain-range-4366/ |
+| 3 | Honor humanoid teleop takeover (own, 720p source, darkened, 2.5 s) | profile/assets/past_projects/honor_takeover_demo.mp4 |
 | 4 | Waves hitting a small cliff, aerial | https://mixkit.co/free-stock-video/aerial-view-of-waves-hitting-a-small-cliff-51455/ |
-| 5 | River through a forest | https://mixkit.co/free-stock-video/river-passing-through-a-forest-full-of-trees-51447/ |
-| 6 | Honor humanoid teleop takeover (own, 720p source, darkened) | profile/assets/past_projects/honor_takeover_demo.mp4 |
-| 7 | Swiss Alps snow time-lapse | https://mixkit.co/free-stock-video/swiss-alps-snow-background-time-lapse-4283/ |
-| 8 | Coast with motorboats and a pier | https://mixkit.co/free-stock-video/beautiful-coast-with-motorboats-and-a-pier-seen-from-the-5363/ |
