@@ -354,7 +354,7 @@ def legend_frozen_trained(f, y):
 
 
 def honor_value_net():
-    f = Fig("honor_value_net", 300, "Architecture of the distributional value network used for RECAP")
+    f = Fig("honor_value_net", 322, "Architecture of the distributional value network used for RECAP")
     cap(f, 0, 12, "value network · distributional critic")
     legend_frozen_trained(f, 12)
     y, h = 40, 104
@@ -371,21 +371,21 @@ def honor_value_net():
     f.arrow([(462, y + h / 2), (487, y + h / 2)])
     f.arrow([(622, y + h / 2), (647, y + h / 2)])
     # softmax over atoms -> expected value
-    bx, by, bw, bh = 470, 176, 310, 50
+    bx, by, bw, bh = 480, 172, 280, 48
     import math
     for i in range(41):
         z = -1 + i / 40
         p = math.exp(-((z + 0.32) ** 2) / 0.018) + 0.35 * math.exp(-((z + 0.7) ** 2) / 0.01)
         f.rect(bx + i * bw / 41, by + bh - p * bh, bw / 41 - 1.5, p * bh, "f-acc", 0, ' fill-opacity="0.55"')
     f.line(bx, by + bh, bx + bw, by + bh, "axis")
-    f.text(bx, by + bh + 14, "−1", "m", "middle")
-    f.text(bx + bw, by + bh + 14, "0", "m", "middle")
-    f.text(bx + bw / 2, by + bh + 14, "atoms z₁ … z₂₀₁", "m", "middle")
+    f.text(bx, by + bh + 16, "−1", "m", "middle")
+    f.text(bx + bw, by + bh + 16, "0", "m", "middle")
+    f.text(bx + bw / 2, by + bh + 16, "201 atoms", "m", "middle")
     f.path(f"M715,{y + h + 2} L715,{by - 4}", "acc")
     f.text(0, by + 12, "V(o, l) = Σᵢ softmax(logits)ᵢ · zᵢ ,  zᵢ evenly spaced on [−1, 0]", "serif")
-    f.text(0, by + 32, "target: normalized empirical return, split between its two nearest atoms (two-hot)", "m")
+    f.text(0, by + 32, "target: normalized return, two-hot over the nearest atoms", "m")
     f.text(0, by + 46, "loss: cross-entropy against the two-hot target", "m")
-    spec_strip(f, 250, [("optimizer", ["Adam · lr 1e-4", "batch 256"]), ("acceptance", ["held-out Spearman ρ > 0.55", "dry run 0.647"]),
+    spec_strip(f, 268, [("optimizer", ["Adam · lr 1e-4", "batch 256"]), ("acceptance", ["held-out Spearman ρ > 0.55", "dry run 0.647"]),
                         ("pooling", ["image / text separately:", "keeps language conditioning"]),
                         ("vs. RLinf", ["pooled, no CLS token", "hence one extra hidden layer"])])
     f.save()
@@ -580,7 +580,7 @@ def aion_thor():
 
 
 def aion_isaac():
-    f = Fig("aion_isaac", 352, "IsaacSim multi-room results: successes out of five trials per object and scene")
+    f = Fig("aion_isaac", 362, "IsaacSim multi-room results: successes out of five trials per object and scene")
     methods = [("Exp + MJO", [3, 4, 4], [2, 5, 5], [0, 3, 5], [2, 5, 2]),
                ("Exp + SSNet", [3, 4, 3], [3, 2, 3], [0, 3, 5], [1, 5, 3]),
                ("AION (ours)", [4, 4, 5], [5, 5, 4], [2, 5, 5], [3, 5, 5])]
