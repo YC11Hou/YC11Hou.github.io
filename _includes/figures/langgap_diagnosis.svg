@@ -1,0 +1,43 @@
+<svg class="fig-svg" viewBox="0 0 780 272" role="img" aria-label="pi0.5 success rate on original versus extended LangGap tasks, by perturbation type" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="langgap_diagnosis-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah"/></marker><marker id="langgap_diagnosis-ahacc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-acc"/></marker><marker id="langgap_diagnosis-ahblue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-blue"/></marker><marker id="langgap_diagnosis-ahmut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-mut"/></marker></defs>
+<text x="0.0" y="12.0" class="cap">Π0.5 SUCCESS RATE (%) · SAME SCENES, ONLY THE INSTRUCTION CHANGES</text>
+<text x="0.0" y="43.0" class="t">Original LIBERO</text>
+<text x="0.0" y="57.0" class="m">40 tasks · 800 episodes</text>
+<rect x="250.0" y="36.0" width="412.7" height="18.0" rx="2" class="f-ink"/>
+<text x="670.7" y="50.0" class="t">93.8</text>
+<text x="0.0" y="79.0" class="t">Extended (LangGap)</text>
+<text x="0.0" y="93.0" class="m">59 tasks · 1,180 episodes</text>
+<rect x="250.0" y="72.0" width="94.2" height="18.0" rx="2" class="f-acc"/>
+<text x="352.2" y="86.0" class="t acc">21.4</text>
+<line x1="0.0" y1="102.0" x2="780.0" y2="102.0" class="grid"/>
+<text x="16.0" y="121.0" class="s">Change Object</text>
+<text x="16.0" y="135.0" class="m">38 tasks · 760 ep.</text>
+<rect x="250.0" y="114.0" width="128.9" height="18.0" rx="2" class="f-acc" fill-opacity="0.55"/>
+<text x="386.9" y="128.0" class="t acc">29.3</text>
+<text x="16.0" y="157.0" class="s">Change Target</text>
+<text x="16.0" y="171.0" class="m">13 tasks · 260 ep.</text>
+<rect x="250.0" y="150.0" width="0.1" height="18.0" rx="2" class="f-acc" fill-opacity="0.55"/>
+<rect x="250.0" y="150.0" width="2.5" height="18.0" rx="0" class="f-acc"/>
+<text x="260.0" y="164.0" class="t acc">0.0 — all 260 episodes fail</text>
+<text x="16.0" y="193.0" class="s">Spatial Description</text>
+<text x="16.0" y="207.0" class="m">5 tasks · 100 ep.</text>
+<rect x="250.0" y="186.0" width="48.4" height="18.0" rx="2" class="f-acc" fill-opacity="0.55"/>
+<text x="306.4" y="200.0" class="t acc">11.0</text>
+<text x="16.0" y="229.0" class="s">Drawer Action</text>
+<text x="16.0" y="243.0" class="m">3 tasks · 60 ep.</text>
+<rect x="250.0" y="222.0" width="139.5" height="18.0" rx="2" class="f-acc" fill-opacity="0.55"/>
+<text x="397.5" y="236.0" class="t acc">31.7</text>
+<path d="M662.7,56 L662.7,81 L394.2,81" class="ln k-acc dash" marker-end="url(#langgap_diagnosis-ahacc)"/>
+<text x="670.7" y="71.0" class="t acc">−72.4 pts</text>
+<line x1="250.0" y1="252.0" x2="690.0" y2="252.0" class="axis"/>
+<line x1="250.0" y1="252.0" x2="250.0" y2="256.0" class="axis"/>
+<text x="250.0" y="269.0" class="m" text-anchor="middle">0</text>
+<line x1="360.0" y1="252.0" x2="360.0" y2="256.0" class="axis"/>
+<text x="360.0" y="269.0" class="m" text-anchor="middle">25</text>
+<line x1="470.0" y1="252.0" x2="470.0" y2="256.0" class="axis"/>
+<text x="470.0" y="269.0" class="m" text-anchor="middle">50</text>
+<line x1="580.0" y1="252.0" x2="580.0" y2="256.0" class="axis"/>
+<text x="580.0" y="269.0" class="m" text-anchor="middle">75</text>
+<line x1="690.0" y1="252.0" x2="690.0" y2="256.0" class="axis"/>
+<text x="690.0" y="269.0" class="m" text-anchor="middle">100</text>
+</svg>

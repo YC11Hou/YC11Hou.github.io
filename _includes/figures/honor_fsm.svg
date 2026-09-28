@@ -1,0 +1,29 @@
+<svg class="fig-svg" viewBox="0 0 780 304" role="img" aria-label="Autonomy / teleoperation switching state machine and the takeover output rule" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="honor_fsm-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah"/></marker><marker id="honor_fsm-ahacc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-acc"/></marker><marker id="honor_fsm-ahblue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-blue"/></marker><marker id="honor_fsm-ahmut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-mut"/></marker></defs>
+<text x="390.0" y="16.0" class="cap" text-anchor="middle">ROS 2 SWITCH NODE · 50 HZ · DRIVEN BY THE LOCOMOTION ACTION ID</text>
+<rect x="30.0" y="62.0" width="170.0" height="54.0" rx="27" class="box k-mut"/>
+<text x="115.0" y="86.2" class="t" text-anchor="middle">WAITING</text>
+<text x="115.0" y="100.6" class="m" text-anchor="middle">no commands sent</text>
+<rect x="305.0" y="62.0" width="170.0" height="54.0" rx="27" class="box k-acc"/>
+<text x="390.0" y="86.2" class="t" text-anchor="middle">VLA AUTONOMOUS</text>
+<text x="390.0" y="100.6" class="m" text-anchor="middle">policy streams actions</text>
+<rect x="580.0" y="62.0" width="170.0" height="54.0" rx="27" class="box k-blue"/>
+<text x="665.0" y="86.2" class="t" text-anchor="middle">TELEOP TAKEOVER</text>
+<text x="665.0" y="100.6" class="m" text-anchor="middle">operator drives via Pico</text>
+<path d="M200,74 Q252.5,42 305,74" class="ln" marker-end="url(#honor_fsm-ah)"/>
+<path d="M305,104 Q252.5,136 200,104" class="ln" marker-end="url(#honor_fsm-ah)"/>
+<text x="252.5" y="51.0" class="s" text-anchor="middle">start</text>
+<text x="252.5" y="137.0" class="s" text-anchor="middle">other action</text>
+<path d="M475,74 Q527.5,42 580,74" class="ln k-acc" marker-end="url(#honor_fsm-ahacc)"/>
+<path d="M580,104 Q527.5,136 475,104" class="ln k-blue" marker-end="url(#honor_fsm-ahblue)"/>
+<text x="527.5" y="51.0" class="s" text-anchor="middle">takeover</text>
+<text x="527.5" y="137.0" class="s" text-anchor="middle">hand back</text>
+<rect x="0.0" y="160.0" width="780.0" height="140.0" rx="5" class="box"/>
+<text x="18.0" y="182.0" class="cap">OUTPUT DURING TAKEOVER (NO JOINT JUMP)</text>
+<text x="18.0" y="210.0" class="serif">a(t)  =  a_VLA(t₀)  +  [ q_teleop(t) − q_teleop(t₀) ]</text>
+<text x="18.0" y="232.0" class="m">t₀ = first frame after the switch → the robot continues from its current pose instead of</text>
+<text x="18.0" y="246.0" class="m">     jumping to the teleoperator&#x27;s absolute joint angles</text>
+<line x1="18.0" y1="258.0" x2="762.0" y2="258.0" class="grid"/>
+<text x="18.0" y="274.0" class="m">logged per frame: transition mode · control state</text>
+<text x="18.0" y="288.0" class="m">topic gap &gt; 0.3 s (15 frames at 50 Hz) ⇒ untracked step; the episode no longer counts as fully autonomous</text>
+</svg>

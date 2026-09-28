@@ -1,0 +1,227 @@
+<svg class="fig-svg" viewBox="0 0 780 344" role="img" aria-label="Human takeover ratio per episode during real-robot SFT, with checkpoint updates" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="honor_curve-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah"/></marker><marker id="honor_curve-ahacc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-acc"/></marker><marker id="honor_curve-ahblue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-blue"/></marker><marker id="honor_curve-ahmut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-mut"/></marker></defs>
+<rect x="616.0" y="44.0" width="150.0" height="252.0" rx="0" class="band"/>
+<line x1="58.0" y1="289.4" x2="772.0" y2="289.4" class="grid"/>
+<text x="50.0" y="293.4" class="m" text-anchor="end">0</text>
+<line x1="58.0" y1="245.6" x2="772.0" y2="245.6" class="grid"/>
+<text x="50.0" y="249.6" class="m" text-anchor="end">20</text>
+<line x1="58.0" y1="201.8" x2="772.0" y2="201.8" class="grid"/>
+<text x="50.0" y="205.8" class="m" text-anchor="end">40</text>
+<line x1="58.0" y1="157.9" x2="772.0" y2="157.9" class="grid"/>
+<text x="50.0" y="161.9" class="m" text-anchor="end">60</text>
+<line x1="58.0" y1="114.1" x2="772.0" y2="114.1" class="grid"/>
+<text x="50.0" y="118.1" class="m" text-anchor="end">80</text>
+<line x1="58.0" y1="70.3" x2="772.0" y2="70.3" class="grid"/>
+<text x="50.0" y="74.3" class="m" text-anchor="end">100</text>
+<text x="58.0" y="314.0" class="m" text-anchor="middle">0</text>
+<text x="138.2" y="314.0" class="m" text-anchor="middle">20</text>
+<text x="218.4" y="314.0" class="m" text-anchor="middle">40</text>
+<text x="298.7" y="314.0" class="m" text-anchor="middle">60</text>
+<text x="378.9" y="314.0" class="m" text-anchor="middle">80</text>
+<text x="459.1" y="314.0" class="m" text-anchor="middle">100</text>
+<text x="539.3" y="314.0" class="m" text-anchor="middle">120</text>
+<text x="619.6" y="314.0" class="m" text-anchor="middle">140</text>
+<text x="699.8" y="314.0" class="m" text-anchor="middle">160</text>
+<line x1="58.0" y1="296.0" x2="772.0" y2="296.0" class="axis"/>
+<line x1="351.2" y1="44.0" x2="351.2" y2="296.0" class="ln k-mut dash"/>
+<text x="347.2" y="98.8" class="m" transform="rotate(-90 347.2 98.8)">ckpt 1000</text>
+<line x1="366.9" y1="44.0" x2="366.9" y2="296.0" class="ln k-mut dash"/>
+<text x="362.9" y="98.8" class="m" transform="rotate(-90 362.9 98.8)">ckpt 3000</text>
+<line x1="495.6" y1="44.0" x2="495.6" y2="296.0" class="ln k-mut dash"/>
+<text x="491.6" y="98.8" class="m" transform="rotate(-90 491.6 98.8)">ckpt 4000</text>
+<line x1="555.8" y1="44.0" x2="555.8" y2="296.0" class="ln k-mut dash"/>
+<text x="551.8" y="98.8" class="m" transform="rotate(-90 551.8 98.8)">ckpt 5000</text>
+<line x1="648.5" y1="44.0" x2="648.5" y2="296.0" class="ln k-mut dash"/>
+<text x="644.5" y="98.8" class="m" transform="rotate(-90 644.5 98.8)">ckpt 6000</text>
+<line x1="724.7" y1="44.0" x2="724.7" y2="296.0" class="ln k-mut dash"/>
+<text x="720.7" y="98.8" class="m" transform="rotate(-90 720.7 98.8)">ckpt 7000</text>
+<circle cx="62.0" cy="195.0" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="66.0" cy="110.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="70.0" cy="111.9" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="74.0" cy="156.2" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="78.1" cy="115.0" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="82.1" cy="111.1" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="86.1" cy="111.1" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="90.1" cy="115.9" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="94.1" cy="89.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="98.1" cy="113.9" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="102.1" cy="89.1" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="106.1" cy="127.5" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="110.1" cy="114.1" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="114.2" cy="117.0" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="118.2" cy="116.1" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="122.2" cy="106.5" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="126.2" cy="113.0" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="130.2" cy="110.2" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="134.2" cy="117.2" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="138.2" cy="118.9" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="142.2" cy="121.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="146.2" cy="120.0" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="150.3" cy="114.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="154.3" cy="122.9" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="158.3" cy="121.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="162.3" cy="117.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="166.3" cy="119.8" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="170.3" cy="122.0" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="174.3" cy="117.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="178.3" cy="121.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="182.3" cy="123.5" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="186.4" cy="114.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="190.4" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="194.4" cy="119.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="198.4" cy="128.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="202.4" cy="128.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="206.4" cy="129.5" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="210.4" cy="124.9" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="214.4" cy="124.0" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="218.4" cy="127.5" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="222.5" cy="126.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="226.5" cy="130.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="230.5" cy="121.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="234.5" cy="121.1" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="238.5" cy="118.1" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="242.5" cy="121.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="246.5" cy="124.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="250.5" cy="119.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="254.6" cy="119.8" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="258.6" cy="113.0" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="262.6" cy="125.1" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="266.6" cy="126.8" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="270.6" cy="131.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="274.6" cy="113.0" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="278.6" cy="119.8" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="282.6" cy="117.8" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="286.6" cy="123.3" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="290.7" cy="120.5" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="294.7" cy="121.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="298.7" cy="103.2" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="302.7" cy="119.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="306.7" cy="117.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="310.7" cy="117.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="314.7" cy="121.1" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="318.7" cy="132.3" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="322.7" cy="121.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="326.8" cy="121.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="330.8" cy="115.2" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="334.8" cy="108.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="338.8" cy="114.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="342.8" cy="115.0" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="346.8" cy="116.1" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="350.8" cy="104.7" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="354.8" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="358.8" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="362.9" cy="270.8" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="366.9" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="370.9" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="374.9" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="378.9" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="382.9" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="386.9" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="390.9" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="394.9" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="399.0" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="403.0" cy="104.0" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="407.0" cy="103.2" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="411.0" cy="125.5" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="415.0" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="419.0" cy="130.3" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="423.0" cy="106.7" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="427.0" cy="105.1" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="431.0" cy="122.0" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="435.1" cy="127.5" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="439.1" cy="110.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="443.1" cy="116.8" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="447.1" cy="113.2" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="451.1" cy="105.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="455.1" cy="117.2" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="459.1" cy="117.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="463.1" cy="114.3" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="467.1" cy="108.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="471.2" cy="132.3" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="475.2" cy="122.0" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="479.2" cy="115.9" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="483.2" cy="113.0" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="487.2" cy="108.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="491.2" cy="124.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="495.2" cy="99.2" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="499.2" cy="111.9" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="503.2" cy="119.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="507.3" cy="126.8" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="511.3" cy="111.5" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="515.3" cy="108.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="519.3" cy="110.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="523.3" cy="117.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="527.3" cy="121.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="531.3" cy="255.2" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="535.3" cy="107.5" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="539.3" cy="106.7" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="543.4" cy="112.1" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="547.4" cy="104.0" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="551.4" cy="114.1" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="555.4" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="559.4" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="563.4" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="567.4" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="571.4" cy="247.1" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="575.4" cy="123.3" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="579.5" cy="105.1" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="583.5" cy="108.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="587.5" cy="97.0" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="591.5" cy="110.8" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="595.5" cy="99.7" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="599.5" cy="127.5" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="603.5" cy="106.7" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="607.5" cy="96.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="611.6" cy="108.0" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="615.6" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="619.6" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="623.6" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="627.6" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="631.6" cy="255.0" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="635.6" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="639.6" cy="182.7" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="643.6" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="647.7" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="651.7" cy="175.3" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="655.7" cy="185.6" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="659.7" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="663.7" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="667.7" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="671.7" cy="236.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="675.7" cy="193.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="679.7" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="683.8" cy="189.1" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="687.8" cy="195.0" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="691.8" cy="194.1" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="695.8" cy="188.2" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="699.8" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="703.8" cy="182.1" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="707.8" cy="160.8" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="711.8" cy="170.2" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="715.8" cy="170.2" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="719.9" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="723.9" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="727.9" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="731.9" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="735.9" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="739.9" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="743.9" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="747.9" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="751.9" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="756.0" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="760.0" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<circle cx="764.0" cy="289.4" r="2.4" class="f-mut" fill-opacity="0.55"/>
+<path d="M62.0,137.7 L66.0,133.3 L70.0,130.1 L74.0,128.3 L78.1,124.0 L82.1,115.0 L86.1,112.6 L90.1,114.4 L94.1,109.7 L98.1,109.9 L102.1,110.5 L106.1,110.0 L110.1,109.6 L114.2,111.9 L118.2,112.3 L122.2,115.6 L126.2,114.9 L130.2,115.6 L134.2,115.3 L138.2,116.1 L142.2,117.7 L146.2,118.2 L150.3,119.3 L154.3,119.8 L158.3,119.7 L162.3,119.7 L166.3,120.1 L170.3,120.1 L174.3,138.6 L178.3,138.4 L182.3,139.6 L186.4,140.5 L190.4,141.4 L194.4,142.2 L198.4,142.5 L202.4,142.9 L206.4,144.2 L210.4,126.6 L214.4,126.8 L218.4,126.0 L222.5,124.9 L226.5,124.0 L230.5,123.9 L234.5,123.4 L238.5,122.5 L242.5,121.0 L246.5,120.4 L250.5,121.0 L254.6,122.2 L258.6,121.6 L262.6,121.4 L266.6,120.7 L270.6,121.1 L274.6,121.2 L278.6,122.1 L282.6,119.7 L286.6,118.9 L290.7,117.4 L294.7,117.9 L298.7,118.0 L302.7,119.6 L306.7,119.4 L310.7,119.5 L314.7,118.8 L318.7,119.4 L322.7,118.8 L326.8,118.6 L330.8,118.4 L334.8,116.6 L338.8,134.0 L342.8,152.7 L346.8,169.3 L350.8,188.7 L354.8,208.8 L358.8,228.2 L362.9,247.6 L366.9,266.8 L370.9,287.4 L374.9,287.4 L378.9,287.4 L382.9,289.4 L386.9,268.8 L390.9,248.1 L394.9,229.9 L399.0,229.9 L403.0,212.2 L407.0,191.9 L411.0,171.5 L415.0,152.9 L419.0,134.9 L423.0,135.6 L427.0,137.1 L431.0,135.7 L435.1,115.3 L439.1,113.9 L443.1,115.1 L447.1,116.1 L451.1,114.6 L455.1,115.1 L459.1,116.4 L463.1,116.3 L467.1,116.3 L471.2,116.6 L475.2,117.4 L479.2,115.4 L483.2,115.1 L487.2,116.3 L491.2,115.7 L495.2,114.5 L499.2,113.7 L503.2,113.5 L507.3,114.5 L511.3,114.1 L515.3,131.5 L519.3,131.0 L523.3,129.6 L527.3,127.9 L531.3,127.1 L535.3,127.7 L539.3,147.6 L543.4,166.7 L547.4,185.3 L551.4,189.1 L555.4,204.6 L559.4,206.5 L563.4,205.7 L567.4,206.2 L571.4,204.3 L575.4,184.5 L579.5,163.4 L583.5,145.4 L587.5,125.1 L591.5,108.4 L595.5,106.6 L599.5,127.1 L603.5,147.2 L607.5,168.6 L611.6,188.5 L615.6,205.7 L619.6,223.7 L623.6,232.2 L627.6,253.6 L631.6,273.7 L635.6,261.1 L639.6,249.5 L643.6,249.5 L647.7,249.5 L651.7,253.3 L655.7,247.5 L659.7,248.6 L663.7,248.6 L667.7,237.5 L671.7,239.7 L675.7,240.6 L679.7,229.4 L683.8,229.4 L687.8,217.5 L691.8,209.1 L695.8,206.5 L699.8,193.2 L703.8,204.4 L707.8,214.9 L711.8,225.5 L715.8,236.7 L719.9,236.7 L723.9,248.6 L727.9,262.9 L731.9,276.2 L735.9,289.4 L739.9,289.4 L743.9,289.4 L747.9,289.4 L751.9,289.4 L756.0,289.4 L760.0,289.4 L764.0,289.4" class="ln k-acc" style="stroke-width:2"/>
+<text x="691.0" y="30.0" class="t acc" text-anchor="middle">test phase</text>
+<path d="M407.0,34 L407.0,98.8" class="ln k-mut" marker-end="url(#honor_curve-ahmut)"/>
+<text x="407.0" y="28.0" class="s" text-anchor="middle">scene 2 starts (basket on left)</text>
+<path d="M282.6,252.2 L372.9,281.8" class="ln k-blue" marker-end="url(#honor_curve-ahblue)"/>
+<text x="154.3" y="236.8" class="s blue">after the checkpoint update, the policy</text>
+<text x="154.3" y="251.8" class="s blue">completes scene 1 on its own</text>
+<text x="16.0" y="170.0" class="m" text-anchor="middle" transform="rotate(-90 16 170.0)">takeover steps (%)</text>
+<text x="415.0" y="334.0" class="m" text-anchor="middle">episode</text>
+<circle cx="58.0" cy="12.0" r="2.6" class="f-mut" fill-opacity="0.55"/>
+<text x="72.0" y="16.0" class="m">per-episode takeover ratio</text>
+<line x1="50.0" y1="27.0" x2="66.0" y2="27.0" class="ln k-acc"/>
+<text x="72.0" y="31.0" class="m">moving average (9 episodes)</text>
+</svg>

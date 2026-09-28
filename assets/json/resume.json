@@ -37,10 +37,10 @@
       "endDate": "2026-08-31",
       "summary": "Working on Honor's self-developed humanoid robot: teleoperation data collection, replay, training, and on-robot deployment.",
       "highlights": [
-        "Conducting online RL algorithm research for Vision-Language-Action (VLA) models on custom manipulation tasks.",
+        "Conducting real-robot RL algorithm research for Vision-Language-Action (VLA) models on custom manipulation tasks.",
         "Implemented smooth human-teleoperator takeover during autonomous rollouts, including the autonomy-teleoperation transition state machine.",
-        "Built the intervention-driven online-learning data pipeline: on-robot data recording, full local disk persistence, and automatic upload to the development server.",
-        "Closed the loop over a distributed learning architecture: onboard AGX/NX boards (topic publishing, command execution, data collection), an x86 host as the Actor (model inference, streaming actions to the robot), and a development server as the Learner (data aggregation, training, checkpoint dispatch) - a complete online SFT / online RL pipeline.",
+        "Built the intervention-driven real-robot learning data pipeline: on-robot data recording, full local disk persistence, and automatic upload to the development server.",
+        "Closed the loop over a distributed learning architecture: onboard AGX/NX boards (topic publishing, command execution, data collection), an x86 host as the Actor (model inference, streaming actions to the robot), and a development server as the Learner (data aggregation, training, checkpoint dispatch) - a complete real-robot SFT / RL pipeline.",
         "Researching RECAP-style (pi-0.6) offline RL combined with noise-space fast adaptation (DSRL-like): learning corrective noise from human-intervention data to rapidly imitate takeover behaviors before a new checkpoint finishes training, substantially raising success rates on tasks uncovered by offline training, and further adapting the algorithm to loco-manipulation tasks."
       ]
     },

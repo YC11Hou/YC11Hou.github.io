@@ -1,0 +1,59 @@
+<svg class="fig-svg" viewBox="0 0 780 276" role="img" aria-label="Real-robot pipeline from teleoperated collection to on-robot inference" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="honor_pipeline-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah"/></marker><marker id="honor_pipeline-ahacc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-acc"/></marker><marker id="honor_pipeline-ahblue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-blue"/></marker><marker id="honor_pipeline-ahmut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-mut"/></marker></defs>
+<rect x="0.0" y="34.0" width="110.0" height="84.0" rx="5" class="box"/>
+<text x="55.0" y="65.2" class="t" text-anchor="middle">Teleop</text>
+<text x="55.0" y="81.2" class="t" text-anchor="middle">collection</text>
+<text x="55.0" y="95.6" class="m" text-anchor="middle">Pico VR · mocap</text>
+<path d="M113.0,76.0 L131.0,76.0" class="ln" marker-end="url(#honor_pipeline-ah)"/>
+<rect x="134.0" y="34.0" width="110.0" height="84.0" rx="5" class="box"/>
+<text x="189.0" y="65.2" class="t" text-anchor="middle">LeRobot</text>
+<text x="189.0" y="81.2" class="t" text-anchor="middle">conversion</text>
+<text x="189.0" y="95.6" class="m" text-anchor="middle">v2.1 format</text>
+<path d="M247.0,76.0 L265.0,76.0" class="ln" marker-end="url(#honor_pipeline-ah)"/>
+<rect x="268.0" y="34.0" width="110.0" height="84.0" rx="5" class="box"/>
+<text x="323.0" y="65.2" class="t" text-anchor="middle">Mixing &amp;</text>
+<text x="323.0" y="81.2" class="t" text-anchor="middle">screening</text>
+<text x="323.0" y="95.6" class="m" text-anchor="middle">1,067 → 848 ep.</text>
+<path d="M381.0,76.0 L399.0,76.0" class="ln" marker-end="url(#honor_pipeline-ah)"/>
+<rect x="402.0" y="34.0" width="110.0" height="84.0" rx="5" class="box k-acc"/>
+<text x="457.0" y="65.2" class="t" text-anchor="middle">GR00T N1.7</text>
+<text x="457.0" y="81.2" class="t" text-anchor="middle">post-training</text>
+<text x="457.0" y="95.6" class="m" text-anchor="middle">VLM frozen</text>
+<path d="M515.0,76.0 L533.0,76.0" class="ln" marker-end="url(#honor_pipeline-ah)"/>
+<rect x="536.0" y="34.0" width="110.0" height="84.0" rx="5" class="box"/>
+<text x="591.0" y="65.2" class="t" text-anchor="middle">Offline</text>
+<text x="591.0" y="81.2" class="t" text-anchor="middle">evaluation</text>
+<text x="591.0" y="95.6" class="m" text-anchor="middle">ckpt / 2K steps</text>
+<path d="M649.0,76.0 L667.0,76.0" class="ln" marker-end="url(#honor_pipeline-ah)"/>
+<rect x="670.0" y="34.0" width="110.0" height="84.0" rx="5" class="box k-acc"/>
+<text x="725.0" y="65.2" class="t" text-anchor="middle">On-robot</text>
+<text x="725.0" y="81.2" class="t" text-anchor="middle">inference</text>
+<text x="725.0" y="95.6" class="m" text-anchor="middle">20 Hz inference</text>
+<line x1="0.0" y1="22.0" x2="378.0" y2="22.0" class="grid"/>
+<text x="189.0" y="16.0" class="cap" text-anchor="middle">DATA</text>
+<line x1="402.0" y1="22.0" x2="646.0" y2="22.0" class="grid"/>
+<text x="524.0" y="16.0" class="cap" text-anchor="middle">MODEL</text>
+<line x1="670.0" y1="22.0" x2="780.0" y2="22.0" class="grid"/>
+<text x="725.0" y="16.0" class="cap" text-anchor="middle">ROBOT</text>
+<path d="M725.0,120.0 L725.0,146.0 L55.0,146.0 L55.0,122.0" class="ln k-mut dash" marker-end="url(#honor_pipeline-ahmut)"/>
+<text x="390.0" y="162.0" class="serif" text-anchor="middle">select checkpoints by on-robot rollouts, then collect again</text>
+<line x1="0.0" y1="184.0" x2="780.0" y2="184.0" class="grid"/>
+<text x="0.0" y="206.0" class="cap">DATA</text>
+<text x="0.0" y="226.0" class="t">848 episodes · 306K frames</text>
+<text x="0.0" y="244.0" class="m">screened from 1,067</text>
+<text x="209.0" y="206.0" class="cap">ACTION SPACE</text>
+<text x="209.0" y="226.0" class="t">37-D · 30-step chunks</text>
+<text x="209.0" y="244.0" class="m">root 4 + joints 29</text>
+<text x="209.0" y="258.0" class="m">+ head 2 + hands 2</text>
+<line x1="195.0" y1="194.0" x2="195.0" y2="262.0" class="grid"/>
+<text x="404.0" y="206.0" class="cap">TRAINABLE</text>
+<text x="404.0" y="226.0" class="t">projector + action head</text>
+<text x="404.0" y="244.0" class="m">3B backbone frozen</text>
+<text x="404.0" y="258.0" class="m">4-step diffusion ≈ 0.23 s</text>
+<line x1="390.0" y1="194.0" x2="390.0" y2="262.0" class="grid"/>
+<text x="599.0" y="206.0" class="cap">COMPUTE</text>
+<text x="599.0" y="226.0" class="t">2 × 8 GPUs · batch 256</text>
+<text x="599.0" y="244.0" class="m">20K steps ≈ 95 epochs</text>
+<text x="599.0" y="258.0" class="m">lr 1e-4</text>
+<line x1="585.0" y1="194.0" x2="585.0" y2="262.0" class="grid"/>
+</svg>

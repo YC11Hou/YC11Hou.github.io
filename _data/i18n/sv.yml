@@ -47,10 +47,10 @@ ui:
 
 home:
   eyebrow: 01 — Om mig
-  tagline: "Forskare inom förkroppsligad AI: vision-språk-handling-modeller, online-förstärkningsinlärning och efterträning för <em>riktiga robotar</em>."
+  tagline: "Forskare inom förkroppsligad AI: vision-språk-handling-modeller, förstärkningsinlärning och efterträning för <em>riktiga robotar</em>."
   quote: "“The darkest hour is just before the dawn.”"
   bio1: "Jag är masterstudent i elektroteknik vid National University of Singapore (NUS) och kärnmedlem i <strong>NUS CORE Lab</strong> (COntrol, Robotics &amp; Artificial IntElligence). Jag arbetar med <strong>förkroppsligad AI</strong>: hur robotar uppfattar, förstår språk och handlar i den fysiska världen. Det jag bryr mig mest om är hela loopen — inte bara algoritmen, utan datan, infrastrukturen och driftsättningen som gör den till beteende på en riktig robot."
-  bio2: "Sommaren 2026 (1 juni – 31 augusti) var jag <strong>VLA-algoritmingenjör (praktikant)</strong> i <strong>Honors</strong> team för den humanoida roboten i Shanghai, där jag var med och byggde upp inriktningen från grunden och ansvarade för flera av dess kärndelar. Jag ledde teleoperations- och datapipelinen — sömlöst mänskligt övertagande under autonoma körningar, inspelning på roboten med automatisk uppladdning — och slöt en distribuerad <strong>online SFT / online RL</strong>-loop över robotens inbyggda kort, en x86-aktör och en learner-server. Med den infrastrukturen på plats utformade jag experimenten själv: återskapade <strong>RECAP</strong>-liknande offline-RL och kombinerade det med snabb anpassning i brusrummet, vilket avsevärt höjde framgångsgraden på uppgifter som offline-datan aldrig täckte."
+  bio2: "Sommaren 2026 (1 juni – 31 augusti) var jag <strong>VLA-algoritmingenjör (praktikant)</strong> i <strong>Honors</strong> team för den humanoida roboten i Shanghai, där jag var med och byggde upp inriktningen från grunden och ansvarade för flera av dess kärndelar. Jag ledde teleoperations- och datapipelinen — sömlöst mänskligt övertagande under autonoma körningar, inspelning på roboten med automatisk uppladdning — och slöt en distribuerad <strong>real-robot SFT / RL</strong>-loop över robotens inbyggda kort, en x86-aktör och en learner-server. Med den infrastrukturen på plats utformade jag experimenten själv: återskapade <strong>RECAP</strong>-liknande offline-RL och kombinerade det med snabb anpassning i brusrummet, vilket avsevärt höjde framgångsgraden på uppgifter som offline-datan aldrig täckte."
   bio3: "Min forskning har gett två artiklar på <strong>IROS 2026</strong> inom ett år. Som förstaförfattare till <strong>LangGap</strong> visade jag att ledande VLA-modeller får höga poäng samtidigt som de i stort sett ignorerar språket, och föreslog ett benchmark med semantiska störningar samt fleruppgiftsträning i samma scen för att sluta gapet; i <strong>AION</strong> utformade och tränade jag den rent visuella utforskningspolicyn för zero-shot objektnavigering i luften. Före NUS läste jag elektronik- och kommunikationsteknik vid Nanjing University of Aeronautics and Astronautics (NUAA)."
   news: 02 — Nyheter
   papers: 03 — Utvalda publikationer
@@ -90,7 +90,7 @@ projects:
 proj:
   honor:
     meta: Honor Device Co., Ltd. · Sommarpraktik
-    desc: Praktikant som VLA-algoritmingenjör på Honor. Byggde en online SFT / online RL-pipeline med människan i loopen för Honors humanoida robot — sömlöst övertagande av teleoperatören, en ingripandedriven datapipeline och en distribuerad Actor–Learner–Robot-inlärningsloop.
+    desc: Praktikant som VLA-algoritmingenjör på Honor. Byggde en real-robot SFT / RL-pipeline med människan i loopen för Honors humanoida robot — sömlöst övertagande av teleoperatören, en ingripandedriven datapipeline och en distribuerad Actor–Learner–Robot-inlärningsloop.
   langgap:
     meta: Förstaförfattare
     desc: Antagen till IROS 2026. Utformade ett systematiskt utvärderingsramverk med semantiska störningar som visar att ledande VLA-modeller ignorerar språkinstruktioner trots höga benchmarkresultat. Föreslog fleruppgiftsträning i samma scen och byggde ett utökat dataset för finjustering.
@@ -114,10 +114,10 @@ xp:
       location: Shanghai, Kina
       h:
         - "Arbete med Honors humanoida robot: insamling av teleoperationsdata, uppspelning, träning och driftsättning på roboten."
-        - Forskning om online-RL-algoritmer för Vision-Language-Action (VLA)-modeller på skräddarsydda manipulationsuppgifter.
+        - Forskning om RL-algoritmer på verklig robot för Vision-Language-Action (VLA)-modeller på skräddarsydda manipulationsuppgifter.
         - Implementerade sömlöst övertagande av mänsklig teleoperatör under autonoma körningar, inklusive tillståndsmaskinen för övergången autonomi–teleoperation.
-        - "Byggde den ingripandedrivna datapipelinen för online-inlärning: inspelning på roboten, fullständig lokal disklagring och automatisk uppladdning till utvecklingsservern."
-        - "Slöt loopen över en distribuerad inlärningsarkitektur: AGX/NX-kort på roboten (topic-publicering, kommandoutförande, datainsamling), en x86-värd som Actor (inferens, strömning av handlingar till roboten) och en utvecklingsserver som Learner (dataaggregering, träning, checkpoint-distribution) — en komplett online SFT / online RL-pipeline."
+        - "Byggde den ingripandedrivna datapipelinen för inlärning på verklig robot: inspelning på roboten, fullständig lokal disklagring och automatisk uppladdning till utvecklingsservern."
+        - "Slöt loopen över en distribuerad inlärningsarkitektur: AGX/NX-kort på roboten (topic-publicering, kommandoutförande, datainsamling), en x86-värd som Actor (inferens, strömning av handlingar till roboten) och en utvecklingsserver som Learner (dataaggregering, träning, checkpoint-distribution) — en komplett real-robot SFT / RL-pipeline."
         - "Forskning om RECAP-liknande (π0.6) offline-RL kombinerat med snabb anpassning i brusrummet (DSRL-liknande): lära korrigerande brus från mänskliga ingripanden för att snabbt imitera övertagandebeteenden innan en ny checkpoint är färdigtränad — avsevärt högre framgångsgrad på uppgifter som offline-träningen inte täcker, samt utvidgning till loko-manipulation."
     - position: Forskningspraktikant
       location: Singapore

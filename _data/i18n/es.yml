@@ -47,10 +47,10 @@ ui:
 
 home:
   eyebrow: 01 — Sobre mí
-  tagline: "Investigador en IA encarnada: modelos visión-lenguaje-acción, aprendizaje por refuerzo en línea y post-entrenamiento para <em>robots reales</em>."
+  tagline: "Investigador en IA encarnada: modelos visión-lenguaje-acción, aprendizaje por refuerzo y post-entrenamiento para <em>robots reales</em>."
   quote: "“The darkest hour is just before the dawn.”"
   bio1: "Soy estudiante de máster en Ingeniería Eléctrica en la National University of Singapore (NUS) y miembro principal del <strong>NUS CORE Lab</strong> (COntrol, Robotics &amp; Artificial IntElligence). Trabajo en <strong>IA encarnada</strong>: cómo los robots perciben, entienden el lenguaje y actúan en el mundo físico. Lo que más me importa es el ciclo completo: no solo el algoritmo, sino los datos, la infraestructura y el despliegue que lo convierten en comportamiento en un robot real."
-  bio2: "En el verano de 2026 (1 de junio – 31 de agosto) fui <strong>ingeniero de algoritmos VLA (becario)</strong> en el equipo del robot humanoide de <strong>Honor</strong> en Shanghái, donde participé en construir esta línea desde cero y me hice cargo de varias de sus piezas centrales. Lideré la cadena de teleoperación y datos —toma de control humana fluida durante ejecuciones autónomas, grabación a bordo con subida automática— y cerré un bucle distribuido <strong>online SFT / online RL</strong> entre las placas del robot, un actor x86 y un servidor learner. Con esa infraestructura lista, diseñé yo mismo los experimentos: reproduje RL offline tipo <strong>RECAP</strong> y lo combiné con adaptación rápida en el espacio de ruido, elevando notablemente la tasa de éxito en tareas que los datos offline nunca cubrieron."
+  bio2: "En el verano de 2026 (1 de junio – 31 de agosto) fui <strong>ingeniero de algoritmos VLA (becario)</strong> en el equipo del robot humanoide de <strong>Honor</strong> en Shanghái, donde participé en construir esta línea desde cero y me hice cargo de varias de sus piezas centrales. Lideré la cadena de teleoperación y datos —toma de control humana fluida durante ejecuciones autónomas, grabación a bordo con subida automática— y cerré un bucle distribuido <strong>real-robot SFT / RL</strong> entre las placas del robot, un actor x86 y un servidor learner. Con esa infraestructura lista, diseñé yo mismo los experimentos: reproduje RL offline tipo <strong>RECAP</strong> y lo combiné con adaptación rápida en el espacio de ruido, elevando notablemente la tasa de éxito en tareas que los datos offline nunca cubrieron."
   bio3: "Mi investigación ha producido dos artículos en <strong>IROS 2026</strong> en un año. Como primer autor de <strong>LangGap</strong> mostré que los modelos VLA punteros puntúan alto mientras ignoran en gran medida el lenguaje, y propuse un benchmark de perturbaciones semánticas y un entrenamiento multitarea en la misma escena para cerrar esa brecha; en <strong>AION</strong> diseñé y entrené la política de exploración puramente visual para la navegación aérea zero-shot hacia objetos. Antes de la NUS estudié Ingeniería Electrónica y de Comunicaciones en la Nanjing University of Aeronautics and Astronautics (NUAA)."
   news: 02 — Novedades
   papers: 03 — Publicaciones destacadas
@@ -90,7 +90,7 @@ projects:
 proj:
   honor:
     meta: Honor Device Co., Ltd. · Prácticas de verano
-    desc: Becario ingeniero de algoritmos VLA en Honor. Construcción de una cadena online SFT / online RL con humano en el bucle para el robot humanoide de Honor — toma de control fluida por el teleoperador, pipeline de datos guiado por intervenciones y un bucle de aprendizaje distribuido Actor–Learner–Robot.
+    desc: Becario ingeniero de algoritmos VLA en Honor. Construcción de una cadena real-robot SFT / RL con humano en el bucle para el robot humanoide de Honor — toma de control fluida por el teleoperador, pipeline de datos guiado por intervenciones y un bucle de aprendizaje distribuido Actor–Learner–Robot.
   langgap:
     meta: Primer autor
     desc: Aceptado en IROS 2026. Diseño de un marco sistemático de evaluación con perturbaciones semánticas que revela que los modelos VLA punteros ignoran las instrucciones en lenguaje pese a sus altas puntuaciones. Propuesta de entrenamiento multitarea en la misma escena y construcción de un conjunto de datos aumentado para el ajuste fino.
@@ -114,10 +114,10 @@ xp:
       location: Shanghái, China
       h:
         - "Trabajo en el robot humanoide de Honor: captura de datos de teleoperación, reproducción, entrenamiento y despliegue en el robot."
-        - Investigación en algoritmos de RL en línea para modelos Visión-Lenguaje-Acción (VLA) en tareas de manipulación a medida.
+        - Investigación en algoritmos de RL en robot real para modelos Visión-Lenguaje-Acción (VLA) en tareas de manipulación a medida.
         - Implementación de una toma de control fluida por el teleoperador humano durante ejecuciones autónomas, incluida la máquina de estados de transición autonomía–teleoperación.
-        - "Construcción del pipeline de datos de aprendizaje en línea guiado por intervenciones: grabación a bordo, persistencia completa en disco local y subida automática al servidor de desarrollo."
-        - "Cierre del bucle sobre una arquitectura de aprendizaje distribuida: placas AGX/NX a bordo (publicación de tópicos, ejecución de comandos, captura de datos), un host x86 como Actor (inferencia, envío de acciones al robot en streaming) y un servidor de desarrollo como Learner (agregación de datos, entrenamiento, distribución de checkpoints) — una cadena online SFT / online RL completa."
+        - "Construcción del pipeline de datos de aprendizaje en robot real guiado por intervenciones: grabación a bordo, persistencia completa en disco local y subida automática al servidor de desarrollo."
+        - "Cierre del bucle sobre una arquitectura de aprendizaje distribuida: placas AGX/NX a bordo (publicación de tópicos, ejecución de comandos, captura de datos), un host x86 como Actor (inferencia, envío de acciones al robot en streaming) y un servidor de desarrollo como Learner (agregación de datos, entrenamiento, distribución de checkpoints) — una cadena real-robot SFT / RL completa."
         - "Investigación en RL offline tipo RECAP (π0.6) combinado con adaptación rápida en el espacio de ruido (tipo DSRL): aprender un ruido correctivo a partir de las intervenciones humanas para imitar con rapidez los comportamientos de toma de control antes de que termine de entrenarse un nuevo checkpoint, elevando notablemente la tasa de éxito en tareas no cubiertas, y extensión a loco-manipulación."
     - position: Becario de investigación
       location: Singapur

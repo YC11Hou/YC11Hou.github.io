@@ -52,6 +52,7 @@ module.exports = {
       /i18n/,
       /topbar/,
       /fa-half-sun-moon/,
+      /fig/,
     ],
   },
 };

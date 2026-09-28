@@ -1,0 +1,21 @@
+<svg class="fig-svg" viewBox="0 0 780 300" role="img" aria-label="Frontier-based exploration loop running on the vehicle" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="vehicle_loop-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah"/></marker><marker id="vehicle_loop-ahacc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-acc"/></marker><marker id="vehicle_loop-ahblue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-blue"/></marker><marker id="vehicle_loop-ahmut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-mut"/></marker></defs>
+<rect x="280.0" y="16.0" width="220.0" height="56.0" rx="5" class="box"/>
+<text x="390.0" y="41.2" class="t" text-anchor="middle">Map update</text>
+<text x="390.0" y="55.6" class="m" text-anchor="middle">Cartographer SLAM · every 2 s</text>
+<rect x="510.0" y="122.0" width="220.0" height="56.0" rx="5" class="box"/>
+<text x="620.0" y="147.2" class="t" text-anchor="middle">Frontier extraction</text>
+<text x="620.0" y="161.6" class="m" text-anchor="middle">boundary of known free space</text>
+<rect x="280.0" y="228.0" width="220.0" height="56.0" rx="5" class="box k-acc"/>
+<text x="390.0" y="253.2" class="t" text-anchor="middle">Frontier scoring</text>
+<text x="390.0" y="267.6" class="m" text-anchor="middle">f* = argmax w₁·I_f − w₂·D_f</text>
+<rect x="50.0" y="122.0" width="220.0" height="56.0" rx="5" class="box k-blue"/>
+<text x="160.0" y="147.2" class="t" text-anchor="middle">Navigate</text>
+<text x="160.0" y="161.6" class="m" text-anchor="middle">best frontier → Nav2 goal</text>
+<path d="M503.0,44 Q620,44 620,119.0" class="ln" marker-end="url(#vehicle_loop-ah)"/>
+<path d="M620,181.0 Q620,256 503.0,256" class="ln" marker-end="url(#vehicle_loop-ah)"/>
+<path d="M277.0,256 Q160,256 160,181.0" class="ln" marker-end="url(#vehicle_loop-ah)"/>
+<path d="M160,119.0 Q160,44 277.0,44" class="ln" marker-end="url(#vehicle_loop-ah)"/>
+<text x="390.0" y="146.0" class="serif" text-anchor="middle">exploration loop</text>
+<text x="390.0" y="164.0" class="m" text-anchor="middle">information gain vs. travel cost</text>
+</svg>

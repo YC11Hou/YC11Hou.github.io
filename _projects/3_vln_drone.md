@@ -56,6 +56,8 @@ Built a robust pipeline to generate diverse 3D navigation trajectories in the Ha
 
 ## Pipeline
 
+{% include svg_figure.liquid name="vln_pipeline" caption="Four-step generation pipeline. Lattice A* plans over motion primitives in (x, y, θ), so the drone turns while moving forward instead of making the right-angle turns of Grid A* (sketch below, illustrative)." %}
+
 1. **Start-Goal Pair Generation** — For each of the 90 scenes, generate 200–300 random 2D start-goal pairs as navigation endpoints.
 
 2. **2D Cruise Path Planning** — Determine a suitable constant cruising altitude for each scene, then plan a natural 2D path at that altitude using **Lattice A\***. Unlike standard Grid A\* which produces rigid right-angle turns, Lattice A\* plans over motion primitives in continuous state space $$(x, y, \theta)$$, producing smooth paths where the agent turns while moving forward. Heuristic:

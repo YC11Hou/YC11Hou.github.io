@@ -1,0 +1,29 @@
+<svg class="fig-svg" viewBox="0 0 780 396" role="img" aria-label="Distributed real-robot learning loop across Actor, Learner and Robot" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="honor_arch-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah"/></marker><marker id="honor_arch-ahacc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-acc"/></marker><marker id="honor_arch-ahblue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-blue"/></marker><marker id="honor_arch-ahmut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-mut"/></marker></defs>
+<rect x="30.0" y="40.0" width="260.0" height="112.0" rx="5" class="box k-acc"/>
+<text x="46.0" y="64.0" class="cap acc">ACTOR · INFERENCE</text>
+<text x="46.0" y="86.0" class="t">x86 workstation · RTX 4090</text>
+<text x="46.0" y="110.0" class="s">GR00T N1.7 inference, actions at 50 Hz</text>
+<text x="46.0" y="127.0" class="s">success classifier assigns reward</text>
+<rect x="490.0" y="40.0" width="260.0" height="112.0" rx="5" class="box k-blue"/>
+<text x="506.0" y="64.0" class="cap blue">LEARNER · TRAINING</text>
+<text x="506.0" y="86.0" class="t">GPU development server</text>
+<text x="506.0" y="110.0" class="s">rejection-sampling SFT on successes</text>
+<text x="506.0" y="127.0" class="s">projector + action head only</text>
+<rect x="260.0" y="270.0" width="260.0" height="112.0" rx="5" class="box"/>
+<text x="276.0" y="294.0" class="cap">ROBOT · EXECUTION</text>
+<text x="276.0" y="316.0" class="t">Humanoid · onboard AGX / NX</text>
+<text x="276.0" y="340.0" class="s">publishes topics, executes commands</text>
+<text x="276.0" y="357.0" class="s">proprio: ROS 2 · images: H.264 / TCP</text>
+<path d="M487.0,96.0 L293.0,96.0" class="ln k-blue" marker-end="url(#honor_arch-ahblue)"/>
+<text x="390.0" y="86.0" class="s blue" text-anchor="middle">weights · every 1,000 steps</text>
+<text x="390.0" y="114.0" class="m" text-anchor="middle">ZMQ pub-sub</text>
+<text x="390.0" y="128.0" class="m" text-anchor="middle">trainable params only</text>
+<path d="M180.0,155.0 L318.0,267.0" class="ln k-acc" marker-end="url(#honor_arch-ahacc)"/>
+<text x="236.0" y="214.0" class="s acc" text-anchor="end">actions · 50 Hz</text>
+<text x="236.0" y="230.0" class="m" text-anchor="end">ROS 2 / CycloneDDS</text>
+<path d="M462.0,267.0 L600.0,155.0" class="ln" marker-end="url(#honor_arch-ah)"/>
+<text x="544.0" y="214.0" class="s">successful episodes</text>
+<text x="544.0" y="230.0" class="m">reward &gt; 0.8 · ZMQ req-rep</text>
+<text x="390.0" y="190.0" class="serif" text-anchor="middle">↻  real-robot learning loop</text>
+</svg>

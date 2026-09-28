@@ -1,0 +1,32 @@
+<svg class="fig-svg" viewBox="0 0 780 160" role="img" aria-label="Gates an episode passes before its frames reach a training batch" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="honor_gates-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah"/></marker><marker id="honor_gates-ahacc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-acc"/></marker><marker id="honor_gates-ahblue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-blue"/></marker><marker id="honor_gates-ahmut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-mut"/></marker></defs>
+<text x="0.0" y="14.0" class="cap">GATES BEFORE AN EPISODE REACHES TRAINING</text>
+<rect x="0.0" y="26.0" width="143.2" height="80.0" rx="5" class="box"/>
+<text x="71.6" y="56.2" class="t" text-anchor="middle">Success latch</text>
+<text x="71.6" y="70.6" class="m" text-anchor="middle">ResNet18 · acc 0.987</text>
+<text x="71.6" y="84.6" class="m" text-anchor="middle">p &gt; 0.8 × 20 frames</text>
+<path d="M146.2,66.0 L156.2,66.0" class="ln" marker-end="url(#honor_gates-ah)"/>
+<rect x="159.2" y="26.0" width="143.2" height="80.0" rx="5" class="box"/>
+<text x="230.8" y="63.2" class="t" text-anchor="middle">Terminal reward</text>
+<text x="230.8" y="77.6" class="m" text-anchor="middle">reward &gt; 0.8</text>
+<path d="M305.4,66.0 L315.4,66.0" class="ln" marker-end="url(#honor_gates-ah)"/>
+<rect x="318.4" y="26.0" width="143.2" height="80.0" rx="5" class="box"/>
+<text x="390.0" y="56.2" class="t" text-anchor="middle">Length &amp; idle filter</text>
+<text x="390.0" y="70.6" class="m" text-anchor="middle">episode length gate</text>
+<text x="390.0" y="84.6" class="m" text-anchor="middle">static frames dropped</text>
+<path d="M464.6,66.0 L474.6,66.0" class="ln" marker-end="url(#honor_gates-ah)"/>
+<rect x="477.6" y="26.0" width="143.2" height="80.0" rx="5" class="box k-acc"/>
+<text x="549.2" y="63.2" class="t" text-anchor="middle">Success buffer</text>
+<text x="549.2" y="77.6" class="m" text-anchor="middle">bucketed · FIFO</text>
+<path d="M623.8,66.0 L633.8,66.0" class="ln" marker-end="url(#honor_gates-ah)"/>
+<rect x="636.8" y="26.0" width="143.2" height="80.0" rx="5" class="box k-blue"/>
+<text x="708.4" y="56.2" class="t" text-anchor="middle">Training batch</text>
+<text x="708.4" y="70.6" class="m" text-anchor="middle">16 frames</text>
+<text x="708.4" y="84.6" class="m" text-anchor="middle">+ 8 base-demo anchors</text>
+<line x1="71.6" y1="106.0" x2="71.6" y2="132.0" class="ln k-mut dash"/>
+<line x1="230.8" y1="106.0" x2="230.8" y2="132.0" class="ln k-mut dash"/>
+<line x1="390.0" y1="106.0" x2="390.0" y2="132.0" class="ln k-mut dash"/>
+<line x1="71.6" y1="132.0" x2="430.0" y2="132.0" class="ln k-mut dash"/>
+<text x="436.0" y="136.0" class="m">rejected → failure bucket (reward-model data)</text>
+<text x="0.0" y="154.0" class="m">Only projector + action head are trained; weight sync sends requires_grad parameters only.</text>
+</svg>

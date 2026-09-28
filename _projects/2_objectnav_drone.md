@@ -101,50 +101,11 @@ Discrete **3D** actions — forward, turn left/right, ascend, descend, etc.
 
 Evaluated on two simulators: AI2-THOR (standard benchmark with seen/unseen object splits) and IsaacSim (larger multi-room environments where the target may be in a different room).
 
-On the 18/4 unseen split, AION outperforms MJO by 4.3 points in SR and 3.5 in SPL, and it leads on both splits. AI2-THOR's single rooms cannot test exploration — the target is often visible from the start — so we built a multi-room evaluation in IsaacSim (Chemistry Lab, Beechwood, Ihlen) with targets placed in rooms not visible from the start. Methods with only a goal-reaching policy spin in place; with the exploration policy, the drone heads for open space and finds the target across rooms.
+AI2-THOR's single rooms cannot test exploration — the target is often visible from the start — so we built a multi-room evaluation in IsaacSim (Chemistry Lab, Beechwood, Ihlen) with targets placed in rooms not visible from the start. Methods with only a goal-reaching policy spin in place; with the exploration policy, the drone heads for open space and finds the target across rooms.
 
-<div class="media-row">
-  <div style="overflow-x: auto; font-size: 0.85em;">
-    <strong>AI2-THOR Benchmark</strong>
-    <table>
-      <thead><tr><th>Model</th><th>Split</th><th>Seen SR</th><th>SPL</th><th>Unseen SR</th><th>SPL</th></tr></thead>
-      <tbody>
-        <tr><td>BaseModel</td><td>18/4</td><td>76.7</td><td>39.9</td><td>81.5</td><td>36.4</td></tr>
-        <tr><td>Scene Prior</td><td>18/4</td><td>74.3</td><td>42.1</td><td>83.7</td><td>41.9</td></tr>
-        <tr><td>MJO</td><td>18/4</td><td>81.2</td><td>52.0</td><td>90.7</td><td>51.7</td></tr>
-        <tr><td>SSNet</td><td>18/4</td><td>72.3</td><td>50.4</td><td>77.8</td><td>50.0</td></tr>
-        <tr><td><strong>Ours</strong></td><td><strong>18/4</strong></td><td><strong>88.7</strong></td><td><strong>57.9</strong></td><td><strong>95.0</strong></td><td><strong>55.2</strong></td></tr>
-        <tr><td>BaseModel</td><td>14/8</td><td>73.3</td><td>47.3</td><td>70.8</td><td>46.6</td></tr>
-        <tr><td>Scene Prior</td><td>14/8</td><td>79.3</td><td>52.7</td><td>71.0</td><td>44.8</td></tr>
-        <tr><td>MJO</td><td>14/8</td><td>78.8</td><td>43.6</td><td>83.0</td><td>45.6</td></tr>
-        <tr><td>SSNet</td><td>14/8</td><td>79.2</td><td>44.3</td><td>81.8</td><td>46.4</td></tr>
-        <tr><td><strong>Ours</strong></td><td><strong>14/8</strong></td><td><strong>84.7</strong></td><td><strong>61.2</strong></td><td><strong>87.0</strong></td><td><strong>60.5</strong></td></tr>
-      </tbody>
-    </table>
-    <small>SR = Success Rate (%), SPL = Success weighted by Path Length (%)</small>
-  </div>
-  <div style="overflow-x: auto; font-size: 0.85em;">
-    <strong>IsaacSim Cross-Scene</strong>
-    <table>
-      <thead><tr><th>Algorithm</th><th>Object</th><th>Chem.</th><th>Beech.</th><th>Ihlen</th></tr></thead>
-      <tbody>
-        <tr><td rowspan="4">Exp+MJO</td><td>Sofa</td><td>3/5</td><td>4/5</td><td>4/5</td></tr>
-        <tr><td>Plant</td><td>2/5</td><td><strong>5/5</strong></td><td><strong>5/5</strong></td></tr>
-        <tr><td>Laptop</td><td>0/5</td><td>3/5</td><td><strong>5/5</strong></td></tr>
-        <tr><td>Microwave</td><td>2/5</td><td>5/5</td><td>2/5</td></tr>
-        <tr><td rowspan="4">Exp+SSNet</td><td>Sofa</td><td>3/5</td><td>4/5</td><td>3/5</td></tr>
-        <tr><td>Plant</td><td>3/5</td><td>2/5</td><td>3/5</td></tr>
-        <tr><td>Laptop</td><td>0/5</td><td>3/5</td><td><strong>5/5</strong></td></tr>
-        <tr><td>Microwave</td><td>1/5</td><td><strong>5/5</strong></td><td>3/5</td></tr>
-        <tr><td rowspan="4"><strong>AION</strong></td><td>Sofa</td><td><strong>4/5</strong></td><td>4/5</td><td><strong>5/5</strong></td></tr>
-        <tr><td>Plant</td><td><strong>5/5</strong></td><td><strong>5/5</strong></td><td>4/5</td></tr>
-        <tr><td>Laptop</td><td><strong>2/5</strong></td><td><strong>5/5</strong></td><td><strong>5/5</strong></td></tr>
-        <tr><td>Microwave</td><td><strong>3/5</strong></td><td><strong>5/5</strong></td><td><strong>5/5</strong></td></tr>
-      </tbody>
-    </table>
-    <small>SR = Success Rate (successes / 5 trials)</small>
-  </div>
-</div>
+{% include svg_figure.liquid name="aion_thor" caption="AI2-THOR benchmark on two object splits. AION leads every metric on both splits; on the 18/4 unseen split it improves over MJO by 4.3 points in SR and 3.5 in SPL." %}
+
+{% include svg_figure.liquid name="aion_isaac" caption="IsaacSim cross-scene evaluation in three multi-room scenes with high-fidelity drone models. Each dot is one trial (five per object and scene); AION succeeds in 52 of 60 trials, versus 40 and 35 for exploration combined with MJO and SSNet." %}
 
 <div class="media-row">
   <div>

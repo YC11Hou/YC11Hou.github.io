@@ -47,10 +47,10 @@ ui:
 
 home:
   eyebrow: 01 — O mnie
-  tagline: "Badacz ucieleśnionej SI: modele wizja-język-akcja, uczenie ze wzmocnieniem online i post-training dla <em>prawdziwych robotów</em>."
+  tagline: "Badacz ucieleśnionej SI: modele wizja-język-akcja, uczenie ze wzmocnieniem i post-training dla <em>prawdziwych robotów</em>."
   quote: "“The darkest hour is just before the dawn.”"
   bio1: "Jestem studentem studiów magisterskich z elektrotechniki na National University of Singapore (NUS) i kluczowym członkiem <strong>NUS CORE Lab</strong> (COntrol, Robotics &amp; Artificial IntElligence). Zajmuję się <strong>ucieleśnioną SI</strong>: tym, jak roboty postrzegają, rozumieją język i działają w świecie fizycznym. Najbardziej zależy mi na całej pętli — nie tylko na algorytmie, ale na danych, infrastrukturze i wdrożeniu, które zamieniają go w zachowanie prawdziwego robota."
-  bio2: "Latem 2026 (1 czerwca – 31 sierpnia) byłem <strong>inżynierem algorytmów VLA (stażystą)</strong> w zespole robota humanoidalnego firmy <strong>Honor</strong> w Szanghaju, gdzie współtworzyłem ten kierunek od podstaw i odpowiadałem za kilka jego kluczowych elementów. Prowadziłem potok teleoperacji i danych — płynne przejęcie sterowania przez człowieka podczas autonomicznych przebiegów, rejestrację na robocie z automatycznym przesyłaniem — i zamknąłem rozproszoną pętlę <strong>online SFT / online RL</strong> obejmującą pokładowe płyty robota, aktora x86 i serwer learnera. Mając tę infrastrukturę, sam projektowałem eksperymenty: odtworzyłem RL offline w stylu <strong>RECAP</strong> i połączyłem go z szybką adaptacją w przestrzeni szumu, co znacząco podniosło skuteczność na zadaniach nigdy nieobjętych danymi offline."
+  bio2: "Latem 2026 (1 czerwca – 31 sierpnia) byłem <strong>inżynierem algorytmów VLA (stażystą)</strong> w zespole robota humanoidalnego firmy <strong>Honor</strong> w Szanghaju, gdzie współtworzyłem ten kierunek od podstaw i odpowiadałem za kilka jego kluczowych elementów. Prowadziłem potok teleoperacji i danych — płynne przejęcie sterowania przez człowieka podczas autonomicznych przebiegów, rejestrację na robocie z automatycznym przesyłaniem — i zamknąłem rozproszoną pętlę <strong>real-robot SFT / RL</strong> obejmującą pokładowe płyty robota, aktora x86 i serwer learnera. Mając tę infrastrukturę, sam projektowałem eksperymenty: odtworzyłem RL offline w stylu <strong>RECAP</strong> i połączyłem go z szybką adaptacją w przestrzeni szumu, co znacząco podniosło skuteczność na zadaniach nigdy nieobjętych danymi offline."
   bio3: "Moje badania dały w ciągu roku dwie prace na <strong>IROS 2026</strong>. Jako pierwszy autor <strong>LangGap</strong> pokazałem, że najnowsze modele VLA osiągają wysokie wyniki, w dużej mierze ignorując język, i zaproponowałem benchmark z perturbacjami semantycznymi oraz trening wielozadaniowy w tej samej scenie, aby tę lukę domknąć; w <strong>AION</strong> zaprojektowałem i wytrenowałem czysto wizyjną politykę eksploracji do zero-shot nawigacji powietrznej do obiektów. Przed NUS studiowałem elektronikę i telekomunikację na Nanjing University of Aeronautics and Astronautics (NUAA)."
   news: 02 — Aktualności
   papers: 03 — Wybrane publikacje
@@ -90,7 +90,7 @@ projects:
 proj:
   honor:
     meta: Honor Device Co., Ltd. · Staż letni
-    desc: Stażysta inżynier algorytmów VLA w Honor. Zbudowałem potok online SFT / online RL z człowiekiem w pętli dla robota humanoidalnego firmy Honor — płynne przejęcie sterowania przez teleoperatora, potok danych sterowany interwencjami oraz rozproszoną pętlę uczenia Actor–Learner–Robot.
+    desc: Stażysta inżynier algorytmów VLA w Honor. Zbudowałem potok real-robot SFT / RL z człowiekiem w pętli dla robota humanoidalnego firmy Honor — płynne przejęcie sterowania przez teleoperatora, potok danych sterowany interwencjami oraz rozproszoną pętlę uczenia Actor–Learner–Robot.
   langgap:
     meta: Pierwszy autor
     desc: Przyjęte na IROS 2026. Zaprojektowałem systematyczne ramy ewaluacji z perturbacjami semantycznymi, pokazujące, że najnowsze modele VLA ignorują instrukcje językowe mimo wysokich wyników w benchmarkach. Zaproponowałem trening wielozadaniowy w tej samej scenie i zbudowałem rozszerzony zbiór danych do dostrajania.
@@ -114,10 +114,10 @@ xp:
       location: Szanghaj, Chiny
       h:
         - "Praca nad robotem humanoidalnym firmy Honor: zbieranie danych z teleoperacji, odtwarzanie, trening i wdrożenie na robocie."
-        - Badania nad algorytmami RL online dla modeli wizja-język-akcja (VLA) na niestandardowych zadaniach manipulacji.
+        - Badania nad algorytmami RL na prawdziwym robocie dla modeli wizja-język-akcja (VLA) na niestandardowych zadaniach manipulacji.
         - Implementacja płynnego przejęcia sterowania przez teleoperatora podczas autonomicznych przebiegów, w tym automatu stanów przejścia autonomia–teleoperacja.
-        - "Budowa potoku danych uczenia online sterowanego interwencjami: rejestracja na robocie, pełna trwałość na dysku lokalnym i automatyczne przesyłanie na serwer deweloperski."
-        - "Zamknięcie pętli w rozproszonej architekturze uczenia: pokładowe płyty AGX/NX (publikacja tematów, wykonywanie poleceń, zbieranie danych), host x86 jako Actor (inferencja, strumieniowanie akcji do robota) oraz serwer deweloperski jako Learner (agregacja danych, trening, dystrybucja checkpointów) — kompletny potok online SFT / online RL."
+        - "Budowa potoku danych uczenia na prawdziwym robocie, sterowanego interwencjami: rejestracja na robocie, pełna trwałość na dysku lokalnym i automatyczne przesyłanie na serwer deweloperski."
+        - "Zamknięcie pętli w rozproszonej architekturze uczenia: pokładowe płyty AGX/NX (publikacja tematów, wykonywanie poleceń, zbieranie danych), host x86 jako Actor (inferencja, strumieniowanie akcji do robota) oraz serwer deweloperski jako Learner (agregacja danych, trening, dystrybucja checkpointów) — kompletny potok real-robot SFT / RL."
         - "Badania nad RL offline w stylu RECAP (π0.6) połączonym z szybką adaptacją w przestrzeni szumu (jak DSRL): uczenie szumu korygującego z danych interwencji człowieka, aby szybko naśladować zachowania przejęcia, zanim nowy checkpoint skończy trening — znaczny wzrost skuteczności na zadaniach nieobjętych treningiem offline, z rozszerzeniem na loko-manipulację."
     - position: Stażysta badawczy
       location: Singapur

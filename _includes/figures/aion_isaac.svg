@@ -1,0 +1,208 @@
+<svg class="fig-svg" viewBox="0 0 780 352" role="img" aria-label="IsaacSim multi-room results: successes out of five trials per object and scene" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="aion_isaac-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah"/></marker><marker id="aion_isaac-ahacc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-acc"/></marker><marker id="aion_isaac-ahblue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-blue"/></marker><marker id="aion_isaac-ahmut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-mut"/></marker></defs>
+<text x="340.0" y="20.0" class="t" text-anchor="middle">Chemistry Lab</text>
+<text x="490.0" y="20.0" class="t" text-anchor="middle">Beechwood</text>
+<text x="640.0" y="20.0" class="t" text-anchor="middle">Ihlen</text>
+<text x="780.0" y="20.0" class="t" text-anchor="end">total</text>
+<text x="0.0" y="86.0" class="t">Exp + MJO</text>
+<text x="780.0" y="86.0" class="s" text-anchor="end">40 / 60</text>
+<text x="150.0" y="53.0" class="s">Sofa</text>
+<circle cx="300.0" cy="49.0" r="5.5" class="f-ink"/>
+<circle cx="316.0" cy="49.0" r="5.5" class="f-ink"/>
+<circle cx="332.0" cy="49.0" r="5.5" class="f-ink"/>
+<circle cx="348.0" cy="49.0" r="5.5" class="pip-off"/>
+<circle cx="364.0" cy="49.0" r="5.5" class="pip-off"/>
+<circle cx="450.0" cy="49.0" r="5.5" class="f-ink"/>
+<circle cx="466.0" cy="49.0" r="5.5" class="f-ink"/>
+<circle cx="482.0" cy="49.0" r="5.5" class="f-ink"/>
+<circle cx="498.0" cy="49.0" r="5.5" class="f-ink"/>
+<circle cx="514.0" cy="49.0" r="5.5" class="pip-off"/>
+<circle cx="600.0" cy="49.0" r="5.5" class="f-ink"/>
+<circle cx="616.0" cy="49.0" r="5.5" class="f-ink"/>
+<circle cx="632.0" cy="49.0" r="5.5" class="f-ink"/>
+<circle cx="648.0" cy="49.0" r="5.5" class="f-ink"/>
+<circle cx="664.0" cy="49.0" r="5.5" class="pip-off"/>
+<text x="150.0" y="75.0" class="s">Plant</text>
+<circle cx="300.0" cy="71.0" r="5.5" class="f-ink"/>
+<circle cx="316.0" cy="71.0" r="5.5" class="f-ink"/>
+<circle cx="332.0" cy="71.0" r="5.5" class="pip-off"/>
+<circle cx="348.0" cy="71.0" r="5.5" class="pip-off"/>
+<circle cx="364.0" cy="71.0" r="5.5" class="pip-off"/>
+<circle cx="450.0" cy="71.0" r="5.5" class="f-ink"/>
+<circle cx="466.0" cy="71.0" r="5.5" class="f-ink"/>
+<circle cx="482.0" cy="71.0" r="5.5" class="f-ink"/>
+<circle cx="498.0" cy="71.0" r="5.5" class="f-ink"/>
+<circle cx="514.0" cy="71.0" r="5.5" class="f-ink"/>
+<circle cx="600.0" cy="71.0" r="5.5" class="f-ink"/>
+<circle cx="616.0" cy="71.0" r="5.5" class="f-ink"/>
+<circle cx="632.0" cy="71.0" r="5.5" class="f-ink"/>
+<circle cx="648.0" cy="71.0" r="5.5" class="f-ink"/>
+<circle cx="664.0" cy="71.0" r="5.5" class="f-ink"/>
+<text x="150.0" y="97.0" class="s">Laptop</text>
+<circle cx="300.0" cy="93.0" r="5.5" class="pip-off"/>
+<circle cx="316.0" cy="93.0" r="5.5" class="pip-off"/>
+<circle cx="332.0" cy="93.0" r="5.5" class="pip-off"/>
+<circle cx="348.0" cy="93.0" r="5.5" class="pip-off"/>
+<circle cx="364.0" cy="93.0" r="5.5" class="pip-off"/>
+<circle cx="450.0" cy="93.0" r="5.5" class="f-ink"/>
+<circle cx="466.0" cy="93.0" r="5.5" class="f-ink"/>
+<circle cx="482.0" cy="93.0" r="5.5" class="f-ink"/>
+<circle cx="498.0" cy="93.0" r="5.5" class="pip-off"/>
+<circle cx="514.0" cy="93.0" r="5.5" class="pip-off"/>
+<circle cx="600.0" cy="93.0" r="5.5" class="f-ink"/>
+<circle cx="616.0" cy="93.0" r="5.5" class="f-ink"/>
+<circle cx="632.0" cy="93.0" r="5.5" class="f-ink"/>
+<circle cx="648.0" cy="93.0" r="5.5" class="f-ink"/>
+<circle cx="664.0" cy="93.0" r="5.5" class="f-ink"/>
+<text x="150.0" y="119.0" class="s">Microwave</text>
+<circle cx="300.0" cy="115.0" r="5.5" class="f-ink"/>
+<circle cx="316.0" cy="115.0" r="5.5" class="f-ink"/>
+<circle cx="332.0" cy="115.0" r="5.5" class="pip-off"/>
+<circle cx="348.0" cy="115.0" r="5.5" class="pip-off"/>
+<circle cx="364.0" cy="115.0" r="5.5" class="pip-off"/>
+<circle cx="450.0" cy="115.0" r="5.5" class="f-ink"/>
+<circle cx="466.0" cy="115.0" r="5.5" class="f-ink"/>
+<circle cx="482.0" cy="115.0" r="5.5" class="f-ink"/>
+<circle cx="498.0" cy="115.0" r="5.5" class="f-ink"/>
+<circle cx="514.0" cy="115.0" r="5.5" class="f-ink"/>
+<circle cx="600.0" cy="115.0" r="5.5" class="f-ink"/>
+<circle cx="616.0" cy="115.0" r="5.5" class="f-ink"/>
+<circle cx="632.0" cy="115.0" r="5.5" class="pip-off"/>
+<circle cx="648.0" cy="115.0" r="5.5" class="pip-off"/>
+<circle cx="664.0" cy="115.0" r="5.5" class="pip-off"/>
+<line x1="0.0" y1="132.0" x2="780.0" y2="132.0" class="grid"/>
+<text x="0.0" y="186.0" class="t">Exp + SSNet</text>
+<text x="780.0" y="186.0" class="s" text-anchor="end">35 / 60</text>
+<text x="150.0" y="153.0" class="s">Sofa</text>
+<circle cx="300.0" cy="149.0" r="5.5" class="f-ink"/>
+<circle cx="316.0" cy="149.0" r="5.5" class="f-ink"/>
+<circle cx="332.0" cy="149.0" r="5.5" class="f-ink"/>
+<circle cx="348.0" cy="149.0" r="5.5" class="pip-off"/>
+<circle cx="364.0" cy="149.0" r="5.5" class="pip-off"/>
+<circle cx="450.0" cy="149.0" r="5.5" class="f-ink"/>
+<circle cx="466.0" cy="149.0" r="5.5" class="f-ink"/>
+<circle cx="482.0" cy="149.0" r="5.5" class="f-ink"/>
+<circle cx="498.0" cy="149.0" r="5.5" class="f-ink"/>
+<circle cx="514.0" cy="149.0" r="5.5" class="pip-off"/>
+<circle cx="600.0" cy="149.0" r="5.5" class="f-ink"/>
+<circle cx="616.0" cy="149.0" r="5.5" class="f-ink"/>
+<circle cx="632.0" cy="149.0" r="5.5" class="f-ink"/>
+<circle cx="648.0" cy="149.0" r="5.5" class="pip-off"/>
+<circle cx="664.0" cy="149.0" r="5.5" class="pip-off"/>
+<text x="150.0" y="175.0" class="s">Plant</text>
+<circle cx="300.0" cy="171.0" r="5.5" class="f-ink"/>
+<circle cx="316.0" cy="171.0" r="5.5" class="f-ink"/>
+<circle cx="332.0" cy="171.0" r="5.5" class="f-ink"/>
+<circle cx="348.0" cy="171.0" r="5.5" class="pip-off"/>
+<circle cx="364.0" cy="171.0" r="5.5" class="pip-off"/>
+<circle cx="450.0" cy="171.0" r="5.5" class="f-ink"/>
+<circle cx="466.0" cy="171.0" r="5.5" class="f-ink"/>
+<circle cx="482.0" cy="171.0" r="5.5" class="pip-off"/>
+<circle cx="498.0" cy="171.0" r="5.5" class="pip-off"/>
+<circle cx="514.0" cy="171.0" r="5.5" class="pip-off"/>
+<circle cx="600.0" cy="171.0" r="5.5" class="f-ink"/>
+<circle cx="616.0" cy="171.0" r="5.5" class="f-ink"/>
+<circle cx="632.0" cy="171.0" r="5.5" class="f-ink"/>
+<circle cx="648.0" cy="171.0" r="5.5" class="pip-off"/>
+<circle cx="664.0" cy="171.0" r="5.5" class="pip-off"/>
+<text x="150.0" y="197.0" class="s">Laptop</text>
+<circle cx="300.0" cy="193.0" r="5.5" class="pip-off"/>
+<circle cx="316.0" cy="193.0" r="5.5" class="pip-off"/>
+<circle cx="332.0" cy="193.0" r="5.5" class="pip-off"/>
+<circle cx="348.0" cy="193.0" r="5.5" class="pip-off"/>
+<circle cx="364.0" cy="193.0" r="5.5" class="pip-off"/>
+<circle cx="450.0" cy="193.0" r="5.5" class="f-ink"/>
+<circle cx="466.0" cy="193.0" r="5.5" class="f-ink"/>
+<circle cx="482.0" cy="193.0" r="5.5" class="f-ink"/>
+<circle cx="498.0" cy="193.0" r="5.5" class="pip-off"/>
+<circle cx="514.0" cy="193.0" r="5.5" class="pip-off"/>
+<circle cx="600.0" cy="193.0" r="5.5" class="f-ink"/>
+<circle cx="616.0" cy="193.0" r="5.5" class="f-ink"/>
+<circle cx="632.0" cy="193.0" r="5.5" class="f-ink"/>
+<circle cx="648.0" cy="193.0" r="5.5" class="f-ink"/>
+<circle cx="664.0" cy="193.0" r="5.5" class="f-ink"/>
+<text x="150.0" y="219.0" class="s">Microwave</text>
+<circle cx="300.0" cy="215.0" r="5.5" class="f-ink"/>
+<circle cx="316.0" cy="215.0" r="5.5" class="pip-off"/>
+<circle cx="332.0" cy="215.0" r="5.5" class="pip-off"/>
+<circle cx="348.0" cy="215.0" r="5.5" class="pip-off"/>
+<circle cx="364.0" cy="215.0" r="5.5" class="pip-off"/>
+<circle cx="450.0" cy="215.0" r="5.5" class="f-ink"/>
+<circle cx="466.0" cy="215.0" r="5.5" class="f-ink"/>
+<circle cx="482.0" cy="215.0" r="5.5" class="f-ink"/>
+<circle cx="498.0" cy="215.0" r="5.5" class="f-ink"/>
+<circle cx="514.0" cy="215.0" r="5.5" class="f-ink"/>
+<circle cx="600.0" cy="215.0" r="5.5" class="f-ink"/>
+<circle cx="616.0" cy="215.0" r="5.5" class="f-ink"/>
+<circle cx="632.0" cy="215.0" r="5.5" class="f-ink"/>
+<circle cx="648.0" cy="215.0" r="5.5" class="pip-off"/>
+<circle cx="664.0" cy="215.0" r="5.5" class="pip-off"/>
+<line x1="0.0" y1="232.0" x2="780.0" y2="232.0" class="grid"/>
+<text x="0.0" y="286.0" class="t acc">AION (ours)</text>
+<text x="780.0" y="286.0" class="t acc" text-anchor="end">52 / 60</text>
+<text x="150.0" y="253.0" class="s">Sofa</text>
+<circle cx="300.0" cy="249.0" r="5.5" class="f-acc"/>
+<circle cx="316.0" cy="249.0" r="5.5" class="f-acc"/>
+<circle cx="332.0" cy="249.0" r="5.5" class="f-acc"/>
+<circle cx="348.0" cy="249.0" r="5.5" class="f-acc"/>
+<circle cx="364.0" cy="249.0" r="5.5" class="pip-off"/>
+<circle cx="450.0" cy="249.0" r="5.5" class="f-acc"/>
+<circle cx="466.0" cy="249.0" r="5.5" class="f-acc"/>
+<circle cx="482.0" cy="249.0" r="5.5" class="f-acc"/>
+<circle cx="498.0" cy="249.0" r="5.5" class="f-acc"/>
+<circle cx="514.0" cy="249.0" r="5.5" class="pip-off"/>
+<circle cx="600.0" cy="249.0" r="5.5" class="f-acc"/>
+<circle cx="616.0" cy="249.0" r="5.5" class="f-acc"/>
+<circle cx="632.0" cy="249.0" r="5.5" class="f-acc"/>
+<circle cx="648.0" cy="249.0" r="5.5" class="f-acc"/>
+<circle cx="664.0" cy="249.0" r="5.5" class="f-acc"/>
+<text x="150.0" y="275.0" class="s">Plant</text>
+<circle cx="300.0" cy="271.0" r="5.5" class="f-acc"/>
+<circle cx="316.0" cy="271.0" r="5.5" class="f-acc"/>
+<circle cx="332.0" cy="271.0" r="5.5" class="f-acc"/>
+<circle cx="348.0" cy="271.0" r="5.5" class="f-acc"/>
+<circle cx="364.0" cy="271.0" r="5.5" class="f-acc"/>
+<circle cx="450.0" cy="271.0" r="5.5" class="f-acc"/>
+<circle cx="466.0" cy="271.0" r="5.5" class="f-acc"/>
+<circle cx="482.0" cy="271.0" r="5.5" class="f-acc"/>
+<circle cx="498.0" cy="271.0" r="5.5" class="f-acc"/>
+<circle cx="514.0" cy="271.0" r="5.5" class="f-acc"/>
+<circle cx="600.0" cy="271.0" r="5.5" class="f-acc"/>
+<circle cx="616.0" cy="271.0" r="5.5" class="f-acc"/>
+<circle cx="632.0" cy="271.0" r="5.5" class="f-acc"/>
+<circle cx="648.0" cy="271.0" r="5.5" class="f-acc"/>
+<circle cx="664.0" cy="271.0" r="5.5" class="pip-off"/>
+<text x="150.0" y="297.0" class="s">Laptop</text>
+<circle cx="300.0" cy="293.0" r="5.5" class="f-acc"/>
+<circle cx="316.0" cy="293.0" r="5.5" class="f-acc"/>
+<circle cx="332.0" cy="293.0" r="5.5" class="pip-off"/>
+<circle cx="348.0" cy="293.0" r="5.5" class="pip-off"/>
+<circle cx="364.0" cy="293.0" r="5.5" class="pip-off"/>
+<circle cx="450.0" cy="293.0" r="5.5" class="f-acc"/>
+<circle cx="466.0" cy="293.0" r="5.5" class="f-acc"/>
+<circle cx="482.0" cy="293.0" r="5.5" class="f-acc"/>
+<circle cx="498.0" cy="293.0" r="5.5" class="f-acc"/>
+<circle cx="514.0" cy="293.0" r="5.5" class="f-acc"/>
+<circle cx="600.0" cy="293.0" r="5.5" class="f-acc"/>
+<circle cx="616.0" cy="293.0" r="5.5" class="f-acc"/>
+<circle cx="632.0" cy="293.0" r="5.5" class="f-acc"/>
+<circle cx="648.0" cy="293.0" r="5.5" class="f-acc"/>
+<circle cx="664.0" cy="293.0" r="5.5" class="f-acc"/>
+<text x="150.0" y="319.0" class="s">Microwave</text>
+<circle cx="300.0" cy="315.0" r="5.5" class="f-acc"/>
+<circle cx="316.0" cy="315.0" r="5.5" class="f-acc"/>
+<circle cx="332.0" cy="315.0" r="5.5" class="f-acc"/>
+<circle cx="348.0" cy="315.0" r="5.5" class="pip-off"/>
+<circle cx="364.0" cy="315.0" r="5.5" class="pip-off"/>
+<circle cx="450.0" cy="315.0" r="5.5" class="f-acc"/>
+<circle cx="466.0" cy="315.0" r="5.5" class="f-acc"/>
+<circle cx="482.0" cy="315.0" r="5.5" class="f-acc"/>
+<circle cx="498.0" cy="315.0" r="5.5" class="f-acc"/>
+<circle cx="514.0" cy="315.0" r="5.5" class="f-acc"/>
+<circle cx="600.0" cy="315.0" r="5.5" class="f-acc"/>
+<circle cx="616.0" cy="315.0" r="5.5" class="f-acc"/>
+<circle cx="632.0" cy="315.0" r="5.5" class="f-acc"/>
+<circle cx="648.0" cy="315.0" r="5.5" class="f-acc"/>
+<circle cx="664.0" cy="315.0" r="5.5" class="f-acc"/>
+<text x="0.0" y="350.0" class="m">Each dot is one trial (5 per object and scene); targets start in rooms not visible from the start.</text>
+</svg>

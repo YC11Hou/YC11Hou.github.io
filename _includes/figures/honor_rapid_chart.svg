@@ -1,0 +1,90 @@
+<svg class="fig-svg" viewBox="0 0 780 372" role="img" aria-label="DTW gain versus retrieval size K for five initial-noise strategies" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="honor_rapid_chart-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah"/></marker><marker id="honor_rapid_chart-ahacc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-acc"/></marker><marker id="honor_rapid_chart-ahblue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-blue"/></marker><marker id="honor_rapid_chart-ahmut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-mut"/></marker></defs>
+<text x="0.0" y="12.0" class="cap">OFFLINE VALIDATION · DTW GAIN VS. K · 24 TAKEOVER EPISODES</text>
+<line x1="50.0" y1="236.0" x2="776.0" y2="236.0" class="grid"/>
+<text x="42.0" y="240.0" class="m" text-anchor="end">0</text>
+<line x1="50.0" y1="201.7" x2="776.0" y2="201.7" class="grid"/>
+<text x="42.0" y="205.7" class="m" text-anchor="end">10</text>
+<line x1="50.0" y1="167.3" x2="776.0" y2="167.3" class="grid"/>
+<text x="42.0" y="171.3" class="m" text-anchor="end">20</text>
+<line x1="50.0" y1="133.0" x2="776.0" y2="133.0" class="grid"/>
+<text x="42.0" y="137.0" class="m" text-anchor="end">30</text>
+<line x1="50.0" y1="98.7" x2="776.0" y2="98.7" class="grid"/>
+<text x="42.0" y="102.7" class="m" text-anchor="end">40</text>
+<line x1="50.0" y1="64.3" x2="776.0" y2="64.3" class="grid"/>
+<text x="42.0" y="68.3" class="m" text-anchor="end">50</text>
+<line x1="50.0" y1="30.0" x2="776.0" y2="30.0" class="grid"/>
+<text x="42.0" y="34.0" class="m" text-anchor="end">60</text>
+<line x1="50.0" y1="236.0" x2="776.0" y2="236.0" class="axis"/>
+<rect x="66.1" y="47.5" width="21.0" height="188.5" rx="1" class="f-acc" fill-opacity="1"/>
+<text x="76.6" y="43.5" class="m" text-anchor="middle" style="font-size:9px">55</text>
+<rect x="89.1" y="166.0" width="21.0" height="70.0" rx="1" class="f-blue" fill-opacity="1"/>
+<text x="99.6" y="162.0" class="m" text-anchor="middle" style="font-size:9px">20</text>
+<rect x="112.1" y="166.6" width="21.0" height="69.4" rx="1" class="f-blue" fill-opacity="0.45"/>
+<text x="122.6" y="162.6" class="m" text-anchor="middle" style="font-size:9px">20</text>
+<rect x="135.1" y="110.7" width="21.0" height="125.3" rx="1" class="f-ink" fill-opacity="0.4"/>
+<text x="145.6" y="106.7" class="m" text-anchor="middle" style="font-size:9px">36</text>
+<rect x="158.1" y="211.6" width="21.0" height="24.4" rx="1" class="f-rule" fill-opacity="1"/>
+<text x="168.6" y="207.6" class="m" text-anchor="middle" style="font-size:9px">7</text>
+<text x="122.6" y="254.0" class="s" text-anchor="middle">K = 1</text>
+<rect x="211.3" y="48.5" width="21.0" height="187.5" rx="1" class="f-acc" fill-opacity="1"/>
+<text x="221.8" y="44.5" class="m" text-anchor="middle" style="font-size:9px">55</text>
+<rect x="234.3" y="166.3" width="21.0" height="69.7" rx="1" class="f-blue" fill-opacity="1"/>
+<text x="244.8" y="162.3" class="m" text-anchor="middle" style="font-size:9px">20</text>
+<rect x="257.3" y="167.3" width="21.0" height="68.7" rx="1" class="f-blue" fill-opacity="0.45"/>
+<text x="267.8" y="163.3" class="m" text-anchor="middle" style="font-size:9px">20</text>
+<rect x="280.3" y="109.7" width="21.0" height="126.3" rx="1" class="f-ink" fill-opacity="0.4"/>
+<text x="290.8" y="105.7" class="m" text-anchor="middle" style="font-size:9px">37</text>
+<rect x="303.3" y="210.9" width="21.0" height="25.1" rx="1" class="f-rule" fill-opacity="1"/>
+<text x="313.8" y="206.9" class="m" text-anchor="middle" style="font-size:9px">7</text>
+<text x="267.8" y="254.0" class="s" text-anchor="middle">K = 2</text>
+<rect x="356.5" y="41.0" width="21.0" height="195.0" rx="1" class="f-acc" fill-opacity="1"/>
+<text x="367.0" y="37.0" class="m" text-anchor="middle" style="font-size:9px">57</text>
+<rect x="379.5" y="81.5" width="21.0" height="154.5" rx="1" class="f-blue" fill-opacity="1"/>
+<text x="390.0" y="77.5" class="m" text-anchor="middle" style="font-size:9px">45</text>
+<rect x="402.5" y="83.2" width="21.0" height="152.8" rx="1" class="f-blue" fill-opacity="0.45"/>
+<text x="413.0" y="79.2" class="m" text-anchor="middle" style="font-size:9px">44</text>
+<rect x="425.5" y="109.0" width="21.0" height="127.0" rx="1" class="f-ink" fill-opacity="0.4"/>
+<text x="436.0" y="105.0" class="m" text-anchor="middle" style="font-size:9px">37</text>
+<rect x="448.5" y="210.2" width="21.0" height="25.8" rx="1" class="f-rule" fill-opacity="1"/>
+<text x="459.0" y="206.2" class="m" text-anchor="middle" style="font-size:9px">8</text>
+<text x="413.0" y="254.0" class="s" text-anchor="middle">K = 4</text>
+<rect x="501.7" y="44.4" width="21.0" height="191.6" rx="1" class="f-acc" fill-opacity="1"/>
+<text x="512.2" y="40.4" class="m" text-anchor="middle" style="font-size:9px">56</text>
+<rect x="524.7" y="73.6" width="21.0" height="162.4" rx="1" class="f-blue" fill-opacity="1"/>
+<text x="535.2" y="69.6" class="m" text-anchor="middle" style="font-size:9px">47</text>
+<rect x="547.7" y="71.5" width="21.0" height="164.5" rx="1" class="f-blue" fill-opacity="0.45"/>
+<text x="558.2" y="67.5" class="m" text-anchor="middle" style="font-size:9px">48</text>
+<rect x="570.7" y="108.3" width="21.0" height="127.7" rx="1" class="f-ink" fill-opacity="0.4"/>
+<text x="581.2" y="104.3" class="m" text-anchor="middle" style="font-size:9px">37</text>
+<rect x="593.7" y="209.6" width="21.0" height="26.4" rx="1" class="f-rule" fill-opacity="1"/>
+<text x="604.2" y="205.6" class="m" text-anchor="middle" style="font-size:9px">8</text>
+<text x="558.2" y="254.0" class="s" text-anchor="middle">K = 8</text>
+<rect x="646.9" y="40.3" width="21.0" height="195.7" rx="1" class="f-acc" fill-opacity="1"/>
+<text x="657.4" y="36.3" class="m" text-anchor="middle" style="font-size:9px">57</text>
+<rect x="669.9" y="67.8" width="21.0" height="168.2" rx="1" class="f-blue" fill-opacity="1"/>
+<text x="680.4" y="63.8" class="m" text-anchor="middle" style="font-size:9px">49</text>
+<rect x="692.9" y="68.1" width="21.0" height="167.9" rx="1" class="f-blue" fill-opacity="0.45"/>
+<text x="703.4" y="64.1" class="m" text-anchor="middle" style="font-size:9px">49</text>
+<rect x="715.9" y="107.9" width="21.0" height="128.1" rx="1" class="f-ink" fill-opacity="0.4"/>
+<text x="726.4" y="103.9" class="m" text-anchor="middle" style="font-size:9px">37</text>
+<rect x="738.9" y="209.2" width="21.0" height="26.8" rx="1" class="f-rule" fill-opacity="1"/>
+<text x="749.4" y="205.2" class="m" text-anchor="middle" style="font-size:9px">8</text>
+<text x="703.4" y="254.0" class="s" text-anchor="middle">K = 12</text>
+<text x="14.0" y="133.0" class="m" text-anchor="middle" transform="rotate(-90 14 133.0)">DTW gain</text>
+<rect x="0.0" y="262.0" width="12.0" height="12.0" rx="2" class="f-acc" fill-opacity="1"/>
+<text x="20.0" y="272.0" class="t">DSBC</text>
+<text x="150.0" y="272.0" class="s">noise network π(ε | key), behavior-cloned on (key, ε*) pairs</text>
+<rect x="0.0" y="283.0" width="12.0" height="12.0" rx="2" class="f-blue" fill-opacity="1"/>
+<text x="20.0" y="293.0" class="t">memory_dct</text>
+<text x="150.0" y="293.0" class="s">ε* rebuilt from its first 8 DCT coefficients (default)</text>
+<rect x="0.0" y="304.0" width="12.0" height="12.0" rx="2" class="f-blue" fill-opacity="0.45"/>
+<text x="20.0" y="314.0" class="t">memory_raw</text>
+<text x="150.0" y="314.0" class="s">retrieved ε* blended with random noise</text>
+<rect x="0.0" y="325.0" width="12.0" height="12.0" rx="2" class="f-ink" fill-opacity="0.4"/>
+<text x="20.0" y="335.0" class="t">partial_noising</text>
+<text x="150.0" y="335.0" class="s">RtS-style baseline: stored action chunks, partially re-noised</text>
+<rect x="0.0" y="346.0" width="12.0" height="12.0" rx="2" class="f-rule" fill-opacity="1"/>
+<text x="20.0" y="356.0" class="t">memory_delta</text>
+<text x="150.0" y="356.0" class="s">random sample + β·α·δ (ablation arm)</text>
+</svg>

@@ -1,0 +1,50 @@
+<svg class="fig-svg" viewBox="0 0 780 312" role="img" aria-label="RECAP-style advantage labeling and advantage-conditioned training" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="honor_recap-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah"/></marker><marker id="honor_recap-ahacc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-acc"/></marker><marker id="honor_recap-ahblue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-blue"/></marker><marker id="honor_recap-ahmut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-mut"/></marker></defs>
+<text x="0.0" y="22.0" class="cap">ADVANTAGE LABELING</text>
+<rect x="0.0" y="34.0" width="174.0" height="106.0" rx="5" class="box"/>
+<text x="87.0" y="63.2" class="t" text-anchor="middle">① Episodes</text>
+<text x="87.0" y="77.6" class="m" text-anchor="middle">success · with takeover</text>
+<text x="87.0" y="91.6" class="m" text-anchor="middle">· failure</text>
+<text x="87.0" y="105.6" class="m" text-anchor="middle">control state per frame</text>
+<text x="87.0" y="119.6" class="m" text-anchor="middle">→ human vs. policy</text>
+<path d="M177.0,87.0 L199.0,87.0" class="ln" marker-end="url(#honor_recap-ah)"/>
+<rect x="202.0" y="34.0" width="174.0" height="106.0" rx="5" class="box"/>
+<text x="289.0" y="70.2" class="t" text-anchor="middle">② Reward</text>
+<text x="289.0" y="84.6" class="m" text-anchor="middle">r = −1 per step</text>
+<text x="289.0" y="98.6" class="m" text-anchor="middle">final: 0 or −c_fail</text>
+<text x="289.0" y="112.6" class="m" text-anchor="middle">c_fail = 1000 &gt; 943</text>
+<path d="M379.0,87.0 L401.0,87.0" class="ln" marker-end="url(#honor_recap-ah)"/>
+<rect x="404.0" y="34.0" width="174.0" height="106.0" rx="5" class="box"/>
+<text x="491.0" y="77.2" class="t" text-anchor="middle">③ Return</text>
+<text x="491.0" y="91.6" class="m" text-anchor="middle">Gₜ = rₜ + Gₜ₊₁ (γ = 1)</text>
+<text x="491.0" y="105.6" class="m" text-anchor="middle">normalized to [−1, 0]</text>
+<path d="M581.0,87.0 L603.0,87.0" class="ln" marker-end="url(#honor_recap-ah)"/>
+<rect x="606.0" y="34.0" width="174.0" height="106.0" rx="5" class="box k-blue"/>
+<text x="693.0" y="70.2" class="t" text-anchor="middle">④ Value V(o)</text>
+<text x="693.0" y="84.6" class="m" text-anchor="middle">frozen GR00T backbone</text>
+<text x="693.0" y="98.6" class="m" text-anchor="middle">201-atom distribution</text>
+<text x="693.0" y="112.6" class="m" text-anchor="middle">accepted if ρ &gt; 0.55</text>
+<text x="110.0" y="188.0" class="cap">CONDITIONED TRAINING &amp; INFERENCE</text>
+<rect x="0.0" y="200.0" width="174.0" height="106.0" rx="5" class="box"/>
+<text x="87.0" y="236.2" class="t" text-anchor="middle">⑤ Advantage</text>
+<text x="87.0" y="250.6" class="m" text-anchor="middle">Aₜ = Σ r + V(oₜ₊ₙ) − V(oₜ)</text>
+<text x="87.0" y="264.6" class="m" text-anchor="middle">n = 20 (1 s)</text>
+<text x="87.0" y="278.6" class="m" text-anchor="middle">top 30% → positive</text>
+<path d="M177.0,253.0 L199.0,253.0" class="ln" marker-end="url(#honor_recap-ah)"/>
+<rect x="202.0" y="200.0" width="174.0" height="106.0" rx="5" class="box"/>
+<text x="289.0" y="243.2" class="t" text-anchor="middle">⑥ Prompt + CFG</text>
+<text x="289.0" y="257.6" class="m" text-anchor="middle">task + “Advantage: ±”</text>
+<text x="289.0" y="271.6" class="m" text-anchor="middle">dropout 0.3 → bare task</text>
+<path d="M379.0,253.0 L401.0,253.0" class="ln" marker-end="url(#honor_recap-ah)"/>
+<rect x="404.0" y="200.0" width="174.0" height="106.0" rx="5" class="box"/>
+<text x="491.0" y="236.2" class="t" text-anchor="middle">⑦ Policy training</text>
+<text x="491.0" y="250.6" class="m" text-anchor="middle">all data used</text>
+<text x="491.0" y="264.6" class="m" text-anchor="middle">success : failure = 1 : 1.5</text>
+<text x="491.0" y="278.6" class="m" text-anchor="middle">3 unfreezing levels</text>
+<path d="M581.0,253.0 L603.0,253.0" class="ln" marker-end="url(#honor_recap-ah)"/>
+<rect x="606.0" y="200.0" width="174.0" height="106.0" rx="5" class="box k-acc"/>
+<text x="693.0" y="243.2" class="t" text-anchor="middle">⑧ Inference</text>
+<text x="693.0" y="257.6" class="m" text-anchor="middle">prompt pinned to positive</text>
+<text x="693.0" y="271.6" class="m" text-anchor="middle">single forward pass</text>
+<path d="M693.0,142.0 L693.0,170.0 L87.0,170.0 L87.0,197.0" class="ln" marker-end="url(#honor_recap-ah)"/>
+</svg>

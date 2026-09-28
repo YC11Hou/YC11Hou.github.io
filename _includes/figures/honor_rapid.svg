@@ -1,0 +1,47 @@
+<svg class="fig-svg" viewBox="0 0 780 312" role="img" aria-label="RAPID: building a noise memory from takeovers and injecting retrieved noise at deployment" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="honor_rapid-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah"/></marker><marker id="honor_rapid-ahacc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-acc"/></marker><marker id="honor_rapid-ahblue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-blue"/></marker><marker id="honor_rapid-ahmut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-mut"/></marker></defs>
+<text x="0.0" y="22.0" class="cap">OFFLINE · BUILD MEMORY FROM TAKEOVERS</text>
+<rect x="0.0" y="34.0" width="174.0" height="106.0" rx="5" class="box"/>
+<text x="87.0" y="70.2" class="t" text-anchor="middle">① Corrections</text>
+<text x="87.0" y="84.6" class="m" text-anchor="middle">human segments of</text>
+<text x="87.0" y="98.6" class="m" text-anchor="middle">successful takeovers</text>
+<text x="87.0" y="112.6" class="m" text-anchor="middle">window = stride 30</text>
+<path d="M177.0,87.0 L199.0,87.0" class="ln" marker-end="url(#honor_rapid-ah)"/>
+<rect x="202.0" y="34.0" width="174.0" height="106.0" rx="5" class="box"/>
+<text x="289.0" y="77.2" class="t" text-anchor="middle">② Flow inversion</text>
+<text x="289.0" y="91.6" class="m" text-anchor="middle">frozen policy, 64 steps</text>
+<text x="289.0" y="105.6" class="m" text-anchor="middle">actions → noise ε*</text>
+<path d="M379.0,87.0 L401.0,87.0" class="ln" marker-end="url(#honor_rapid-ah)"/>
+<rect x="404.0" y="34.0" width="174.0" height="106.0" rx="5" class="box"/>
+<text x="491.0" y="77.2" class="t" text-anchor="middle">③ DCT encoding</text>
+<text x="491.0" y="91.6" class="m" text-anchor="middle">first 8 coefficients</text>
+<text x="491.0" y="105.6" class="m" text-anchor="middle">store ε* and δ</text>
+<path d="M581.0,87.0 L603.0,87.0" class="ln" marker-end="url(#honor_rapid-ah)"/>
+<rect x="606.0" y="34.0" width="174.0" height="106.0" rx="5" class="box k-blue"/>
+<text x="693.0" y="77.2" class="t" text-anchor="middle">④ Memory bank</text>
+<text x="693.0" y="91.6" class="m" text-anchor="middle">key: observation embed.</text>
+<text x="693.0" y="105.6" class="m" text-anchor="middle">value: noise ε*</text>
+<text x="0.0" y="188.0" class="cap">AT DEPLOYMENT · RETRIEVE AND INJECT</text>
+<rect x="0.0" y="200.0" width="174.0" height="106.0" rx="5" class="box"/>
+<text x="87.0" y="243.2" class="t" text-anchor="middle">⑤ Observation key</text>
+<text x="87.0" y="257.6" class="m" text-anchor="middle">same backbone</text>
+<text x="87.0" y="271.6" class="m" text-anchor="middle">encodes current obs.</text>
+<path d="M177.0,253.0 L199.0,253.0" class="ln" marker-end="url(#honor_rapid-ah)"/>
+<rect x="202.0" y="200.0" width="174.0" height="106.0" rx="5" class="box"/>
+<text x="289.0" y="243.2" class="t" text-anchor="middle">⑥ Retrieval</text>
+<text x="289.0" y="257.6" class="m" text-anchor="middle">cosine top-4 &gt; 0.85</text>
+<text x="289.0" y="271.6" class="m" text-anchor="middle">DTW consistency filter</text>
+<path d="M379.0,253.0 L401.0,253.0" class="ln" marker-end="url(#honor_rapid-ah)"/>
+<rect x="404.0" y="200.0" width="174.0" height="106.0" rx="5" class="box"/>
+<text x="491.0" y="243.2" class="t" text-anchor="middle">⑦ Noise mixing</text>
+<text x="491.0" y="257.6" class="m" text-anchor="middle">hit: slerp(ε*, N(0, I))</text>
+<text x="491.0" y="271.6" class="m" text-anchor="middle">miss: random seed</text>
+<path d="M581.0,253.0 L603.0,253.0" class="ln" marker-end="url(#honor_rapid-ah)"/>
+<rect x="606.0" y="200.0" width="174.0" height="106.0" rx="5" class="box k-acc"/>
+<text x="693.0" y="236.2" class="t" text-anchor="middle">⑧ Frozen VLA</text>
+<text x="693.0" y="250.6" class="m" text-anchor="middle">flow-matching sampling</text>
+<text x="693.0" y="264.6" class="m" text-anchor="middle">weights unchanged</text>
+<text x="693.0" y="278.6" class="m" text-anchor="middle">empty memory: zero cost</text>
+<path d="M693.0,142.0 L693.0,170.0 L289.0,170.0 L289.0,197.0" class="ln k-blue dash" marker-end="url(#honor_rapid-ahblue)"/>
+<text x="491.0" y="164.0" class="m" text-anchor="middle">lookup</text>
+</svg>

@@ -58,19 +58,7 @@ When changing the instruction from "put bowl on plate" → "put bowl on stove" i
 
 We design a four-dimensional semantic perturbation diagnostic — Change Object, Change Target, Spatial Description, and Drawer Action — keeping the visual scene identical and only modifying the instruction:
 
-<div style="overflow-x: auto; font-size: 0.85em; margin: 1em 0;">
-<table>
-  <thead><tr><th>Category</th><th>Tasks</th><th>Episodes</th><th>Success Rate</th></tr></thead>
-  <tbody>
-    <tr><td>Original (LIBERO)</td><td>40</td><td>800</td><td>93.8%</td></tr>
-    <tr><td>Extended (Ours)</td><td>59</td><td>1,180</td><td>21.4%</td></tr>
-    <tr><td>Change Object</td><td>38</td><td>760</td><td>29.3%</td></tr>
-    <tr><td>Change Target</td><td>13</td><td>260</td><td><strong>0.0%</strong></td></tr>
-    <tr><td>Spatial Description</td><td>5</td><td>100</td><td>11.0%</td></tr>
-    <tr><td>Drawer Action</td><td>3</td><td>60</td><td>31.7%</td></tr>
-  </tbody>
-</table>
-</div>
+{% include svg_figure.liquid name="langgap_diagnosis" caption="π0.5 diagnosis over 99 tasks and 1,980 episodes. Our re-run of the 40 original tasks matches the official score; the 59 extended tasks drop by 72.4 points. On Change Target π0.5 fails all 260 episodes and no tested model exceeds 2.3%, so the failure is not a phrasing artifact — and the aggregate score hides it." %}
 
 <div class="media-row">
   <div>
@@ -116,51 +104,9 @@ We design a four-dimensional semantic perturbation diagnostic — Change Object,
 
 **5. Results**
 
-<div class="media-row">
-  <div style="overflow-x: auto; font-size: 0.8em;">
-    <strong>Cross-Model Benchmark</strong>
-    <table>
-      <thead><tr><th>Method</th><th>Orig.</th><th>Ext.</th><th>Ch.Obj</th><th>Ch.Tgt</th></tr></thead>
-      <tbody>
-        <tr><td>π0.5</td><td>93.8%</td><td>21.4%</td><td>29.3%</td><td>0.0%</td></tr>
-        <tr><td>π0</td><td>48.3%</td><td>8.6%</td><td>10.8%</td><td>0.0%</td></tr>
-        <tr><td>π0-FAST</td><td>47.5%</td><td>2.7%</td><td>3.1%</td><td>2.3%</td></tr>
-        <tr><td>SmolVLA</td><td>38.0%</td><td>6.4%</td><td>7.6%</td><td>0.0%</td></tr>
-        <tr><td><strong>π0.5-Ours (45)</strong></td><td>89.5%</td><td><strong>22.8%</strong></td><td>28.4%</td><td><strong>6.2%</strong></td></tr>
-        <tr><td><strong>π0.5-Ours (56)</strong></td><td>85.5%</td><td>20.4%</td><td>27.5%</td><td>5.0%</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div style="overflow-x: auto; font-size: 0.8em;">
-    <strong>Progressive Validation</strong>
-    <table>
-      <thead><tr><th>Config</th><th>Eval</th><th>Baseline</th><th>Ours</th></tr></thead>
-      <tbody>
-        <tr><td>Single-task (1 ext)</td><td>1 task</td><td>3.75%</td><td><strong>90.0%</strong></td></tr>
-        <tr><td>6-task (1+5 ext)</td><td>5 ext</td><td>0.0%</td><td><strong>28.0%</strong></td></tr>
-        <tr><td>45-task (40+5 ext)</td><td>5 ext</td><td>0.0%</td><td>4.0%</td></tr>
-        <tr><td>16-task (16 ext)</td><td>16 ext</td><td>26.2%</td><td>6.2%</td></tr>
-        <tr><td>56-task (40+16 ext)</td><td>16 ext</td><td>26.2%</td><td>27.5%</td></tr>
-      </tbody>
-    </table>
-    <small>Single-task memorization achieves 90%, but multi-task scaling reveals fundamental capacity limits.</small>
-  </div>
-</div>
+{% include svg_figure.liquid name="langgap_benchmark" caption="Full benchmark: recent VLA models on all four LIBERO suites, original versus extended tasks. Every model shows a large language gap; our 45-task fine-tuned π0.5 improves the extended total (22.8) and Change Target (0 → 6.2) while keeping 89.5 on the original tasks. The 43 held-out tasks were never trained on." %}
 
-<div style="overflow-x: auto; font-size: 0.8em; margin: 1em 0;">
-  <strong>Full benchmark by suite</strong> (Orig. = original LIBERO tasks, Ext. = extended tasks)
-  <table>
-    <thead><tr><th>Method</th><th>Spatial Orig.</th><th>Spatial Ext.</th><th>Goal Orig.</th><th>Goal Ext.</th><th>Object Orig.</th><th>Object Ext.</th><th>Long</th><th>Total Orig.</th><th>Total Ext.</th></tr></thead>
-    <tbody>
-      <tr><td>π0.5</td><td>97.0</td><td>5.9</td><td>97.0</td><td>30.0</td><td>100</td><td>37.7</td><td>81.0</td><td>93.8</td><td>21.4</td></tr>
-      <tr><td>π0</td><td>47.0</td><td>3.6</td><td>63.0</td><td>0.0</td><td>43.0</td><td>18.6</td><td>40.0</td><td>48.3</td><td>8.6</td></tr>
-      <tr><td>π0-FAST</td><td>65.0</td><td>1.5</td><td>37.8</td><td>1.2</td><td>61.0</td><td>5.0</td><td>26.0</td><td>47.5</td><td>2.7</td></tr>
-      <tr><td>SmolVLA</td><td>17.0</td><td>3.2</td><td>44.0</td><td>0.0</td><td>50.0</td><td>13.2</td><td>41.0</td><td>38.0</td><td>6.4</td></tr>
-      <tr><td><strong>Ours (45)</strong></td><td>95.0</td><td>10.2</td><td>85.0</td><td>27.2</td><td>100</td><td>37.0</td><td>78.0</td><td>89.5</td><td><strong>22.8</strong></td></tr>
-      <tr><td><strong>Ours (56)</strong></td><td>97.0</td><td>7.1</td><td>77.0</td><td>26.1</td><td>98.0</td><td>35.0</td><td>70.0</td><td>85.5</td><td>20.4</td></tr>
-    </tbody>
-  </table>
-</div>
+{% include svg_figure.liquid name="langgap_progressive" caption="Progressive validation with the same extended data as the number of training tasks grows from 1 to 56. Single-task memorization reaches 90%, but gains collapse as semantically different tasks are learned together; mixing in the 40 official tasks (56 tasks) restores 27.5% while the language gap remains." %}
 
 **6. Long-Term Value**
 
