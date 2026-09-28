@@ -20,12 +20,13 @@ github: https://github.com/YC11Hou/habitat-aerial-nav
   </a>
 </p>
 
-<div class="contrib" markdown="1">
-What I did — click to jump
-
-1. [Trajectory generation pipeline](#pipeline) — start-goal sampling, Lattice A\* cruise planning, takeoff → cruise → landing assembly, video-to-text instructions.
-2. [Dataset](#overview) — 90 Habitat scenes, 10,000+ drone VLN trajectories, open-sourced.
-</div>
+<nav class="contrib">
+  <p>What I did · click a card to jump</p>
+  <ol>
+    <li><a href="#pipeline"><strong>Trajectory pipeline</strong><span>Lattice A* · takeoff → cruise → land</span></a></li>
+    <li><a href="#overview"><strong>Dataset</strong><span>90 scenes · 10,000+ trajectories, open-sourced</span></a></li>
+  </ol>
+</nav>
 
 ## Demo
 

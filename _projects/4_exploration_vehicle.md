@@ -13,12 +13,14 @@ end: 2025-04
 meta: ROS 2 · Jetson Orin NX · Team lead
 ---
 
-<div class="contrib" markdown="1">
-What I did (undergraduate thesis) — click to jump
-
-1. [Hardware](#hardware) and [software stack](#software) — a complete real-robot closed loop: Cartographer SLAM, Navigation2, YOLO detection on a Jetson.
-2. [Frontier exploration](#frontier) — extract frontiers from the map, score them by information gain, and navigate to the best one.
-</div>
+<nav class="contrib">
+  <p>What I did (undergraduate thesis) · click a card to jump</p>
+  <ol>
+    <li><a href="#hardware"><strong>Hardware</strong><span>Jetson · LiDAR · depth camera</span></a></li>
+    <li><a href="#software"><strong>Software stack</strong><span>Cartographer · Nav2 · YOLO</span></a></li>
+    <li><a href="#frontier"><strong>Frontier exploration</strong><span>Information-gain scoring</span></a></li>
+  </ol>
+</nav>
 
 ## Demo
 

@@ -24,13 +24,14 @@ meta: Co-author
   </a>
 </p>
 
-<div class="contrib" markdown="1">
-What I did (second author) — click to jump
-
-1. [Dual-policy framework](#framework) — split exploration from goal-reaching, because CLIP alignment is useless when the target is out of view.
-2. [Exploration policy](#exploration) — designed, trained and validated it: the largest open region of the depth image and its bearing are fed to the LSTM, with forward / center / safety / coverage rewards.
-3. [Evaluation](#evaluation) — AI2-THOR benchmark plus a multi-room IsaacSim evaluation where the target sits in another room.
-</div>
+<nav class="contrib">
+  <p>What I did (second author) · click a card to jump</p>
+  <ol>
+    <li><a href="#framework"><strong>Dual-policy framework</strong><span>Explore when the target is out of view</span></a></li>
+    <li><a href="#exploration"><strong>Exploration policy</strong><span>Depth open-region cue + rewards</span></a></li>
+    <li><a href="#evaluation"><strong>Evaluation</strong><span>AI2-THOR + multi-room IsaacSim</span></a></li>
+  </ol>
+</nav>
 
 ## Demo
 

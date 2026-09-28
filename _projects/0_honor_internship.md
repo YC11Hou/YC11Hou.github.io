@@ -15,15 +15,20 @@ related_publications: false
 
 Working on Honor's self-developed **humanoid robot**: teleoperation data collection, replay, training, and on-robot deployment, along with **real-robot RL** algorithm research for **Vision-Language-Action (VLA)** models on custom manipulation tasks.
 
-<div class="contrib" markdown="1">
-What I did — click to jump
-
-1. [End-to-end VLA pipeline](#loop) — data collection, processing, training, inference and real-robot deployment, built from scratch in the Shanghai lab.
-2. [Offline data design](#data-design) — four balanced demonstration categories that teach tracking and failure recovery.
-3. [Human takeover](#takeover) — smooth autonomy ↔ teleoperation switching with takeover-state detection, the foundation for Online SFT and real-robot RL.
-4. [Actor–Learner–Robot loop](#online-loop) — online rejection sampling (Hi-ORS) on three machines; [a new task from ≈ 0% to 50%+](#results).
-5. [RL algorithms](#recap) — RECAP-style advantage conditioning and [RAPID noise-space adaptation](#rapid), extended to [loco-manipulation](#loco), plus [real-robot debugging](#debugging).
-</div>
+<nav class="contrib">
+  <p>What I did · click a card to jump</p>
+  <ol>
+    <li><a href="#loop"><strong>End-to-end VLA pipeline</strong><span>Collect → train → deploy, lab built from scratch</span></a></li>
+    <li><a href="#data-design"><strong>Offline data design</strong><span>4 categories: track + recover</span></a></li>
+    <li><a href="#takeover"><strong>Human takeover</strong><span>Smooth switch · takeover-state detection</span></a></li>
+    <li><a href="#online-loop"><strong>Actor–Learner–Robot loop</strong><span>Online rejection sampling (Hi-ORS)</span></a></li>
+    <li><a href="#results"><strong>Real-robot SFT results</strong><span>New task ≈ 0% → 50%+</span></a></li>
+    <li><a href="#recap"><strong>RECAP</strong><span>Advantage-conditioned training</span></a></li>
+    <li><a href="#rapid"><strong>RAPID</strong><span>Noise-space fast adaptation</span></a></li>
+    <li><a href="#loco"><strong>Loco-manipulation</strong><span>Same stack, walking task</span></a></li>
+    <li><a href="#debugging"><strong>Real-robot debugging</strong><span>6 bugs, each found by a probe</span></a></li>
+  </ol>
+</nav>
 
 ## Demos
 

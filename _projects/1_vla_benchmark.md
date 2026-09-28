@@ -27,14 +27,15 @@ meta: First author
   </a>
 </p>
 
-<div class="contrib" markdown="1">
-What I did (first author) — click to jump
-
-1. [Benchmark design](#benchmark) — 99 tasks built on a [four-dimensional semantic perturbation](#diagnosis) of LIBERO, with [same-scene multi-task design principles](#design) so language is the only signal.
-2. [Data collection](#data) — a scripted waypoint pipeline: 16 extended tasks × 150 demos ≈ 2,400 demonstrations, fully automatic.
-3. [Model training](#training) — π0.5 LoRA fine-tuning; a single task goes from 0% to 90%.
-4. [Result analysis](#results) — [diagnosis](#diagnosis) (93.8% original vs. 21.4% extended, 0% on Change Target), the full benchmark across four VLA models, and progressive multi-task validation.
-</div>
+<nav class="contrib">
+  <p>What I did (first author) · click a card to jump</p>
+  <ol>
+    <li><a href="#benchmark"><strong>Benchmark design</strong><span>99 tasks · 4 perturbation dimensions</span></a></li>
+    <li><a href="#data"><strong>Data collection</strong><span>16 tasks × 150 scripted demos</span></a></li>
+    <li><a href="#training"><strong>Model training</strong><span>π0.5 LoRA · single task 0% → 90%</span></a></li>
+    <li><a href="#results"><strong>Result analysis</strong><span>93.8% → 21.4% · 4 VLA models</span></a></li>
+  </ol>
+</nav>
 
 ## Demo
 
