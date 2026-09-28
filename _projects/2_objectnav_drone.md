@@ -42,6 +42,10 @@ Object-Goal Navigation (ObjectNav) requires an agent to autonomously explore an 
 
 Indoor object-goal navigation for UAVs with **3D locomotion**: the drone must autonomously explore an unknown environment and navigate toward a target object specified by a semantic label (e.g., "laptop", "microwave"), without any prior map or external localization.
 
+**My role:** I designed, trained and validated the exploration policy.
+
+**Why two policies:** prior work uses a single goal-reaching policy (LSTM + CLIP text–vision alignment). That is enough in AI2-THOR, where rooms are small and the target is usually visible after one turn; but when the target is in another room, CLIP has nothing to align with and the agent spins in place. We therefore split behavior by whether the target is in view, extend it to 3D motion for drones, and scale from single rooms to multi-room environments.
+
 **2. Framework**
 
 A dual-policy RL framework that switches between two modes based on target visibility:
@@ -70,6 +74,9 @@ $$r_t^E = R_{forward} + R_{center} + R_{safe}$$
 - $$R_{forward}$$: reward for moving toward open space
 - $$R_{center}$$: penalty for yaw deviation from ROI centroid
 - $$R_{safe}$$: collision / obstacle proximity penalty
+- plus a coverage-area bonus
+
+Feeding raw RGB-D straight into an LSTM does not produce exploration behavior; the ROI cue is what gives the recurrent policy a strong sense of direction, with no odometry or map. To our knowledge, this is the first purely vision-based, map-free exploration policy for aerial robots.
 
 **4. Goal-Reaching Mode**
 
@@ -93,6 +100,8 @@ Discrete **3D** actions — forward, turn left/right, ascend, descend, etc.
 **6. Evaluation**
 
 Evaluated on two simulators: AI2-THOR (standard benchmark with seen/unseen object splits) and IsaacSim (larger multi-room environments where the target may be in a different room).
+
+On the 18/4 unseen split, AION outperforms MJO by 4.3 points in SR and 3.5 in SPL, and it leads on both splits. AI2-THOR's single rooms cannot test exploration — the target is often visible from the start — so we built a multi-room evaluation in IsaacSim (Chemistry Lab, Beechwood, Ihlen) with targets placed in rooms not visible from the start. Methods with only a goal-reaching policy spin in place; with the exploration policy, the drone heads for open space and finds the target across rooms.
 
 <div class="media-row">
   <div style="overflow-x: auto; font-size: 0.85em;">

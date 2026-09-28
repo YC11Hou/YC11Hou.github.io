@@ -48,7 +48,11 @@ github: https://github.com/YC11Hou/habitat-aerial-nav
 
 Built a robust pipeline to generate diverse 3D navigation trajectories in the Habitat simulator for training vision-language navigation (VLN) policies on aerial robots.
 
+**Motivation:** existing VLN datasets are for ground robots on discrete navigation graphs; drones need continuous takeoff → cruise → landing trajectories in 3D, and no such dataset existed, so we built one from scratch.
+
 **Simulator:** Habitat with 90 indoor scenes.
+
+**Scale:** 90 scenes × 200–300 start-goal pairs each → **10,000+** three-stage 3D trajectories with language instructions, open-sourced on GitHub.
 
 ## Pipeline
 
@@ -63,3 +67,5 @@ Built a robust pipeline to generate diverse 3D navigation trajectories in the Ha
 3. **3D Trajectory Assembly** — Prepend a **takeoff** segment and append a **landing** segment to each cruise path, forming a complete 3D trajectory. Collect RGB-D observations along the full path as video.
 
 4. **Instruction Generation** — Use a video-to-text model to generate natural language navigation instructions from the collected observation videos, producing a complete VLN dataset.
+
+The design is deliberately simplified — the drone does not change altitude frequently mid-flight — yet takeoff and landing combined with instructions are already hard for current models. Policy training on the dataset is carried on by labmates.

@@ -57,3 +57,11 @@ Standard frontier exploration creates redundant paths. We formulate an optimized
 $$f^* = \arg\max_{f \in F} \left( w_1 \cdot I_f - w_2 \cdot D_f \right)$$
 
 where $$I_f$$ is the information gain of frontier $$f$$ and $$D_f$$ is the navigation cost. The robot selects the frontier that maximizes expected coverage while minimizing unnecessary travel.
+
+**Exploration loop:** every 2 s the map is rebuilt and frontier points are extracted along the boundary of known space; each frontier is scored by information gain minus travel cost, and the best one is sent to Nav2 as the next goal — the scores update as the map grows, giving steady exploration without redundant paths.
+
+<div style="margin: 1.5em 0;">
+  <img src="/assets/img/p1_frontier_map.jpg" alt="Frontier-based exploration running on the robot: live map, frontiers and camera view" style="width: 100%; border-radius: 4px;">
+</div>
+
+Simple by today's standards, but a complete real-robot loop built from individual parts — the deployment skills used in every later project started here.

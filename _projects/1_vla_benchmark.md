@@ -89,6 +89,31 @@ We design a four-dimensional semantic perturbation diagnostic — Change Object,
 - **Scalable & Diverse Generation:** We employ a scripted, waypoint-based collection pipeline to efficiently and stably gather 150 successful episodes per task. While the waypoints are hard-coded for each specific task, the simulator introduces slight natural variations in the initial tabletop layouts. This ensures the collected trajectories are visually and dynamically diverse, preventing models from merely memorizing rigid, identical paths.
 - **Hierarchical Control Architecture:** Each task utilizes a custom script that decomposes the pick-and-place process into multiple sequential waypoints. At the high level, we apply pure Proportional (P) control to calculate positional errors and output continuous action commands. These commands are then executed by the simulator's low-level OSC (Operational Space Control) PD controller, achieving seamless, highly precise continuous control.
 
+<div style="margin: 1.5em 0;">
+  <img src="/assets/img/langgap_waypoints.jpg" alt="Waypoint sequence of a scripted demonstration: home, grasp, transport, place" style="width: 100%; border-radius: 4px;">
+</div>
+<p class="caption">Waypoint timing of a scripted demonstration (illustrative): home → above object → grasp → lift → above target → place. OSC_POSE controller with per-step pose error normalized to [−1, 1]; an episode is kept only if it succeeds within the step budget.</p>
+
+- **Why scripts instead of teleoperation:** early attempts with mouse teleoperation were jittery, slow and inconsistent. Scripts written from the object coordinates in each task's BDDL file were hand-tuned in simulation until every task was graspable, reachable and detectable — the resulting actions are clean and the collection is fully automatic: ~150 demos per task (the official LIBERO tasks have 50), 16 tasks ≈ 2,400 demos.
+
+<div style="margin: 1.5em 0;">
+  <img src="/assets/img/langgap_rollout_2x8.jpg" alt="Sample of scripted demonstration rollouts" style="width: 100%; border-radius: 4px;">
+</div>
+<p class="caption">A sample of the 2,400 scripted demonstrations.</p>
+
+**Fine-tuning: single task from 0% to 90%**
+
+<div class="ratio-16x9" style="margin-bottom: 1rem;">
+  <video controls preload="metadata" poster="/assets/img/langgap_before_after_poster.jpg">
+    <source src="/assets/video/langgap_before_after.mp4" type="video/mp4">
+  </video>
+</div>
+<p class="caption">Left: before training — the instruction says "stove", but the policy still places the bowl on the plate. Right: after fine-tuning on the extended data — the bowl goes onto the stove.</p>
+
+- π0.5 with LoRA (r = 64) on a single RTX 4090.
+- Checkpoints are selected by rollouts, not by loss: the loss keeps decreasing while success rate is non-monotonic.
+- Training and test instructions are verbatim identical except for the 43 held-out tasks, whose instructions are new.
+
 **5. Results**
 
 <div class="media-row">
@@ -120,6 +145,21 @@ We design a four-dimensional semantic perturbation diagnostic — Change Object,
     </table>
     <small>Single-task memorization achieves 90%, but multi-task scaling reveals fundamental capacity limits.</small>
   </div>
+</div>
+
+<div style="overflow-x: auto; font-size: 0.8em; margin: 1em 0;">
+  <strong>Full benchmark by suite</strong> (Orig. = original LIBERO tasks, Ext. = extended tasks)
+  <table>
+    <thead><tr><th>Method</th><th>Spatial Orig.</th><th>Spatial Ext.</th><th>Goal Orig.</th><th>Goal Ext.</th><th>Object Orig.</th><th>Object Ext.</th><th>Long</th><th>Total Orig.</th><th>Total Ext.</th></tr></thead>
+    <tbody>
+      <tr><td>π0.5</td><td>97.0</td><td>5.9</td><td>97.0</td><td>30.0</td><td>100</td><td>37.7</td><td>81.0</td><td>93.8</td><td>21.4</td></tr>
+      <tr><td>π0</td><td>47.0</td><td>3.6</td><td>63.0</td><td>0.0</td><td>43.0</td><td>18.6</td><td>40.0</td><td>48.3</td><td>8.6</td></tr>
+      <tr><td>π0-FAST</td><td>65.0</td><td>1.5</td><td>37.8</td><td>1.2</td><td>61.0</td><td>5.0</td><td>26.0</td><td>47.5</td><td>2.7</td></tr>
+      <tr><td>SmolVLA</td><td>17.0</td><td>3.2</td><td>44.0</td><td>0.0</td><td>50.0</td><td>13.2</td><td>41.0</td><td>38.0</td><td>6.4</td></tr>
+      <tr><td><strong>Ours (45)</strong></td><td>95.0</td><td>10.2</td><td>85.0</td><td>27.2</td><td>100</td><td>37.0</td><td>78.0</td><td>89.5</td><td><strong>22.8</strong></td></tr>
+      <tr><td><strong>Ours (56)</strong></td><td>97.0</td><td>7.1</td><td>77.0</td><td>26.1</td><td>98.0</td><td>35.0</td><td>70.0</td><td>85.5</td><td>20.4</td></tr>
+    </tbody>
+  </table>
 </div>
 
 **6. Long-Term Value**
