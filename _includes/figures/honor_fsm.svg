@@ -1,6 +1,6 @@
 <svg class="fig-svg" viewBox="0 0 780 304" role="img" aria-label="Autonomy / teleoperation switching state machine and the takeover output rule" xmlns="http://www.w3.org/2000/svg">
 <defs><marker id="honor_fsm-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah"/></marker><marker id="honor_fsm-ahacc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-acc"/></marker><marker id="honor_fsm-ahblue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-blue"/></marker><marker id="honor_fsm-ahmut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-mut"/></marker></defs>
-<text x="390.0" y="16.0" class="cap" text-anchor="middle">ROS 2 SWITCH NODE · 50 HZ · DRIVEN BY THE LOCOMOTION ACTION ID</text>
+<text x="390.0" y="16.0" class="cap" text-anchor="middle">ROS 2 SWITCH NODE · 50 Hz · DRIVEN BY THE LOCOMOTION ACTION ID</text>
 <rect x="30.0" y="62.0" width="170.0" height="54.0" rx="27" class="box k-mut"/>
 <text x="115.0" y="86.2" class="t" text-anchor="middle">WAITING</text>
 <text x="115.0" y="100.6" class="m" text-anchor="middle">no commands sent</text>

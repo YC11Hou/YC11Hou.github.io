@@ -1,0 +1,63 @@
+<svg class="fig-svg" viewBox="0 0 780 280" role="img" aria-label="Architecture of the DSBC noise network used in RAPID" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="honor_dsbc_net-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah"/></marker><marker id="honor_dsbc_net-ahacc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-acc"/></marker><marker id="honor_dsbc_net-ahblue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-blue"/></marker><marker id="honor_dsbc_net-ahmut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-mut"/></marker></defs>
+<text x="0.0" y="12.0" class="cap">DSBC NOISE NETWORK · KEY → INITIAL NOISE</text>
+<rect x="530.0" y="3.0" width="12.0" height="12.0" rx="2" class="box k-mut"/>
+<text x="548.0" y="13.0" class="m">frozen (GR00T)</text>
+<rect x="650.0" y="3.0" width="12.0" height="12.0" rx="2" class="box k-acc"/>
+<text x="668.0" y="13.0" class="m">trained</text>
+<rect x="0.0" y="40.0" width="110.0" height="128.0" rx="5" class="box k-mut"/>
+<text x="55.0" y="86.2" class="t" text-anchor="middle">Frozen GR00T</text>
+<text x="55.0" y="102.2" class="t" text-anchor="middle">encoder</text>
+<text x="55.0" y="116.6" class="m" text-anchor="middle">current</text>
+<text x="55.0" y="130.6" class="m" text-anchor="middle">observation</text>
+<rect x="136.0" y="40.0" width="130.0" height="54.0" rx="5" class="box k-mut"/>
+<text x="201.0" y="64.2" class="t" text-anchor="middle">VLM last token</text>
+<text x="201.0" y="78.6" class="m" text-anchor="middle">backbone feature</text>
+<rect x="136.0" y="114.0" width="130.0" height="54.0" rx="5" class="box k-mut"/>
+<text x="201.0" y="138.2" class="t" text-anchor="middle">state features</text>
+<text x="201.0" y="152.6" class="m" text-anchor="middle">mean over tokens</text>
+<path d="M112.0,80.0 L133.0,67.0" class="ln" marker-end="url(#honor_dsbc_net-ah)"/>
+<path d="M112.0,128.0 L133.0,141.0" class="ln" marker-end="url(#honor_dsbc_net-ah)"/>
+<rect x="292.0" y="40.0" width="110.0" height="128.0" rx="5" class="box k-mut"/>
+<text x="347.0" y="86.2" class="t" text-anchor="middle">concat</text>
+<text x="347.0" y="102.2" class="t" text-anchor="middle">L2-normalize</text>
+<text x="347.0" y="116.6" class="m" text-anchor="middle">= key, shared</text>
+<text x="347.0" y="130.6" class="m" text-anchor="middle">with retrieval</text>
+<path d="M268.0,67.0 L289.0,90.0" class="ln" marker-end="url(#honor_dsbc_net-ah)"/>
+<path d="M268.0,141.0 L289.0,118.0" class="ln" marker-end="url(#honor_dsbc_net-ah)"/>
+<rect x="428.0" y="40.0" width="190.0" height="128.0" rx="5" class="box k-acc"/>
+<text x="523.0" y="60.0" class="t" text-anchor="middle">3-layer MLP</text>
+<rect x="440.0" y="72.0" width="166.0" height="25.0" rx="3" class="box"/>
+<text x="450.0" y="89.0" class="m">Linear → 512</text>
+<text x="596.0" y="89.0" class="m" text-anchor="end">ReLU</text>
+<rect x="440.0" y="103.0" width="166.0" height="25.0" rx="3" class="box"/>
+<text x="450.0" y="120.0" class="m">Linear 512 → 512</text>
+<text x="596.0" y="120.0" class="m" text-anchor="end">ReLU</text>
+<rect x="440.0" y="134.0" width="166.0" height="25.0" rx="3" class="box"/>
+<text x="450.0" y="151.0" class="m">Linear 512 → H·D</text>
+<path d="M404.0,104.0 L425.0,104.0" class="ln" marker-end="url(#honor_dsbc_net-ah)"/>
+<rect x="644.0" y="40.0" width="136.0" height="60.0" rx="5" class="box k-blue"/>
+<text x="712.0" y="67.2" class="t" text-anchor="middle">initial noise ε</text>
+<text x="712.0" y="81.6" class="m" text-anchor="middle">H × D, H = 40</text>
+<path d="M620.0,70.0 L641.0,70.0" class="ln" marker-end="url(#honor_dsbc_net-ah)"/>
+<rect x="644.0" y="124.0" width="136.0" height="44.0" rx="5" class="box k-mut"/>
+<text x="712.0" y="143.2" class="t" text-anchor="middle">frozen action head</text>
+<text x="712.0" y="157.6" class="m" text-anchor="middle">flow matching</text>
+<path d="M712.0,102.0 L712.0,121.0" class="ln k-blue" marker-end="url(#honor_dsbc_net-ahblue)"/>
+<line x1="0.0" y1="204.0" x2="780.0" y2="204.0" class="grid"/>
+<text x="0.0" y="222.0" class="cap">TRAINING DATA</text>
+<text x="0.0" y="240.0" class="s">(key, ε*) pairs from</text>
+<text x="0.0" y="254.0" class="m">takeover corrections</text>
+<text x="209.0" y="222.0" class="cap">LOSS</text>
+<text x="209.0" y="240.0" class="s">MSE</text>
+<text x="209.0" y="254.0" class="m">behavior cloning</text>
+<line x1="195.0" y1="214.0" x2="195.0" y2="264.0" class="grid"/>
+<text x="404.0" y="222.0" class="cap">OPTIMIZER</text>
+<text x="404.0" y="240.0" class="s">Adam · lr 1e-3</text>
+<text x="404.0" y="254.0" class="m">2,000 full-batch steps</text>
+<line x1="390.0" y1="214.0" x2="390.0" y2="264.0" class="grid"/>
+<text x="599.0" y="222.0" class="cap">SHAPES</text>
+<text x="599.0" y="240.0" class="s">D and key width read</text>
+<text x="599.0" y="254.0" class="m">from the checkpoint</text>
+<line x1="585.0" y1="214.0" x2="585.0" y2="264.0" class="grid"/>
+</svg>

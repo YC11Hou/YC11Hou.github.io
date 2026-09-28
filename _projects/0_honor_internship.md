@@ -84,7 +84,7 @@ The Shanghai lab was set up from scratch after I joined: robot configuration, tw
 
 {% include svg_figure.liquid name="honor_arch" caption="Actor–Learner–Robot architecture. The Actor runs the policy against the robot, only successful episodes reach the Learner, and the Learner pushes the trainable weights back to the Actor every 1,000 steps." %}
 
-{% include svg_figure.liquid name="honor_gates" caption="Gates before an episode enters training. The success classifier (trained on 572 episodes, frame-level F1 0.976, labels derived automatically from gripper signals) latches only after 20 consecutive frames above 0.8 — this hysteresis was added after the first real-robot session, where the classifier declared success within 1–2 s and false positives filled the buffer. Base-demonstration anchors in every batch guard against forgetting." %}
+{% include svg_figure.liquid name="honor_gates" caption="Gates before an episode enters training. The success classifier is a ResNet18 on a single left-camera frame with a one-logit head, trained with BCE + pos_weight on 572 episodes (episode-level split, online augmentation, labels derived automatically from gripper signals; frame-level F1 0.976). It latches only after 20 consecutive frames above 0.8 — this hysteresis was added after the first real-robot session, where the classifier declared success within 1–2 s and false positives filled the buffer. Base-demonstration anchors in every batch guard against forgetting." %}
 
 ## 4. Real-robot SFT results: a new task from ≈ 0% to 50%+ in ~140 episodes
 
@@ -108,7 +108,9 @@ Fully autonomous success rate. Why a frozen backbone can still learn the mirrore
 
 Rejection sampling is a binary degenerate case of advantage: keep every success, discard every failure. **Ported the advantage labeling of π0.6 RECAP (as in RLinf) to GR00T N1.7** so that _all_ data is used, with "good vs. bad" as an input condition rather than a filter — failure episodes become negative samples instead of waste.
 
-{% include svg_figure.liquid name="honor_recap" caption="RECAP-style pipeline. The failure penalty c_fail = 1000 exceeds the gap between the longest success (1,000 frames) and the shortest failure (57 frames), so every failure ranks below every success. The value head pools image and text tokens separately and predicts a distribution over 201 atoms on [−1, 0]; n = 20 steps matches the paper's 1 s horizon at 20 Hz. Negatives only shape the unconditional CFG branch." %}
+{% include svg_figure.liquid name="honor_recap" caption="RECAP-style pipeline. The failure penalty c_fail = 1000 exceeds the gap between the longest success (1,000 frames) and the shortest failure (57 frames), so every failure ranks below every success. n = 20 steps matches the paper's 1 s horizon at 20 Hz. Negatives only shape the unconditional CFG branch." %}
+
+{% include svg_figure.liquid name="honor_value_net" caption="Value network. The GR00T backbone stays frozen and receives no gradient; image and text tokens are mean-pooled separately because image tokens far outnumber text tokens and a single mean would dilute the language conditioning. RLinf appends a learnable CLS token and uses a single linear head; the GR00T backbone accepts no extra input embeddings, so we pool instead and add one hidden layer. The atom distribution sketch is illustrative." %}
 
 Until V is ready, rule-based labels serve as a fallback: all success frames positive, autonomous frames of failures negative, and the 20 frames before every takeover overwritten as negative. The value network is trained separately and accepted only if Spearman ρ on held-out episodes (every 10th episode) exceeds 0.55: the dry run reached ρ = 0.647 (plateau 0.59) with loss 4.52 → 0.76, while a shuffled-label control stayed at an absolute ρ ≤ 0.26 and failed the criterion — so the criterion is meaningful. Agreement between V-based and rule-based labels was only 0.31, so the value network remains the bottleneck, and the real-robot A/B comparison was not completed.
 
@@ -117,6 +119,8 @@ Until V is ready, rule-based labels serve as a fallback: all success frames posi
 **RAPID** (_Rapid Adaptation from Physical Interventions via Diffusion-noise_), in the spirit of DSRL: training a new checkpoint takes time, and until it lands the robot still can't do the task. RAPID leaves the VLA weights frozen and only replaces the initial noise of flow matching, so a correction the human just made can be reused the next time a similar state appears. It was wired into on-robot inference in late August.
 
 {% include svg_figure.liquid name="honor_rapid" caption="RAPID. Offline, human corrections are inverted through the frozen policy into the initial noise that reproduces them (64 fine steps; 4-step Euler is too coarse) and stored in a memory keyed by observation. At deployment, retrieved noise is spherically interpolated with Gaussian noise before normal flow-matching sampling." %}
+
+{% include svg_figure.liquid name="honor_dsbc_net" caption="DSBC noise network. A small MLP maps the retrieval key directly to the initial noise, replacing nearest-neighbour lookup; the VLA itself stays frozen. H is the 40-step action horizon of the GR00T action head (30 steps are executed per inference); D is its action dimension." %}
 
 {% include svg_figure.liquid name="honor_rapid_chart" caption="Offline validation on 24 takeover episodes of a counter task. DSBC leads at every K (54.9–57.0); memory retrieval reaches only 20 at K = 1–2 and 45–49 at K ≥ 4; partial noising stays flat at 37; memory_delta is below 8. The metric is DTW gain, not real-robot success rate." %}
 

@@ -1,6 +1,6 @@
 <svg class="fig-svg" viewBox="0 0 780 300" role="img" aria-label="Progressive validation: fine-tuning gains shrink as the number of tasks grows" xmlns="http://www.w3.org/2000/svg">
 <defs><marker id="langgap_progressive-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah"/></marker><marker id="langgap_progressive-ahacc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-acc"/></marker><marker id="langgap_progressive-ahblue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-blue"/></marker><marker id="langgap_progressive-ahmut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-mut"/></marker></defs>
-<text x="0.0" y="12.0" class="cap">SUCCESS RATE (%) ON EXTENDED TASKS · Π0.5 LORA</text>
+<text x="0.0" y="12.0" class="cap">SUCCESS RATE (%) ON EXTENDED TASKS · π0.5 LoRA</text>
 <rect x="420.0" y="3.0" width="12.0" height="10.0" rx="2" class="f-rule"/>
 <text x="438.0" y="12.0" class="m">baseline π0.5</text>
 <rect x="548.0" y="3.0" width="12.0" height="10.0" rx="2" class="f-acc"/>

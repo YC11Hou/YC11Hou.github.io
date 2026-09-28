@@ -86,7 +86,9 @@ def num(v):
 
 
 def cap(f, x, y, s, anchor="start", cls="cap"):
-    f.text(x, y, s.upper(), cls, anchor)
+    keep = {"Hz", "LoRA"}  # units and names whose case carries meaning; Greek letters are never uppercased
+    up = " ".join(w if w in keep else "".join(c.upper() if c.isascii() else c for c in w) for w in s.split(" "))
+    f.text(x, y, up, cls, anchor)
 
 
 # ── Honor ─────────────────────────────────────────────────────────────
@@ -332,6 +334,96 @@ def honor_rapid():
     f.save()
 
 
+def spec_strip(f, y, cells):
+    cw = W / len(cells)
+    f.line(0, y - 10, W, y - 10, "grid")
+    for i, (k, lines) in enumerate(cells):
+        x = i * cw + (0 if i == 0 else 14)
+        cap(f, x, y + 8, k)
+        for j, t in enumerate(lines):
+            f.text(x, y + 26 + j * 14, t, "m" if j else "s")
+        if i:
+            f.line(i * cw, y, i * cw, y + 50, "grid")
+
+
+def legend_frozen_trained(f, y):
+    f.rect(W - 250, y - 9, 12, 12, "box k-mut", 2)
+    f.text(W - 232, y + 1, "frozen (GR00T)", "m")
+    f.rect(W - 130, y - 9, 12, 12, "box k-acc", 2)
+    f.text(W - 112, y + 1, "trained", "m")
+
+
+def honor_value_net():
+    f = Fig("honor_value_net", 300, "Architecture of the distributional value network used for RECAP")
+    cap(f, 0, 12, "value network · distributional critic")
+    legend_frozen_trained(f, 12)
+    y, h = 40, 104
+    f.node(0, y, 150, h, [("Frozen GR00T", "t"), ("VLM backbone", "t"), ("last hidden state", "m"), ("151 tokens × 2048", "m")], "mut")
+    f.node(180, y, 150, 44, [("image tokens", "t"), ("masked mean · 2048", "m")], "mut")
+    f.node(180, y + 60, 150, 44, [("text tokens", "t"), ("masked mean · 2048", "m")], "mut")
+    f.arrow([(152, y + 30), (177, y + 22)])
+    f.arrow([(152, y + 74), (177, y + 82)])
+    f.node(360, y, 100, h, [("concat", "t"), ("4096-d", "m"), ("stop-gradient", "m"), ("to backbone", "m")], "mut")
+    f.arrow([(332, y + 22), (357, y + 40)])
+    f.arrow([(332, y + 82), (357, y + 64)])
+    f.node(490, y, 130, h, [("Linear 4096 → 512", "t"), ("GELU", "m"), ("LayerNorm", "m")], "acc")
+    f.node(650, y, 130, h, [("Linear 512 → 201", "t"), ("logits over", "m"), ("201 atoms", "m")], "acc")
+    f.arrow([(462, y + h / 2), (487, y + h / 2)])
+    f.arrow([(622, y + h / 2), (647, y + h / 2)])
+    # softmax over atoms -> expected value
+    bx, by, bw, bh = 470, 176, 310, 50
+    import math
+    for i in range(41):
+        z = -1 + i / 40
+        p = math.exp(-((z + 0.32) ** 2) / 0.018) + 0.35 * math.exp(-((z + 0.7) ** 2) / 0.01)
+        f.rect(bx + i * bw / 41, by + bh - p * bh, bw / 41 - 1.5, p * bh, "f-acc", 0, ' fill-opacity="0.55"')
+    f.line(bx, by + bh, bx + bw, by + bh, "axis")
+    f.text(bx, by + bh + 14, "−1", "m", "middle")
+    f.text(bx + bw, by + bh + 14, "0", "m", "middle")
+    f.text(bx + bw / 2, by + bh + 14, "atoms z₁ … z₂₀₁", "m", "middle")
+    f.path(f"M715,{y + h + 2} L715,{by - 4}", "acc")
+    f.text(0, by + 12, "V(o, l) = Σᵢ softmax(logits)ᵢ · zᵢ ,  zᵢ evenly spaced on [−1, 0]", "serif")
+    f.text(0, by + 32, "target: normalized empirical return, split between its two nearest atoms (two-hot)", "m")
+    f.text(0, by + 46, "loss: cross-entropy against the two-hot target", "m")
+    spec_strip(f, 250, [("optimizer", ["Adam · lr 1e-4", "batch 256"]), ("acceptance", ["held-out Spearman ρ > 0.55", "dry run 0.647"]),
+                        ("pooling", ["image / text separately:", "keeps language conditioning"]),
+                        ("vs. RLinf", ["pooled, no CLS token", "hence one extra hidden layer"])])
+    f.save()
+
+
+def honor_dsbc_net():
+    f = Fig("honor_dsbc_net", 280, "Architecture of the DSBC noise network used in RAPID")
+    cap(f, 0, 12, "DSBC noise network · key → initial noise")
+    legend_frozen_trained(f, 12)
+    y, h = 40, 128
+    f.node(0, y, 110, h, [("Frozen GR00T", "t"), ("encoder", "t"), ("current", "m"), ("observation", "m")], "mut")
+    f.node(136, y, 130, 54, [("VLM last token", "t"), ("backbone feature", "m")], "mut")
+    f.node(136, y + 74, 130, 54, [("state features", "t"), ("mean over tokens", "m")], "mut")
+    f.arrow([(112, y + 40), (133, y + 27)])
+    f.arrow([(112, y + 88), (133, y + 101)])
+    f.node(292, y, 110, h, [("concat", "t"), ("L2-normalize", "t"), ("= key, shared", "m"), ("with retrieval", "m")], "mut")
+    f.arrow([(268, y + 27), (289, y + 50)])
+    f.arrow([(268, y + 101), (289, y + 78)])
+    mx, mw = 428, 190
+    f.rect(mx, y, mw, h, "box k-acc", 5)
+    f.text(mx + mw / 2, y + 20, "3-layer MLP", "t", "middle")
+    for i, (a, b) in enumerate([("Linear → 512", "ReLU"), ("Linear 512 → 512", "ReLU"), ("Linear 512 → H·D", "")]):
+        yy = y + 32 + i * 31
+        f.rect(mx + 12, yy, mw - 24, 25, "box", 3)
+        f.text(mx + 22, yy + 17, a, "m")
+        if b:
+            f.text(mx + mw - 22, yy + 17, b, "m", "end")
+    f.arrow([(404, y + h / 2), (425, y + h / 2)])
+    f.node(644, y, 136, 60, [("initial noise ε", "t"), ("H × D, H = 40", "m")], "blue")
+    f.arrow([(620, y + 30), (641, y + 30)])
+    f.node(644, y + 84, 136, 44, [("frozen action head", "t"), ("flow matching", "m")], "mut")
+    f.arrow([(712, y + 62), (712, y + 81)], "blue")
+    spec_strip(f, 214, [("training data", ["(key, ε*) pairs from", "takeover corrections"]), ("loss", ["MSE", "behavior cloning"]),
+                        ("optimizer", ["Adam · lr 1e-3", "2,000 full-batch steps"]),
+                        ("shapes", ["D and key width read", "from the checkpoint"])])
+    f.save()
+
+
 RAPID_K = ["K = 1", "K = 2", "K = 4", "K = 8", "K = 12"]
 RAPID = [("DSBC", "noise network π(ε | key), behavior-cloned on (key, ε*) pairs", "f-acc", 1, (54.9, 54.6, 56.8, 55.8, 57.0)),
          ("memory_dct", "ε* rebuilt from its first 8 DCT coefficients (default)", "f-blue", 1, (20.4, 20.3, 45.0, 47.3, 49.0)),
@@ -573,7 +665,7 @@ def vehicle_loop():
 
 if __name__ == "__main__":
     for fn in [honor_pipeline, honor_chunk, honor_fsm, honor_datapipe, honor_arch, honor_gates, honor_curve,
-               honor_recap, honor_rapid, honor_rapid_chart, langgap_diagnosis, langgap_progressive, langgap_benchmark,
+               honor_recap, honor_value_net, honor_rapid, honor_dsbc_net, honor_rapid_chart, langgap_diagnosis, langgap_progressive, langgap_benchmark,
                aion_thor, aion_isaac, vln_pipeline, vehicle_loop]:
         fn()
         print("wrote", fn.__name__)

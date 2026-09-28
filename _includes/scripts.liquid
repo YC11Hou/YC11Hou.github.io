@@ -200,12 +200,15 @@
 
 {% if site.enable_math and page.hero != true %}
   <!-- MathJax (skipped on the landing page: no math there, 1 MB competing with the hero video) -->
+  {% comment %}
+    No SRI here: the self-hosted tex-mml-chtml.js is re-minified by jekyll-terser (it only skips *.min.js),
+    so its hash never matches the CDN integrity value and the browser would refuse to run it.
+  {% endcomment %}
   <script
     defer
     type="text/javascript"
     id="MathJax-script"
     src="{{ site.third_party_libraries.mathjax.url.js }}"
-    integrity="{{ site.third_party_libraries.mathjax.integrity.js }}"
     crossorigin="anonymous"
   ></script>
   {% unless page.pseudocode %}
