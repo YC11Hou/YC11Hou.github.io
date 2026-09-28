@@ -20,6 +20,13 @@ github: https://github.com/YC11Hou/habitat-aerial-nav
   </a>
 </p>
 
+<div class="contrib" markdown="1">
+What I did — click to jump
+
+1. [Trajectory generation pipeline](#pipeline) — start-goal sampling, Lattice A\* cruise planning, takeoff → cruise → landing assembly, video-to-text instructions.
+2. [Dataset](#overview) — 90 Habitat scenes, 10,000+ drone VLN trajectories, open-sourced.
+</div>
+
 ## Demo
 
 <div class="media-row">
@@ -44,7 +51,7 @@ github: https://github.com/YC11Hou/habitat-aerial-nav
   </div>
 </div>
 
-## Overview
+## Overview {#overview}
 
 Built a robust pipeline to generate diverse 3D navigation trajectories in the Habitat simulator for training vision-language navigation (VLN) policies on aerial robots.
 
@@ -54,7 +61,7 @@ Built a robust pipeline to generate diverse 3D navigation trajectories in the Ha
 
 **Scale:** 90 scenes × 200–300 start-goal pairs each → **10,000+** three-stage 3D trajectories with language instructions, open-sourced on GitHub.
 
-## Pipeline
+## Pipeline {#pipeline}
 
 {% include svg_figure.liquid name="vln_pipeline" caption="Four-step generation pipeline. Lattice A* plans over motion primitives in (x, y, θ), so the drone turns while moving forward instead of making the right-angle turns of Grid A* (sketch below, illustrative)." %}
 

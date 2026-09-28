@@ -15,7 +15,15 @@ related_publications: false
 
 Working on Honor's self-developed **humanoid robot**: teleoperation data collection, replay, training, and on-robot deployment, along with **real-robot RL** algorithm research for **Vision-Language-Action (VLA)** models on custom manipulation tasks.
 
-The internship covered five threads, in the order below: (1) an end-to-end real-robot loop with a four-category data design; (2) smooth human takeover and an intervention-driven data pipeline; (3) a distributed Actor–Learner–Robot learning loop on the real robot, where real-robot SFT lifted a new task from ≈ 0% to 50%+; (4) algorithm work — RECAP-style advantage-conditioned training and RAPID noise-space fast adaptation; (5) extension to loco-manipulation, plus a set of bugs that only surfaced on the real robot.
+<div class="contrib" markdown="1">
+What I did — click to jump
+
+1. [End-to-end VLA pipeline](#loop) — data collection, processing, training, inference and real-robot deployment, built from scratch in the Shanghai lab.
+2. [Offline data design](#data-design) — four balanced demonstration categories that teach tracking and failure recovery.
+3. [Human takeover](#takeover) — smooth autonomy ↔ teleoperation switching with takeover-state detection, the foundation for Online SFT and real-robot RL.
+4. [Actor–Learner–Robot loop](#online-loop) — online rejection sampling (Hi-ORS) on three machines; [a new task from ≈ 0% to 50%+](#results).
+5. [RL algorithms](#recap) — RECAP-style advantage conditioning and [RAPID noise-space adaptation](#rapid), extended to [loco-manipulation](#loco), plus [real-robot debugging](#debugging).
+</div>
 
 ## Demos
 
@@ -49,7 +57,7 @@ Four categories of teleoperated demonstrations: standard demonstrations, perturb
 
 A task the offline-trained policy could not perform is learned on the robot through the real-robot learning loop — human takeover data flows back into training, and the takeover ratio drops as new checkpoints are dispatched.
 
-## 1. Real-robot loop & data design
+## 1. Real-robot loop & data design {#loop}
 
 The Shanghai lab was set up from scratch after I joined: robot configuration, two teleoperation rigs (Pico VR and motion capture), training for the data-collection operators, and the training pipeline. The task is pick-and-place (bottle → basket) with a single fixed instruction.
 
@@ -60,8 +68,9 @@ The Shanghai lab was set up from scratch after I joined: robot configuration, tw
 **On the robot**, the place phase almost never fails — the policy keeps up even when the basket is dragged fast. Pick failures correlate with object position; this traced back to the data (fixed stance, no local motion during collection, so the model never builds a sense of distance), not to arm accuracy. Outcome: the lab gained an in-house "collect → fine-tune → validate on robot" iteration loop instead of relying on externally delivered models.
 
 **Why the four data categories.** Categories ①–③ (standard, pick-phase perturbation, place-phase perturbation) teach the policy to _track_ a moving object or container. Category ④ teaches it to _recover_: starting from the hovering pose right after a missed grasp, the demonstration lowers the hand, re-grasps and places. Without it, the policy often doesn't realize the grasp failed — it lifts an empty hand, moves to the basket and "places" nothing. The four categories are roughly balanced; the robustness in the demo above comes from this data design, not from hyper-parameter tuning.
+{: #data-design}
 
-## 2. Human takeover & intervention-driven data pipeline
+## 2. Human takeover & intervention-driven data pipeline {#takeover}
 
 <div class="ratio-16x9" style="margin-bottom: 1rem;">
   <video controls preload="metadata" poster="{{ '/assets/video/honor/takeover_demo_poster.jpg' | relative_url }}">
@@ -78,7 +87,7 @@ The Shanghai lab was set up from scratch after I joined: robot configuration, tw
 
 {% include svg_figure.liquid name="honor_datapipe" caption="From robot to learner: every episode, including failures, is recorded, judged and uploaded; the learner buckets episodes by outcome. Bottom: composition of one round of real-robot data (142–416 frames per episode)." %}
 
-## 3. Distributed real-robot learning loop
+## 3. Distributed real-robot learning loop {#online-loop}
 
 **Reproduced the Hi-ORS rejection-sampling loop and ported it from π0 + a Dobot arm to GR00T N1.7 + a humanoid.** Three machines run simultaneously.
 
@@ -86,7 +95,7 @@ The Shanghai lab was set up from scratch after I joined: robot configuration, tw
 
 {% include svg_figure.liquid name="honor_gates" caption="Gates before an episode enters training. The success classifier is a ResNet18 on a single left-camera frame with a one-logit head, trained with BCE + pos_weight on 572 episodes (episode-level split, online augmentation, labels derived automatically from gripper signals; frame-level F1 0.976). It latches only after 20 consecutive frames above 0.8 — this hysteresis was added after the first real-robot session, where the classifier declared success within 1–2 s and false positives filled the buffer. Base-demonstration anchors in every batch guard against forgetting." %}
 
-## 4. Real-robot SFT results: a new task from ≈ 0% to 50%+ in ~140 episodes
+## 4. Real-robot SFT results: a new task from ≈ 0% to 50%+ in ~140 episodes {#results}
 
 When the policy stalls, the operator takes over via Pico; takeover data flows straight into the Learner, and the takeover ratio serves as a live metric. **Scene 1** moves the bottle to the right, where the offline data is sparse. **Scene 2** swaps the whole layout left–right (basket left, bottle right) — the exact opposite of all offline data — so the offline SFT baseline is ≈ 0%.
 
@@ -104,7 +113,7 @@ When the policy stalls, the operator takes over via Pico; takeover data flows st
 
 Fully autonomous success rate. Why a frozen backbone can still learn the mirrored layout: the failure mode was _not moving at all_ rather than moving the wrong way — visual understanding was intact, only the action mapping was missing.
 
-## 5. RECAP-style advantage-conditioned training
+## 5. RECAP-style advantage-conditioned training {#recap}
 
 Rejection sampling is a binary degenerate case of advantage: keep every success, discard every failure. **Ported the advantage labeling of π0.6 RECAP (as in RLinf) to GR00T N1.7** so that _all_ data is used, with "good vs. bad" as an input condition rather than a filter — failure episodes become negative samples instead of waste.
 
@@ -114,7 +123,7 @@ Rejection sampling is a binary degenerate case of advantage: keep every success,
 
 Until V is ready, rule-based labels serve as a fallback: all success frames positive, autonomous frames of failures negative, and the 20 frames before every takeover overwritten as negative. The value network is trained separately and accepted only if Spearman ρ on held-out episodes (every 10th episode) exceeds 0.55: the dry run reached ρ = 0.647 (plateau 0.59) with loss 4.52 → 0.76, while a shuffled-label control stayed at an absolute ρ ≤ 0.26 and failed the criterion — so the criterion is meaningful. Agreement between V-based and rule-based labels was only 0.31, so the value network remains the bottleneck, and the real-robot A/B comparison was not completed.
 
-## 6. RAPID: noise-space fast adaptation
+## 6. RAPID: noise-space fast adaptation {#rapid}
 
 **RAPID** (_Rapid Adaptation from Physical Interventions via Diffusion-noise_), in the spirit of DSRL: training a new checkpoint takes time, and until it lands the robot still can't do the task. RAPID leaves the VLA weights frozen and only replaces the initial noise of flow matching, so a correction the human just made can be reused the next time a similar state appears. It was wired into on-robot inference in late August.
 
@@ -126,7 +135,7 @@ Until V is ready, rule-based labels serve as a fallback: all success frames posi
 
 The audit was **pre-registered**: audit PASS; reversal CONDITIONAL (reconstruction error 0.232, within 0.10–0.30); spread downgraded to fragile after a re-run; transfer PASS (p ≈ 1e-21). Under these criteria the claim "retrieval wins at K < 10" was **dropped** — the experimental design rejected my own hypothesis — and the system converged on DSBC as the main path with memory retrieval as an optional front end. Next steps were distilling DSBC into the policy, soft-retiring memory entries, and connecting it to real-robot RL.
 
-## 7. Extending to loco-manipulation
+## 7. Extending to loco-manipulation {#loco}
 
 <div class="ratio-16x9" style="margin-bottom: 1rem;">
   <video controls preload="metadata" poster="{{ '/assets/video/honor/locomanip_demo_poster.jpg' | relative_url }}">
@@ -151,7 +160,7 @@ The whole stack — takeover, the real-robot learning loop, RECAP and RAPID — 
 
 **On metrics, honestly:** the real-robot SFT stage has complete numbers (55% / 50%). After switching to the loco task, all components were implemented and wired in, but no metric-level improvement was achieved on it: the maturity of the whole-body hardware and locomotion stack at the time did not allow systematic real-robot evaluation.
 
-## 8. Real-robot debugging
+## 8. Real-robot debugging {#debugging}
 
 None of these could be found by reviewing code offline — they only surfaced during long real-robot runs, and each was located with a probe or a quantitative metric.
 

@@ -13,6 +13,13 @@ end: 2025-04
 meta: ROS 2 · Jetson Orin NX · Team lead
 ---
 
+<div class="contrib" markdown="1">
+What I did (undergraduate thesis) — click to jump
+
+1. [Hardware](#hardware) and [software stack](#software) — a complete real-robot closed loop: Cartographer SLAM, Navigation2, YOLO detection on a Jetson.
+2. [Frontier exploration](#frontier) — extract frontiers from the map, score them by information gain, and navigate to the best one.
+</div>
+
 ## Demo
 
 <div class="media-row">
@@ -36,7 +43,7 @@ An autonomous rescue robot designed to explore unknown indoor environments and m
   <img src="/assets/img/p1_robot_real.jpg" alt="Hardware overview" style="max-width: 70%; border-radius: 12px;">
 </div>
 
-## Hardware
+## Hardware {#hardware}
 
 - **Jetson Orin NX 16GB** — onboard compute (Ubuntu 22.04, ROS2 Humble)
 - **RPLIDAR C1** — 2D LiDAR for SLAM and mapping
@@ -44,13 +51,13 @@ An autonomous rescue robot designed to explore unknown indoor environments and m
 - **STM32F407VET6 / MPU6050** — motor control and IMU
 - **MG513 DC Motors** — differential drive
 
-## Software Stack
+## Software Stack {#software}
 
 - **Cartographer** — real-time SLAM (mapping and localization)
 - **Navigation2** — point-to-point autonomous navigation
 - **YOLOv11** — casualty detection via depth camera
 
-## Key Contribution: Information-Gain Frontier Exploration
+## Key Contribution: Information-Gain Frontier Exploration {#frontier}
 
 Standard frontier exploration creates redundant paths. We formulate an optimized frontier selection that balances new information against travel cost:
 

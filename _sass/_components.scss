@@ -1030,3 +1030,39 @@ ul.task-list input[type="checkbox"] {
     transform: rotate(360deg);
   }
 }
+
+// "What I did" block at the top of a project page: each item jumps to its section.
+.contrib {
+  margin: 0 0 2rem;
+  padding: 0.9rem 1.2rem 0.6rem;
+  border-left: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
+
+  > p:first-child {
+    margin: 0 0 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  ol {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+
+  li {
+    margin-bottom: 0.35rem;
+  }
+
+  a {
+    color: var(--accent);
+    font-weight: 600;
+  }
+}
+
+.page h2[id],
+.page p[id] {
+  scroll-margin-top: 5rem;
+}

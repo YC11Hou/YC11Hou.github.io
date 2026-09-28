@@ -27,6 +27,15 @@ meta: First author
   </a>
 </p>
 
+<div class="contrib" markdown="1">
+What I did (first author) — click to jump
+
+1. [Benchmark design](#benchmark) — 99 tasks built on a [four-dimensional semantic perturbation](#diagnosis) of LIBERO, with [same-scene multi-task design principles](#design) so language is the only signal.
+2. [Data collection](#data) — a scripted waypoint pipeline: 16 extended tasks × 150 demos ≈ 2,400 demonstrations, fully automatic.
+3. [Model training](#training) — π0.5 LoRA fine-tuning; a single task goes from 0% to 90%.
+4. [Result analysis](#results) — [diagnosis](#diagnosis) (93.8% original vs. 21.4% extended, 0% on Change Target), the full benchmark across four VLA models, and progressive multi-task validation.
+</div>
+
 ## Demo
 
 <div class="media-row">
@@ -49,10 +58,12 @@ Vision-Language-Action (VLA) models achieve over 95% success on standard benchma
 ## Details
 
 **1. Benchmark & Dataset**
+{: #benchmark}
 
 LangGap benchmark: **99 tasks** total — 40 original LIBERO tasks + 59 extended semantic perturbation tasks. We provide a training dataset of 56 tasks: 16 self-collected extended tasks (150 demos each) + 40 original tasks (50 demos each), totaling ~4,100 trajectories.
 
 **2. Problem Discovery**
+{: #diagnosis}
 
 When changing the instruction from "put bowl on plate" → "put bowl on stove" in the same visual scene, the model still executes the original action (goes to plate), achieving **0% success**. This reveals that VLAs perform vision-to-action pattern matching rather than genuine language understanding.
 
@@ -67,12 +78,14 @@ We design a four-dimensional semantic perturbation diagnostic — Change Object,
 </div>
 
 **3. Design Principles**
+{: #design}
 
 1. **Same-Scene Multi-Task** — Multiple tasks share identical initial visual states, eliminating visual shortcuts. A model ignoring language achieves at most 1/k success rate (k = tasks per scene).
 2. **Instruction-Level Train/Eval Split** — Training tasks do not include all test tasks; held-out evaluation contains unseen language instructions to test compositional generalization.
 3. **Physical Feasibility Validation** — All extended tasks verified in the LIBERO simulator to ensure graspability, reachability, and detectability.
 
 **4. Data Collection Pipeline**
+{: #data}
 
 - **Scalable & Diverse Generation:** We employ a scripted, waypoint-based collection pipeline to efficiently and stably gather 150 successful episodes per task. While the waypoints are hard-coded for each specific task, the simulator introduces slight natural variations in the initial tabletop layouts. This ensures the collected trajectories are visually and dynamically diverse, preventing models from merely memorizing rigid, identical paths.
 - **Hierarchical Control Architecture:** Each task utilizes a custom script that decomposes the pick-and-place process into multiple sequential waypoints. At the high level, we apply pure Proportional (P) control to calculate positional errors and output continuous action commands. These commands are then executed by the simulator's low-level OSC (Operational Space Control) PD controller, achieving seamless, highly precise continuous control.
@@ -90,6 +103,7 @@ We design a four-dimensional semantic perturbation diagnostic — Change Object,
 <p class="caption">A sample of the 2,400 scripted demonstrations.</p>
 
 **Fine-tuning: single task from 0% to 90%**
+{: #training}
 
 <div class="ratio-16x9" style="margin-bottom: 1rem;">
   <video controls preload="metadata" poster="/assets/img/langgap_before_after_poster.jpg">
@@ -103,6 +117,7 @@ We design a four-dimensional semantic perturbation diagnostic — Change Object,
 - Training and test instructions are verbatim identical except for the 43 held-out tasks, whose instructions are new.
 
 **5. Results**
+{: #results}
 
 {% include svg_figure.liquid name="langgap_benchmark" caption="Full benchmark: recent VLA models on all four LIBERO suites, original versus extended tasks. Every model shows a large language gap; our 45-task fine-tuned π0.5 improves the extended total (22.8) and Change Target (0 → 6.2) while keeping 89.5 on the original tasks. The 43 held-out tasks were never trained on." %}
 

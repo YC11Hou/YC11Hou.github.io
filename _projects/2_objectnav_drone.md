@@ -24,6 +24,14 @@ meta: Co-author
   </a>
 </p>
 
+<div class="contrib" markdown="1">
+What I did (second author) — click to jump
+
+1. [Dual-policy framework](#framework) — split exploration from goal-reaching, because CLIP alignment is useless when the target is out of view.
+2. [Exploration policy](#exploration) — designed, trained and validated it: the largest open region of the depth image and its bearing are fed to the LSTM, with forward / center / safety / coverage rewards.
+3. [Evaluation](#evaluation) — AI2-THOR benchmark plus a multi-room IsaacSim evaluation where the target sits in another room.
+</div>
+
 ## Demo
 
 <div class="ratio-16x9" style="margin-bottom: 1rem;">
@@ -47,6 +55,7 @@ Indoor object-goal navigation for UAVs with **3D locomotion**: the drone must au
 **Why two policies:** prior work uses a single goal-reaching policy (LSTM + CLIP text–vision alignment). That is enough in AI2-THOR, where rooms are small and the target is usually visible after one turn; but when the target is in another room, CLIP has nothing to align with and the agent spins in place. We therefore split behavior by whether the target is in view, extend it to 3D motion for drones, and scale from single rooms to multi-room environments.
 
 **2. Framework**
+{: #framework}
 
 A dual-policy RL framework that switches between two modes based on target visibility:
 
@@ -63,6 +72,7 @@ A dual-policy RL framework that switches between two modes based on target visib
 </div>
 
 **3. Exploration Mode**
+{: #exploration}
 
 **Input:**
 Depth map + ROI (Region of Interest). The ROI identifies open, navigable areas in the depth image — simulating how humans instinctively look toward open spaces when navigating. The ROI is extracted using OpenCV-based methods and provides a directional cue (centroid position $$(d_x, d_y)$$ and mean depth $$\bar{z}$$), rather than absolute unknown-space information.
@@ -98,6 +108,7 @@ $$r_t^G = R_{dist} + R_{bbox} + R_{parent} + R_{suc} - R_{collision}$$
 Discrete **3D** actions — forward, turn left/right, ascend, descend, etc.
 
 **6. Evaluation**
+{: #evaluation}
 
 Evaluated on two simulators: AI2-THOR (standard benchmark with seen/unseen object splits) and IsaacSim (larger multi-room environments where the target may be in a different room).
 
