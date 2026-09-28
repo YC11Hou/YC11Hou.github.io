@@ -43,9 +43,9 @@ ninja.data = [{
           section: "News",},{id: "news-completed-my-vla-algorithm-internship-at-honor-humanoid-robot",
           title: 'Completed my VLA algorithm internship at Honor (humanoid robot).',
           description: "",
-          section: "News",},{id: "projects-honor-humanoid-online-rl-for-vla",
-          title: 'Honor Humanoid: Online RL for VLA',
-          description: "VLA Algorithm Engineer Intern at Honor. Built a human-in-the-loop online SFT / online RL pipeline for Honor&#39;s self-developed humanoid robot — smooth teleoperator takeover, an intervention-driven data pipeline, and a distributed Actor–Learner–Robot learning loop.",
+          section: "News",},{id: "projects-honor-humanoid-real-robot-rl-for-vla",
+          title: 'Honor Humanoid: Real-Robot RL for VLA',
+          description: "VLA Algorithm Engineer Intern at Honor. Built a human-in-the-loop real-robot SFT / RL pipeline for Honor&#39;s self-developed humanoid robot — smooth teleoperator takeover, an intervention-driven data pipeline, and a distributed Actor–Learner–Robot learning loop.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/0_honor_internship/";
             },},{id: "projects-langgap-vla-language-understanding-benchmark",
