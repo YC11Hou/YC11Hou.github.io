@@ -1,0 +1,51 @@
+<svg class="fig-svg" viewBox="0 0 780 318" role="img" aria-label="Three-layer architecture: hardware, communication links and the ROS 2 software stack" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="vehicle_arch-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah"/></marker><marker id="vehicle_arch-ahacc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-acc"/></marker><marker id="vehicle_arch-ahblue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-blue"/></marker><marker id="vehicle_arch-ahmut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-mut"/></marker></defs>
+<text x="0.0" y="12.0" class="cap">SOFTWARE LAYER · ROS 2 HUMBLE ON THE JETSON</text>
+<rect x="0.5" y="22.0" width="779.0" height="92.0" rx="5" class="box k-mut"/>
+<rect x="14.0" y="36.0" width="177.5" height="64.0" rx="5" class="box"/>
+<text x="102.8" y="58.2" class="t" text-anchor="middle">Cartographer</text>
+<text x="102.8" y="72.6" class="m" text-anchor="middle">2D LiDAR SLAM</text>
+<text x="102.8" y="86.6" class="m" text-anchor="middle">mapping · localization</text>
+<rect x="205.5" y="36.0" width="177.5" height="64.0" rx="5" class="box"/>
+<text x="294.2" y="58.2" class="t" text-anchor="middle">Navigation2</text>
+<text x="294.2" y="72.6" class="m" text-anchor="middle">global + local planning</text>
+<text x="294.2" y="86.6" class="m" text-anchor="middle">costmaps · control</text>
+<rect x="397.0" y="36.0" width="177.5" height="64.0" rx="5" class="box k-blue"/>
+<text x="485.8" y="58.2" class="t" text-anchor="middle">Casualty localization</text>
+<text x="485.8" y="72.6" class="m" text-anchor="middle">YOLOv11-seg + depth</text>
+<text x="485.8" y="86.6" class="m" text-anchor="middle">→ map coordinates</text>
+<rect x="588.5" y="36.0" width="177.5" height="64.0" rx="5" class="box k-acc"/>
+<text x="677.2" y="58.2" class="t" text-anchor="middle">Frontier exploration</text>
+<text x="677.2" y="72.6" class="m" text-anchor="middle">information gain</text>
+<text x="677.2" y="86.6" class="m" text-anchor="middle">vs. travel cost</text>
+<rect x="0.5" y="196.0" width="164.8" height="72.0" rx="5" class="box"/>
+<text x="82.9" y="222.2" class="t" text-anchor="middle">Sensors</text>
+<text x="82.9" y="236.6" class="m" text-anchor="middle">RPLIDAR C1 · 2D LiDAR</text>
+<text x="82.9" y="250.6" class="m" text-anchor="middle">Astra Pro Plus · RGB-D</text>
+<rect x="205.2" y="196.0" width="164.8" height="72.0" rx="5" class="box k-blue"/>
+<text x="287.6" y="222.2" class="t" text-anchor="middle">Jetson Orin NX 16GB</text>
+<text x="287.6" y="236.6" class="m" text-anchor="middle">Ubuntu 22.04</text>
+<text x="287.6" y="250.6" class="m" text-anchor="middle">ROS 2 Humble</text>
+<rect x="410.0" y="196.0" width="164.8" height="72.0" rx="5" class="box"/>
+<text x="492.4" y="222.2" class="t" text-anchor="middle">STM32F407VET6</text>
+<text x="492.4" y="236.6" class="m" text-anchor="middle">Cortex-M4 · 168 MHz</text>
+<text x="492.4" y="250.6" class="m" text-anchor="middle">motor control</text>
+<rect x="614.8" y="196.0" width="164.8" height="72.0" rx="5" class="box"/>
+<text x="697.1" y="222.2" class="t" text-anchor="middle">IMU &amp; drive</text>
+<text x="697.1" y="236.6" class="m" text-anchor="middle">MPU6050 IMU</text>
+<text x="697.1" y="250.6" class="m" text-anchor="middle">MG513 motors · tracks</text>
+<path d="M168.2,232.0 L202.2,232.0" class="ln" marker-end="url(#vehicle_arch-ah)"/>
+<text x="185.2" y="225.0" class="m" text-anchor="middle">USB</text>
+<path d="M373.0,232.0 L407.0,232.0" class="ln" marker-start="url(#vehicle_arch-ah)" marker-end="url(#vehicle_arch-ah)"/>
+<text x="390.0" y="225.0" class="m" text-anchor="middle">UART</text>
+<path d="M577.8,232.0 L611.8,232.0" class="ln" marker-start="url(#vehicle_arch-ah)" marker-end="url(#vehicle_arch-ah)"/>
+<text x="594.8" y="225.0" class="m" text-anchor="middle">IIC</text>
+<path d="M287.6,193.0 L287.6,117.0" class="ln k-blue" marker-start="url(#vehicle_arch-ahblue)" marker-end="url(#vehicle_arch-ahblue)"/>
+<text x="0.0" y="152.0" class="cap">COMMUNICATION</text>
+<text x="299.6" y="152.0" class="s blue">ROS 2 topics</text>
+<text x="299.6" y="168.0" class="m">/scan · /map · /odometry/filtered · /cmd_vel · casualty positions</text>
+<line x1="0.5" y1="282.0" x2="370.0" y2="282.0" class="grid"/>
+<text x="185.2" y="300.0" class="cap" text-anchor="middle">HOST COMPUTER</text>
+<line x1="410.0" y1="282.0" x2="779.5" y2="282.0" class="grid"/>
+<text x="594.8" y="300.0" class="cap" text-anchor="middle">SLAVE COMPUTER</text>
+</svg>

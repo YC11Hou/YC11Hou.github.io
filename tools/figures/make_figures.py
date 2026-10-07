@@ -6,6 +6,7 @@ Numbers shown in figures live here and nowhere else. Usage: python3 tools/figure
 """
 
 import json
+import math
 from html import escape
 from pathlib import Path
 
@@ -663,9 +664,212 @@ def vehicle_loop():
     f.save()
 
 
+def two_way(f, x1, y1, x2, y2, kind=""):
+    k = f" k-{kind}" if kind else ""
+    f.add(f'<path d="M{x1:.1f},{y1:.1f} L{x2:.1f},{y2:.1f}" class="ln{k}" marker-start="url(#{f.name}-ah{kind})" '
+          f'marker-end="url(#{f.name}-ah{kind})"/>')
+
+
+def vehicle_arch():
+    f = Fig("vehicle_arch", 318, "Three-layer architecture: hardware, communication links and the ROS 2 software stack")
+    cap(f, 0, 12, "software layer · ROS 2 Humble on the Jetson")
+    f.rect(0.5, 22, W - 1, 92, "box k-mut", 5)
+    mods = [([("Cartographer", "t"), ("2D LiDAR SLAM", "m"), ("mapping · localization", "m")], ""),
+            ([("Navigation2", "t"), ("global + local planning", "m"), ("costmaps · control", "m")], ""),
+            ([("Casualty localization", "t"), ("YOLOv11-seg + depth", "m"), ("→ map coordinates", "m")], "blue"),
+            ([("Frontier exploration", "t"), ("information gain", "m"), ("vs. travel cost", "m")], "acc")]
+    gap, mw = 14, (W - 28 - 3 * 14) / 4
+    for i, (lines, k) in enumerate(mods):
+        f.node(14 + i * (mw + gap), 36, mw, 64, lines, k)
+    gap, hw, y, h = 40, (W - 1 - 3 * 40) / 4, 196, 72
+    hw_nodes = [([("Sensors", "t"), ("RPLIDAR C1 · 2D LiDAR", "m"), ("Astra Pro Plus · RGB-D", "m")], ""),
+                ([("Jetson Orin NX 16GB", "t"), ("Ubuntu 22.04", "m"), ("ROS 2 Humble", "m")], "blue"),
+                ([("STM32F407VET6", "t"), ("Cortex-M4 · 168 MHz", "m"), ("motor control", "m")], ""),
+                ([("IMU & drive", "t"), ("MPU6050 IMU", "m"), ("MG513 motors · tracks", "m")], "")]
+    for i, (lines, k) in enumerate(hw_nodes):
+        f.node(0.5 + i * (hw + gap), y, hw, h, lines, k)
+    for i, bus in enumerate(["USB", "UART", "IIC"]):
+        xa, xb = 0.5 + i * (hw + gap) + hw + 3, 0.5 + (i + 1) * (hw + gap) - 3
+        if i == 0:
+            f.arrow([(xa, y + h / 2), (xb, y + h / 2)])
+        else:
+            two_way(f, xa, y + h / 2, xb, y + h / 2)
+        f.text((xa + xb) / 2, y + h / 2 - 7, bus, "m", "middle")
+    jx = 0.5 + hw + gap + hw / 2
+    two_way(f, jx, y - 3, jx, 117, "blue")
+    cap(f, 0, 152, "communication")
+    f.text(jx + 12, 152, "ROS 2 topics", "s blue")
+    f.text(jx + 12, 168, "/scan · /map · /odometry/filtered · /cmd_vel · casualty positions", "m")
+    for label, a, b in [("host computer", 0, 1), ("slave computer", 2, 3)]:
+        x1, x2 = 0.5 + a * (hw + gap), 0.5 + b * (hw + gap) + hw
+        f.line(x1, y + h + 14, x2, y + h + 14, "grid")
+        cap(f, (x1 + x2) / 2, y + h + 32, label, "middle")
+    f.save()
+
+
+def flow_column(f, x0, title, steps, loops, w=200):
+    cap(f, x0, 14, title)
+    y0, h, pitch = 32, 30, 44
+    ys = [y0 + i * pitch for i in range(len(steps))]
+    for (s, k), y in zip(steps, ys):
+        dec = k == "dec"
+        f.rect(x0, y, w, h, "box" + ("" if k in ("", "dec") else f" k-{k}"), 15 if dec else 5)
+        f.text(x0 + w / 2, y + 19.5, s, "t" if not dec else "s", "middle")
+    for i in range(len(steps) - 1):
+        f.arrow([(x0 + w / 2, ys[i] + h + 2), (x0 + w / 2, ys[i + 1] - 3)])
+        if steps[i][1] == "dec":
+            f.text(x0 + w / 2 + 6, ys[i] + h + 11, "yes", "m")
+    for a, b, off in loops:
+        xr = x0 + w + off
+        f.path(f"M{x0 + w + 2},{ys[a] + h / 2} L{xr},{ys[a] + h / 2} L{xr},{ys[b] + h / 2} L{x0 + w + 3},{ys[b] + h / 2}", "mut")
+        f.text(x0 + w + 6, ys[a] + h / 2 - 5, "no", "m")
+    return ys, h
+
+
+def vehicle_modes():
+    f = Fig("vehicle_modes", 392, "Task flow of the two operating modes: autonomous exploration and rescue")
+    ys, h = flow_column(f, 0.5, "mode 1 · autonomous exploration", [
+        ("Initialize hardware & links", ""), ("Build the map · Cartographer", ""), ("Pick the optimal frontier", "acc"),
+        ("Plan & drive · Nav2", ""), ("Frontier reached?", "dec"), ("Exploration finished?", "dec"),
+        ("Save map + casualty list", "blue")], [(4, 3, 28), (5, 1, 48)])
+    sx, sy, sw = 270, ys[1], 110
+    f.rect(sx, sy, sw, ys[3] + h - sy, "box k-mut", 5)
+    for i, (t, c) in enumerate([("runs throughout", "m"), ("casualty", "t"), ("detection &", "t"), ("3D localization", "t"),
+                                 ("YOLOv11 + depth", "m")]):
+        f.text(sx + sw / 2, sy + 22 + i * 17, t, c, "middle")
+    f.path(f"M{sx + sw / 2},{ys[3] + h + 2} L{sx + sw / 2},{ys[6] + h / 2} L{204},{ys[6] + h / 2}", "blue", dash=True)
+    flow_column(f, 420, "mode 2 · rescue on the saved map", [
+        ("Initialize hardware & links", ""), ("Localize · Cartographer", ""), ("Load saved map · AMCL", ""),
+        ("Next casualty → Nav2 goal", "blue"), ("Plan & drive · Nav2", ""), ("Casualty reached?", "dec"),
+        ("All casualties reached?", "dec"), ("Rescue mission complete", "acc")], [(5, 4, 28), (6, 3, 48)])
+    f.save()
+
+
+def vehicle_localize():
+    f = Fig("vehicle_localize", 384, "From a YOLOv11 segmentation mask and a depth image to a casualty position on the map")
+    cap(f, 0, 12, "per camera frame")
+    steps = [([("① Segment", "t"), ("YOLOv11-seg on RGB", "m"), ("→ person mask", "m")], ""),
+             ([("② Range", "t"), ("mask on depth image", "m"), ("median filter → d_tar", "m")], ""),
+             ([("③ Bearing", "t"), ("mask centre x_cen", "m"), ("→ θ_off via FOV", "m")], ""),
+             ([("④ Camera frame", "t"), ("x_c = d_tar sin θ_off", "m"), ("y_c = d_tar cos θ_off", "m")], ""),
+             ([("⑤ Map frame", "t"), ("+ robot pose", "m"), ("→ casualty list", "m")], "acc")]
+    gap, nw = 16, (W - 1 - 4 * 16) / 5
+    for i, (lines, k) in enumerate(steps):
+        f.node(0.5 + i * (nw + gap), 24, nw, 78, lines, k)
+        if i < 4:
+            f.arrow([(0.5 + i * (nw + gap) + nw + 3, 63), (0.5 + (i + 1) * (nw + gap) - 3, 63)])
+    cap(f, 0, 140, "image plane")
+    f.rect(0.5, 150, 299, 170, "box", 4)
+    xc = 216
+    f.rect(xc - 20, 192, 40, 116, "box k-acc", 14)
+    f.text(xc, 254, "d_tar", "serif", "middle")
+    f.line(xc, 150, xc, 232, "ln k-acc dash")
+    f.line(xc, 266, xc, 320, "ln k-acc dash")
+    two_way(f, 0.5, 340, xc, 340, "acc")
+    f.text(xc / 2, 334, "x_cen", "serif", "middle")
+    two_way(f, 0.5, 366, 299.5, 366)
+    f.text(150, 360, "W_img", "serif", "middle")
+    cap(f, 400, 140, "top view · camera frame")
+    rx, ry, fov, th, d = 520, 352, 45, 26, 170
+    S, C = math.sin, math.cos
+    r = math.radians
+    f.arrow([(rx, ry), (rx, 152)], "mut")
+    f.arrow([(rx, ry), (772, ry)], "mut")
+    f.text(rx + 8, 160, "y (forward)", "m")
+    f.text(772, ry + 16, "x", "m", "end")
+    for sg in (-1, 1):
+        f.line(rx, ry, rx + sg * 210 * S(r(fov)), ry - 210 * C(r(fov)), "ln k-mut dash")
+    f.text(rx + 210 * S(r(fov)) + 6, ry - 210 * C(r(fov)) + 4, "camera FOV", "m")
+    tx, ty = rx + d * S(r(th)), ry - d * C(r(th))
+    f.line(tx, ty, tx, ry, "ln k-mut dash")
+    f.line(tx, ty, rx, ty, "ln k-mut dash")
+    f.add(f'<path d="M{rx},{ry} L{tx:.1f},{ty:.1f}" class="ln k-acc" style="stroke-width:1.6"/>')
+    f.text(rx + 0.85 * (tx - rx) - 8, ry + 0.85 * (ty - ry) + 4, "d_tar", "serif acc", "end")
+    f.add(f'<path d="M{rx},{ry - 80} A80,80 0 0 1 {rx + 80 * S(r(th)):.1f},{ry - 80 * C(r(th)):.1f}" class="ln k-acc"/>')
+    f.text(rx + 104 * S(r(th / 2)), ry - 104 * C(r(th / 2)) + 4, "θ_off", "serif", "middle")
+    f.text(tx, ry + 16, "x_c", "serif", "middle")
+    f.text(rx - 8, ty + 4, "y_c", "serif", "end")
+    f.add(f'<circle cx="{rx}" cy="{ry}" r="5.5" class="f-blue"/>')
+    f.text(rx - 10, ry + 4, "robot", "s", "end")
+    f.add(f'<circle cx="{tx:.1f}" cy="{ty:.1f}" r="5.5" class="f-acc"/>')
+    f.text(tx - 10, ty - 8, "casualty", "s acc", "end")
+    f.save()
+
+
+VEHICLE_SPEEDS = ["0.3 m/s", "0.6 m/s", "0.9 m/s"]
+VEHICLE_AREA = [  # searched area (m²) after 5 min, three runs per speed limit
+    ("Dormitory corridor", "narrow · many turns", [(122.22, 121.65, 112.63), (216.28, 190.06, 199.75), (217.27, 193.68, 228.91)]),
+    ("Teaching-area corridor", "long · open · flat", [(84.56, 97.00, 104.67), (154.41, 151.39, 140.16), (308.58, 342.25, 394.68)]),
+    ("Laboratory", "cluttered · irregular", [(209.8, 211.77, 165.69), (260.74, 233.81, 249.93), (249.6, 227.45, 247.57)]),
+]
+
+
+def vehicle_area():
+    f = Fig("vehicle_area", 350, "Area searched in five minutes at three speed limits in three indoor environments")
+    x0, x1, y0, y1 = 56, 780, 262, 60
+    Y = lambda v: y0 - v / 400 * (y0 - y1)
+    cap(f, 0, 12, "searched area in 5 min · 3 runs per setting")
+    for i, (sp, op) in enumerate(zip(VEHICLE_SPEEDS, [0.35, 0.65, 1])):
+        lx = 440 + i * 84
+        f.rect(lx, 3, 12, 12, "f-blue", 2, f' fill-opacity="{op}"')
+        f.text(lx + 18, 13, sp, "m")
+    f.add(f'<circle cx="{440 + 3 * 84 + 6}" cy="9" r="3" class="f-ink"/>')
+    f.text(440 + 3 * 84 + 18, 13, "one run", "m")
+    for v in range(0, 401, 100):
+        f.line(x0, Y(v), x1, Y(v), "grid")
+        f.text(x0 - 8, Y(v) + 4, str(v), "m", "end")
+    f.line(x0, y0, x1, y0, "axis")
+    f.text(16, (y0 + y1) / 2, "searched area (m²)", "m", "middle", f' transform="rotate(-90 16 {(y0 + y1) / 2:.1f})"')
+    gw, bw, bg = (x1 - x0) / 3, 52, 10
+    for g, (name, desc, runs) in enumerate(VEHICLE_AREA):
+        avg = [sum(r) / 3 for r in runs]
+        gx = x0 + g * gw + (gw - 3 * bw - 2 * bg) / 2
+        for i, (rs, a) in enumerate(zip(runs, avg)):
+            x = gx + i * (bw + bg)
+            f.rect(x, Y(a), bw, y0 - Y(a), "f-blue", 1, f' fill-opacity="{[0.35, 0.65, 1][i]}"')
+            for j, v in enumerate(rs):
+                f.add(f'<circle cx="{x + bw / 2 + (j - 1) * 13:.1f}" cy="{Y(v):.1f}" r="2.8" class="f-ink"/>')
+            f.text(x + bw / 2, Y(max(max(rs), a)) - 12, f"{a:.1f}", "m", "middle")
+        cx = x0 + g * gw + gw / 2
+        f.text(cx, y0 + 20, name, "t", "middle")
+        f.text(cx, y0 + 36, desc, "m", "middle")
+        best = max(range(3), key=lambda i: avg[i])
+        note = (f"{avg[2] / avg[0]:.1f}× from 0.3 to 0.9 m/s" if best == 2 and avg[2] / avg[1] > 1.3 else
+                f"+{100 * (avg[2] / avg[1] - 1):.0f}% from 0.6 to 0.9 m/s" if best == 2 else
+                f"peaks at {VEHICLE_SPEEDS[best]}")
+        f.text(cx, y0 + 56, note, "s acc", "middle")
+    f.text(0, 344, "Bars show the mean of the three runs; dots show the individual runs.", "m")
+    f.save()
+
+
+def vehicle_sites():
+    f = Fig("vehicle_sites", 620, "The three test environments and the maps built in five minutes at each speed limit")
+    lw, gap = 70, 12
+    cw = (W - lw - 2 * gap) / 3
+    ph, mh = cw * 300 / 460, cw * 260 / 460
+    keys = ["dorm", "teaching", "lab"]
+    for c, (k, (name, desc, _)) in enumerate(zip(keys, VEHICLE_AREA)):
+        x = lw + c * (cw + gap)
+        f.text(x + cw / 2, 16, name, "t", "middle")
+        f.text(x + cw / 2, 32, desc, "m", "middle")
+        f.add(f'<image href="/assets/img/vehicle/site_{k}.jpg" x="{x:.1f}" y="44" width="{cw:.1f}" height="{ph:.1f}" '
+              f'preserveAspectRatio="xMidYMid slice"/>')
+        for r, sp in enumerate(["03", "06", "09"]):
+            y = 44 + ph + 22 + r * (mh + 8)
+            f.add(f'<image href="/assets/img/vehicle/map_{k}_{sp}.jpg" x="{x:.1f}" y="{y:.1f}" width="{cw:.1f}" '
+                  f'height="{mh:.1f}" preserveAspectRatio="xMidYMid meet"/>')
+    cap(f, 0, 44 + ph / 2 + 4, "site")
+    cap(f, 0, 44 + ph + 14, "speed limit")
+    for r, sp in enumerate(VEHICLE_SPEEDS):
+        y = 44 + ph + 22 + r * (mh + 8)
+        f.text(0, y + mh / 2 + 4, sp, "s")
+    f.save()
+
+
 if __name__ == "__main__":
     for fn in [honor_pipeline, honor_chunk, honor_fsm, honor_datapipe, honor_arch, honor_gates, honor_curve,
                honor_recap, honor_value_net, honor_rapid, honor_dsbc_net, honor_rapid_chart, langgap_diagnosis, langgap_progressive, langgap_benchmark,
-               aion_thor, aion_isaac, vln_pipeline, vehicle_loop]:
+               aion_thor, aion_isaac, vln_pipeline, vehicle_loop, vehicle_arch, vehicle_modes, vehicle_localize,
+               vehicle_area, vehicle_sites]:
         fn()
         print("wrote", fn.__name__)

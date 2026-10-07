@@ -1,0 +1,26 @@
+<svg class="fig-svg" viewBox="0 0 780 620" role="img" aria-label="The three test environments and the maps built in five minutes at each speed limit" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="vehicle_sites-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah"/></marker><marker id="vehicle_sites-ahacc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-acc"/></marker><marker id="vehicle_sites-ahblue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-blue"/></marker><marker id="vehicle_sites-ahmut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-mut"/></marker></defs>
+<text x="184.3" y="16.0" class="t" text-anchor="middle">Dormitory corridor</text>
+<text x="184.3" y="32.0" class="m" text-anchor="middle">narrow · many turns</text>
+<image href="/assets/img/vehicle/site_dorm.jpg" x="70.0" y="44" width="228.7" height="149.1" preserveAspectRatio="xMidYMid slice"/>
+<image href="/assets/img/vehicle/map_dorm_03.jpg" x="70.0" y="215.1" width="228.7" height="129.2" preserveAspectRatio="xMidYMid meet"/>
+<image href="/assets/img/vehicle/map_dorm_06.jpg" x="70.0" y="352.4" width="228.7" height="129.2" preserveAspectRatio="xMidYMid meet"/>
+<image href="/assets/img/vehicle/map_dorm_09.jpg" x="70.0" y="489.6" width="228.7" height="129.2" preserveAspectRatio="xMidYMid meet"/>
+<text x="425.0" y="16.0" class="t" text-anchor="middle">Teaching-area corridor</text>
+<text x="425.0" y="32.0" class="m" text-anchor="middle">long · open · flat</text>
+<image href="/assets/img/vehicle/site_teaching.jpg" x="310.7" y="44" width="228.7" height="149.1" preserveAspectRatio="xMidYMid slice"/>
+<image href="/assets/img/vehicle/map_teaching_03.jpg" x="310.7" y="215.1" width="228.7" height="129.2" preserveAspectRatio="xMidYMid meet"/>
+<image href="/assets/img/vehicle/map_teaching_06.jpg" x="310.7" y="352.4" width="228.7" height="129.2" preserveAspectRatio="xMidYMid meet"/>
+<image href="/assets/img/vehicle/map_teaching_09.jpg" x="310.7" y="489.6" width="228.7" height="129.2" preserveAspectRatio="xMidYMid meet"/>
+<text x="665.7" y="16.0" class="t" text-anchor="middle">Laboratory</text>
+<text x="665.7" y="32.0" class="m" text-anchor="middle">cluttered · irregular</text>
+<image href="/assets/img/vehicle/site_lab.jpg" x="551.3" y="44" width="228.7" height="149.1" preserveAspectRatio="xMidYMid slice"/>
+<image href="/assets/img/vehicle/map_lab_03.jpg" x="551.3" y="215.1" width="228.7" height="129.2" preserveAspectRatio="xMidYMid meet"/>
+<image href="/assets/img/vehicle/map_lab_06.jpg" x="551.3" y="352.4" width="228.7" height="129.2" preserveAspectRatio="xMidYMid meet"/>
+<image href="/assets/img/vehicle/map_lab_09.jpg" x="551.3" y="489.6" width="228.7" height="129.2" preserveAspectRatio="xMidYMid meet"/>
+<text x="0.0" y="122.6" class="cap">SITE</text>
+<text x="0.0" y="207.1" class="cap">SPEED LIMIT</text>
+<text x="0.0" y="283.8" class="s">0.3 m/s</text>
+<text x="0.0" y="421.0" class="s">0.6 m/s</text>
+<text x="0.0" y="558.2" class="s">0.9 m/s</text>
+</svg>
