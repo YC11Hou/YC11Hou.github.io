@@ -3,6 +3,8 @@
 
 Figures carry only CSS classes (styled in _sass/_figures.scss), so they follow the site theme.
 Numbers shown in figures live here and nowhere else. Usage: python3 tools/figures/make_figures.py
+Vertical crop: data/fit.json holds each figure's measured ink extent (tools/figures/fit_figures.mjs on a built
+site); the viewBox is cropped to it with FIT_PAD on top and bottom, so blank space around figures is uniform.
 """
 
 import json
@@ -14,6 +16,8 @@ ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "_includes" / "figures"
 DATA = Path(__file__).parent / "data"
 W = 780
+FIT = json.loads((DATA / "fit.json").read_text()) if (DATA / "fit.json").exists() else {}
+FIT_PAD = 4
 LH = {"t": 16, "s": 15, "m": 14, "cap": 14, "serif": 17}
 
 
@@ -59,7 +63,9 @@ class Fig:
             f'orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah{" k-" + k if k else ""}"/></marker>'
             for k in ["", "acc", "blue", "mut"])
         body = "\n".join(self.els)
-        return (f'<svg class="fig-svg" viewBox="0 0 {W} {self.h}" role="img" aria-label="{escape(self.label)}" '
+        top, bot = FIT.get(self.name, (0, self.h))
+        vb = f"0 {top - FIT_PAD:g} {W} {bot - top + 2 * FIT_PAD:g}"
+        return (f'<svg class="fig-svg" viewBox="{vb}" role="img" aria-label="{escape(self.label)}" '
                 f'xmlns="http://www.w3.org/2000/svg">\n<defs>{defs}</defs>\n{body}\n</svg>\n')
 
     def save(self):
