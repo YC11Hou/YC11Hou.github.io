@@ -43,7 +43,9 @@ class Chrome:
             except Exception:
                 await asyncio.sleep(0.2)
         url = [t for t in tabs if t["type"] == "page"][0]["webSocketDebuggerUrl"]
-        self.ws = await websockets.connect(url, max_size=None, proxy=None)
+        # websockets >= 15 honours the system proxy unless proxy=None; older versions never use it and reject the kwarg
+        kw = {"proxy": None} if int(websockets.__version__.split(".")[0]) >= 15 else {}
+        self.ws = await websockets.connect(url, max_size=None, **kw)
 
     async def call(self, method, params=None):
         self.i += 1
