@@ -307,6 +307,81 @@
     document.dispatchEvent(new CustomEvent("i18n:applied", { detail: { lang: lang } }));
   }
 
+  // ---- translated project bodies -------------------------------------------
+  // A project page lists its translated bodies in .prose[data-l10n] ("lang:url;lang:url").
+  // The English body in the HTML is the source; on a language change we fetch the
+  // matching fragment once, swap it in, and announce it with "l10n:body" so the
+  // page index and video wiring can rebuild. No translation → English stays.
+  var bodyCache = {};
+  var bodyLang = DEFAULT;
+  var bodyOrig = null;
+
+  function fetchText(url, timeoutMs) {
+    return new Promise(function (resolve, reject) {
+      var t = setTimeout(function () {
+        reject(new Error("timeout"));
+      }, timeoutMs);
+      fetch(url)
+        .then(function (r) {
+          return r.ok ? r.text() : Promise.reject(new Error(r.status));
+        })
+        .then(
+          function (txt) {
+            clearTimeout(t);
+            resolve(txt);
+          },
+          function (e) {
+            clearTimeout(t);
+            reject(e);
+          }
+        );
+    });
+  }
+
+  function localizeBody(lang) {
+    var prose = document.querySelector(".prose[data-l10n]");
+    if (!prose) return Promise.resolve();
+    var title = document.querySelector(".page-head .page-title");
+    if (!bodyOrig) bodyOrig = { html: prose.innerHTML, title: title ? title.textContent : "" };
+    var map = {};
+    prose
+      .getAttribute("data-l10n")
+      .split(";")
+      .forEach(function (pair) {
+        var i = pair.indexOf(":");
+        if (i > 0) map[pair.slice(0, i).trim()] = pair.slice(i + 1).trim();
+      });
+    var url = map[lang];
+    var target = url ? lang : DEFAULT;
+    if (target === bodyLang) return Promise.resolve();
+    var load = url ? bodyCache[url] || (bodyCache[url] = fetchText(url, 8000)) : Promise.resolve(null);
+    return load.then(
+      function (txt) {
+        var html = bodyOrig.html;
+        var heading = bodyOrig.title;
+        if (txt) {
+          var doc = new DOMParser().parseFromString(txt, "text/html");
+          var art = doc.querySelector("article[data-title]");
+          if (!art) return;
+          html = art.innerHTML;
+          heading = art.getAttribute("data-title") || heading;
+        }
+        prose.innerHTML = html;
+        if (title) title.textContent = heading;
+        prose.setAttribute("lang", target === "zh" ? "zh-CN" : target);
+        bodyLang = target;
+        document.dispatchEvent(new CustomEvent("l10n:body", { detail: { lang: target } }));
+        if (location.hash) {
+          var el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+          if (el) el.scrollIntoView();
+        }
+      },
+      function () {
+        delete bodyCache[url];
+      }
+    );
+  }
+
   function reveal() {
     html.removeAttribute("data-i18n-pending");
   }
@@ -317,7 +392,7 @@
     return loadDict(lang).then(
       function (d) {
         applyDict(lang, d);
-        reveal();
+        return localizeBody(lang).then(reveal, reveal);
       },
       function () {
         // dictionary missing or offline: stay with whatever is on the page

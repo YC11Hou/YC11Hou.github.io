@@ -1102,16 +1102,23 @@ ul.task-list input[type="checkbox"] {
 
 // Flash the section a card jumped to, so the viewer sees where the page landed.
 .page h2[id],
+.page h3[id],
 .page p[id] {
   scroll-margin-top: 5rem;
 }
 
 .page h2:target,
+.page h3:target,
 .page p:target {
   animation: contrib-flash 2s ease-out;
 }
 
 @keyframes contrib-flash {
-  0%, 40% { background: color-mix(in srgb, var(--accent) 22%, transparent); }
-  100% { background: transparent; }
+  0%,
+  40% {
+    background: color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+  100% {
+    background: transparent;
+  }
 }

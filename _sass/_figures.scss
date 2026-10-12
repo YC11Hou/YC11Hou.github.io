@@ -33,6 +33,33 @@ html[data-theme="dark"] {
   }
 }
 
+// "Figure N." follows the page language (html[data-lang] is set by i18n.js).
+$fig-words: (
+  zh: "图",
+  fr: "Figure",
+  de: "Abbildung",
+  es: "Figura",
+  it: "Figura",
+  pt: "Figura",
+  nl: "Figuur",
+  pl: "Rysunek",
+  sv: "Figur",
+  ru: "Рисунок",
+);
+@each $lang, $word in $fig-words {
+  html[data-lang="#{$lang}"] .fig figcaption::before {
+    content: "#{$word} " counter(fig) ". ";
+  }
+}
+
+.fig > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+}
+
 .fig-scroll {
   overflow-x: auto;
 }

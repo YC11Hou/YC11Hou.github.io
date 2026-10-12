@@ -3,8 +3,6 @@
 // "Loading…" badge shows whenever the browser is waiting for data (initial
 // load of autoplay loops, or buffering after the user presses play).
 (function () {
-  var videos = document.querySelectorAll("video:not(.hero-video)");
-  if (!videos.length) return;
   function label() {
     var v = window.siteI18n && window.siteI18n.t("ui.loading");
     return v || "Loading…";
@@ -45,65 +43,72 @@
     }
   }
 
-  Array.prototype.forEach.call(videos, function (v) {
-    var box = v.parentElement;
-    if (!box) return;
-    box.classList.add("video-shell");
-    var badge = document.createElement("span");
-    badge.className = "video-loading";
-    badge.setAttribute("data-i18n", "ui.loading");
-    badge.textContent = label();
-    box.appendChild(badge);
+  // Wire every not-yet-wired video under root (translated project bodies are swapped in later).
+  function wire(root) {
+    Array.prototype.forEach.call(root.querySelectorAll("video:not(.hero-video)"), function (v) {
+      var box = v.parentElement;
+      if (!box || box.classList.contains("video-shell")) return;
+      box.classList.add("video-shell");
+      var badge = document.createElement("span");
+      badge.className = "video-loading";
+      badge.setAttribute("data-i18n", "ui.loading");
+      badge.textContent = label();
+      box.appendChild(badge);
 
-    var timer = null;
-    var gaveUp = false;
-    function busy(on) {
-      if (gaveUp) on = false;
-      box.classList.toggle("is-loading", on);
-      clearTimeout(timer);
-      // never spin forever: one 8 s budget per video, then the poster is final
-      if (on)
-        timer = setTimeout(function () {
-          gaveUp = true;
-          box.classList.remove("is-loading");
-        }, 8000);
-    }
-    // Spinner only while a started playback is actually waiting for data
-    v.addEventListener("waiting", function () {
-      if (!v.paused) busy(true);
-    });
-    v.addEventListener("stalled", function () {
-      if (!v.paused) busy(true);
-    });
-    v.addEventListener("playing", function () {
-      busy(false);
-    });
-    v.addEventListener("canplay", function () {
-      busy(false);
-    });
-    v.addEventListener("pause", function () {
-      busy(false);
-    });
-    v.addEventListener("error", function () {
-      busy(false);
-    });
-
-    // Preview loops carry data-autoplay (a real autoplay attribute would make the
-    // browser fetch every loop at page load, before this script runs)
-    if (v.autoplay || v.hasAttribute("data-autoplay")) {
-      v.removeAttribute("autoplay"); // we decide when to play
-      // In-app browsers (WeChat, QQ) neither autoplay reliably nor report it
-      // honestly: show the poster only, no playback attempt, no spinner.
-      if (/MicroMessenger|QQ\//i.test(navigator.userAgent)) {
-        v.removeAttribute("loop");
-        badge.remove();
-        return;
+      var timer = null;
+      var gaveUp = false;
+      function busy(on) {
+        if (gaveUp) on = false;
+        box.classList.toggle("is-loading", on);
+        clearTimeout(timer);
+        // never spin forever: one 8 s budget per video, then the poster is final
+        if (on)
+          timer = setTimeout(function () {
+            gaveUp = true;
+            box.classList.remove("is-loading");
+          }, 8000);
       }
-      v.muted = true;
-      v.setAttribute("playsinline", "");
-      if (io) io.observe(v);
-      else attemptPlay(v);
-    }
+      // Spinner only while a started playback is actually waiting for data
+      v.addEventListener("waiting", function () {
+        if (!v.paused) busy(true);
+      });
+      v.addEventListener("stalled", function () {
+        if (!v.paused) busy(true);
+      });
+      v.addEventListener("playing", function () {
+        busy(false);
+      });
+      v.addEventListener("canplay", function () {
+        busy(false);
+      });
+      v.addEventListener("pause", function () {
+        busy(false);
+      });
+      v.addEventListener("error", function () {
+        busy(false);
+      });
+
+      // Preview loops carry data-autoplay (a real autoplay attribute would make the
+      // browser fetch every loop at page load, before this script runs)
+      if (v.autoplay || v.hasAttribute("data-autoplay")) {
+        v.removeAttribute("autoplay"); // we decide when to play
+        // In-app browsers (WeChat, QQ) neither autoplay reliably nor report it
+        // honestly: show the poster only, no playback attempt, no spinner.
+        if (/MicroMessenger|QQ\//i.test(navigator.userAgent)) {
+          v.removeAttribute("loop");
+          badge.remove();
+          return;
+        }
+        v.muted = true;
+        v.setAttribute("playsinline", "");
+        if (io) io.observe(v);
+        else attemptPlay(v);
+      }
+    });
+  }
+  wire(document);
+  document.addEventListener("l10n:body", function () {
+    wire(document);
   });
 
   // Publications: the "Video" link opens its own panel (and closes the abstract), not the abstract

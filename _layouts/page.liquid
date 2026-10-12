@@ -11,9 +11,11 @@ layout: default
 {% comment %}
   Section pages (publications, projects, news) set `i18n: <name>` and are
   translated via pages.<name>.*; project detail pages set `i18n_key` and get
-  their meta line + description from proj.<key>.*. Titles of projects and
-  long-form project bodies stay in English.
+  their meta line + description from proj.<key>.*. The English body is the
+  source; translated bodies live in _project_l10n/<lang>/<slug>.md and are
+  listed in data-l10n so i18n.js can fetch and swap the one it needs.
 {% endcomment %}
+{% assign l10n_docs = site.project_l10n | where: 'project', page.slug %}
 <article class="page">
   <header class="page-head">
     {% if page.i18n %}
@@ -49,7 +51,13 @@ layout: default
     {% endif %}
   </header>
 
-  <div class="prose" data-pagenav="{{ page.pagenav | default: 'h2' }}">
+  <div
+    class="prose"
+    data-pagenav="{{ page.pagenav | default: 'h2' }}"
+    {%- if page.i18n_key and l10n_docs.size > 0 %}
+      data-l10n="{%- for d in l10n_docs -%}{{ d.lang }}:{{ d.url | relative_url }}{% unless forloop.last %};{% endunless %}{%- endfor -%}"
+    {% endif %}
+  >
     {{ content }}
   </div>
 

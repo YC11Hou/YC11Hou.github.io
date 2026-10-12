@@ -154,6 +154,11 @@ collections:
     output: true
   projects:
     output: true
+  # Translated bodies of _projects/*.md, one file per language: _project_l10n/<lang>/<project>.md.
+  # Each renders to a bare HTML fragment that i18n.js swaps into the project page.
+  project_l10n:
+    output: true
+    permalink: /assets/l10n/:path.html
   teachings:
     output: true
 
@@ -229,6 +234,12 @@ defaults:
   - scope:
       path: "assets"
     values:
+      sitemap: false
+  - scope:
+      path: ""
+      type: project_l10n
+    values:
+      layout: l10n_body
       sitemap: false
 
 sass:

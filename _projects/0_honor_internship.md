@@ -11,6 +11,7 @@ i18n_key: honor
 xp_company: "Honor Device Co., Ltd."
 meta: Honor Device Co., Ltd. · Summer internship
 related_publications: false
+pagenav: h2,h3
 ---
 
 Working on Honor's self-developed **humanoid robot**: teleoperation data collection, replay, training, and on-robot deployment, along with **real-robot RL** algorithm research for **Vision-Language-Action (VLA)** models on custom manipulation tasks.
@@ -20,12 +21,9 @@ Working on Honor's self-developed **humanoid robot**: teleoperation data collect
   <ol>
     <li><a href="#loop"><strong>End-to-end VLA pipeline</strong><span>Collect → train → deploy, lab built from scratch</span></a></li>
     <li><a href="#data-design"><strong>Offline data design</strong><span>4 categories: track + recover</span></a></li>
-    <li><a href="#takeover"><strong>Human takeover</strong><span>Smooth switch · takeover-state detection</span></a></li>
-    <li><a href="#online-loop"><strong>Actor–Learner–Robot loop</strong><span>Online rejection sampling (Hi-ORS)</span></a></li>
-    <li><a href="#results"><strong>Real-robot SFT results</strong><span>New task ≈ 0% → 50%+</span></a></li>
-    <li><a href="#recap"><strong>RECAP</strong><span>Advantage-conditioned training</span></a></li>
-    <li><a href="#rapid"><strong>RAPID</strong><span>Noise-space fast adaptation</span></a></li>
-    <li><a href="#loco"><strong>Loco-manipulation</strong><span>Same stack, walking task</span></a></li>
+    <li><a href="#infra"><strong>Human-takeover training infra</strong><span>Takeover · Actor–Learner–Robot loop · new task ≈ 0% → 50%+</span></a></li>
+    <li><a href="#algorithms"><strong>Real-robot RL algorithms</strong><span>RECAP · RAPID · loco-manipulation</span></a></li>
+    <li><a href="#rove"><strong>Reproducing ROVE</strong><span>Autonomous success 40% → 52%</span></a></li>
     <li><a href="#debugging"><strong>Real-robot debugging</strong><span>6 bugs, each found by a probe</span></a></li>
   </ol>
 </nav>
@@ -62,7 +60,7 @@ Four categories of teleoperated demonstrations: standard demonstrations, perturb
 
 A task the offline-trained policy could not perform is learned on the robot through the real-robot learning loop — human takeover data flows back into training, and the takeover ratio drops as new checkpoints are dispatched.
 
-## 1. Real-robot loop & data design {#loop}
+## 1. End-to-end VLA pipeline {#loop}
 
 The Shanghai lab was set up from scratch after I joined: robot configuration, two teleoperation rigs (Pico VR and motion capture), training for the data-collection operators, and the training pipeline. The task is pick-and-place (bottle → basket) with a single fixed instruction.
 
@@ -72,10 +70,13 @@ The Shanghai lab was set up from scratch after I joined: robot configuration, tw
 
 **On the robot**, the place phase almost never fails — the policy keeps up even when the basket is dragged fast. Pick failures correlate with object position; this traced back to the data (fixed stance, no local motion during collection, so the model never builds a sense of distance), not to arm accuracy. Outcome: the lab gained an in-house "collect → fine-tune → validate on robot" iteration loop instead of relying on externally delivered models.
 
-**Why the four data categories.** Categories ①–③ (standard, pick-phase perturbation, place-phase perturbation) teach the policy to _track_ a moving object or container. Category ④ teaches it to _recover_: starting from the hovering pose right after a missed grasp, the demonstration lowers the hand, re-grasps and places. Without it, the policy often doesn't realize the grasp failed — it lifts an empty hand, moves to the basket and "places" nothing. The four categories are roughly balanced; the robustness in the demo above comes from this data design, not from hyper-parameter tuning.
-{: #data-design}
+## 2. Offline data design {#data-design}
 
-## 2. Human takeover & intervention-driven data pipeline {#takeover}
+**Why the four data categories.** Categories ①–③ (standard, pick-phase perturbation, place-phase perturbation) teach the policy to _track_ a moving object or container. Category ④ teaches it to _recover_: starting from the hovering pose right after a missed grasp, the demonstration lowers the hand, re-grasps and places. Without it, the policy often doesn't realize the grasp failed — it lifts an empty hand, moves to the basket and "places" nothing. The four categories are roughly balanced; the robustness in the demo above comes from this data design, not from hyper-parameter tuning.
+
+## 3. Human-takeover real-robot training infrastructure {#infra}
+
+### 3.1 Human takeover & intervention-driven data pipeline {#takeover}
 
 <div class="ratio-16x9" style="margin-bottom: 1rem;">
   <video controls preload="metadata" poster="{{ '/assets/video/honor/takeover_demo_poster.jpg' | relative_url }}">
@@ -92,7 +93,7 @@ The Shanghai lab was set up from scratch after I joined: robot configuration, tw
 
 {% include svg_figure.liquid name="honor_datapipe" caption="From robot to learner: every episode, including failures, is recorded, judged and uploaded; the learner buckets episodes by outcome. Bottom: composition of one round of real-robot data (142–416 frames per episode)." %}
 
-## 3. Distributed real-robot learning loop {#online-loop}
+### 3.2 Distributed real-robot learning loop {#online-loop}
 
 **Reproduced the Hi-ORS rejection-sampling loop and ported it from π0 + a Dobot arm to GR00T N1.7 + a humanoid.** Three machines run simultaneously.
 
@@ -100,7 +101,7 @@ The Shanghai lab was set up from scratch after I joined: robot configuration, tw
 
 {% include svg_figure.liquid name="honor_gates" caption="Gates before an episode enters training. The success classifier is a ResNet18 on a single left-camera frame with a one-logit head, trained with BCE + pos_weight on 572 episodes (episode-level split, online augmentation, labels derived automatically from gripper signals; frame-level F1 0.976). It latches only after 20 consecutive frames above 0.8 — this hysteresis was added after the first real-robot session, where the classifier declared success within 1–2 s and false positives filled the buffer. Base-demonstration anchors in every batch guard against forgetting." %}
 
-## 4. Real-robot SFT results: a new task from ≈ 0% to 50%+ in ~140 episodes {#results}
+### 3.3 Real-robot SFT results: a new task from ≈ 0% to 50%+ in ~140 episodes {#results}
 
 When the policy stalls, the operator takes over via Pico; takeover data flows straight into the Learner, and the takeover ratio serves as a live metric. **Scene 1** moves the bottle to the right, where the offline data is sparse. **Scene 2** swaps the whole layout left–right (basket left, bottle right) — the exact opposite of all offline data — so the offline SFT baseline is ≈ 0%.
 
@@ -118,7 +119,9 @@ When the policy stalls, the operator takes over via Pico; takeover data flows st
 
 Fully autonomous success rate. Why a frozen backbone can still learn the mirrored layout: the failure mode was _not moving at all_ rather than moving the wrong way — visual understanding was intact, only the action mapping was missing.
 
-## 5. RECAP-style advantage-conditioned training {#recap}
+## 4. Real-robot RL algorithms {#algorithms}
+
+### 4.1 RECAP-style advantage-conditioned training {#recap}
 
 Rejection sampling is a binary degenerate case of advantage: keep every success, discard every failure. **Ported the advantage labeling of π0.6 RECAP (as in RLinf) to GR00T N1.7** so that _all_ data is used, with "good vs. bad" as an input condition rather than a filter — failure episodes become negative samples instead of waste.
 
@@ -128,7 +131,7 @@ Rejection sampling is a binary degenerate case of advantage: keep every success,
 
 Until V is ready, rule-based labels serve as a fallback: all success frames positive, autonomous frames of failures negative, and the 20 frames before every takeover overwritten as negative. The value network is trained separately and accepted only if Spearman ρ on held-out episodes (every 10th episode) exceeds 0.55: the dry run reached ρ = 0.647 (plateau 0.59) with loss 4.52 → 0.76, while a shuffled-label control stayed at an absolute ρ ≤ 0.26 and failed the criterion — so the criterion is meaningful. Agreement between V-based and rule-based labels was only 0.31, so the value network remains the bottleneck, and the real-robot A/B comparison was not completed.
 
-## 6. RAPID: noise-space fast adaptation {#rapid}
+### 4.2 RAPID: noise-space fast adaptation {#rapid}
 
 **RAPID** (_Rapid Adaptation from Physical Interventions via Diffusion-noise_), in the spirit of DSRL: training a new checkpoint takes time, and until it lands the robot still can't do the task. RAPID leaves the VLA weights frozen and only replaces the initial noise of flow matching, so a correction the human just made can be reused the next time a similar state appears. It was wired into on-robot inference in late August.
 
@@ -140,7 +143,7 @@ Until V is ready, rule-based labels serve as a fallback: all success frames posi
 
 The audit was **pre-registered**: audit PASS; reversal CONDITIONAL (reconstruction error 0.232, within 0.10–0.30); spread downgraded to fragile after a re-run; transfer PASS (p ≈ 1e-21). Under these criteria the claim "retrieval wins at K < 10" was **dropped** — the experimental design rejected my own hypothesis — and the system converged on DSBC as the main path with memory retrieval as an optional front end. Next steps were distilling DSBC into the policy, soft-retiring memory entries, and connecting it to real-robot RL.
 
-## 7. Extending to loco-manipulation {#loco}
+### 4.3 Extending to loco-manipulation {#loco}
 
 <div class="ratio-16x9" style="margin-bottom: 1rem;">
   <video controls preload="metadata" poster="{{ '/assets/video/honor/locomanip_demo_poster.jpg' | relative_url }}">
@@ -165,7 +168,44 @@ The whole stack — takeover, the real-robot learning loop, RECAP and RAPID — 
 
 **On metrics, honestly:** the real-robot SFT stage has complete numbers (55% / 50%). After switching to the loco task, all components were implemented and wired in, but no metric-level improvement was achieved on it: the maturity of the whole-body hardware and locomotion stack at the time did not allow systematic real-robot evaluation.
 
-## 8. Real-robot debugging {#debugging}
+## 5. Reproducing ROVE {#rove}
+
+**Task.** The humanoid stands in place — feet fixed, no walking — and picks up a phone with its hand: fine-grained manipulation where a small misalignment quickly ends in a human takeover.
+
+ROVE (XPENG, arXiv:2606.17011) keeps RECAP's advantage-conditioning skeleton (§4.1) and changes how human takeovers are scored. I reproduced it on top of the RECAP pipeline behind a single algorithm switch — the default RECAP path stays bit-identical, enforced by self-tests — and ran the paper's Algorithm 1 as an offline loop: deploy and collect → stage-aware returns → value refresh → advantages and labels → conditional SFT. Only the first step needs the robot; the other four run as one command.
+
+### 5.1 Stage-aware return {#rove-return}
+
+Under RECAP, an episode that a human rescued still counts as a success: its return rises by one every step up to 0, so the autonomous actions that _caused_ the takeover look like steady progress. The only remedy is a fixed rule that labels the 20 frames before a takeover negative. ROVE splits such an episode into three segments — autonomous execution, adaptation (the human is still pulling the robot back on track) and recovery — and books a failure penalty C_fail at t_r, the end of adaptation. The autonomous segment that led to the takeover now scores at failure level, while recovery keeps its normal time-to-go return.
+
+{% include svg_figure.liquid name="honor_rove_return" caption="Stage-aware return (Eq. 2 of the paper): −1 per step, C_fail at t_r, idle frames (operator switching modes) removed. t_r falls back to takeover + 40 frames (2 s) when not annotated; the paper's ablation loses 30 pp when t_r is placed at the takeover onset, so the default errs late. C_fail must exceed the longest span in the positive pool, or a failed episode would out-score a recovery: the measured lower bound on this data is 919, so C_fail = 1000 (the paper's 500 is too small here). Returns matched hand computation bit for bit on 38 archived episodes." %}
+
+### 5.2 Optimistic value estimation (OVE) {#rove-ove}
+
+Plain Monte-Carlo regression learns the _average_ return. In states that often end in a takeover the average is already low, so the action that caused the takeover scores an advantage near zero and is never labelled negative. OVE fine-tunes the same scalar value head, after MC pre-training, with a 16-step TD target (from an EMA copy of the network) and an expectile loss with τ = 0.7, which penalizes under-estimates more than over-estimates. V then estimates what a state is worth _when things go well_: pre-takeover states are valued high, their actual return is low, and the negative advantage lands on the actions that caused the takeover. The advantage horizon is also 16 steps — one action chunk, the unit the label is attached to — and the top 40% of frames are labelled positive.
+
+Each value checkpoint is gated by Spearman ρ on held-out episodes: the rank agreement between predicted V and the actual return (1 = same order). The MC stage must reach ρ ≥ 0.55 on the full pool; the OVE stage is judged on success episodes only (ρ ≥ 0.70), because OVE departs from the mean return on failure-bound states by design, so a lower full-pool ρ is expected rather than a regression.
+
+{% include svg_figure.liquid name="honor_rove_rho" caption="Held-out Spearman ρ in three value-training runs (shaded: OVE phase). Clean rollouts: success-set ρ stays at 0.744–0.806 after the switch to OVE, while full-pool ρ drifts from 0.735 to 0.69 as intended; the 0.70 gate was set from this run. Demos + rollouts: success-set ρ slides from 0.731 to 0.628 — 85% of the held-out set is clean demonstrations, and optimistic bootstrapping pushes them all toward the top, compressing the ranking. iter0 pool, warm-started straight into OVE: full-pool ρ 0.68–0.71, success-set ρ 0.63–0.67, below the gate. The three pools have different held-out sets, so ρ is not comparable across panels." %}
+
+<figure class="fig">
+  <img src="{{ '/assets/img/honor_rove_value_curve.jpg' | relative_url }}" alt="Value curves on a held-out takeover episode: true return, MC value and OVE value, with frames of negative advantage marked" loading="lazy" width="1400" height="653">
+  <figcaption>Reproduction of the paper's Fig. 6 on a held-out episode with a takeover (x: frame, idle frames removed; y: normalized value). Before t_r the OVE value (blue) sits above the MC value (orange) — optimistic in distribution — then jumps at t_r and follows the true return through recovery. Red dots mark frames with negative OVE advantage: they concentrate before the takeover and in the adaptation segment.</figcaption>
+</figure>
+
+### 5.3 Results {#rove-results}
+
+Autonomous success on the robot rose from 40% (base checkpoint, n = 77) to **52%** (ROVE iter0, n = 192); human-assisted successes fell from 45% to 20% of episodes, while failures rose from 14% to 28%.
+
+{% include svg_figure.liquid name="honor_rove_robot" caption="Outcome of every logged real-robot episode per checkpoint, as judged by the operator. Base 64000: late Aug – early Sep; base 80000: early – mid Sep; ROVE iter0: Sep 17–23." %}
+
+iter0 was trained with one pass of the offline loop: a 2,068-episode value pool (534K frames of demonstrations and real-robot rollouts, 207 episodes held out), labels at exactly 40.0% positive, and conditional SFT from the 80K-step base checkpoint for 8,000 steps (lr 1e-4) on one H20 GPU in 18 h 17 min.
+
+{% include svg_figure.liquid name="honor_rove_sft" caption="iter0 conditional SFT loss. The 200-step mean falls from 0.54 to 0.047 by step 1,000 and to 0.025 by step 8,000." %}
+
+**On metrics, honestly:** the three groups come from different days, operators and prompt sets, so this is an observation, not an A/B test — the interleaved evaluation against the base checkpoint and a RECAP arm is still pending. The iter0 collection also logged no takeover segments, so the next round lacks ROVE's core signal until that logging is fixed.
+
+## 6. Real-robot debugging {#debugging}
 
 None of these could be found by reviewing code offline — they only surfaced during long real-robot runs, and each was located with a probe or a quantitative metric.
 

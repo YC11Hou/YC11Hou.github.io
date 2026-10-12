@@ -94,5 +94,21 @@
  "vehicle_area": [
   3,
   345.5
+ ],
+ "honor_rove_return": [
+  -1.3,
+  310.5
+ ],
+ "honor_rove_rho": [
+  12.8,
+  294.3
+ ],
+ "honor_rove_robot": [
+  18,
+  198
+ ],
+ "honor_rove_sft": [
+  7.8,
+  262.3
  ]
 }

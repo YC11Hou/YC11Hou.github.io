@@ -1,0 +1,33 @@
+<svg class="fig-svg" viewBox="0 -5.3 780 319.8" role="img" aria-label="One episode with a takeover: three segments and the stage-aware return" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="honor_rove_return-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah"/></marker><marker id="honor_rove_return-ahacc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-acc"/></marker><marker id="honor_rove_return-ahblue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-blue"/></marker><marker id="honor_rove_return-ahmut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-mut"/></marker></defs>
+<text x="0.0" y="6.0" class="cap">ONE EPISODE WITH A TAKEOVER · SCHEMATIC, NOT TO SCALE</text>
+<rect x="62.0" y="40.0" width="294.2" height="32.0" rx="3" class="box k-blue"/>
+<text x="70.0" y="61.0" class="t">① autonomous</text>
+<rect x="360.2" y="40.0" width="31.5" height="32.0" rx="3" class="box k-mut"/>
+<rect x="395.7" y="40.0" width="102.5" height="32.0" rx="3" class="box k-acc"/>
+<text x="403.7" y="61.0" class="t">② adaptation</text>
+<rect x="502.2" y="40.0" width="265.8" height="32.0" rx="3" class="box"/>
+<text x="510.2" y="61.0" class="t">③ recovery (human, then policy)</text>
+<text x="375.9" y="88.0" class="m" text-anchor="middle">idle</text>
+<line x1="358.2" y1="32.0" x2="358.2" y2="236.0" class="ln k-mut dash"/>
+<line x1="500.2" y1="32.0" x2="500.2" y2="236.0" class="ln k-mut dash"/>
+<text x="354.2" y="28.0" class="m" text-anchor="end">takeover</text>
+<text x="504.2" y="28.0" class="m">t_r = takeover + 40 frames (or annotated)</text>
+<line x1="60.0" y1="104.0" x2="770.0" y2="104.0" class="grid"/>
+<line x1="60.0" y1="222.0" x2="770.0" y2="222.0" class="grid"/>
+<text x="52.0" y="108.0" class="m" text-anchor="end">0</text>
+<text x="52.0" y="226.0" class="m" text-anchor="end">−1</text>
+<text x="14.0" y="163.0" class="m" text-anchor="middle" transform="rotate(-90 14 163.0)">return</text>
+<path d="M60.0,210.2 L358.2,205.5 L393.7,205.5 L500.2,203.1" class="ln" style="stroke-width:2"/>
+<path d="M500.2,203.1 L500.2,139.4 L770.0,104.0" class="ln" style="stroke-width:2"/>
+<text x="81.3" y="195.5" class="s acc">return pushed down to failure level by C_fail</text>
+<text x="510.8" y="196.0" class="s">“value cliff” at t_r</text>
+<text x="557.0" y="160.0" class="s">recovery: −1 per step, success = 0</text>
+<rect x="329.8" y="254.0" width="28.4" height="10.0" rx="2" class="f-acc"/>
+<text x="60.0" y="263.0" class="t">RECAP rule</text>
+<text x="386.6" y="263.0" class="s">only the 20 frames (1 s) before takeover are labelled negative</text>
+<rect x="134.0" y="284.0" width="224.2" height="10.0" rx="2" class="f-acc" fill-opacity="0.7"/>
+<text x="60.0" y="293.0" class="t">ROVE</text>
+<text x="386.6" y="293.0" class="s">the critic&#x27;s advantage labels the whole autonomous segment;</text>
+<text x="386.6" y="308.0" class="s">takeover frames are always labelled positive</text>
+</svg>

@@ -465,6 +465,136 @@ def honor_rapid_chart():
         f.text(150, y, desc, "s")
     f.save()
 
+ROVE = json.loads((DATA / "rove.json").read_text()) if (DATA / "rove.json").exists() else {}
+
+
+def honor_rove_return():
+    f = Fig("honor_rove_return", 318, "One episode with a takeover: three segments and the stage-aware return")
+    X = lambda u: 60 + u * 7.1  # u in [0, 100] schematic frame units
+    cap(f, 0, 6, "one episode with a takeover · schematic, not to scale")
+    segs = [(0, 42, "box k-blue", "① autonomous"), (42, 47, "box k-mut", ""), (47, 62, "box k-acc", "② adaptation"), (62, 100, "box", "③ recovery (human, then policy)")]
+    for a, b, cls, lab in segs:
+        f.rect(X(a) + 2, 40, X(b) - X(a) - 4, 32, cls, 3)
+        if lab:
+            f.text(X(a) + 10, 61, lab, "t")
+    f.text((X(42) + X(47)) / 2, 88, "idle", "m", "middle")
+    for u in [42, 62]:
+        f.line(X(u), 32, X(u), 236, "ln k-mut dash")
+    f.text(X(42) - 4, 28, "takeover", "m", "end")
+    f.text(X(62) + 4, 28, "t_r = takeover + 40 frames (or annotated)", "m")
+    y0, y1 = 104, 222
+    f.line(X(0), y0, X(100), y0, "grid")
+    f.line(X(0), y1, X(100), y1, "grid")
+    f.text(X(0) - 8, y0 + 4, "0", "m", "end")
+    f.text(X(0) - 8, y1 + 4, "−1", "m", "end")
+    f.text(14, (y0 + y1) / 2, "return", "m", "middle", f' transform="rotate(-90 14 {(y0 + y1) / 2:.1f})"')
+    Y = lambda v: y0 + (-v) * (y1 - y0)
+    f.add(f'<path d="M{X(0):.1f},{Y(-0.9):.1f} L{X(42):.1f},{Y(-0.86):.1f} L{X(47):.1f},{Y(-0.86):.1f} L{X(62):.1f},{Y(-0.84):.1f}" class="ln" style="stroke-width:2"/>')
+    f.add(f'<path d="M{X(62):.1f},{Y(-0.84):.1f} L{X(62):.1f},{Y(-0.3):.1f} L{X(100):.1f},{Y(0):.1f}" class="ln" style="stroke-width:2"/>')
+    f.text(X(3), Y(-0.86) - 10, "return pushed down to failure level by C_fail", "s acc")
+    f.text(X(63.5), Y(-0.78), "“value cliff” at t_r", "s")
+    f.text(X(70), 160, "recovery: −1 per step, success = 0", "s")
+    f.rect(X(38), 254, X(42) - X(38), 10, "f-acc", 2)
+    f.text(X(0), 263, "RECAP rule", "t")
+    f.text(X(46), 263, "only the 20 frames (1 s) before takeover are labelled negative", "s")
+    f.rect(X(0) + 74, 284, X(42) - X(0) - 74, 10, "f-acc", 2, ' fill-opacity="0.7"')
+    f.text(X(0), 293, "ROVE", "t")
+    f.text(X(46), 293, "the critic's advantage labels the whole autonomous segment;", "s")
+    f.text(X(46), 308, "takeover frames are always labelled positive", "s")
+    f.save()
+
+
+def honor_rove_rho():
+    f = Fig("honor_rove_rho", 300, "Held-out Spearman rho of the value function during MC pre-training and OVE fine-tuning, three data pools")
+    panels = [("clean", "clean rollouts · 358 ep.", 2000, 4000), ("pretrain", "demos + rollouts · 1,623 ep.", 4000, 6000), ("iter0", "iter0 pool · 2,068 ep.", 0, 2000)]
+    pw, gap = 236, 36
+    lo, hi = 0.55, 0.85
+    for i, (key, title, ove, xmax) in enumerate(panels):
+        x0 = 56 + i * (pw + gap - 18)
+        x1, ya, yb = x0 + pw - 40, 236, 40
+        X = lambda s, x0=x0, x1=x1, xmax=xmax: x0 + s / xmax * (x1 - x0)
+        Y = lambda v: ya - (v - lo) / (hi - lo) * (ya - yb)
+        cap(f, x0, 20, title)
+        f.rect(X(ove), yb, x1 - X(ove), ya - yb, "band")
+        for v in [0.6, 0.7, 0.8]:
+            f.line(x0, Y(v), x1, Y(v), "grid")
+            f.text(x0 - 6, Y(v) + 4, f"{v:.1f}", "m", "end")
+        f.line(x0, Y(0.70), x1, Y(0.70), "ln k-mut dash")
+        f.line(x0, ya, x1, ya, "axis")
+        for s in ([0, 1000, 2000] if xmax == 2000 else [0, 2000, 4000] if xmax == 4000 else [0, 2000, 4000, 6000]):
+            f.text(X(s), ya + 16, "0" if s == 0 else f"{s // 1000}k", "m", "middle")
+        f.text(X(ove) + 4, ya - 6, "OVE", "m")
+        d = ROVE["rho"][key]
+        f.add('<path d="M' + " L".join(f"{X(r[0]):.1f},{Y(r[1]):.1f}" for r in d) + '" class="ln k-blue" style="stroke-width:1.8"/>')
+        f.add('<path d="M' + " L".join(f"{X(r[0]):.1f},{Y(r[2]):.1f}" for r in d) + '" class="ln k-acc" style="stroke-width:1.8"/>')
+    f.text(14, 138, "held-out Spearman ρ", "m", "middle", ' transform="rotate(-90 14 138)"')
+    f.text(390, 270, "training step", "m", "middle")
+    ly = 292
+    f.line(56, ly - 4, 76, ly - 4, "ln k-acc")
+    f.text(82, ly, "success-set ρ (OVE gate)", "m")
+    f.line(269, ly - 4, 289, ly - 4, "ln k-blue")
+    f.text(295, ly, "full-pool ρ", "m")
+    f.line(400, ly - 4, 420, ly - 4, "ln k-mut dash")
+    f.text(426, ly, "gate 0.70", "m")
+    f.rect(519, ly - 10, 14, 10, "band")
+    f.text(539, ly, "OVE phase (after MC)", "m")
+    f.save()
+
+
+def honor_rove_robot():
+    rows = ROVE["robot"]
+    f = Fig("honor_rove_robot", 214, "Real-robot outcomes per checkpoint: autonomous success, human-assisted success, failure")
+    x0, x1 = 150, 750
+    X = lambda p: x0 + p * (x1 - x0)
+    for p in [0, 0.25, 0.5, 0.75, 1]:
+        f.line(X(p), 18, X(p), 18 + 46 * len(rows), "grid")
+        f.text(X(p), 18 + 46 * len(rows) + 16, f"{int(p * 100)}%", "m", "middle")
+    for i, r in enumerate(rows):
+        y = 26 + i * 46
+        f.text(x0 - 12, y + 13, r["name"], "t", "end")
+        f.text(x0 - 12, y + 27, f"n = {r['n']}", "m", "end")
+        acc = 0
+        for k, cls, op, tcls in [("auto", "f-blue", 1, "on b"), ("assist", "f-blue", 0.3, "b"), ("fail", "f-acc", 0.85, "on b")]:
+            w = r[k] / r["n"]
+            f.rect(X(acc), y, X(acc + w) - X(acc) - 1.5, 30, cls, 2, f' fill-opacity="{op}"')
+            lab = f"{round(w * 100)}%" + (f"  ({r['ci']})" if k == "auto" else "")
+            fits = lambda t: X(acc + w) - X(acc) > len(t) * 7 + 20
+            lab = lab if fits(lab) else f"{round(w * 100)}%"
+            if fits(lab):
+                f.text(X(acc) + 8, y + 19, lab, tcls)
+            acc += w
+    ly = 18 + 46 * len(rows) + 40
+    for j, (cls, op, lab) in enumerate([("f-blue", 1, "autonomous success (95% Wilson CI)"), ("f-blue", 0.3, "human-assisted success"), ("f-acc", 0.85, "failure")]):
+        lx = x0 + [0, 268, 460][j]
+        f.rect(lx, ly - 10, 12, 12, cls, 2, f' fill-opacity="{op}"')
+        f.text(lx + 18, ly, lab, "m")
+    f.save()
+
+
+def honor_rove_sft():
+    sm, raw = ROVE["sft_smooth"], ROVE["sft_raw"]
+    f = Fig("honor_rove_sft", 266, "Training loss of the iter0 conditional SFT, log scale")
+    x0, x1, ya, yb = 58, 772, 222, 36
+    l0, l1 = math.log10(0.01), math.log10(1.0)
+    X = lambda s: x0 + s / 8000 * (x1 - x0)
+    Y = lambda v: ya - (math.log10(max(v, 0.01)) - l0) / (l1 - l0) * (ya - yb)
+    for v in [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1]:
+        f.line(x0, Y(v), x1, Y(v), "grid")
+        f.text(x0 - 8, Y(v) + 4, f"{v:g}", "m", "end")
+    for s in range(0, 8001, 2000):
+        f.text(X(s), ya + 18, "0" if s == 0 else f"{s // 1000}k", "m", "middle")
+    f.line(x0, ya, x1, ya, "axis")
+    for s, v in raw:
+        f.add(f'<circle cx="{X(s):.1f}" cy="{Y(v):.1f}" r="1.5" class="f-mut" fill-opacity="0.35"/>')
+    f.add('<path d="M' + " L".join(f"{X(s):.1f},{Y(v):.1f}" for s, v in sm) + '" class="ln k-acc" style="stroke-width:2"/>')
+    f.text(16, (ya + yb) / 2, "loss (log)", "m", "middle", f' transform="rotate(-90 16 {(ya + yb) / 2:.1f})"')
+    f.text((x0 + x1) / 2, ya + 38, "training step", "m", "middle")
+    f.add(f'<circle cx="{x1 - 290:.1f}" cy="{12:.1f}" r="2.4" class="f-mut" fill-opacity="0.5"/>')
+    f.text(x1 - 280, 16, "every 10 steps (bf16)", "m")
+    f.line(x1 - 112, 12, x1 - 92, 12, "ln k-acc")
+    f.text(x1 - 86, 16, "200-step mean", "m")
+    f.save()
+
 
 # ── LangGap ───────────────────────────────────────────────────────────
 def langgap_diagnosis():
@@ -874,7 +1004,8 @@ def vehicle_sites():
 
 if __name__ == "__main__":
     for fn in [honor_pipeline, honor_chunk, honor_fsm, honor_datapipe, honor_arch, honor_gates, honor_curve,
-               honor_recap, honor_value_net, honor_rapid, honor_dsbc_net, honor_rapid_chart, langgap_diagnosis, langgap_progressive, langgap_benchmark,
+               honor_recap, honor_value_net, honor_rapid, honor_dsbc_net, honor_rapid_chart, honor_rove_return, honor_rove_rho, honor_rove_robot, honor_rove_sft,
+               langgap_diagnosis, langgap_progressive, langgap_benchmark,
                aion_thor, aion_isaac, vln_pipeline, vehicle_loop, vehicle_arch, vehicle_modes, vehicle_localize,
                vehicle_area, vehicle_sites]:
         fn()

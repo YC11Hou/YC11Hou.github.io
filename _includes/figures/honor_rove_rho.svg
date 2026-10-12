@@ -1,0 +1,62 @@
+<svg class="fig-svg" viewBox="0 8.8 780 289.5" role="img" aria-label="Held-out Spearman rho of the value function during MC pre-training and OVE fine-tuning, three data pools" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="honor_rove_rho-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah"/></marker><marker id="honor_rove_rho-ahacc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-acc"/></marker><marker id="honor_rove_rho-ahblue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-blue"/></marker><marker id="honor_rove_rho-ahmut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" class="ah k-mut"/></marker></defs>
+<text x="56.0" y="20.0" class="cap">CLEAN ROLLOUTS · 358 EP.</text>
+<rect x="154.0" y="40.0" width="98.0" height="196.0" rx="0" class="band"/>
+<line x1="56.0" y1="203.3" x2="252.0" y2="203.3" class="grid"/>
+<text x="50.0" y="207.3" class="m" text-anchor="end">0.6</text>
+<line x1="56.0" y1="138.0" x2="252.0" y2="138.0" class="grid"/>
+<text x="50.0" y="142.0" class="m" text-anchor="end">0.7</text>
+<line x1="56.0" y1="72.7" x2="252.0" y2="72.7" class="grid"/>
+<text x="50.0" y="76.7" class="m" text-anchor="end">0.8</text>
+<line x1="56.0" y1="138.0" x2="252.0" y2="138.0" class="ln k-mut dash"/>
+<line x1="56.0" y1="236.0" x2="252.0" y2="236.0" class="axis"/>
+<text x="56.0" y="252.0" class="m" text-anchor="middle">0</text>
+<text x="154.0" y="252.0" class="m" text-anchor="middle">2k</text>
+<text x="252.0" y="252.0" class="m" text-anchor="middle">4k</text>
+<text x="158.0" y="230.0" class="m">OVE</text>
+<path d="M60.9,155.4 L65.8,132.3 L70.7,132.4 L75.6,131.0 L80.5,124.5 L85.4,122.3 L90.3,120.2 L95.2,115.3 L100.1,118.7 L105.0,117.4 L109.9,115.5 L114.8,115.1 L119.7,120.8 L124.6,112.1 L129.5,114.2 L134.4,111.4 L139.3,109.9 L144.2,113.0 L149.1,113.9 L154.0,114.9 L158.9,115.5 L163.8,117.6 L168.7,119.4 L173.6,121.3 L178.5,124.3 L183.4,123.8 L188.3,128.9 L193.2,129.0 L198.1,131.3 L203.0,132.1 L207.9,133.1 L212.8,135.5 L217.7,137.3 L222.6,138.6 L227.5,139.2 L232.4,138.5 L237.3,143.2 L242.2,141.5 L247.1,142.4 L252.0,144.2" class="ln k-blue" style="stroke-width:1.8"/>
+<path d="M60.9,87.5 L65.8,79.3 L70.7,73.3 L75.6,69.9 L80.5,72.5 L85.4,69.9 L90.3,68.8 L95.2,63.1 L100.1,72.6 L105.0,71.5 L109.9,64.8 L114.8,70.8 L119.7,73.0 L124.6,71.0 L129.5,66.5 L134.4,67.1 L139.3,64.9 L144.2,71.3 L149.1,74.3 L154.0,68.6 L158.9,72.3 L163.8,74.3 L168.7,78.7 L173.6,76.6 L178.5,81.4 L183.4,84.1 L188.3,86.5 L193.2,88.2 L198.1,88.7 L203.0,92.2 L207.9,94.2 L212.8,97.6 L217.7,99.3 L222.6,99.3 L227.5,100.6 L232.4,109.0 L237.3,106.8 L242.2,105.0 L247.1,108.3 L252.0,109.3" class="ln k-acc" style="stroke-width:1.8"/>
+<text x="310.0" y="20.0" class="cap">DEMOS + ROLLOUTS · 1,623 EP.</text>
+<rect x="440.7" y="40.0" width="65.3" height="196.0" rx="0" class="band"/>
+<line x1="310.0" y1="203.3" x2="506.0" y2="203.3" class="grid"/>
+<text x="304.0" y="207.3" class="m" text-anchor="end">0.6</text>
+<line x1="310.0" y1="138.0" x2="506.0" y2="138.0" class="grid"/>
+<text x="304.0" y="142.0" class="m" text-anchor="end">0.7</text>
+<line x1="310.0" y1="72.7" x2="506.0" y2="72.7" class="grid"/>
+<text x="304.0" y="76.7" class="m" text-anchor="end">0.8</text>
+<line x1="310.0" y1="138.0" x2="506.0" y2="138.0" class="ln k-mut dash"/>
+<line x1="310.0" y1="236.0" x2="506.0" y2="236.0" class="axis"/>
+<text x="310.0" y="252.0" class="m" text-anchor="middle">0</text>
+<text x="375.3" y="252.0" class="m" text-anchor="middle">2k</text>
+<text x="440.7" y="252.0" class="m" text-anchor="middle">4k</text>
+<text x="506.0" y="252.0" class="m" text-anchor="middle">6k</text>
+<text x="444.7" y="230.0" class="m">OVE</text>
+<path d="M316.5,110.7 L323.1,89.0 L329.6,78.0 L336.1,70.6 L342.7,68.8 L349.2,65.1 L355.7,68.8 L362.3,64.9 L368.8,62.2 L375.3,58.8 L381.9,64.7 L388.4,61.8 L394.9,61.5 L401.5,57.7 L408.0,59.8 L414.5,61.4 L421.1,57.2 L427.6,61.1 L434.1,60.5 L440.7,54.6 L447.2,54.1 L453.7,55.4 L460.3,58.1 L466.8,63.3 L473.3,69.6 L479.9,72.6 L486.4,79.9 L492.9,86.5 L499.5,88.0 L506.0,95.5" class="ln k-blue" style="stroke-width:1.8"/>
+<path d="M316.5,218.0 L323.1,180.3 L329.6,163.0 L336.1,146.1 L342.7,144.5 L349.2,136.6 L355.7,143.9 L362.3,139.0 L368.8,131.5 L375.3,126.8 L381.9,138.7 L388.4,132.0 L394.9,129.9 L401.5,123.8 L408.0,129.6 L414.5,130.9 L421.1,121.5 L427.6,131.7 L434.1,130.6 L440.7,118.0 L447.2,117.7 L453.7,118.9 L460.3,124.0 L466.8,132.5 L473.3,142.4 L479.9,148.6 L486.4,158.9 L492.9,170.5 L499.5,173.7 L506.0,185.0" class="ln k-acc" style="stroke-width:1.8"/>
+<text x="564.0" y="20.0" class="cap">ITER0 POOL · 2,068 EP.</text>
+<rect x="564.0" y="40.0" width="196.0" height="196.0" rx="0" class="band"/>
+<line x1="564.0" y1="203.3" x2="760.0" y2="203.3" class="grid"/>
+<text x="558.0" y="207.3" class="m" text-anchor="end">0.6</text>
+<line x1="564.0" y1="138.0" x2="760.0" y2="138.0" class="grid"/>
+<text x="558.0" y="142.0" class="m" text-anchor="end">0.7</text>
+<line x1="564.0" y1="72.7" x2="760.0" y2="72.7" class="grid"/>
+<text x="558.0" y="76.7" class="m" text-anchor="end">0.8</text>
+<line x1="564.0" y1="138.0" x2="760.0" y2="138.0" class="ln k-mut dash"/>
+<line x1="564.0" y1="236.0" x2="760.0" y2="236.0" class="axis"/>
+<text x="564.0" y="252.0" class="m" text-anchor="middle">0</text>
+<text x="662.0" y="252.0" class="m" text-anchor="middle">1k</text>
+<text x="760.0" y="252.0" class="m" text-anchor="middle">2k</text>
+<text x="568.0" y="230.0" class="m">OVE</text>
+<path d="M583.6,144.5 L603.2,145.4 L622.8,140.7 L642.4,132.1 L662.0,147.6 L681.6,146.8 L701.2,141.5 L720.8,146.4 L740.4,151.9 L760.0,132.3" class="ln k-blue" style="stroke-width:1.8"/>
+<path d="M583.6,171.4 L603.2,170.3 L622.8,172.5 L642.4,159.0 L662.0,159.2 L681.6,171.7 L701.2,161.9 L720.8,180.9 L740.4,180.7 L760.0,169.4" class="ln k-acc" style="stroke-width:1.8"/>
+<text x="14.0" y="138.0" class="m" text-anchor="middle" transform="rotate(-90 14 138)">held-out Spearman ρ</text>
+<text x="390.0" y="270.0" class="m" text-anchor="middle">training step</text>
+<line x1="56.0" y1="288.0" x2="76.0" y2="288.0" class="ln k-acc"/>
+<text x="82.0" y="292.0" class="m">success-set ρ (OVE gate)</text>
+<line x1="269.0" y1="288.0" x2="289.0" y2="288.0" class="ln k-blue"/>
+<text x="295.0" y="292.0" class="m">full-pool ρ</text>
+<line x1="400.0" y1="288.0" x2="420.0" y2="288.0" class="ln k-mut dash"/>
+<text x="426.0" y="292.0" class="m">gate 0.70</text>
+<rect x="519.0" y="282.0" width="14.0" height="10.0" rx="0" class="band"/>
+<text x="539.0" y="292.0" class="m">OVE phase (after MC)</text>
+</svg>
