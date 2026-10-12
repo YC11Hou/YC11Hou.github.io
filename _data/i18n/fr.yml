@@ -113,12 +113,14 @@ xp:
     - position: Ingénieur algorithmes VLA (stagiaire)
       location: Shanghai, Chine
       h:
-        - "Travail sur le robot humanoïde d'Honor : collecte de données de téléopération, rejeu, entraînement et déploiement sur robot."
-        - Recherche en algorithmes de RL sur robot réel pour des modèles Vision-Langage-Action (VLA) sur des tâches de manipulation sur mesure.
-        - Mise en œuvre d'une reprise en main fluide par le téléopérateur pendant les exécutions autonomes, y compris la machine à états de transition autonomie–téléopération.
-        - "Construction du pipeline de données d'apprentissage sur robot réel piloté par les interventions : enregistrement embarqué, persistance complète sur disque local et envoi automatique vers le serveur de développement."
-        - "Bouclage d'une architecture d'apprentissage distribuée : cartes AGX/NX embarquées (publication de topics, exécution des commandes, collecte), un hôte x86 comme Acteur (inférence, envoi des actions en flux au robot) et un serveur de développement comme Apprenant (agrégation, entraînement, distribution des checkpoints) — une chaîne real-robot SFT / RL complète."
-        - "Recherche sur le RL hors ligne de type RECAP (π0.6) combiné à une adaptation rapide dans l'espace de bruit (type DSRL) : apprendre un bruit correctif à partir des interventions humaines pour imiter rapidement les comportements de reprise avant la fin de l'entraînement d'un nouveau checkpoint, avec une nette hausse du taux de succès sur les tâches non couvertes, puis extension à la loco-manipulation."
+        - "Responsable d'une pile d'apprentissage robotique réel avec humain dans la boucle pour les modèles VLA sur le humanoïde Omega développé en interne par Honor, de bout en bout, en six volets :"
+        - "<strong>Pipeline VLA de bout en bout :</strong> mise en place from scratch de la boucle collecte → post-entraînement → déploiement du laboratoire (deux dispositifs de téléopération, formation des opérateurs, post-entraînement GR00T N1.7, inférence temps réel par blocs)."
+        - "<strong>Conception des données hors ligne :</strong> quatre catégories de démonstrations (standard, perturbation de saisie / dépose, récupération après échec) pour que la politique re-suive des cibles mobiles et se rétablisse après une saisie manquée."
+        - "<strong>Infrastructure d'entraînement par reprise humaine :</strong> reprise fluide par le téléopérateur, pipeline de données piloté par les interventions et boucle distribuée Actor–Learner–Robot (AGX/NX, Actor x86, Learner GPU) ; une tâche à disposition en miroir est passée de ≈0% → 50% de réussite autonome en ~140 épisodes."
+        - "<strong>Algorithmes d'apprentissage par renforcement sur robot réel :</strong> portage de l'entraînement conditionné par l'avantage RECAP (π0.6) vers GR00T ; conception de RAPID, une adaptation dans l'espace de bruit de type DSRL qui réutilise les corrections humaines avant l'arrivée d'un nouveau checkpoint ; extension de la pile à la loco-manipulation."
+        - "<strong>Reproduction de ROVE :</strong> reproduction du ROVE de XPENG sur la saisie fine de téléphones — retours sensibles aux étapes et fonction de valeur optimiste (expectile) qui fixe un avantage négatif sur les actions provoquant une reprise ; succès autonome 40% → 52%."
+        - "<strong>Débogage sur robot réel :</strong> identification de six bugs au niveau système (incohérence d'espace colorimétrique, hystérésis du classifieur, dérive de lacet, images de caméra périmées) à l'aide de sondes quantitatives."
+        - "Résultat : une boucle interne où le robot apprend de nouvelles tâches à partir des reprises humaines — couvrant données, systèmes, algorithmes d'RL et déploiement."
     - position: Stagiaire de recherche
       location: Singapour
       h:

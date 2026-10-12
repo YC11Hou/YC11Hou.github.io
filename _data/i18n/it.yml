@@ -113,12 +113,14 @@ xp:
     - position: Ingegnere di algoritmi VLA (stagista)
       location: Shanghai, Cina
       h:
-        - "Lavoro sul robot umanoide di Honor: raccolta dati di teleoperazione, replay, addestramento e deployment sul robot."
-        - Ricerca su algoritmi di RL su robot reale per modelli Vision-Language-Action (VLA) su task di manipolazione personalizzati.
-        - Implementazione della presa di controllo fluida da parte del teleoperatore umano durante l'esecuzione autonoma, inclusa la macchina a stati di transizione autonomia–teleoperazione.
-        - "Realizzazione della pipeline dati per l'apprendimento su robot reale guidata dagli interventi: registrazione a bordo, persistenza completa su disco locale e caricamento automatico sul server di sviluppo."
-        - "Chiusura del ciclo su un'architettura di apprendimento distribuita: schede AGX/NX di bordo (pubblicazione topic, esecuzione comandi, raccolta dati), un host x86 come Actor (inferenza, streaming delle azioni al robot) e un server di sviluppo come Learner (aggregazione dati, addestramento, distribuzione dei checkpoint) — una pipeline real-robot SFT / RL completa."
-        - "Ricerca su RL offline in stile RECAP (π0.6) combinato con adattamento rapido nello spazio del rumore (tipo DSRL): apprendere un rumore correttivo dai dati di intervento umano per imitare rapidamente i comportamenti di presa di controllo prima che un nuovo checkpoint finisca l'addestramento, aumentando sensibilmente il tasso di successo sui task non coperti, con estensione alla loco-manipolazione."
+        - "Responsabile di uno stack di apprendimento su robot reale con umano nel ciclo per modelli VLA sull'umanoide Omega, sviluppato internamente da Honor, end-to-end su sei fronti:"
+        - "<strong>Pipeline VLA end-to-end:</strong> impostato da zero il ciclo raccolta → post-addestramento → deploy del laboratorio (due postazioni di teleoperazione, formazione degli operatori, post-addestramento di GR00T N1.7, inferenza in tempo reale a blocchi)."
+        - "<strong>Progettazione dei dati offline:</strong> quattro categorie di dimostrazioni (standard, perturbazione di presa / posa, recupero dai fallimenti) per far sì che la policy riagganci bersagli in movimento e si riprenda dopo prese mancate."
+        - "<strong>Infrastruttura di addestramento con subentro umano:</strong> passaggio di controllo fluido del teleoperatore, pipeline di dati guidata dagli interventi e ciclo distribuito Actor–Learner–Robot (AGX/NX, Actor x86, Learner GPU); un task con disposizione speculare è passato da ≈0% → 50% di successo autonomo in ~140 episodi."
+        - "<strong>Algoritmi di RL su robot reale:</strong> portato su GR00T l'addestramento condizionato al vantaggio di RECAP (π0.6); progettato RAPID, un adattamento nello spazio del rumore in stile DSRL che riutilizza le correzioni umane prima dell'arrivo di un nuovo checkpoint; esteso lo stack alla loco-manipolazione."
+        - "<strong>Riproduzione di ROVE:</strong> riprodotto il ROVE di XPENG sulla presa fine di telefoni — ritorni consapevoli delle fasi più una funzione di valore ottimistica (expectile) che fissa un vantaggio negativo sulle azioni che causano il subentro; successo autonomo 40% → 52%."
+        - "<strong>Debug su robot reale:</strong> individuati sei bug a livello di sistema (incongruenza dello spazio colore, isteresi del classificatore, deriva di imbardata, frame della camera obsoleti) con sonde quantitative."
+        - "Risultato: un ciclo interno in cui il robot impara nuovi task dai subentri umani, coprendo dati, sistemi, algoritmi di RL e deploy."
     - position: Stagista di ricerca
       location: Singapore
       h:

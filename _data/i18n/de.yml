@@ -113,12 +113,14 @@ xp:
     - position: VLA-Algorithmus-Ingenieur (Praktikant)
       location: Shanghai, China
       h:
-        - "Arbeit am humanoiden Roboter von Honor: Erfassung von Teleoperationsdaten, Replay, Training und Einsatz auf dem Roboter."
-        - Forschung zu RL-Algorithmen auf dem echten Roboter für Vision-Language-Action-(VLA)-Modelle auf eigens definierten Manipulationsaufgaben.
-        - Umsetzung einer nahtlosen Übernahme durch den menschlichen Teleoperator während autonomer Ausführung, inklusive Zustandsautomat für den Wechsel Autonomie–Teleoperation.
-        - "Aufbau der interventionsgetriebenen Datenpipeline für das Lernen auf dem echten Roboter: Aufzeichnung auf dem Roboter, vollständige lokale Persistenz und automatischer Upload zum Entwicklungsserver."
-        - "Schließen der Schleife über eine verteilte Lernarchitektur: AGX/NX-Boards an Bord (Topic-Publishing, Befehlsausführung, Datenerfassung), ein x86-Host als Actor (Inferenz, Streaming der Aktionen zum Roboter) und ein Entwicklungsserver als Learner (Datenaggregation, Training, Checkpoint-Verteilung) — eine vollständige Real-Robot-SFT-/RL-Pipeline."
-        - "Forschung zu RECAP-artigem (π0.6) Offline-RL kombiniert mit schneller Anpassung im Rauschraum (DSRL-ähnlich): Lernen eines korrigierenden Rauschens aus menschlichen Interventionen, um Übernahmeverhalten schnell zu imitieren, bevor ein neuer Checkpoint fertig trainiert ist — deutlich höhere Erfolgsraten bei nicht abgedeckten Aufgaben, mit Erweiterung auf Loko-Manipulation."
+        - "Verantwortlich für einen Human-in-the-Loop-Lernstack für reale Roboter mit VLA-Modellen auf Honors selbst entwickeltem Humanoiden Omega, durchgängig über sechs Bereiche:"
+        - "<strong>Durchgängige VLA-Pipeline:</strong> den Kreislauf Erfassen → Post-Training → Deployment des Labors von Grund auf aufgebaut (zwei Teleoperations-Rigs, Bedienerschulung, GR00T-N1.7-Post-Training, Echtzeit-Inferenz in Chunks)."
+        - "<strong>Offline-Datendesign:</strong> vier Demonstrationskategorien (Standard, Pick-/Place-Störung, Fehlerbehebung), damit die Policy bewegte Ziele neu verfolgt und sich von verfehlten Griffen erholt."
+        - "<strong>Infrastruktur für Human-Takeover-Training:</strong> nahtlose Übernahme durch den Teleoperator, eine interventionsgesteuerte Datenpipeline und eine verteilte Actor–Learner–Robot-Schleife (AGX/NX, x86-Actor, GPU-Learner); eine Aufgabe mit gespiegeltem Layout stieg in ~140 Episoden von ≈0% → 50% autonomer Erfolgsquote."
+        - "<strong>RL-Algorithmen für reale Roboter:</strong> RECAP-(π0.6)-Training mit Advantage-Konditionierung auf GR00T portiert; RAPID entworfen, eine DSRL-artige Adaption im Rauschraum, die menschliche Korrekturen vor Eintreffen eines neuen Checkpoints wiederverwendet; den Stack auf Loco-Manipulation erweitert."
+        - "<strong>ROVE-Reproduktion:</strong> XPENGs ROVE beim feinmotorischen Greifen von Smartphones reproduziert — stufenbewusste Returns plus eine optimistische (Expektil-)Wertfunktion, die negativen Advantage auf übernahmeauslösende Aktionen festlegt; autonome Erfolgsquote 40% → 52%."
+        - "<strong>Debugging am realen Roboter:</strong> sechs Fehler auf Systemebene (Farbraum-Abweichung, Klassifikator-Hysterese, Gier-Drift, veraltete Kamerabilder) mit quantitativen Sonden zurückverfolgt."
+        - "Ergebnis: eine hausinterne Schleife, in der der Roboter neue Aufgaben aus menschlichen Übernahmen lernt — über Daten, Systeme, RL-Algorithmen und Deployment hinweg."
     - position: Forschungspraktikant
       location: Singapur
       h:

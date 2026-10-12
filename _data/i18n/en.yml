@@ -116,12 +116,14 @@ xp:
     - position: VLA Algorithm Engineer (Intern)
       location: Shanghai, China
       h:
-        - "Working on Honor's self-developed humanoid robot: teleoperation data collection, replay, training, and on-robot deployment."
-        - Conducting real-robot RL algorithm research for Vision-Language-Action (VLA) models on custom manipulation tasks.
-        - Implemented smooth human-teleoperator takeover during autonomous rollouts, including the autonomy-teleoperation transition state machine.
-        - "Built the intervention-driven real-robot learning data pipeline: on-robot data recording, full local disk persistence, and automatic upload to the development server."
-        - "Closed the loop over a distributed learning architecture: onboard AGX/NX boards (topic publishing, command execution, data collection), an x86 host as the Actor (model inference, streaming actions to the robot), and a development server as the Learner (data aggregation, training, checkpoint dispatch) - a complete real-robot SFT / RL pipeline."
-        - "Researching RECAP-style (pi-0.6) offline RL combined with noise-space fast adaptation (DSRL-like): learning corrective noise from human-intervention data to rapidly imitate takeover behaviors before a new checkpoint finishes training, substantially raising success rates on tasks uncovered by offline training, and further adapting the algorithm to loco-manipulation tasks."
+        - "Owned a human-in-the-loop real-robot learning stack for VLA models on Honor's self-developed Omega humanoid, end to end across six parts:"
+        - "<strong>End-to-end VLA pipeline:</strong> set up the lab's collect → post-train → deploy loop from scratch (two teleoperation rigs, operator training, GR00T N1.7 post-training, chunked real-time inference)."
+        - "<strong>Offline data design:</strong> four demonstration categories (standard, pick / place perturbation, failure recovery) so the policy re-tracks moving targets and recovers from missed grasps."
+        - "<strong>Human-takeover training infra:</strong> smooth teleoperator takeover, an intervention-driven data pipeline and a distributed Actor–Learner–Robot loop (AGX/NX, x86 Actor, GPU Learner); a mirrored-layout task rose from ≈0% → 50% autonomous success in ~140 episodes."
+        - "<strong>Real-robot RL algorithms:</strong> ported RECAP (π0.6) advantage-conditioned training to GR00T; designed RAPID, a DSRL-style noise-space adaptation that reuses human corrections before a new checkpoint lands; extended the stack to loco-manipulation."
+        - "<strong>ROVE reproduction:</strong> reproduced XPENG's ROVE on fine-grained phone grasping — stage-aware returns plus an optimistic (expectile) value function that pins negative advantage on takeover-causing actions; autonomous success 40% → 52%."
+        - "<strong>Real-robot debugging:</strong> traced six system-level bugs (colour-space mismatch, classifier hysteresis, yaw drift, stale camera frames) with quantitative probes."
+        - "Result: an in-house loop in which the robot learns new tasks from human takeovers — spanning data, systems, RL algorithms and deployment."
     - position: Research Intern
       location: Singapore
       h:

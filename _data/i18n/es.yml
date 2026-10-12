@@ -113,12 +113,14 @@ xp:
     - position: Ingeniero de algoritmos VLA (becario)
       location: Shanghái, China
       h:
-        - "Trabajo en el robot humanoide de Honor: captura de datos de teleoperación, reproducción, entrenamiento y despliegue en el robot."
-        - Investigación en algoritmos de RL en robot real para modelos Visión-Lenguaje-Acción (VLA) en tareas de manipulación a medida.
-        - Implementación de una toma de control fluida por el teleoperador humano durante ejecuciones autónomas, incluida la máquina de estados de transición autonomía–teleoperación.
-        - "Construcción del pipeline de datos de aprendizaje en robot real guiado por intervenciones: grabación a bordo, persistencia completa en disco local y subida automática al servidor de desarrollo."
-        - "Cierre del bucle sobre una arquitectura de aprendizaje distribuida: placas AGX/NX a bordo (publicación de tópicos, ejecución de comandos, captura de datos), un host x86 como Actor (inferencia, envío de acciones al robot en streaming) y un servidor de desarrollo como Learner (agregación de datos, entrenamiento, distribución de checkpoints) — una cadena real-robot SFT / RL completa."
-        - "Investigación en RL offline tipo RECAP (π0.6) combinado con adaptación rápida en el espacio de ruido (tipo DSRL): aprender un ruido correctivo a partir de las intervenciones humanas para imitar con rapidez los comportamientos de toma de control antes de que termine de entrenarse un nuevo checkpoint, elevando notablemente la tasa de éxito en tareas no cubiertas, y extensión a loco-manipulación."
+        - "Responsable de una pila de aprendizaje robótico real con humano en el bucle para modelos VLA en el humanoide Omega, desarrollado internamente por Honor, de extremo a extremo en seis partes:"
+        - "<strong>Pipeline VLA de extremo a extremo:</strong> puse en marcha desde cero el ciclo recopilar → post-entrenar → desplegar del laboratorio (dos equipos de teleoperación, formación de operadores, post-entrenamiento de GR00T N1.7, inferencia en tiempo real por bloques)."
+        - "<strong>Diseño de datos offline:</strong> cuatro categorías de demostraciones (estándar, perturbación de agarre / colocación, recuperación de fallos) para que la política vuelva a seguir objetivos en movimiento y se recupere de agarres fallidos."
+        - "<strong>Infraestructura de entrenamiento con toma de control humana:</strong> relevo fluido del teleoperador, un pipeline de datos guiado por intervenciones y un bucle distribuido Actor–Learner–Robot (AGX/NX, Actor x86, Learner GPU); una tarea con disposición en espejo pasó de ≈0% → 50% de éxito autónomo en ~140 episodios."
+        - "<strong>Algoritmos de RL en robot real:</strong> porté el entrenamiento condicionado por ventaja RECAP (π0.6) a GR00T; diseñé RAPID, una adaptación en el espacio de ruido al estilo DSRL que reutiliza las correcciones humanas antes de que llegue un nuevo checkpoint; amplié la pila a loco-manipulación."
+        - "<strong>Reproducción de ROVE:</strong> reproduje el ROVE de XPENG en el agarre fino de teléfonos — retornos conscientes de etapa más una función de valor optimista (expectil) que fija ventaja negativa en las acciones que provocan la toma de control; éxito autónomo 40% → 52%."
+        - "<strong>Depuración en robot real:</strong> rastreé seis errores a nivel de sistema (desajuste de espacio de color, histéresis del clasificador, deriva de guiñada, fotogramas de cámara obsoletos) con sondas cuantitativas."
+        - "Resultado: un ciclo propio en el que el robot aprende nuevas tareas a partir de tomas de control humanas, abarcando datos, sistemas, algoritmos de RL y despliegue."
     - position: Becario de investigación
       location: Singapur
       h:

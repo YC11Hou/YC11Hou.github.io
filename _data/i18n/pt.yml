@@ -113,12 +113,14 @@ xp:
     - position: Engenheiro de algoritmos VLA (estagiário)
       location: Xangai, China
       h:
-        - "Trabalho no robô humanoide da Honor: recolha de dados de teleoperação, replay, treino e implementação no robô."
-        - Investigação em algoritmos de RL em robô real para modelos Visão-Linguagem-Ação (VLA) em tarefas de manipulação personalizadas.
-        - Implementação da tomada de controlo suave pelo teleoperador humano durante execuções autónomas, incluindo a máquina de estados de transição autonomia–teleoperação.
-        - "Construção do pipeline de dados de aprendizagem em robô real orientado por intervenções: gravação a bordo, persistência completa em disco local e envio automático para o servidor de desenvolvimento."
-        - "Fecho do ciclo numa arquitetura de aprendizagem distribuída: placas AGX/NX a bordo (publicação de tópicos, execução de comandos, recolha de dados), um host x86 como Actor (inferência, envio de ações ao robô em streaming) e um servidor de desenvolvimento como Learner (agregação de dados, treino, distribuição de checkpoints) — um pipeline real-robot SFT / RL completo."
-        - "Investigação em RL offline do tipo RECAP (π0.6) combinado com adaptação rápida no espaço do ruído (tipo DSRL): aprender um ruído corretivo a partir das intervenções humanas para imitar rapidamente os comportamentos de tomada de controlo antes de um novo checkpoint terminar o treino, elevando substancialmente a taxa de sucesso em tarefas não cobertas, com extensão à loco-manipulação."
+        - "Responsável por uma pilha de aprendizado robótico real com humano no ciclo para modelos VLA no humanoide Omega, desenvolvido internamente pela Honor, de ponta a ponta em seis frentes:"
+        - "<strong>Pipeline VLA de ponta a ponta:</strong> montei do zero o ciclo coletar → pós-treinar → implantar do laboratório (dois equipamentos de teleoperação, treinamento de operadores, pós-treinamento do GR00T N1.7, inferência em tempo real por blocos)."
+        - "<strong>Projeto de dados offline:</strong> quatro categorias de demonstrações (padrão, perturbação de pegar / colocar, recuperação de falhas) para que a política volte a rastrear alvos em movimento e se recupere de pegadas falhas."
+        - "<strong>Infraestrutura de treinamento com intervenção humana:</strong> assunção suave pelo teleoperador, pipeline de dados guiado por intervenções e ciclo distribuído Actor–Learner–Robot (AGX/NX, Actor x86, Learner GPU); uma tarefa com layout espelhado subiu de ≈0% → 50% de sucesso autônomo em ~140 episódios."
+        - "<strong>Algoritmos de RL em robô real:</strong> portei o treinamento condicionado por vantagem do RECAP (π0.6) para o GR00T; projetei o RAPID, uma adaptação no espaço de ruído no estilo DSRL que reaproveita correções humanas antes da chegada de um novo checkpoint; estendi a pilha para loco-manipulação."
+        - "<strong>Reprodução do ROVE:</strong> reproduzi o ROVE da XPENG na pegada fina de celulares — retornos sensíveis a etapas mais uma função de valor otimista (expectil) que fixa vantagem negativa nas ações que causam intervenção; sucesso autônomo 40% → 52%."
+        - "<strong>Depuração em robô real:</strong> rastreei seis bugs de nível de sistema (incompatibilidade de espaço de cor, histerese do classificador, deriva de guinada, quadros de câmera desatualizados) com sondas quantitativas."
+        - "Resultado: um ciclo próprio em que o robô aprende novas tarefas a partir de intervenções humanas, abrangendo dados, sistemas, algoritmos de RL e implantação."
     - position: Estagiário de investigação
       location: Singapura
       h:

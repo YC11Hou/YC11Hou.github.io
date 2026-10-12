@@ -113,12 +113,14 @@ xp:
     - position: Inżynier algorytmów VLA (stażysta)
       location: Szanghaj, Chiny
       h:
-        - "Praca nad robotem humanoidalnym firmy Honor: zbieranie danych z teleoperacji, odtwarzanie, trening i wdrożenie na robocie."
-        - Badania nad algorytmami RL na prawdziwym robocie dla modeli wizja-język-akcja (VLA) na niestandardowych zadaniach manipulacji.
-        - Implementacja płynnego przejęcia sterowania przez teleoperatora podczas autonomicznych przebiegów, w tym automatu stanów przejścia autonomia–teleoperacja.
-        - "Budowa potoku danych uczenia na prawdziwym robocie, sterowanego interwencjami: rejestracja na robocie, pełna trwałość na dysku lokalnym i automatyczne przesyłanie na serwer deweloperski."
-        - "Zamknięcie pętli w rozproszonej architekturze uczenia: pokładowe płyty AGX/NX (publikacja tematów, wykonywanie poleceń, zbieranie danych), host x86 jako Actor (inferencja, strumieniowanie akcji do robota) oraz serwer deweloperski jako Learner (agregacja danych, trening, dystrybucja checkpointów) — kompletny potok real-robot SFT / RL."
-        - "Badania nad RL offline w stylu RECAP (π0.6) połączonym z szybką adaptacją w przestrzeni szumu (jak DSRL): uczenie szumu korygującego z danych interwencji człowieka, aby szybko naśladować zachowania przejęcia, zanim nowy checkpoint skończy trening — znaczny wzrost skuteczności na zadaniach nieobjętych treningiem offline, z rozszerzeniem na loko-manipulację."
+        - "Odpowiedzialny za stos uczenia na prawdziwym robocie z człowiekiem w pętli dla modeli VLA na humanoidzie Omega, opracowanym wewnętrznie przez Honor, kompleksowo w sześciu obszarach:"
+        - "<strong>Kompleksowy potok VLA:</strong> od zera zbudowano laboratoryjną pętlę zbieranie → post-trening → wdrożenie (dwa zestawy do teleoperacji, szkolenie operatorów, post-trening GR00T N1.7, wnioskowanie w czasie rzeczywistym na fragmentach)."
+        - "<strong>Projekt danych offline:</strong> cztery kategorie demonstracji (standardowe, zakłócenia chwytania / odkładania, odzyskiwanie po błędach), dzięki którym polityka ponownie śledzi ruchome cele i odzyskuje sprawność po nieudanych chwytach."
+        - "<strong>Infrastruktura treningu z przejęciem przez człowieka:</strong> płynne przejęcie przez teleoperatora, potok danych napędzany interwencjami oraz rozproszona pętla Actor–Learner–Robot (AGX/NX, Actor x86, Learner GPU); zadanie z lustrzanym układem wzrosło z ≈0% → 50% autonomicznej skuteczności w ~140 epizodach."
+        - "<strong>Algorytmy RL na prawdziwym robocie:</strong> przeniesiono trening warunkowany przewagą RECAP (π0.6) na GR00T; zaprojektowano RAPID, adaptację w przestrzeni szumu w stylu DSRL, która wykorzystuje ludzkie korekty, zanim pojawi się nowy checkpoint; rozszerzono stos na lokomanipulację."
+        - "<strong>Reprodukcja ROVE:</strong> odtworzono ROVE firmy XPENG na zadaniu precyzyjnego chwytania telefonów — zwroty uwzględniające etapy oraz optymistyczna funkcja wartości (expectile), która utrwala ujemną przewagę dla akcji powodujących przejęcie; autonomiczna skuteczność 40% → 52%."
+        - "<strong>Debugowanie na prawdziwym robocie:</strong> wyśledzono sześć błędów na poziomie systemu (niezgodność przestrzeni barw, histereza klasyfikatora, dryf odchylenia, nieaktualne klatki z kamery) za pomocą sond ilościowych."
+        - "Wynik: wewnętrzna pętla, w której robot uczy się nowych zadań na podstawie przejęć przez człowieka — obejmująca dane, systemy, algorytmy RL i wdrożenie."
     - position: Stażysta badawczy
       location: Singapur
       h:

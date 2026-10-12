@@ -113,12 +113,14 @@ xp:
     - position: VLA-algoritme-engineer (stagiair)
       location: Shanghai, China
       h:
-        - "Werk aan Honors humanoïde robot: verzamelen van teleoperatiedata, replay, training en uitrol op de robot."
-        - Onderzoek naar RL-algoritmen op de echte robot voor Vision-Language-Action (VLA)-modellen op maatwerk-manipulatietaken.
-        - Implementatie van soepele overname door de menselijke teleoperator tijdens autonome uitvoering, inclusief de toestandsmachine voor de overgang autonomie–teleoperatie.
-        - "Bouw van de interventiegedreven datapipeline voor leren op de echte robot: opname aan boord, volledige lokale persistentie en automatische upload naar de ontwikkelserver."
-        - "Sluiten van de lus over een gedistribueerde leerarchitectuur: AGX/NX-boards aan boord (topics publiceren, commando's uitvoeren, data verzamelen), een x86-host als Actor (inferentie, acties streamen naar de robot) en een ontwikkelserver als Learner (data-aggregatie, training, checkpoint-distributie) — een complete real-robot SFT / RL-pipeline."
-        - "Onderzoek naar RECAP-achtige (π0.6) offline RL gecombineerd met snelle aanpassing in de ruisruimte (DSRL-achtig): corrigerende ruis leren uit menselijke interventies om overnamegedrag snel na te bootsen voordat een nieuw checkpoint klaar is met trainen, met aanzienlijk hogere slagingspercentages op niet-gedekte taken, en uitbreiding naar loco-manipulatie."
+        - "Eigenaar van een human-in-the-loop-leerstack voor echte robots met VLA-modellen op Honors zelfontwikkelde humanoïde Omega, end-to-end in zes onderdelen:"
+        - "<strong>End-to-end VLA-pipeline:</strong> de verzamelen → post-trainen → uitrollen-cyclus van het lab van nul opgezet (twee teleoperatiesystemen, operatortraining, GR00T N1.7-post-training, realtime inferentie in chunks)."
+        - "<strong>Ontwerp van offline data:</strong> vier demonstratiecategorieën (standaard, pak- / plaatsverstoring, foutherstel) zodat de policy bewegende doelen weer volgt en herstelt van gemiste grepen."
+        - "<strong>Infrastructuur voor training met menselijke overname:</strong> soepele overname door de teleoperator, een interventiegedreven datapipeline en een gedistribueerde Actor–Learner–Robot-lus (AGX/NX, x86-Actor, GPU-Learner); een taak met gespiegelde opstelling steeg van ≈0% → 50% autonoom succes in ~140 episodes."
+        - "<strong>RL-algoritmen voor echte robots:</strong> RECAP (π0.6) met advantage-conditionering overgezet naar GR00T; RAPID ontworpen, een DSRL-achtige adaptatie in de ruisruimte die menselijke correcties hergebruikt voordat een nieuw checkpoint beschikbaar is; de stack uitgebreid naar loco-manipulatie."
+        - "<strong>ROVE-reproductie:</strong> XPENGs ROVE gereproduceerd op fijnmotorisch grijpen van telefoons — fasebewuste returns plus een optimistische (expectile) waardefunctie die negatieve advantage vastzet op acties die een overname veroorzaken; autonoom succes 40% → 52%."
+        - "<strong>Debuggen op echte robots:</strong> zes bugs op systeemniveau (kleurruimte-mismatch, classifier-hysterese, yaw-drift, verouderde camerabeelden) opgespoord met kwantitatieve metingen."
+        - "Resultaat: een eigen lus waarin de robot nieuwe taken leert van menselijke overnames — van data en systemen tot RL-algoritmen en uitrol."
     - position: Onderzoeksstagiair
       location: Singapore
       h:

@@ -113,12 +113,14 @@ xp:
     - position: VLA-algoritmingenjör (praktikant)
       location: Shanghai, Kina
       h:
-        - "Arbete med Honors humanoida robot: insamling av teleoperationsdata, uppspelning, träning och driftsättning på roboten."
-        - Forskning om RL-algoritmer på verklig robot för Vision-Language-Action (VLA)-modeller på skräddarsydda manipulationsuppgifter.
-        - Implementerade sömlöst övertagande av mänsklig teleoperatör under autonoma körningar, inklusive tillståndsmaskinen för övergången autonomi–teleoperation.
-        - "Byggde den ingripandedrivna datapipelinen för inlärning på verklig robot: inspelning på roboten, fullständig lokal disklagring och automatisk uppladdning till utvecklingsservern."
-        - "Slöt loopen över en distribuerad inlärningsarkitektur: AGX/NX-kort på roboten (topic-publicering, kommandoutförande, datainsamling), en x86-värd som Actor (inferens, strömning av handlingar till roboten) och en utvecklingsserver som Learner (dataaggregering, träning, checkpoint-distribution) — en komplett real-robot SFT / RL-pipeline."
-        - "Forskning om RECAP-liknande (π0.6) offline-RL kombinerat med snabb anpassning i brusrummet (DSRL-liknande): lära korrigerande brus från mänskliga ingripanden för att snabbt imitera övertagandebeteenden innan en ny checkpoint är färdigtränad — avsevärt högre framgångsgrad på uppgifter som offline-träningen inte täcker, samt utvidgning till loko-manipulation."
+        - "Ansvarade för en människa-i-loopen-stack för inlärning på riktiga robotar med VLA-modeller på Honors egenutvecklade humanoid Omega, från början till slut i sex delar:"
+        - "<strong>Heltäckande VLA-pipeline:</strong> byggde labbets cykel samla in → eftertränings → driftsätt från grunden (två teleoperationsrigg, operatörsutbildning, eftertränande av GR00T N1.7, realtidsinferens i block)."
+        - "<strong>Design av offlinedata:</strong> fyra demonstrationskategorier (standard, störning vid plock / placering, felåterhämtning) så att policyn åter följer rörliga mål och återhämtar sig efter missade grepp."
+        - "<strong>Infrastruktur för träning med mänsklig övertagning:</strong> mjuk övertagning av teleoperatören, en interventionsdriven datapipeline och en distribuerad Actor–Learner–Robot-loop (AGX/NX, x86-Actor, GPU-Learner); en uppgift med spegelvänd layout steg från ≈0% → 50% autonom framgång på ~140 episoder."
+        - "<strong>RL-algoritmer för riktiga robotar:</strong> portade RECAP (π0.6) med advantage-konditionerad träning till GR00T; utformade RAPID, en DSRL-liknande anpassning i brusrymden som återanvänder mänskliga korrigeringar innan en ny checkpoint finns; utökade stacken till loko-manipulation."
+        - "<strong>Reproduktion av ROVE:</strong> reproducerade XPENGs ROVE på finmotoriskt grepp av telefoner — stegmedvetna returns plus en optimistisk (expektil-)värdefunktion som låser negativ advantage på åtgärder som orsakar övertagning; autonom framgång 40% → 52%."
+        - "<strong>Felsökning på riktig robot:</strong> spårade sex buggar på systemnivå (färgrymdsmissmatch, klassificerarhysteres, girdrift, inaktuella kamerabilder) med kvantitativa mätningar."
+        - "Resultat: en egen loop där roboten lär sig nya uppgifter av mänskliga övertaganden — över data, system, RL-algoritmer och driftsättning."
     - position: Forskningspraktikant
       location: Singapore
       h:
