@@ -38,10 +38,10 @@
       "summary": "Owned a human-in-the-loop real-robot learning stack for VLA models on Honor's self-developed Omega humanoid, end to end across six parts:",
       "highlights": [
         "End-to-end VLA pipeline: set up the lab's collect → post-train → deploy loop from scratch (two teleoperation rigs, operator training, GR00T N1.7 post-training, chunked real-time inference).",
-        "Offline data design: four demonstration categories (standard, pick / place perturbation, failure recovery) so the policy re-tracks moving targets and recovers from missed grasps.",
-        "Human-takeover training infra: smooth teleoperator takeover, an intervention-driven data pipeline and a distributed Actor–Learner–Robot loop (AGX/NX, x86 Actor, GPU Learner); a mirrored-layout task rose from ≈0% → 50% autonomous success in ~140 episodes.",
+        "Offline data design: four demonstration categories (standard, pick and place perturbations, failure recovery) so the policy re-tracks moving targets and recovers from missed grasps.",
+        "Human-takeover training infra: smooth teleoperator takeover, an intervention-driven data pipeline and a distributed Actor–Learner–Robot loop (AGX/NX, x86 Actor, GPU Learner); a mirrored-layout task rose from near 0% to 50% autonomous success in about 140 episodes.",
         "Real-robot RL algorithms: ported RECAP (π0.6) advantage-conditioned training to GR00T; designed RAPID, a DSRL-style noise-space adaptation that reuses human corrections before a new checkpoint lands; extended the stack to loco-manipulation.",
-        "ROVE reproduction: reproduced XPENG's ROVE on fine-grained phone grasping — stage-aware returns plus an optimistic (expectile) value function that pins negative advantage on takeover-causing actions; autonomous success 40% → 52%.",
+        "ROVE reproduction: reproduced XPENG's ROVE on fine-grained phone grasping — stage-aware returns plus an optimistic (expectile) value function that pins negative advantage on takeover-causing actions; autonomous success from 40% to 52%.",
         "Real-robot debugging: traced six system-level bugs (colour-space mismatch, classifier hysteresis, yaw drift, stale camera frames) with quantitative probes.",
         "Result: an in-house loop in which the robot learns new tasks from human takeovers — spanning data, systems, RL algorithms and deployment."
       ]
