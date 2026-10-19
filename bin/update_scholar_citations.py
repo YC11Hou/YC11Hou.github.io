@@ -85,7 +85,8 @@ def get_scholar_citations() -> None:
 
     for pub in author_data["publications"]:
         try:
-            pub_id = pub.get("pub_id") or pub.get("author_pub_id")
+            # Templates look papers up by the bare Scholar pub id, without the "<user id>:" prefix
+            pub_id = (pub.get("pub_id") or pub.get("author_pub_id") or "").split(":")[-1]
             if not pub_id:
                 print(
                     f"Warning: No ID found for publication: {pub.get('bib', {}).get('title', 'Unknown')}. This publication will be skipped."
