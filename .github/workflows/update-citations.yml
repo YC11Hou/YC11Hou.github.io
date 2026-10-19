@@ -2,7 +2,7 @@ name: Update Google Scholar Citations
 
 on:
   schedule:
-    - cron: "0 */6 * * *" # every 6 hours; syncs the build-time fallback with the live /scholar endpoint
+    - cron: "17 * * * *" # hourly: scrape Scholar, push live counts to /scholar, commit the fallback when it changes
   workflow_dispatch:
 
 jobs:
@@ -25,7 +25,7 @@ jobs:
         run: |
           echo "🔧 Installing dependencies..."
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install pyyaml
 
       - name: Save current citations.yml hash
         id: before
@@ -43,11 +43,13 @@ jobs:
       - name: Run citation update script
         id: run_citation_update
         shell: bash
+        env:
+          SCHOLAR_TOKEN: ${{ secrets.SCHOLAR_TOKEN }}
         run: |
           set +e
           echo "🚀 Running citation update script (single attempt)..."
           start_time=$(date)
-          timeout 90 python bin/update_scholar_citations.py
+          timeout 150 python bin/update_scholar_citations.py
           status=$?
           end_time=$(date)
           if [ $status -eq 0 ]; then
@@ -96,4 +98,8 @@ jobs:
             echo "📤 Committing and pushing changes..."
             git commit -m "Update Google Scholar citations"
             git push
+            # Pushes made with GITHUB_TOKEN do not trigger other workflows, so start the deploy explicitly
+            gh workflow run deploy.yml --ref main
           )
+        env:
+          GH_TOKEN: ${{ github.token }}
