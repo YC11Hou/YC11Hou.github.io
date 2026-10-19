@@ -444,7 +444,7 @@
   align-items: center;
   gap: 0.4rem;
   height: 1.45rem;
-  // + 0.04em a side gives back the cancelled trailing tracking, so the badge keeps its old width.
+  // Ink-to-border padding, measured equal on both sides (the label's trailing tracking is part of the right side).
   padding: 0 calc(0.6rem + 0.04em);
 
   &:lang(zh) {
@@ -465,12 +465,13 @@
     color 0.18s ease,
     border-color 0.18s ease;
 
-  // The icon and digit ink sit above their line-box centre; nudges measured at 4x DPR (ink centre within 1px of the badge centre).
+  // Icon-font glyph has no cap metrics: nudge its ink onto the centre line, and cancel its right side bearing so the number sits mid-way.
   i {
     font-size: 0.85rem;
     line-height: 1;
     color: var(--accent);
     transform: translateY(0.07em);
+    margin-right: -0.1em;
   }
 
   .pub-cites-n {
@@ -478,17 +479,23 @@
     font-size: 0.8rem;
     letter-spacing: 0;
     color: var(--ink);
-    transform: translateY(0.06em);
   }
 
-  // Tracking also follows the last glyph; cancel it so the right padding is real.
-  // CJK glyphs also carry a wider right side bearing than Latin caps.
+  // Trim text boxes to cap height so flex centring centres the glyphs themselves, at any DPR.
+  .pub-cites-n,
   [data-i18n] {
-    margin-right: -0.08em;
+    text-box: trim-both cap alphabetic;
+  }
 
-    &:lang(zh) {
-      margin-right: -0.14em;
+  @supports not (text-box: trim-both cap alphabetic) {
+    .pub-cites-n {
+      transform: translateY(0.06em);
     }
+  }
+
+  // CJK glyphs carry a wider right side bearing than Latin caps; trim it so the right padding matches the left.
+  [data-i18n]:lang(zh) {
+    margin-right: -0.07em;
   }
 
   &:hover {
