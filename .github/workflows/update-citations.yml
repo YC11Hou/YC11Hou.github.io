@@ -2,7 +2,7 @@ name: Update Google Scholar Citations
 
 on:
   schedule:
-    - cron: "17 * * * *" # hourly: scrape Scholar, push live counts to /scholar, commit the fallback when it changes
+    - cron: "*/10 * * * *" # Scholar blocks ~4 in 5 runner IPs, so try often: ~30 successful refreshes a day
   workflow_dispatch:
 
 jobs:

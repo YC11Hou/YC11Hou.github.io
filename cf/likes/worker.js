@@ -47,7 +47,7 @@ const clean = (s, max) =>
     .trim()
     .slice(0, max);
 
-// Google Scholar counts are fetched hourly by CI (bin/update_scholar_citations.py), which pushes them here.
+// Google Scholar counts are fetched every 10 minutes by CI (bin/update_scholar_citations.py), which pushes them here.
 async function pushScholar(req, env) {
   if (!env.SCHOLAR_TOKEN || req.headers.get("Authorization") !== "Bearer " + env.SCHOLAR_TOKEN) return json({ error: "unauthorized" }, req, 401);
   let body;
