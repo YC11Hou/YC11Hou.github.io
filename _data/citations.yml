@@ -1,8 +1,8 @@
 metadata:
-  last_updated: '2026-09-06'
+  last_updated: '2026-10-19'
 papers:
   u-x6o8ySG0sC:
-    citations: 6
+    citations: 11
     title: 'LangGap: Diagnosing and Closing the Language Gap in Vision-Language-Action Models'
     year: '2026'
   u5HHmVD_uO8C:

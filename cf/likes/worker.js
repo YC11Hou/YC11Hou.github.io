@@ -6,6 +6,9 @@
 //   POST /unlike {id}                       -> { count, liked: false }
 //        a note (text) is accepted only with name + valid email; e-mail is
 //        stored for accountability but never returned by the API
+//   GET  /scholar                -> { updated, stale, papers: {pub_id: {citations, cites}} }
+//        live Google Scholar counts (via SerpAPI), refreshed at most once per SCHOLAR_TTL;
+//        when Scholar blocks the request, the last good result is served (stale: true)
 //
 // Anonymous by default. One like per id per visitor per day (keyed by a
 // hashed IP, TTL 24h). Notes are capped (name 40 chars, text 140 chars), HTML
@@ -45,10 +48,48 @@ const clean = (s, max) =>
     .trim()
     .slice(0, max);
 
+const SCHOLAR_USER = "4oFdrl8AAAAJ";
+const SCHOLAR_TTL = 3 * 3600; // ~240 SerpAPI calls a month, inside its free tier
+
+// Google Scholar blocks datacenter IPs, so counts come through SerpAPI's google_scholar_author engine
+async function scrapeScholar(env) {
+  if (!env.SERPAPI_KEY) throw new Error("SERPAPI_KEY secret not set");
+  const q = new URLSearchParams({ engine: "google_scholar_author", author_id: SCHOLAR_USER, hl: "en", num: "100", api_key: env.SERPAPI_KEY });
+  const res = await fetch("https://serpapi.com/search.json?" + q);
+  const data = await res.json();
+  if (!res.ok || data.error) throw new Error("serpapi: " + (data.error || res.status));
+  const papers = {};
+  for (const a of data.articles || []) {
+    const id = String(a.citation_id || "").split(":").pop();
+    if (id) papers[id] = { citations: (a.cited_by && a.cited_by.value) || 0, cites: (a.cited_by && a.cited_by.cites_id) || null };
+  }
+  if (!Object.keys(papers).length) throw new Error("serpapi returned no articles");
+  return papers;
+}
+
+async function scholar(env) {
+  const last = await env.LIKES.get("scholar", "json");
+  const now = Math.floor(Date.now() / 1000);
+  if (last && now - last.updated < SCHOLAR_TTL) return { ...last, stale: false };
+  // Back off for 10 minutes after a failed scrape so a failing upstream is not hammered
+  if (last && last.failed && now - last.failed < 600) return { ...last, stale: true };
+  try {
+    const fresh = { updated: now, papers: await scrapeScholar(env) };
+    await env.LIKES.put("scholar", JSON.stringify(fresh));
+    return { ...fresh, stale: false };
+  } catch (e) {
+    const kept = { ...(last || { updated: 0, papers: {} }), failed: now };
+    await env.LIKES.put("scholar", JSON.stringify(kept));
+    return { ...kept, stale: true, error: String(e.message || e) };
+  }
+}
+
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
     if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: cors(req) });
+
+    if (req.method === "GET" && url.pathname === "/scholar") return json(await scholar(env), req);
 
     if (req.method === "GET" && url.pathname === "/likes") {
       const ids = (url.searchParams.get("ids") || "").split(",").map((s) => s.trim()).filter((s) => ID_RE.test(s)).slice(0, 50);

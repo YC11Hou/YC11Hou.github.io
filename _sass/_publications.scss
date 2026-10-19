@@ -306,44 +306,6 @@
         display: none;
       }
 
-      // Live Google Scholar citation count (refreshed by the update-citations workflow)
-      .pub-cites {
-        display: inline-flex;
-        align-items: baseline;
-        gap: 0.4rem;
-        font-family: var(--font-mono);
-        font-size: 0.66rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--muted);
-        text-decoration: none;
-        border: 1px solid var(--rule);
-        border-radius: 999px;
-        padding: 0.28em 0.75em 0.28em 0.6em;
-        transition:
-          color 0.18s ease,
-          border-color 0.18s ease;
-
-        i {
-          font-size: 0.85rem;
-          align-self: center;
-          color: var(--accent);
-        }
-
-        .pub-cites-n {
-          font-weight: 600;
-          color: var(--ink);
-          font-size: 0.78rem;
-          letter-spacing: 0;
-        }
-
-        &:hover {
-          color: var(--accent);
-          border-color: var(--accent);
-          text-decoration: none;
-        }
-      }
-
       // Collapsible abstract / bibtex blocks
       .hidden {
         font-size: 0.9rem;
@@ -474,12 +436,20 @@
   }
 }
 
-.pub-cites {
+// Google Scholar citation badge, one design everywhere (publications, project rows, home tiles).
+// `.prose .pub-cites` outranks `.prose a` (accent colour + underline) on project pages.
+.pub-cites,
+.prose .pub-cites {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   height: 1.45rem;
-  padding: 0 0.65rem 0 0.55rem;
+  // + 0.04em a side gives back the cancelled trailing tracking, so the badge keeps its old width.
+  padding: 0 calc(0.6rem + 0.04em);
+
+  &:lang(zh) {
+    padding: 0 calc(0.6rem + 0.07em);
+  }
   border: 1px solid var(--rule-strong);
   border-radius: 5px;
   background: var(--surface);
@@ -495,9 +465,12 @@
     color 0.18s ease,
     border-color 0.18s ease;
 
+  // The icon and digit ink sit above their line-box centre; nudges measured at 4x DPR (ink centre within 1px of the badge centre).
   i {
     font-size: 0.85rem;
+    line-height: 1;
     color: var(--accent);
+    transform: translateY(0.07em);
   }
 
   .pub-cites-n {
@@ -505,6 +478,17 @@
     font-size: 0.8rem;
     letter-spacing: 0;
     color: var(--ink);
+    transform: translateY(0.06em);
+  }
+
+  // Tracking also follows the last glyph; cancel it so the right padding is real.
+  // CJK glyphs also carry a wider right side bearing than Latin caps.
+  [data-i18n] {
+    margin-right: -0.08em;
+
+    &:lang(zh) {
+      margin-right: -0.14em;
+    }
   }
 
   &:hover {

@@ -29,7 +29,7 @@
         <span class="pub-venue">{{ project.venue }}</span>
         {% if project.scholar_id and site.data.citations.papers[project.scholar_id] -%}
           <a
-            class="pub-cites"
+            class="pub-cites" data-scholar-id="{{ project.scholar_id }}"
             href="{% if project.scholar_cites %}https://scholar.google.com/scholar?cites={{ project.scholar_cites }}{% else %}https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}{% endif %}"
             target="_blank"
             rel="noopener"
