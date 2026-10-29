@@ -73,7 +73,7 @@ function measure({ ITEMS, TITLE, TEXT }) {
         const ctx = await browser.newContext({ viewport: v, locale, colorScheme: scheme });
         const page = await ctx.newPage();
         for (const path of PAGES) {
-          await page.goto(base + path, { waitUntil: "load" });
+          await page.goto(base + path + (base.startsWith("https") ? "?v=" + Date.now() : ""), { waitUntil: "load" });
           await page.waitForTimeout(600);
           const r = await page.evaluate(measure, { ITEMS, TITLE, TEXT });
           const bad = [];
