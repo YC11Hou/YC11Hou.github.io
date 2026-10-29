@@ -54,8 +54,8 @@
       // Bootstrap grid inside bib.liquid → two-column grid: tag | body
       .row {
         display: grid;
-        grid-template-columns: 13.5rem minmax(0, 1fr);
-        gap: 0 1.8rem;
+        grid-template-columns: v.$item-thumb minmax(0, 1fr);
+        gap: 0 v.$item-thumb-gap;
         margin: 0;
 
         > div {
@@ -65,10 +65,14 @@
           padding: 0;
           min-width: 0;
         }
+
+        > .pub-side {
+          align-self: center;
+        }
       }
 
       .pub-media {
-        margin-top: 0.85rem;
+        margin-top: 0;
         aspect-ratio: 16 / 9;
         overflow: hidden;
         border-radius: 4px;
@@ -94,13 +98,13 @@
       }
 
       .pub-head {
-        margin-bottom: 0.55rem;
+        margin-bottom: 0.45rem;
       }
 
       .title {
         font-family: var(--font-display);
         font-weight: 500;
-        font-size: 1.3rem;
+        font-size: v.$item-title;
         line-height: 1.3;
         letter-spacing: -0.01em;
         color: var(--ink);
@@ -110,10 +114,10 @@
       // Metadata stays in the UI sans even though the list sits inside
       // `.prose`, so entries read the same here and on the home page.
       .author {
-        margin-top: 0.4rem;
+        margin-top: 0.35rem;
         font-family: var(--font-body);
-        font-size: 0.88rem;
-        line-height: 1.5;
+        font-size: v.$item-text;
+        line-height: v.$item-leading;
         color: var(--ink-2);
 
         a {
@@ -161,7 +165,9 @@
       }
 
       .links {
-        margin-top: 0.75rem;
+        margin-top: 0.6rem;
+        font-size: 0.68rem;
+        line-height: 1.6;
         display: flex;
         align-items: baseline;
         flex-wrap: wrap;
@@ -205,7 +211,7 @@
       .title {
         font-family: var(--font-display);
         font-weight: 500;
-        font-size: 1.3rem;
+        font-size: v.$item-title;
         line-height: 1.3;
         letter-spacing: -0.01em;
         color: var(--ink);
@@ -215,10 +221,10 @@
       // Metadata stays in the UI sans even though the list sits inside
       // `.prose`, so entries read the same here and on the home page.
       .author {
-        margin-top: 0.4rem;
+        margin-top: 0.35rem;
         font-family: var(--font-body);
-        font-size: 0.88rem;
-        line-height: 1.5;
+        font-size: v.$item-text;
+        line-height: v.$item-leading;
         color: var(--ink-2);
 
         a {
@@ -266,7 +272,9 @@
       }
 
       .links {
-        margin-top: 0.75rem;
+        margin-top: 0.6rem;
+        font-size: 0.68rem;
+        line-height: 1.6;
         display: flex;
         flex-wrap: wrap;
         gap: 0.35rem 1.25rem;
@@ -402,13 +410,15 @@
 // always the first thing in an entry (publications, project rows, home tiles).
 // ---------------------------------------------------------------------------
 
+// Fixed line box (the venue badge's height), so the title sits at the same offset with or without a badge
 .pub-head,
 .proj-head {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.45rem 0.7rem;
-  margin: 0 0 0.5rem;
+  min-height: 1.45rem;
+  margin: 0 0 0.45rem;
 }
 
 .pub-venue,

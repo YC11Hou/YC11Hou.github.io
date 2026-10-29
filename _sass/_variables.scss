@@ -16,7 +16,15 @@ $space-section: 2.8rem !default; // between top-level sections; equals the page-
 $space-section-narrow: 2.75rem !default; // same, below the rail breakpoint
 $space-group: 2rem !default; // between groups inside a section
 $space-label: 1.4rem !default; // section heading to its first row
-$space-row: 1.5rem !default; // top and bottom padding of one list row
+$space-row: 1.25rem !default; // padding between a list item and its divider rules
+
+// One list item, site-wide (projects, publications, experience, home tiles); sized after
+// measured academic homepages: 14-17px titles, 14-16px text, text block about as tall as the thumbnail
+$item-title: 1.125rem !default;
+$item-text: 0.875rem !default;
+$item-leading: 1.55 !default;
+$item-thumb: 17.5rem !default; // 280px, 16:9
+$item-thumb-gap: 1.75rem !default;
 
 // Legacy colour names still referenced by inherited partials
 $red-color: #ff3636 !default;

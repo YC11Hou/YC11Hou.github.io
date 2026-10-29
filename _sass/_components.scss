@@ -161,17 +161,17 @@ html[data-theme="dark"] .home-banner img {
 .work-title {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 1.25rem;
-  line-height: 1.25;
+  font-size: v.$item-title;
+  line-height: 1.3;
   letter-spacing: -0.01em;
   color: var(--ink);
   transition: color 0.18s ease;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
 }
 
 .work-desc {
-  font-size: 0.88rem;
-  line-height: 1.55;
+  font-size: v.$item-text;
+  line-height: v.$item-leading;
   color: var(--ink-2);
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -296,8 +296,8 @@ html[data-theme="dark"] .home-banner img {
 
 .proj-row {
   display: grid;
-  grid-template-columns: 300px minmax(0, 1fr);
-  gap: 1.9rem;
+  grid-template-columns: v.$item-thumb minmax(0, 1fr);
+  gap: v.$item-thumb-gap;
   padding: v.$space-row 0;
   border-top: 1px solid var(--rule);
 
@@ -323,7 +323,7 @@ html[data-theme="dark"] .home-banner img {
   overflow: hidden;
   border-radius: 4px;
   background: var(--rule);
-  align-self: start;
+  align-self: center;
 
   img,
   video,
@@ -346,11 +346,11 @@ html[data-theme="dark"] .home-banner img {
 }
 
 .proj-title {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.35rem;
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 1.45rem;
-  line-height: 1.2;
+  font-size: v.$item-title;
+  line-height: 1.3;
   letter-spacing: -0.012em;
 
   a {
@@ -367,10 +367,10 @@ html[data-theme="dark"] .home-banner img {
 // Listing copy stays in the UI sans (the projects page body sits inside
 // `.prose`, which is serif) — same voice as the home tiles and the timeline.
 .proj-desc {
-  margin: 0 0 0.8rem;
+  margin: 0 0 0.6rem;
   font-family: var(--font-body);
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: v.$item-text;
+  line-height: v.$item-leading;
   color: var(--ink-2);
 }
 
@@ -472,8 +472,8 @@ html[data-theme="dark"] .home-banner img {
   margin: 0;
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 1.3rem;
-  line-height: 1.25;
+  font-size: v.$item-title;
+  line-height: 1.3;
   letter-spacing: -0.01em;
   color: var(--ink);
 
@@ -516,8 +516,8 @@ html[data-theme="dark"] .home-banner img {
 .xp-highlights {
   margin: 0.8rem 0 0;
   padding-left: 1.1rem;
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: v.$item-text;
+  line-height: v.$item-leading;
   color: var(--ink-2);
 
   li {
