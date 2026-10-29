@@ -13,7 +13,7 @@
     display: flex;
     align-items: baseline;
     gap: 1rem;
-    margin: 2.6rem 0 0.4rem;
+    margin: var(--space-section) 0 0.4rem;
     font-family: var(--font-display);
     font-weight: 500;
     font-size: 1.5rem;
@@ -44,7 +44,7 @@
     li {
       counter-increment: pub;
       position: relative;
-      padding: 1.5rem 0;
+      padding: v.$space-row 0;
       border-top: 1px solid var(--rule);
 
       &:last-child {

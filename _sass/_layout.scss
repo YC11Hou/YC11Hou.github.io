@@ -45,6 +45,7 @@ body.site-body {
 
 :root {
   --rail-w: #{v.$rail-width};
+  --space-section: #{v.$space-section};
 }
 
 html[data-rail="collapsed"] {
@@ -541,7 +542,7 @@ html[data-rail="collapsed"] {
 }
 
 .section {
-  margin-top: 4.25rem;
+  margin-top: var(--space-section);
 
   &:first-child {
     margin-top: 0;
@@ -552,7 +553,7 @@ html[data-rail="collapsed"] {
   display: flex;
   align-items: baseline;
   gap: 1rem;
-  margin: 0 0 1.4rem;
+  margin: 0 0 v.$space-label;
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -619,7 +620,9 @@ html[data-rail="collapsed"] {
   line-height: 1.72;
   color: var(--ink-2);
 
-  p {
+  // Block margins skip listing components placed in a page body (project rows,
+  // publications, news): those set their own spacing.
+  p:not(:where(.projects, .publications, .news) *) {
     margin: 0 0 1.15rem;
   }
 
@@ -644,8 +647,11 @@ html[data-rail="collapsed"] {
     }
   }
 
-  h2 {
+  h2:not(:where(.projects, .publications, .news) *) {
     margin: 2.8rem 0 1rem;
+  }
+
+  h2 {
     font-family: var(--font-display);
     font-weight: 500;
     font-size: 1.7rem;
@@ -654,8 +660,11 @@ html[data-rail="collapsed"] {
     color: var(--ink);
   }
 
-  h3 {
+  h3:not(:where(.projects, .publications, .news) *) {
     margin: 2rem 0 0.7rem;
+  }
+
+  h3 {
     font-family: var(--font-body);
     font-size: 0.82rem;
     font-weight: 600;
@@ -667,6 +676,9 @@ html[data-rail="collapsed"] {
   ul,
   ol {
     padding-left: 1.3rem;
+  }
+
+  :is(ul, ol):not(:where(.projects, .publications, .news) *) {
     margin: 0 0 1.15rem;
 
     li {
@@ -770,8 +782,8 @@ html[data-rail="collapsed"] {
     padding-right: calc(16px + env(safe-area-inset-right, 0px));
   }
 
-  .section {
-    margin-top: 2.75rem;
+  :root {
+    --space-section: #{v.$space-section-narrow};
   }
 
   // iOS "large title": 34 pt, tight tracking, sitting close under the nav bar

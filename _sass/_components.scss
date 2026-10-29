@@ -229,7 +229,7 @@ html[data-theme="dark"] .home-banner img {
 // ---------------------------------------------------------------------------
 
 .proj-stage {
-  margin-bottom: 4.5rem;
+  margin-bottom: var(--space-section);
 
   &:last-child {
     margin-bottom: 0;
@@ -241,7 +241,7 @@ html[data-theme="dark"] .home-banner img {
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 1.6rem;
+  margin-bottom: v.$space-label;
   padding-bottom: 0.8rem;
   border-bottom: 1px solid var(--rule-strong);
 }
@@ -264,7 +264,7 @@ html[data-theme="dark"] .home-banner img {
 }
 
 .proj-group {
-  margin-top: 2.4rem;
+  margin-top: v.$space-group;
 
   &:first-of-type {
     margin-top: 0;
@@ -296,9 +296,9 @@ html[data-theme="dark"] .home-banner img {
 
 .proj-row {
   display: grid;
-  grid-template-columns: 240px minmax(0, 1fr);
+  grid-template-columns: 300px minmax(0, 1fr);
   gap: 1.9rem;
-  padding: 1.7rem 0;
+  padding: v.$space-row 0;
   border-top: 1px solid var(--rule);
 
   &:last-child {
@@ -416,7 +416,7 @@ html[data-theme="dark"] .home-banner img {
 // ---------------------------------------------------------------------------
 
 .xp-section {
-  margin-bottom: 3.6rem;
+  margin-bottom: var(--space-section);
 
   &:last-child {
     margin-bottom: 0;
@@ -427,7 +427,7 @@ html[data-theme="dark"] .home-banner img {
   display: grid;
   grid-template-columns: 7.5rem 48px minmax(0, 1fr);
   gap: 1.5rem;
-  padding: 1.5rem 0;
+  padding: v.$space-row 0;
   border-top: 1px solid var(--rule);
 
   &:last-child {
@@ -664,7 +664,7 @@ html[data-theme="dark"] .home-banner img {
   .proj-row {
     grid-template-columns: 1fr;
     gap: 1rem;
-    padding: 1.4rem 0;
+    padding: v.$space-row 0;
   }
 
   .proj-media {
