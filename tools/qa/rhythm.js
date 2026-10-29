@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // List-rhythm check: every list on the site must share one item spec (see $item-* in _sass/_variables.scss).
-// Checks: one title size, one gap between meta line and title, one text size, one row padding, every row ruled, thumbnails centred
+// Checks: no text under 14px inside an item, experience dates on the title baseline, one title size, one gap between meta line and title, one text size, one row padding, every row ruled, thumbnails centred
 // between the rules (<= 1px), text block / thumbnail height in range, no horizontal overflow.
 // Usage: node tools/qa/rhythm.js <base url> [--ref url ...]
 // Runs each listing page at desktop and phone width, en and zh, light and dark; exits 1 on any failure.
@@ -24,15 +24,40 @@ function measure({ ITEMS, TITLE, TEXT }) {
     offsets = [],
     ratios = [],
     unruled = [],
-    heads = new Set();
+    heads = new Set(),
+    tiny = new Set(),
+    baselines = [];
   for (const it of rows) {
     const b = it.getBoundingClientRect();
     pads.add(px(it, "paddingTop")).add(px(it, "paddingBottom"));
     if (!px(it, "borderTopWidth")) unruled.push(it.className || it.tagName);
+    // Every text line inside an item is at least 14px (badges excepted), like the reference sites
+    for (const t of it.querySelectorAll("*"))
+      if (
+        t.offsetParent &&
+        !t.closest(".pub-venue, .pub-cites") &&
+        [...t.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim()) &&
+        px(t, "fontSize") < 14
+      )
+        tiny.add(`${t.className || t.tagName}:${px(t, "fontSize")}`);
     const title = it.querySelector(".proj-title, .title");
     const head = it.querySelector(".proj-head, .pub-head");
     if (title && head) heads.add(Math.round(title.getBoundingClientRect().top - head.getBoundingClientRect().bottom));
     if (head && head.getBoundingClientRect().height < 22) heads.add("short meta line");
+    // Experience: the first date line sits on the title's baseline
+    const when = it.querySelector(".xp-when"),
+      xt = it.querySelector(".xp-title");
+    if (when && xt && when.getBoundingClientRect().right < xt.getBoundingClientRect().left) {
+      const base = (el) => {
+        const s = document.createElement("span");
+        s.style.cssText = "display:inline-block;width:0;height:0;vertical-align:baseline";
+        el.insertBefore(s, el.firstChild);
+        const y = s.getBoundingClientRect().top;
+        s.remove();
+        return y;
+      };
+      baselines.push(+(base(when) - base(xt)).toFixed(1));
+    }
     const media = it.querySelector(".proj-media, .pub-media");
     if (!media) continue;
     // Side-by-side rows only (phones stack the thumbnail above the text): thumbnail centred between the rules
@@ -51,6 +76,8 @@ function measure({ ITEMS, TITLE, TEXT }) {
   return {
     items: rows.length,
     heads: [...heads],
+    tiny: [...tiny],
+    baselines,
     title: sizes(TITLE),
     text: sizes(TEXT),
     gaps: [...pads],
@@ -80,6 +107,8 @@ function measure({ ITEMS, TITLE, TEXT }) {
           if (r.title.length > 1) bad.push("title sizes " + r.title);
           if (r.text.length > 1) bad.push("text sizes " + r.text);
           if (r.gaps.length > 1) bad.push("row paddings " + r.gaps);
+          r.baselines.filter((d) => Math.abs(d) > 1).forEach((d) => bad.push("date/title baseline " + d + "px"));
+          if (r.tiny.length) bad.push("text under 14px: " + r.tiny.join(","));
           if (r.heads.length > 1) bad.push("meta-to-title gaps " + r.heads);
           if (r.unruled.length) bad.push("rows without divider rule: " + [...new Set(r.unruled)]);
           r.offsets.filter((o) => Math.abs(o) > 1).forEach((o) => bad.push("thumbnail off-centre " + o + "px"));

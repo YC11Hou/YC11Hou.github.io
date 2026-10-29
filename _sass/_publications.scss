@@ -15,8 +15,8 @@
     gap: 1rem;
     margin: var(--space-section) 0 0.4rem;
     font-family: var(--font-display);
-    font-weight: 500;
-    font-size: 1.5rem;
+    font-weight: 600;
+    font-size: v.$section-heading;
     letter-spacing: -0.01em;
     color: var(--ink);
     border: 0;
@@ -103,12 +103,12 @@
 
       .title {
         font-family: var(--font-display);
-        font-weight: 500;
+        font-weight: v.$item-title-weight;
         font-size: v.$item-title;
         line-height: 1.3;
         letter-spacing: -0.01em;
         color: var(--ink);
-        text-wrap: pretty;
+        text-wrap: balance;
       }
 
       // Metadata stays in the UI sans even though the list sits inside
@@ -151,7 +151,7 @@
       .periodical {
         margin-top: 0.2rem;
         font-family: var(--font-body);
-        font-size: 0.82rem;
+        font-size: v.$item-meta;
         line-height: 1.5;
         color: var(--muted);
 
@@ -166,7 +166,7 @@
 
       .links {
         margin-top: 0.6rem;
-        font-size: 0.68rem;
+        font-size: v.$item-meta;
         line-height: 1.6;
         display: flex;
         align-items: baseline;
@@ -180,11 +180,11 @@
           border-radius: 0;
           background: none;
           box-shadow: none;
-          font-family: var(--font-mono);
-          font-size: 0.68rem;
+          font-family: var(--font-body);
+          font-size: v.$item-meta;
           font-weight: 500;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
+          letter-spacing: 0;
+          text-transform: none;
           color: var(--accent);
           line-height: 1.6;
           border-bottom: 1px solid transparent;
@@ -210,12 +210,12 @@
 
       .title {
         font-family: var(--font-display);
-        font-weight: 500;
+        font-weight: v.$item-title-weight;
         font-size: v.$item-title;
         line-height: 1.3;
         letter-spacing: -0.01em;
         color: var(--ink);
-        text-wrap: pretty;
+        text-wrap: balance;
       }
 
       // Metadata stays in the UI sans even though the list sits inside
@@ -258,7 +258,7 @@
       .periodical {
         margin-top: 0.2rem;
         font-family: var(--font-body);
-        font-size: 0.82rem;
+        font-size: v.$item-meta;
         line-height: 1.5;
         color: var(--muted);
 
@@ -273,7 +273,7 @@
 
       .links {
         margin-top: 0.6rem;
-        font-size: 0.68rem;
+        font-size: v.$item-meta;
         line-height: 1.6;
         display: flex;
         flex-wrap: wrap;
@@ -286,11 +286,11 @@
           border-radius: 0;
           background: none;
           box-shadow: none;
-          font-family: var(--font-mono);
-          font-size: 0.68rem;
+          font-family: var(--font-body);
+          font-size: v.$item-meta;
           font-weight: 500;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
+          letter-spacing: 0;
+          text-transform: none;
           color: var(--accent);
           line-height: 1.6;
           border-bottom: 1px solid transparent;

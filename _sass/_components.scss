@@ -151,16 +151,18 @@ html[data-theme="dark"] .home-banner img {
 }
 
 .work-meta {
-  font-size: 0.64rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: v.$item-meta;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--muted);
   margin-bottom: 0.4rem;
 }
 
 .work-title {
+  text-wrap: balance;
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: v.$item-title-weight;
   font-size: v.$item-title;
   line-height: 1.3;
   letter-spacing: -0.01em;
@@ -170,6 +172,7 @@ html[data-theme="dark"] .home-banner img {
 }
 
 .work-desc {
+  text-wrap: pretty;
   font-size: v.$item-text;
   line-height: v.$item-leading;
   color: var(--ink-2);
@@ -201,9 +204,10 @@ html[data-theme="dark"] .home-banner img {
   }
 
   .news-date {
-    font-size: 0.7rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-family: var(--font-body);
+    font-size: v.$item-meta;
+    letter-spacing: 0;
+    text-transform: none;
     color: var(--muted);
     padding-top: 0.25rem;
     white-space: nowrap;
@@ -249,17 +253,18 @@ html[data-theme="dark"] .home-banner img {
 .proj-stage-title {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 2rem;
-  line-height: 1;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  font-size: v.$section-heading;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
   color: var(--ink);
 }
 
 .proj-stage-period {
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: v.$item-meta;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--muted);
 }
 
@@ -277,16 +282,18 @@ html[data-theme="dark"] .home-banner img {
   flex-wrap: wrap;
   gap: 0.3rem 1rem;
   margin: 0 0 0.4rem;
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--ink);
 
   .proj-group-note {
+    font-size: v.$item-meta;
     font-weight: 400;
     color: var(--muted);
-    letter-spacing: 0.06em;
 
     &::before {
       content: "— ";
@@ -339,16 +346,18 @@ html[data-theme="dark"] .home-banner img {
 
 .proj-meta {
   margin: 0 0 0.45rem;
-  font-size: 0.64rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: v.$item-meta;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--muted);
 }
 
 .proj-title {
+  text-wrap: balance;
   margin: 0 0 0.35rem;
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: v.$item-title-weight;
   font-size: v.$item-title;
   line-height: 1.3;
   letter-spacing: -0.012em;
@@ -367,6 +376,7 @@ html[data-theme="dark"] .home-banner img {
 // Listing copy stays in the UI sans (the projects page body sits inside
 // `.prose`, which is serif) — same voice as the home tiles and the timeline.
 .proj-desc {
+  text-wrap: pretty;
   margin: 0 0 0.6rem;
   font-family: var(--font-body);
   font-size: v.$item-text;
@@ -379,10 +389,9 @@ html[data-theme="dark"] .home-banner img {
   display: flex;
   align-items: baseline;
   gap: 1.4rem;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: v.$item-meta;
+  font-weight: 500;
 
   a {
     color: var(--accent);
@@ -436,12 +445,18 @@ html[data-theme="dark"] .home-banner img {
 }
 
 .xp-when {
-  font-size: 0.7rem;
-  line-height: 1.7;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: v.$item-meta;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--muted);
-  padding-top: 0.35rem;
+  align-self: baseline;
+}
+
+// Shares the date column's baseline group, so the first date line sits on the title's baseline
+.xp-body {
+  align-self: baseline;
 }
 
 .xp-logo {
@@ -469,9 +484,10 @@ html[data-theme="dark"] .home-banner img {
 }
 
 .xp-title {
+  text-wrap: balance;
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: v.$item-title-weight;
   font-size: v.$item-title;
   line-height: 1.3;
   letter-spacing: -0.01em;
@@ -506,14 +522,16 @@ html[data-theme="dark"] .home-banner img {
   }
 
   .xp-loc {
-    font-size: 0.66rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-family: var(--font-body);
+    font-size: v.$item-meta;
+    letter-spacing: 0;
+    text-transform: none;
     color: var(--muted);
   }
 }
 
 .xp-highlights {
+  text-wrap: pretty;
   margin: 0.8rem 0 0;
   padding-left: 1.1rem;
   font-size: v.$item-text;
@@ -721,7 +739,7 @@ html[data-theme="dark"] .home-banner img {
   }
 
   .proj-stage-title {
-    font-size: 1.7rem;
+    font-size: 1.375rem;
   }
 }
 /* purgecss end ignore */
@@ -853,11 +871,11 @@ ul.task-list input[type="checkbox"] {
   background: none;
   gap: 0.35rem;
   align-items: baseline;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-family: var(--font-body);
+  font-size: v.$item-meta;
   font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--accent);
   line-height: 1.6;
   border-bottom: 1px solid transparent;
@@ -869,7 +887,7 @@ ul.task-list input[type="checkbox"] {
   }
 
   .like-count {
-    font-size: 0.68rem;
+    font-size: v.$item-meta;
     font-weight: 600;
     letter-spacing: 0;
     color: var(--ink);
