@@ -19,6 +19,7 @@ meta: First author
 
 <p class="project-links">
   <span class="venue-badge">IROS 2026</span>
+  {% include paper_link.liquid arxiv="2603.00592" %}
   <a href="https://arxiv.org/abs/2603.00592" target="_blank" rel="noopener">
     <i class="ai ai-arxiv"></i> arXiv: 2603.00592
   </a>

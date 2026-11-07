@@ -1,0 +1,5 @@
+{%- comment -%} Official conference link for a project page head; pass arxiv="<id>". Keyed in _data/paper_links.yml. {%- endcomment -%}
+{%- assign paper_link = site.data.paper_links[include.arxiv] -%}
+{%- if paper_link -%}
+  <a href="{{ paper_link.index }}{{ paper_link.number }}" target="_blank" rel="noopener"><i class="fa-solid fa-link"></i> {{ paper_link.venue }}: {{ paper_link.number }}</a>
+{%- endif -%}

@@ -237,6 +237,10 @@
       {% if entry.doi %}
         <a href="https://doi.org/{{ entry.doi }}" class="btn btn-sm z-depth-0" role="button">DOI</a>
       {% endif %}
+      {% assign paper_link = site.data.paper_links[entry.arxiv] %}
+      {% if paper_link %}
+        <a href="{{ paper_link.index }}{{ paper_link.number }}" class="btn btn-sm z-depth-0" role="button">{{ paper_link.venue }}</a>
+      {% endif %}
       {% if entry.arxiv %}
         <a href="http://arxiv.org/abs/{{ entry.arxiv }}" class="btn btn-sm z-depth-0" role="button">arXiv</a>
       {% endif %}

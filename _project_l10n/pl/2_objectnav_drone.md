@@ -2,11 +2,12 @@
 lang: pl
 project: 2_objectnav_drone
 title: "AION: nawigacja wewnątrz pomieszczeń do obiektu docelowego dla robotów latających"
-source_hash: 2dc0fa747eda
+source_hash: bac042760a3f
 ---
 
 <p class="project-links">
   <span class="venue-badge">IROS 2026</span>
+  {% include paper_link.liquid arxiv="2601.15614" %}
   <a href="https://arxiv.org/abs/2601.15614" target="_blank" rel="noopener">
     <i class="ai ai-arxiv"></i> arXiv: 2601.15614
   </a>

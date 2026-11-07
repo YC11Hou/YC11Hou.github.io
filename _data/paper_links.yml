@@ -1,0 +1,9 @@
+# Official conference record of each paper, keyed by arXiv id; link = index + number.
+"2603.00592":
+  venue: IROS
+  number: "522"
+  index: &iros2026 https://2026.ieee-iros.org/program/paper-index/?q=
+"2601.15614":
+  venue: IROS
+  number: "2013"
+  index: *iros2026
